@@ -50,6 +50,7 @@ outputs = model.generate(
     interleave_output_format=True,
     do_sample=True,
     use_cache=True,
+    max_new_tokens=4096,
 )
 
 # Decode outputs
