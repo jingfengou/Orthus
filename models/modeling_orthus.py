@@ -1511,6 +1511,8 @@ class OrthusModel(ChameleonPreTrainedModel):
         # Initialize weights and apply final processing
         self.post_init()
 
+
+
     @property
     def image_seq_length(self) -> int:
         return self.vqmodel.quantize.quant_state_dims[0] * self.vqmodel.quantize.quant_state_dims[1]
@@ -1651,13 +1653,17 @@ class OrthusModel(ChameleonPreTrainedModel):
         if image_latents is None and inputs_embeds is None: # text-only input
             inputs_embeds = self.embed_tokens(input_ids)
         elif image_latents is not None and input_ids is not None: #image-text input
-            
+#             print(f'ksq: {input_ids.shape}')
             #TODO: check when more than one image as input
             inputs_embeds = self.embed_tokens(input_ids)
             bsz = inputs_embeds.shape[0]
             # get the position of image_tokens (<boi>, <eoi> are excluded.)
             image_mask = input_ids==8711
             for id in range(bsz):
+                #CHANGE_for_pix2pix  
+                if image_mask[id].sum()==0:
+                    continue
+                    
                 image_latents_ = image_latents[id].view(-1, self.vqmodel.quantize.embedding_dim).to(self.codebook_in.weight.dtype)
                 # distances from z to embeddings e_j (z - e)^2 = z^2 + e^2 - 2 e * z
                 distances = (
@@ -1676,8 +1682,14 @@ class OrthusModel(ChameleonPreTrainedModel):
                     image_embeds = image_embeds.view(1, -1, self.config.hidden_size)
                     inputs_embeds[id, image_mask[id] == 1] = image_embeds[:, -1, :].to(inputs_embeds.dtype)
                 else:
+                    #change for incontext inference
+#                     if image_embeds.shape[0]!=num_image_tokens:
+#                         image_embeds = image_embeds[2048:,:].view(num_image_tokens, -1).unsqueeze(0).expand(1, num_image_tokens, self.config.hidden_size)
+#                     else:
+#                         image_embeds = image_embeds.view(num_image_tokens, -1).unsqueeze(0).expand(1, num_image_tokens, self.config.hidden_size)
                     image_embeds = image_embeds.view(num_image_tokens, -1).unsqueeze(0).expand(1, num_image_tokens, self.config.hidden_size)
                     inputs_embeds[id, image_mask[id] == 1] = image_embeds.to(inputs_embeds.dtype)
+#             print('inputs_embeds',inputs_embeds.shape)
                 
         else:
             raise ValueError(
@@ -1846,6 +1858,8 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
         self.vocabulary_mapping = self.model.vocabulary_mapping
         self.vocab_size = config.vocab_size
         self.lm_head = nn.Linear(config.hidden_size, config.vocab_size, bias=False)
+        
+
 
         # Initialize weights and apply final processing
         self.post_init()
@@ -1946,6 +1960,7 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
         ] = None,
         **kwargs,
     ) -> Union[GenerateOutput, torch.LongTensor]:
+
 
         generation_config, model_kwargs = self._prepare_generation_config(
             generation_config, multimodal_generation_mode, **kwargs
@@ -2063,6 +2078,12 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
             raise ValueError(
                 f"Unknown multimodal generation mode: {generation_config.multimodal_generation_mode}. Please choose one of 'unrestricted', 'text-only', 'image-only', or 'interleaved-text-image'."
             )
+        if generation_config==None:
+            print("none")
+            exit()
+        print("not none")
+        print("generation_config",generation_config)
+        print("finish")
         return super().generate(
             inputs=inputs,
             generate_wo_quant=True,
@@ -2078,6 +2099,8 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
         input_ids: torch.LongTensor = None,
         image_latents: torch.FloatTensor = None,
         cfg_scale: torch.FloatTensor = 1.0,
+        cfg_text: torch.FloatTensor = 1.0,#CHANGE_for_pix2pix
+        cfg_image: torch.FloatTensor = 1.0,#CHANGE_for_pix2pix
         target_image_latents: torch.FloatTensor = None,
         pixel_values: torch.LongTensor = None,
         train_mode: Optional[str] = 'mmg',
@@ -2135,8 +2158,12 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
             image_mask = input_ids==8711
             bsz, seq_len, _ = target_image_latents.shape # [bsz, 1024, 256]
             z = []
+            #print('image_mask',image_mask.shape,'input_ids',input_ids.shape)#image_mask torch.Size([1, 2060]) input_ids torch.Size([1, 2060])
             for id in range(bsz):
-                boi_position = torch.nonzero(image_mask[id])[0] - 1
+                if torch.nonzero(image_mask[id]).shape[0]==2048:
+                    boi_position = torch.nonzero(image_mask[id])[1024] - 1
+                else:#cfg
+                    boi_position = torch.nonzero(image_mask[id])[0] - 1
                 z.append(hidden_states[id, boi_position : boi_position + 1024, :])
             z = torch.stack(z, dim=0)
 
@@ -2196,9 +2223,13 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
 
             model_pred = self.mlp_head(noisy_latents, timesteps, z)
 
+
             diff_loss = F.mse_loss(model_pred.float(), target.float(), reduction="mean")
 
+
             return logits, diff_loss
+            
+
 
         elif mode == 'discrete': # discrete output
             
@@ -2212,7 +2243,8 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
             self.sample_scheduler.set_timesteps(100)
 
             if bsz==2: # only support bsz=1*2(text_guided_cfg_generation) now
-                # print(f'diff_pos_id: {diff_pos_id}')
+                if diff_pos_id%100==0:
+                    print(f'diff_pos_id: {diff_pos_id}')
                 # //2 is for cfg_generation, 0:1 is z_cond, 1:2 is z_uncond
                 pred_latents = torch.randn((z.shape[0]//2, 256), device=z.device)
                 pred_latents *= self.sample_scheduler.init_noise_sigma
@@ -2227,6 +2259,27 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
                         noise_pred = noise_pred_uncond + cfg_scale * (noise_pred - noise_pred_uncond)
                         pred_latents = self.sample_scheduler.step(noise_pred, t, pred_latents).prev_sample
                 pred_latents = pred_latents.repeat(2, 1)
+                
+            #CHANGE_for_pix2pix    
+            elif bsz==3:
+                # //3 is for cfg_generation, 0:1 is image+text, 1:2 is z_only_image 2:3 is empty
+                pred_latents = torch.randn((z.shape[0]//3, 256), device=z.device)
+                pred_latents *= self.sample_scheduler.init_noise_sigma
+                if diff_pos_id%100==0:
+                    print(f'diff_pos_id: {diff_pos_id}')
+                for t in self.sample_scheduler.timesteps:
+                    pred_latents = self.sample_scheduler.scale_model_input(pred_latents, t)
+                    with torch.no_grad(), torch.cuda.amp.autocast():
+                        t_sample = torch.as_tensor([t], device=z.device)
+                        #print(pred_latents.shape, t_sample.shape, z.shape)#torch.Size([1, 256]) torch.Size([1]) torch.Size([2, 4096])
+                        noise_preds = self.mlp_head(pred_latents, t_sample.repeat(z.shape[0]), z)#pred_latents始终只有一维 是综合了con/uncon的结果 z有两维且不一样
+                        #print('noise_preds',noise_preds.shape)#noise_preds torch.Size([2, 256])
+                        noise_pred = noise_preds[:z.shape[0] // 3]
+                        noise_pred_only_image = noise_preds[z.shape[0] // 3:2*z.shape[0] // 3]
+                        noise_pred_uncond = noise_preds[2*z.shape[0] // 3:]
+                        noise_pred=noise_pred_uncond+cfg_image*(noise_pred_only_image-noise_pred_uncond)+cfg_text*(noise_pred-noise_pred_only_image)
+                        pred_latents = self.sample_scheduler.step(noise_pred, t, pred_latents).prev_sample
+                pred_latents = pred_latents.repeat(3, 1)
 
             else:
                 assert bsz==1 # only support bsz=1 now
@@ -2306,22 +2359,16 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
         )
         return model_inputs
 
-    def decode_image_latents(self, image_latents: torch.Tensor):
+    def decode_image_tokens(self, bpe_tokens: torch.Tensor):
         """
-        Decodes image_latents_wo_quant generated by the model into pixel values.
+        Converts BPE tokens generated by the model into discrete image tokens
+        compatible with the VQGAN module, then decodes them into pixel values.
 
         Args:
-            image_latents_wo_quant (`torch.tensor`):
+            bpe_tokens (`torch.tensor` of shape `(batch, image_seq_length)`):
+                The BPE tokens generated by the model.
 
         Returns:
             `torch.Tensor` of shape `(batch, num_channels, 512, 512)`:
         """
-
-        emb_dim = self.model.vqmodel.quantize.embedding.weight.shape[-1]
-        image_embeds = image_latents.view((1, *self.model.vqmodel.quantize.quant_state_dims, emb_dim))
-        image_embeds = image_embeds.permute(0, 3, 1, 2).contiguous()
-
-        hidden_states = self.model.vqmodel.post_quant_conv(image_embeds.to(self.model.vqmodel.post_quant_conv.weight.dtype))
-        pixel_values = self.model.vqmodel.decoder(hidden_states)
-
-        return pixel_values
+        return self.model.decode_image_tokens(bpe_tokens)
