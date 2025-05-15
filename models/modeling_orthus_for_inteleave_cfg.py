@@ -2114,7 +2114,7 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
 
         if model_inputs_uncon is not None:
             outputs_uncon = self.model(
-                image_latents=image_latents[-diff_pos_id:] if image_latents is not None else None,
+                image_latents=image_latents[:, -diff_pos_id:, :] if image_latents is not None else None,
                 inputs_embeds=inputs_embeds,
                 output_attentions=output_attentions,
                 output_hidden_states=output_hidden_states,

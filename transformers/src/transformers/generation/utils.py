@@ -4190,8 +4190,8 @@ class GenerationMixin:
         else:
             image_latents = image_latents.view(image_latents.shape[0], -1, 256)
             #CHANGE_for_pix2pix
-            collect_image_latents = [image_latent.squeeze(1).repeat(3,1) for image_latent in torch.split(image_latents, 1, dim=1)]
-            #collect_image_latents = [image_latent.squeeze(1) for image_latent in torch.split(image_latents, 1, dim=1)]
+            #collect_image_latents = [image_latent.squeeze(1).repeat(3,1) for image_latent in torch.split(image_latents, 1, dim=1)]
+            collect_image_latents = [image_latent.squeeze(1) for image_latent in torch.split(image_latents, 1, dim=1)]
 
         generate_eoi = False
         sum_image_latents_generated = 0
@@ -4210,20 +4210,20 @@ class GenerationMixin:
             # forward pass to get next token(mode: discrete) or next image latents(mode: continuous)
             if len(collect_image_latents) == 0:
                 #CHANGE_for_pix2pix
-                outputs = self(**model_inputs, return_dict=True, mode=mode, cfg_scale=model_kwargs['cfg_scale'],cfg_text=model_kwargs['cfg_text'],cfg_image=model_kwargs['cfg_image'], \
-                                logits_processor=logits_processor, logits_warper=logits_warper, diff_pos_id=sum_image_latents_generated%1024)
-#                 outputs = self(**model_inputs, return_dict=True, mode=mode, cfg_scale=model_kwargs['cfg_scale'], \
-#                                logits_processor=logits_processor, logits_warper=logits_warper, diff_pos_id=sum_image_latents_generated%1024)
+                # outputs = self(**model_inputs, return_dict=True, mode=mode, cfg_scale=model_kwargs['cfg_scale'],cfg_text=model_kwargs['cfg_text'],cfg_image=model_kwargs['cfg_image'], \
+                #                 logits_processor=logits_processor, logits_warper=logits_warper, diff_pos_id=sum_image_latents_generated%1024)
+                outputs = self(**model_inputs, return_dict=True, mode=mode, cfg_scale=model_kwargs['cfg_scale'], \
+                               logits_processor=logits_processor, logits_warper=logits_warper, diff_pos_id=sum_image_latents_generated%1024)
             else:
                 image_latents = torch.stack(collect_image_latents, dim=1)
                 #print(f'image_latents: {image_latents.shape}')
                 #CHANGE_for_pix2pix
+                # outputs = self(**model_inputs, image_latents=image_latents, return_dict=True, mode=mode, \
+                #      logits_processor=logits_processor, logits_warper=logits_warper, diff_pos_id=sum_image_latents_generated%1024, \
+                #                 cfg_scale=model_kwargs['cfg_scale'],cfg_text=model_kwargs['cfg_text'],cfg_image=model_kwargs['cfg_image'])
                 outputs = self(**model_inputs, image_latents=image_latents, return_dict=True, mode=mode, \
-                     logits_processor=logits_processor, logits_warper=logits_warper, diff_pos_id=sum_image_latents_generated%1024, \
-                                cfg_scale=model_kwargs['cfg_scale'],cfg_text=model_kwargs['cfg_text'],cfg_image=model_kwargs['cfg_image'])
-#                 outputs = self(**model_inputs, image_latents=image_latents, return_dict=True, mode=mode, \
-#                     logits_processor=logits_processor, logits_warper=logits_warper, diff_pos_id=sum_image_latents_generated%1024, \
-#                                cfg_scale=model_kwargs['cfg_scale'])
+                    logits_processor=logits_processor, logits_warper=logits_warper, diff_pos_id=sum_image_latents_generated%1024, \
+                               cfg_scale=model_kwargs['cfg_scale'])
             
             if synced_gpus and this_peer_finished:
                 continue  # don't waste resources running the code we don't need
@@ -4283,7 +4283,7 @@ class GenerationMixin:
                 next_tokens = torch.tensor([8711, 8711]).to(input_ids.device)
                 
                 #CHANGE_for_pix2pix
-                next_tokens = torch.tensor([8711, 8711,8711]).to(input_ids.device)
+                # next_tokens = torch.tensor([8711, 8711,8711]).to(input_ids.device)
                 
                 # if image_latents_generated%1024 ==0, use last_image_latents to generate discrete token <eoi>
                 if sum_image_latents_generated%1024 == 0 and not interleave_output_format:
