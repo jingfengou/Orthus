@@ -4204,7 +4204,7 @@ class GenerationMixin:
             # prepare variable output controls (note: some models won't accept all output controls)
             model_inputs.update({"output_attentions": output_attentions} if output_attentions else {})
             model_inputs.update({"output_hidden_states": output_hidden_states} if output_hidden_states else {})
-            print("output_attentions",output_attentions,"output_hidden_states",output_hidden_states)
+            # print("output_attentions",output_attentions,"output_hidden_states",output_hidden_states)
 
 
             # forward pass to get next token(mode: discrete) or next image latents(mode: continuous)

@@ -1,0 +1,13 @@
+# Python 缓存文件
+__pycache__/
+*.pyc
+
+# 数据和结果文件
+*.jpg
+*.zip
+
+results/
+
+
+# 操作系统特定的文件 (例如 macOS)
+.DS_Store

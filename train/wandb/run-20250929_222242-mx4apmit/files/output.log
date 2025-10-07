@@ -1,0 +1,29 @@
+[34m[1mwandb[0m: [33mWARNING[0m Serializing object of type dict that is 1922480 bytes
+  0%|                                                                                                                                | 0/118 [00:00<?, ?it/s]2025-09-29 22:22:44,326 - ERROR -
+
+❌ [Failure] Training failed with an error: Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m.
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL numpy.core.multiarray._reconstruct was not an allowed global by default. Please use `torch.serialization.add_safe_globals([numpy.core.multiarray._reconstruct])` or the `torch.serialization.safe_globals([numpy.core.multiarray._reconstruct])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.
+Traceback (most recent call last):
+  File "/data1/oujingfeng/project/twgi/Orthus/train/train_orthus.py", line 157, in main
+    trainer.train(resume_from_checkpoint=True if os.path.isdir(args.output_dir) and any(fn.startswith("checkpoint-") for fn in os.listdir(args.output_dir)) else False)
+  File "/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/trainer.py", line 2122, in train
+    return inner_training_loop(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/trainer.py", line 2455, in _inner_training_loop
+    self._load_rng_state(resume_from_checkpoint)
+  File "/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/trainer.py", line 3026, in _load_rng_state
+    checkpoint_rng_state = torch.load(rng_file)
+                           ^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/serialization.py", line 1529, in load
+    raise pickle.UnpicklingError(_get_wo_message(str(e))) from None
+_pickle.UnpicklingError: Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m.
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL numpy.core.multiarray._reconstruct was not an allowed global by default. Please use `torch.serialization.add_safe_globals([numpy.core.multiarray._reconstruct])` or the `torch.serialization.safe_globals([numpy.core.multiarray._reconstruct])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.
+  0%|                                                                                                                                | 0/118 [00:00<?, ?it/s]

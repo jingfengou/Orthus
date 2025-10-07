@@ -2128,6 +2128,11 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
             
             # get the position of image_tokens (<boi>, <eoi> are excluded.)
             image_mask = input_ids==8711
+            # if target_image_latents is None:
+            #     return logits
+
+            # target_image_latents = target_image_latents.view(-1, 1024, 256)
+
             bsz, seq_len, _ = target_image_latents.shape # [bsz, 1024, 256]
             z = []
             #print('image_mask',image_mask.shape,'input_ids',input_ids.shape)#image_mask torch.Size([1, 2060]) input_ids torch.Size([1, 2060])
@@ -2164,7 +2169,9 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
 
             # Set up variables
             is_boi_token = input_ids == 8197
-            bsz, seq_len, _ = target_image_latents.shape
+
+            target_image_latents = target_image_latents.view(-1, 1024, 256)
+            bsz, seq_len, _ = target_image_latents.shape# [bsz, 1024, 256]
             
             # Initialize storage for image latents
             z = []

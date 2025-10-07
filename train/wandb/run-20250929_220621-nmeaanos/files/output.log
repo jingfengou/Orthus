@@ -1,0 +1,2299 @@
+[34m[1mwandb[0m: [33mWARNING[0m Serializing object of type dict that is 1922480 bytes
+  0%|                                                                                                                                | 0/118 [00:00<?, ?it/s]2025-09-29 22:06:24,015 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+
+======================================== [DEBUGGING AT GLOBAL STEP: 0] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'A': 'Option A is incorrect because it is a vertically mirrored version of the back-bottom-left view.', 'C': 'Option C is incorrect because it is a horizontally mirrored version of the front-top-right view.', 'ABCD': 'Assuming the bottom face is the first cell in the second row of the net, then after folding, the front face is cyan, the back face is red, the left face is green, the right face is blue, the top face is yellow, the bottom face is pink.', 'B': 'Option B is correct because it shows the back-bottom-right view.'} The final answer is <answer>B</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m[0m
+===========================================================================================================
+  3%|████                                                                                                                    | 4/118 [00:47<21:28, 11.30s/it]
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 1] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'ABCD': 'The counterclockwise rotation of the green object drives the orange object to rotate clockwise, which in turn pulls the weight upward.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 2] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'D': 'Option D is incorrect because it is the cross-section of the shape made by a plane parallel to the YZ plane.', 'B': 'Option B is incorrect because it is the cross-section of the shape made by a plane parallel to the XY plane.', 'A': 'Option A is incorrect because it is the cross-section of the shape made by a plane parallel to the YZ plane.', 'C': 'Option C is correct because the corresponding cross-section does not match the shape shown in the reference image.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 3] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'D': 'Assuming the bottom face is the first cell in the second row of the net, and the right face is the cell to its right. Option D is correct because it shows the back-bottom-right view.', 'B': 'Assuming the bottom face is the first cell in the second row of the net, and the right face is the cell to its right. Option B is incorrect because it includes rotated non-symmetric faces.', 'C': 'Assuming the bottom face is the first cell in the second row of the net, and the right face is the cell to its right. Option C is incorrect because it includes rotated non-symmetric faces.', 'A': 'Assuming the bottom face is the first cell in the second row of the net, and the right face is the cell to its right. Option A is incorrect because it is a horizontally mirrored version of the back-top-left view.'} The final answer is <answer>D</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 4] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'C': 'Option C is correct because the initial arrow can be transformed into the final arrow.', 'BDA': 'Option BDA is incorrect because the initial arrow cannot be transformed into the final arrow.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 5] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'B': 'Option B is incorrect because holes in column 1 are missing.', 'A': 'Option A is incorrect because extra holes appear in column 2.', 'D': 'Option D is incorrect because holes that should appear in column 1 appear in column 2.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 6] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'ABCD': 'Given three views, at least 4 cubes and at most 4 cubes are required to satisfy the constraints.'} The final answer is <answer>D</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 7] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'C': 'Option C is correct because it was obtained by rotating the original image 180 degrees.', 'A': 'Option A is incorrect because it was obtained by rotating the original image 180 degrees and then flipping it horizontally.', 'B': 'Option B is incorrect because it was obtained by rotating the original image 90 degrees and then flipping it vertically.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 8] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'B': 'Option B is incorrect because one cube is missing, resulting in an incorrect cube stack shape.', 'C': 'Option C is incorrect because one cube is missing, resulting in an incorrect cube stack shape.'} The final answer is <answer>A</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 9] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'CDB': 'Option CDB is incorrect because this net could be a valid net for the given cube, as the positions of cyan, pink, and blue match the shown cube.', 'A': 'Option A is correct because this net cannot be a valid net for the given cube, as the positions of yellow and cyan are reversed.'} The final answer is <answer>A</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m cube cube[0m
+===========================================================================================================
+
+{'loss': 19.7406, 'grad_norm': 78.12340545654297, 'learning_rate': 4.965903258506806e-06, 'epoch': 0.08}
+(tensor([[[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -2.8281,  -1.5391,   5.3438,  ...,  -6.6250,  -2.6094,  -2.1562],
+         [ -2.2656,  -1.1250,   5.6562,  ...,  -6.2188,  -1.9219,  -1.5234],
+         [ -1.6562,  -1.2344,   6.5312,  ...,  -5.9062,  -0.4023,  -1.0625]],
+
+        [[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.1094,  -1.9453,   5.3438,  ...,  -6.8125,  -2.8125,  -2.8750],
+         [ -2.4688,  -1.5078,   5.7812,  ...,  -6.4375,  -2.0156,  -2.0625],
+         [ -1.5547,  -1.5078,   6.6562,  ...,  -5.9062,  -0.5430,  -1.3516]]],
+       device='cuda:0'),)
+ 13%|████████████████▏                                                                                                        | 2/15 [00:02<00:14,  1.09s/it]
+(tensor([[[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -2.9688,  -1.9688,   5.5000,  ...,  -6.7500,  -2.5781,  -1.9688],
+         [ -2.2969,  -1.4609,   5.9062,  ...,  -6.2812,  -1.8828,  -1.1953],
+         [ -1.6094,  -1.5391,   6.6875,  ...,  -5.9688,  -0.4863,  -1.0391]],
+
+        [[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.2812,  -2.2188,   5.0938,  ...,  -7.0312,  -2.9219,  -2.9844],
+         [ -2.7188,  -1.7422,   5.5938,  ...,  -6.4375,  -2.1406,  -2.0312],
+         [ -1.4922,  -1.6562,   6.7188,  ...,  -5.9375,  -0.6562,  -1.6641]]],
+       device='cuda:0'),)
+(tensor([[[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.1875,  -2.5625,   4.9062,  ...,  -7.1250,  -3.3281,  -3.8281],
+         [ -2.6562,  -2.1406,   5.3125,  ...,  -6.7188,  -2.5312,  -2.9219],
+         [ -1.3750,  -2.0938,   6.3125,  ...,  -6.1875,  -0.8867,  -1.6328]],
+
+        [[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.3125,  -2.2031,   4.8750,  ...,  -6.8750,  -2.5781,  -4.0312],
+         [ -2.7188,  -1.8438,   5.4062,  ...,  -6.2812,  -1.9219,  -3.0938],
+         [ -1.4688,  -1.6172,   6.3438,  ...,  -5.5625,  -0.4023,  -2.3594]]],
+       device='cuda:0'),)
+(tensor([[[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -2.6250,  -2.2969,   4.8125,  ...,  -6.9062,  -3.1719,  -4.0938],
+         [ -2.2344,  -1.7969,   5.2812,  ...,  -6.3125,  -2.2500,  -2.8125],
+         [ -1.1953,  -1.9375,   6.3125,  ...,  -6.0938,  -0.6914,  -2.2969]],
+
+        [[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.3125,  -2.5312,   4.8750,  ...,  -7.1562,  -3.3281,  -3.7500],
+         [ -2.7812,  -2.1094,   5.2188,  ...,  -6.7500,  -2.5156,  -2.8594],
+         [ -1.6172,  -2.0000,   6.2812,  ...,  -6.2812,  -0.7656,  -1.4922]]],
+       device='cuda:0'),)
+(tensor([[[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.3594,  -2.3594,   5.1250,  ...,  -7.1562,  -2.6562,  -3.0156],
+         [ -2.9219,  -1.9297,   5.5312,  ...,  -6.6250,  -1.9141,  -2.1562],
+         [ -1.9922,  -1.9766,   6.2812,  ...,  -6.3750,  -0.6094,  -1.8047]],
+
+        [[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.2969,  -2.2031,   5.0938,  ...,  -7.0000,  -2.8750,  -3.0000],
+         [ -2.7812,  -1.7109,   5.4688,  ...,  -6.4688,  -1.9453,  -2.2656],
+         [ -1.8359,  -1.7422,   6.4375,  ...,  -5.9688,  -0.3652,  -1.5000]]],
+       device='cuda:0'),)
+(tensor([[[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.0469,  -2.0469,   5.5000,  ...,  -6.8750,  -2.7031,  -2.6562],
+         [ -2.3438,  -1.6641,   5.9688,  ...,  -6.4688,  -2.0000,  -1.7891],
+         [ -1.2891,  -1.7031,   6.7500,  ...,  -5.9062,  -0.5430,  -1.4141]],
+
+        [[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.4062,  -2.3438,   4.6250,  ...,  -7.0625,  -2.7188,  -3.8594],
+         [ -2.9531,  -1.8984,   5.0625,  ...,  -6.5000,  -1.9375,  -2.9844],
+         [ -1.5938,  -1.6562,   6.0000,  ...,  -5.8438,  -0.5352,  -2.2969]]],
+       device='cuda:0'),)
+(tensor([[[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.4531,  -2.3281,   5.2812,  ...,  -7.0312,  -2.5469,  -3.3594],
+         [ -2.9375,  -1.8594,   5.6875,  ...,  -6.4688,  -1.8359,  -2.3750],
+         [ -1.7812,  -1.9141,   6.4375,  ...,  -6.1875,  -0.4414,  -1.8906]],
+
+        [[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -2.8438,  -1.9688,   5.1875,  ...,  -6.9375,  -2.7344,  -3.0156],
+         [ -2.2969,  -1.6172,   5.5938,  ...,  -6.5312,  -1.9453,  -2.1562],
+         [ -1.3438,  -1.6719,   6.5938,  ...,  -6.0000,  -0.4668,  -1.4844]]],
+       device='cuda:0'),)
+(tensor([[[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -2.9531,  -2.0469,   5.1562,  ...,  -6.9375,  -2.7656,  -3.0781],
+         [ -2.4219,  -1.6641,   5.5312,  ...,  -6.5625,  -1.9688,  -2.2344],
+         [ -1.3281,  -1.6875,   6.5625,  ...,  -6.0000,  -0.5312,  -1.5469]],
+
+        [[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.3281,  -2.0625,   5.1250,  ...,  -7.0938,  -2.8438,  -4.0312],
+         [ -3.0781,  -1.6484,   5.4375,  ...,  -6.7188,  -2.1562,  -3.3906],
+         [ -1.9141,  -1.7188,   6.5000,  ...,  -6.1250,  -0.6406,  -2.2188]]],
+       device='cuda:0'),)
+(tensor([[[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -2.7969,  -2.2812,   5.1562,  ...,  -7.3438,  -2.5938,  -2.8906],
+         [ -2.2969,  -1.8438,   5.5625,  ...,  -6.8125,  -1.8359,  -1.9688],
+         [ -1.7344,  -1.8594,   6.3125,  ...,  -6.2500,  -0.5156,  -1.4922]],
+
+        [[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.1250,  -2.3125,   5.3125,  ...,  -6.9062,  -2.8594,  -3.3594],
+         [ -2.6094,  -1.9375,   5.7500,  ...,  -6.3438,  -2.1094,  -2.4219],
+         [ -1.9922,  -1.8359,   6.3750,  ...,  -5.7812,  -0.5078,  -1.7031]]],
+       device='cuda:0'),)
+(tensor([[[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.0156,  -2.3906,   5.1875,  ...,  -7.0000,  -2.7812,  -3.0781],
+         [ -2.5312,  -1.9531,   5.5938,  ...,  -6.4688,  -1.9844,  -2.1250],
+         [ -1.8672,  -1.8438,   6.3125,  ...,  -5.8125,  -0.4590,  -1.7031]],
+
+        [[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.3750,  -2.2188,   5.0000,  ...,  -7.1562,  -2.8594,  -3.2500],
+         [ -2.7500,  -1.7031,   5.5000,  ...,  -6.5938,  -1.9844,  -2.3438],
+         [ -1.8203,  -1.8594,   6.3750,  ...,  -6.3125,  -0.5273,  -1.6172]]],
+       device='cuda:0'),)
+(tensor([[[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.0469,  -2.0312,   5.4375,  ...,  -6.9375,  -2.6875,  -2.7188],
+         [ -2.4531,  -1.6875,   5.8750,  ...,  -6.5625,  -1.9766,  -1.7812],
+         [ -1.5234,  -1.6484,   6.6250,  ...,  -5.9688,  -0.5352,  -1.3516]],
+
+        [[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.7031,  -2.1875,   5.4062,  ...,  -6.8750,  -2.6406,  -2.9062],
+         [ -2.9688,  -1.7344,   5.9688,  ...,  -6.3125,  -1.7734,  -2.0156],
+         [ -1.9453,  -1.7891,   6.6562,  ...,  -5.9062,  -0.2402,  -1.4453]]],
+       device='cuda:0'),)
+(tensor([[[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -2.7656,  -2.1562,   5.3438,  ...,  -6.9062,  -2.7031,  -2.6406],
+         [ -2.1719,  -1.7734,   5.7500,  ...,  -6.3750,  -1.9688,  -1.8047],
+         [ -1.1562,  -1.7891,   6.7188,  ...,  -5.9375,  -0.5547,  -1.5703]],
+
+        [[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.5312,  -2.2656,   5.1562,  ...,  -7.0000,  -2.7500,  -2.7031],
+         [ -3.1250,  -1.8594,   5.5938,  ...,  -6.5000,  -1.8906,  -1.8984],
+         [ -1.9609,  -1.8125,   6.4375,  ...,  -6.0312,  -0.4434,  -1.3906]]],
+       device='cuda:0'),)
+(tensor([[[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.2812,  -2.0781,   5.1875,  ...,  -6.8750,  -2.7812,  -2.7812],
+         [ -2.7656,  -1.6250,   5.5938,  ...,  -6.4062,  -1.8906,  -2.0625],
+         [ -1.7500,  -1.7266,   6.5625,  ...,  -5.9062,  -0.4062,  -1.3125]],
+
+        [[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.0469,  -1.9766,   5.1562,  ...,  -7.1875,  -2.8594,  -3.5469],
+         [ -2.9062,  -1.6172,   5.6250,  ...,  -6.7188,  -2.1406,  -2.8281],
+         [ -1.4688,  -1.7578,   6.5312,  ...,  -6.0938,  -0.7383,  -2.1406]]],
+       device='cuda:0'),)
+(tensor([[[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.2656,  -2.2188,   5.0625,  ...,  -6.9688,  -2.8438,  -3.2500],
+         [ -2.8750,  -1.8281,   5.5312,  ...,  -6.4688,  -2.0156,  -2.3906],
+         [ -2.2812,  -1.7578,   6.2188,  ...,  -5.9062,  -0.5391,  -1.7031]],
+
+        [[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -2.9219,  -2.1562,   5.2812,  ...,  -7.2188,  -2.5156,  -3.4375],
+         [ -2.2969,  -1.7031,   5.7188,  ...,  -6.6250,  -1.8203,  -2.4219],
+         [ -1.5312,  -1.6641,   6.4062,  ...,  -6.1250,  -0.4902,  -1.7188]]],
+       device='cuda:0'),)
+(tensor([[[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.5000,  -2.1875,   4.8750,  ...,  -6.8438,  -2.6875,  -3.3906],
+         [ -2.9844,  -1.7891,   5.2188,  ...,  -6.3750,  -2.0000,  -2.6719],
+         [ -1.8672,  -1.5781,   6.0625,  ...,  -5.7500,  -0.5391,  -2.1094]],
+
+        [[-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         [-17.7500, -15.5000,  -8.3125,  ..., -17.1250, -12.0625, -10.3125],
+         ...,
+         [ -3.5156,  -2.6719,   5.0625,  ...,  -7.2812,  -3.0625,  -3.4531],
+         [ -2.8906,  -2.2031,   5.4062,  ...,  -6.7812,  -2.3438,  -2.5156],
+         [ -1.6250,  -2.0312,   6.3438,  ...,  -6.2188,  -0.7109,  -1.7344]]],
+       device='cuda:0'),)
+{'eval_loss': 5.310678482055664, 'eval_runtime': 30.5446, 'eval_samples_per_second': 7.726, 'eval_steps_per_second': 0.491, 'epoch': 0.08}
+
+======================================== [DEBUGGING AT GLOBAL STEP: 10] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'A': 'Assuming the bottom face is the first cell in the second row of the net, and the right face is the cell to its right. Option A is correct because it shows the back-top-left view.', 'D': 'Assuming the bottom face is the first cell in the second row of the net, and the right face is the cell to its right. Option D is incorrect because it includes rotated non-symmetric faces.', 'B': 'Assuming the bottom face is the first cell in the second row of the net, and the right face is the cell to its right. Option B is incorrect because it includes rotated non-symmetric faces.', 'C': 'Assuming the bottom face is the first cell in the second row of the net, and the right face is the cell to its right. Option C is incorrect because it is a horizontally mirrored version of the back-top-right view.'} The final answer is <answer>A</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m''''''' the row right face its rightOptionmetry''' cell the row face its rightsymmetric faces bottom cell the second row net right face is cell its rightrored mirtopleft answeransweransweransweransweranswer>>answeranswer[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 11] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'A': 'Option A is correct because the cube stack can be obtained by rotating the original stack around the y-axis by 270 degrees.', 'C': 'Option C is incorrect because it is a horizontally mirrored version of the original cube stack.', 'B': 'Option B is incorrect because it was obtained by removing one small cube from the original stack.'} The final answer is <answer>A</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m''''''OptionOptionA incorrect correct cube cube cube cube cube cube cube cube cube cube cube cube cube axis axis'''''''''OptionOptionC incorrect incorrect incorrect incorrect incorrect horizontallyrored mir mir cube cube cube cube cube cube'''''''''OptionOptionB incorrect incorrect incorrect incorrect incorrect cube cube cube cube cube cube cube cube' cube answeranswer answeransweransweransweranswer>>>answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 12] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'ABCD': 'Given three views, at least 12 cubes and at most 17 cubes are required to satisfy the constraints.'} The final answer is <answer>A</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'ABC''''' Given Given views Givenleastleast1 cubes cubes cubes least cubes cubes cubes cubes cubes cubes cubes satisfy satisfy constraints constraints constraints''' answer answer answer answer<answer>><<answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 13] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'C': 'Option C is incorrect because holes in row 2 are missing.', 'B': 'Option B is incorrect because extra holes appear in row 3.', 'A': 'Option A is incorrect because holes that should appear in row 2 appear in row 3.'} The final answer is <answer>D</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'''::'Option C is incorrect because holes holes row row  are missing.'''''':'Option B is incorrect because extra holes appear row row rows'''''''::'Option A is incorrect because holes appear appear row row row appear row in.'' The final answer is is<answer>D<<answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 14] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'B': 'Option B is correct because the initial state can be transformed into the target state.', 'DAC': 'Option DAC is incorrect because the initial state cannot be transformed into the target state.'} The final answer is <answer>B</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m' B B::'Option B is correct because the initial state can can transformed into into target state.'' 'DAC'::'Option DAC is incorrect because the initial state cannot can transformed into into target stateصفحه'} The final answer is is<answer>B<<answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 15] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'ABCD': 'The counterclockwise rotation of the orange shaft drives the internal boundary of the green object back and forth, causing it to move horizontally.'} The final answer is <answer>A</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'ABCD': ' The counterclock clock rotation of the orange shaft drives the internal boundary of the green object back and forth, causing it to move horizontally.'} The final answer is <answer>A</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 16] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'C': 'Option C is correct because the squares with asymmetric patterns have been rotated, so it cannot form the cube shown in the left image.', 'B': 'Option B is incorrect because the relative positions of three faces match the cube shown in the left image.', 'A': 'Option A is incorrect because the relative positions of three faces match the cube shown in the left image.', 'D': 'Option D is incorrect because the relative positions of three faces match the cube shown in the left image.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'C': 'OptionC is correct because the squares with asymmetric patterns have been rotated, so it cannot form the cube shown in in left image.', 'B': 'OptionB is incorrect because the relative positions of three faces match the cube shown in in left image.', 'A'::'Option A is incorrect because the relative positions of three faces match the cube shown in in left image.', 'D': 'OptionD is incorrect because the relative positions of three faces match the cube shown in in left image.'} The final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 17] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'ABCD': 'Assuming the bottom face is the first cell in the second row of the net, then after folding, the front face is pink, the back face is red, the left face is green, the right face is blue, the top face is yellow, the bottom face is cyan.'} The final answer is <answer>B</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'ABCD': 'Ass assuming the bottom face is the first cell in the second row of the net, then after folding, the front face is pink, the back face is red, the left face is green, the right face is blue, the top face is yellow, the bottom face is cyan.'} The final answer is <answer>B</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 18] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'C': 'Option C is correct because it was obtained by rotating the original image 270 degrees.', 'B': 'Option B is incorrect because it was obtained by rotating the asymmetric patterns in the image.', 'A': 'Option A is incorrect because it was obtained by rotating the original image 180 degrees and then flipping it horizontally.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'C': 'Option C is correct because it was obtained by rotating the original image 270 degrees.', 'B': 'Option B is incorrect because it was obtained by rotating the asymmetric patterns in the image.', 'A': 'Option A is incorrect because it was obtained by rotating the original image 180 degrees and then flipping it horizontally.'} The final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 19] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'ABCD': 'Given three views, at least 13 cubes and at most 15 cubes are required to satisfy the constraints.'} The final answer is <answer>B</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'ABCD': 'Given three views, at least 13 cubes and at most 15 cubes are required to satisfy the constraints.'} The final answer is <answer>B</answer>[0m
+===========================================================================================================
+
+{'loss': 1.5012, 'grad_norm': 3.0964081287384033, 'learning_rate': 4.760892901743944e-06, 'epoch': 0.17}
+(tensor([[[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -9.1875,  -1.4609,   0.6602,  ...,  -7.9688,  -5.1562,  -4.4688],
+         [ -5.2500,   9.4375,   6.6562,  ...,   0.4199,   1.6172,   3.4688],
+         [  1.4609,   8.6875,   6.7500,  ...,   3.4688,   6.3125,   3.3125]],
+
+        [[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -9.3125,  -1.0938,   0.6836,  ...,  -7.7500,  -5.0000,  -4.0000],
+         [ -4.2500,  10.3750,   7.1875,  ...,   1.1250,   2.5156,   4.1875],
+         [  1.4375,   9.0625,   6.9375,  ...,   3.7969,   6.5938,   3.5469]]],
+       device='cuda:0'),)
+(tensor([[[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -9.1250,  -1.2422,   0.7188,  ...,  -7.3438,  -4.6562,  -4.1250],
+         [ -5.3750,   8.8125,   6.4062,  ...,   0.0674,   1.3906,   3.0000],
+         [  1.0547,   8.9375,   6.8125,  ...,   3.8125,   6.7188,   3.5312]],
+
+        [[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -9.5000,  -0.5781,   0.8711,  ...,  -7.1875,  -4.3438,  -3.5312],
+         [ -5.6562,   8.8125,   6.4375,  ...,   0.1738,   1.7500,   3.6875],
+         [ -0.5859,   9.0625,   6.6875,  ...,   4.1562,   6.0312,   3.7344]]],
+       device='cuda:0'),)
+(tensor([[[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -8.8125,  -0.4746,   1.3359,  ...,  -7.5000,  -4.8750,  -3.2188],
+         [ -4.9688,   8.8125,   6.2500,  ...,  -0.6055,   0.8672,   3.1875],
+         [  0.8086,   9.6250,   7.4375,  ...,   4.8750,   6.3438,   4.1250]],
+
+        [[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -9.9375,  -2.5625,  -0.0236,  ...,  -7.7188,  -5.5625,  -4.2188],
+         [ -7.4375,   6.6562,   4.2812,  ...,  -1.6250,  -0.2637,   1.9531],
+         [  1.1328,   8.1250,   6.0938,  ...,   2.9844,   5.5625,   4.2500]]],
+       device='cuda:0'),)
+(tensor([[[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -9.7500,  -0.4863,   0.6641,  ...,  -7.5312,  -5.0312,  -3.7344],
+         [ -5.9062,   8.1250,   6.0312,  ...,  -0.5078,   0.7539,   2.7344],
+         [ -0.1426,   9.8750,   7.0312,  ...,   4.6250,   6.5000,   3.9062]],
+
+        [[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -8.8125,  -0.3457,   1.3359,  ...,  -7.4062,  -4.7500,  -3.1562],
+         [ -4.8125,   9.0625,   6.4062,  ...,  -0.3379,   1.1016,   3.3438],
+         [  1.2500,   9.8750,   7.5625,  ...,   4.9688,   6.5938,   4.4062]]],
+       device='cuda:0'),)
+(tensor([[[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -8.9375,  -0.3340,   1.4375,  ...,  -6.5625,  -3.7188,  -2.8906],
+         [ -4.3125,   9.7500,   7.0312,  ...,   0.4609,   2.6406,   3.9844],
+         [  0.5312,   9.7500,   7.2500,  ...,   4.9062,   6.8438,   4.0938]],
+
+        [[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -9.0625,  -0.6094,   0.9297,  ...,  -7.3438,  -4.2188,  -3.7031],
+         [ -4.5312,  10.6250,   7.2812,  ...,   1.2109,   2.9688,   4.1562],
+         [  0.3438,   9.3125,   6.8750,  ...,   4.4375,   7.0625,   3.4844]]],
+       device='cuda:0'),)
+(tensor([[[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -9.4375,  -1.4219,   0.5820,  ...,  -7.5938,  -4.7812,  -4.2188],
+         [ -4.2500,   9.6875,   7.0938,  ...,   0.7109,   2.3750,   3.6719],
+         [  0.7305,   9.1250,   6.8750,  ...,   3.8750,   6.5312,   3.4844]],
+
+        [[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [-10.5000,  -3.2344,  -0.8008,  ...,  -8.6875,  -6.3438,  -4.9375],
+         [ -8.8125,   5.2188,   3.3438,  ...,  -2.9062,  -1.7500,   1.0703],
+         [  1.6641,   8.0625,   6.0000,  ...,   2.6094,   5.2500,   4.7500]]],
+       device='cuda:0'),)
+(tensor([[[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -8.8750,  -0.3281,   1.3516,  ...,  -6.6250,  -3.7188,  -3.0781],
+         [ -3.6250,  10.4375,   7.6562,  ...,   1.0781,   3.5625,   4.2188],
+         [  0.5039,   9.6250,   7.2500,  ...,   4.8750,   6.8750,   4.1562]],
+
+        [[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -9.5000,  -1.5703,   0.2266,  ...,  -8.1250,  -5.4375,  -4.2500],
+         [ -4.9062,   9.6250,   6.7188,  ...,   0.2871,   1.9219,   3.3906],
+         [  0.7969,   8.8125,   6.5625,  ...,   3.7344,   6.3438,   3.4531]]],
+       device='cuda:0'),)
+(tensor([[[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -9.8125,  -1.6562,   0.1455,  ...,  -8.2500,  -5.5000,  -4.3750],
+         [ -4.8438,   9.7500,   6.7500,  ...,   0.3398,   1.9688,   3.4375],
+         [  0.8164,   9.1250,   6.5938,  ...,   3.9219,   6.3750,   3.5156]],
+
+        [[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [-10.1250,  -2.2500,  -0.1050,  ...,  -8.1250,  -6.1250,  -4.1875],
+         [ -6.9688,   7.2812,   4.8750,  ...,  -1.2812,  -0.6953,   2.0938],
+         [  0.3555,  10.0000,   6.9688,  ...,   4.1250,   6.0625,   4.1562]]],
+       device='cuda:0'),)
+(tensor([[[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -8.8750,  -0.7461,   0.6641,  ...,  -7.0625,  -4.3750,  -3.6406],
+         [ -4.3750,   9.7500,   6.9375,  ...,   1.0391,   2.5312,   3.6406],
+         [  0.5586,   9.4375,   6.8438,  ...,   4.5000,   6.7188,   3.9375]],
+
+        [[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -8.7500,  -0.2051,   0.9922,  ...,  -7.0625,  -4.0938,  -3.2812],
+         [ -4.0938,   9.8750,   7.1875,  ...,   1.0703,   2.9844,   3.9062],
+         [  0.4355,   9.0625,   6.6875,  ...,   3.8906,   6.3125,   4.1875]]],
+       device='cuda:0'),)
+(tensor([[[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -9.1875,  -0.5117,   0.8203,  ...,  -7.1562,  -4.3125,  -3.6875],
+         [ -4.3750,   9.6875,   6.9688,  ...,   0.8477,   2.5625,   3.6875],
+         [  0.4023,   9.0000,   6.5312,  ...,   4.0625,   6.1250,   3.8438]],
+
+        [[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -8.6875,  -0.2793,   1.4844,  ...,  -6.7812,  -3.8906,  -3.0156],
+         [ -4.1250,  10.5625,   7.5938,  ...,   1.1562,   3.1094,   4.4375],
+         [  0.5508,   9.8750,   7.3125,  ...,   4.6875,   7.0312,   4.0938]]],
+       device='cuda:0'),)
+(tensor([[[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -8.9375,  -0.6680,   1.0391,  ...,  -7.0000,  -4.2188,  -3.7500],
+         [ -3.8594,  10.0625,   7.3438,  ...,   0.9375,   2.7500,   3.8750],
+         [  0.9727,   9.2500,   6.9688,  ...,   4.0625,   6.6875,   3.6875]],
+
+        [[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -8.8750,  -0.4316,   1.2188,  ...,  -6.8438,  -3.7656,  -3.3125],
+         [ -4.0000,  10.6250,   7.6562,  ...,   1.2969,   3.4844,   4.2500],
+         [  0.5664,   9.3125,   7.0938,  ...,   4.3750,   7.1875,   3.7656]]],
+       device='cuda:0'),)
+(tensor([[[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -9.1875,  -0.5234,   0.9219,  ...,  -6.8125,  -4.0000,  -3.4688],
+         [ -5.2188,   8.9375,   6.7812,  ...,   0.6836,   2.2500,   3.4688],
+         [ -0.3262,   8.7500,   6.5000,  ...,   4.3125,   6.4062,   3.3438]],
+
+        [[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -9.0000,  -0.2930,   1.1328,  ...,  -6.8438,  -3.8594,  -3.2969],
+         [ -4.8750,  10.1875,   6.9688,  ...,   0.5430,   2.7031,   3.9688],
+         [  0.2734,   9.3750,   7.0000,  ...,   4.2500,   6.8438,   3.8438]]],
+       device='cuda:0'),)
+(tensor([[[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -9.1875,  -0.6641,   0.8711,  ...,  -7.4688,  -4.4062,  -3.7188],
+         [ -4.5000,  10.5625,   7.2812,  ...,   1.1641,   2.8906,   4.0625],
+         [  0.4004,   9.1250,   6.8750,  ...,   4.2500,   6.8750,   3.5000]],
+
+        [[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -9.0625,  -0.8086,   0.7812,  ...,  -6.5625,  -4.7812,  -3.0938],
+         [ -7.5312,   6.5938,   4.7812,  ...,  -1.7812,  -0.7227,   1.8438],
+         [  0.1069,   9.5625,   6.9375,  ...,   3.9219,   6.1250,   4.1875]]],
+       device='cuda:0'),)
+(tensor([[[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -8.9375,  -0.4082,   0.8633,  ...,  -7.0938,  -4.3750,  -3.3281],
+         [ -5.0000,   9.1875,   6.3438,  ...,   0.1006,   1.8672,   3.5469],
+         [  0.1250,   9.0625,   6.5000,  ...,   3.7656,   5.9062,   4.1250]],
+
+        [[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -8.8125,  -0.6836,   0.7695,  ...,  -7.1562,  -4.3750,  -3.5000],
+         [ -3.8750,  10.0625,   7.0938,  ...,   1.1641,   2.9062,   3.9844],
+         [  0.9844,   9.4375,   6.8438,  ...,   4.1562,   6.4062,   3.9844]]],
+       device='cuda:0'),)
+(tensor([[[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [-10.5000,  -2.9375,  -0.6094,  ...,  -8.4375,  -6.0938,  -4.8125],
+         [ -8.2500,   5.9688,   3.6094,  ...,  -2.4062,  -1.3125,   1.6250],
+         [  1.2891,   8.2500,   6.0625,  ...,   2.7031,   5.3750,   4.3125]],
+
+        [[-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         [-14.5625, -10.0625,  -4.7500,  ..., -12.8750,  -7.8750,  -5.6875],
+         ...,
+         [ -8.7500,  -0.5156,   1.1797,  ...,  -7.2812,  -4.5938,  -3.3438],
+         [ -5.0938,   8.6250,   6.4375,  ...,  -0.6016,   1.0781,   3.1250],
+         [  0.7148,   9.4375,   7.4375,  ...,   4.8125,   6.3125,   3.9531]]],
+       device='cuda:0'),)
+{'eval_loss': 0.058904390782117844, 'eval_runtime': 30.4151, 'eval_samples_per_second': 7.759, 'eval_steps_per_second': 0.493, 'epoch': 0.17}
+
+======================================== [DEBUGGING AT GLOBAL STEP: 20] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'ABCD': 'Given two views, at least 13 cubes and at most 22 cubes are required to satisfy the constraints.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'ABCD': 'Given two views, at least 13 cubes and at most 22 cubes are required to satisfy the constraints.'} The final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 21] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'D': 'Option D is incorrect because the red cubes are not in the correct position in the view.', 'A': 'Option A is incorrect because the shape matches the right view instead of the left view, and the red cubes are not in the correct position.', 'B': 'Option B is incorrect because the image shows the right view of the cube stack instead of the left view.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'D': 'Option D is incorrect because the red cubes are not in the correct position in the view.', 'A': 'Option A is incorrect because the shape matches the right view instead of the left view, and the red cubes are not in the correct position.', 'B': 'Option B is incorrect because the image shows the right view of the cube stack instead of the left view.'} The final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 22] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'C': 'Option C is incorrect because the red cubes are not in the correct position in the view.', 'B': 'Option B is incorrect because the shape matches the right view instead of the left view, and the red cubes are not in the correct position.', 'D': 'Option D is incorrect because the image shows the right view of the cube stack instead of the left view.'} The final answer is <answer>A</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'C': 'Option C is incorrect because the red cubes are not in the correct position in the view.', 'B': 'Option B is incorrect because the shape matches the right view instead of the left view, and the red cubes are not in the correct position.', 'D': 'Option D is incorrect because the image shows the right view of the cube stack instead of the left view.'} The final answer is <answer>A</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 23] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'A': 'Option A is correct because it was obtained by rotating the original image 90 degrees.', 'C': 'Option C is incorrect because it was obtained by rotating the original image 90 degrees and then flipping it horizontally.', 'B': 'Option B is incorrect because it was obtained by rotating the original image 180 degrees and then flipping it vertically.'} The final answer is <answer>A</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'A': 'Option A is correct because it was obtained by rotating the original image 90 degrees.', 'C': 'Option C is incorrect because it was obtained by rotating the original image 90 degrees and then flipping it horizontally.', 'B': 'Option B is incorrect because it was obtained by rotating the original image 180 degrees and then flipping it vertically.'} The final answer is <answer>A</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 24] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'ABCD': 'Given two views, at least 12 cubes and at most 18 cubes are required to satisfy the constraints.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'ABCD': 'Given two views, at least 12 cubes and at most 18 cubes are required to satisfy the constraints.'} The final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 25] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'D': 'Option D is incorrect because holes in column 2 are missing.', 'C': 'Option C is incorrect because extra holes appear in column 1.', 'B': 'Option B is incorrect because holes that should appear in column 2 appear in column 1.'} The final answer is <answer>A</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'D': 'Option D is incorrect because holes in column 2 are missing.', 'C': 'Option C is incorrect because extra holes appear in column 1.', 'B': 'Option B is incorrect because holes that should appear in column 2 appear in column 1.'} The final answer is <answer>A</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 26] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'D': 'Option D is incorrect because holes in row 3 are missing.', 'A': 'Option A is incorrect because extra holes appear in row 1.', 'B': 'Option B is incorrect because holes that should appear in row 3 appear in row 1.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'D': 'Option D is incorrect because holes in row 3 are missing.', 'A': 'Option A is incorrect because extra holes appear in row 1.', 'B': 'Option B is incorrect because holes that should appear in row 3 appear in row 1.'} The final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 27] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'ABCD': 'Given three views, at least 11 cubes and at most 13 cubes are required to satisfy the constraints.'} The final answer is <answer>D</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'ABCD': 'Given three views, at least 11 cubes and at most 13 cubes are required to satisfy the constraints.'} The final answer is <answer>D</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 28] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'ABCD': 'Given two views, at least 7 cubes and at most 9 cubes are required to satisfy the constraints.'} The final answer is <answer>D</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'ABCD': 'Given two views, at least 7 cubes and at most 9 cubes are required to satisfy the constraints.'} The final answer is <answer>D</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 29] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'A': 'Option A is incorrect because the internal outlines are missing.', 'B': 'Option B is incorrect because the internal outlines are missing.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'A': 'Option A is incorrect because the internal outlines are missing.', 'B': 'Option B is incorrect because the internal outlines are missing.'} The final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+{'loss': 0.0095, 'grad_norm': 0.1646924465894699, 'learning_rate': 4.385266524442241e-06, 'epoch': 0.25}
+(tensor([[[-1.1562e+01, -7.0000e+00, -2.4375e+00,  ..., -1.0375e+01,
+          -5.3438e+00, -3.0312e+00],
+         [-1.1562e+01, -7.0000e+00, -2.4375e+00,  ..., -1.0375e+01,
+          -5.3438e+00, -3.0312e+00],
+         [-1.1562e+01, -7.0000e+00, -2.4375e+00,  ..., -1.0375e+01,
+          -5.3438e+00, -3.0312e+00],
+         ...,
+         [-1.0312e+01, -2.6250e+00, -1.4973e-04,  ..., -8.2500e+00,
+          -7.7188e+00, -5.0000e+00],
+         [-9.8125e+00,  4.1875e+00,  2.7812e+00,  ..., -4.2500e+00,
+          -2.9531e+00, -7.2266e-01],
+         [ 1.5078e+00,  9.0000e+00,  7.3750e+00,  ...,  3.0469e+00,
+           5.8438e+00,  5.0625e+00]],
+
+        [[-1.1562e+01, -7.0000e+00, -2.4375e+00,  ..., -1.0375e+01,
+          -5.3438e+00, -3.0312e+00],
+         [-1.1562e+01, -7.0000e+00, -2.4375e+00,  ..., -1.0375e+01,
+          -5.3438e+00, -3.0312e+00],
+         [-1.1562e+01, -7.0000e+00, -2.4375e+00,  ..., -1.0375e+01,
+          -5.3438e+00, -3.0312e+00],
+         ...,
+         [-1.0500e+01, -2.9219e+00, -1.6895e-01,  ..., -8.5625e+00,
+          -7.9062e+00, -5.1250e+00],
+         [-9.0625e+00,  4.2500e+00,  2.8750e+00,  ..., -4.0312e+00,
+          -2.6094e+00, -3.6328e-01],
+         [ 1.4062e+00,  9.3750e+00,  7.7188e+00,  ...,  3.4062e+00,
+           5.8438e+00,  5.2500e+00]]], device='cuda:0'),)
+(tensor([[[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-10.7500,  -3.1094,  -0.4082,  ...,  -8.2500,  -7.8125,  -5.2812],
+         [ -9.8750,   3.9844,   2.7188,  ...,  -4.1250,  -2.8125,  -0.8281],
+         [  1.1406,   8.8750,   7.3750,  ...,   2.8750,   5.8125,   4.8125]],
+
+        [[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-11.0000,  -2.8594,  -0.3496,  ...,  -8.6875,  -7.9062,  -5.2500],
+         [-11.1875,   3.5312,   2.3281,  ...,  -4.9375,  -3.5938,  -1.2031],
+         [  0.7148,   9.7500,   7.6875,  ...,   3.5156,   6.0938,   5.0938]]],
+       device='cuda:0'),)
+(tensor([[[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [ -9.3125,  -1.2109,   1.1875,  ...,  -7.5312,  -6.5312,  -4.0312],
+         [ -7.8438,   6.0312,   4.2500,  ...,  -3.0625,  -1.6172,   0.5312],
+         [  1.8281,  10.5000,   8.5000,  ...,   4.5312,   6.7500,   5.5938]],
+
+        [[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-10.6875,  -2.5469,  -0.2432,  ...,  -7.9375,  -7.5938,  -5.1250],
+         [-10.0000,   4.3438,   2.6875,  ...,  -4.3750,  -2.9062,  -0.7852],
+         [  1.6484,   9.4375,   7.5312,  ...,   3.2344,   5.6250,   5.4688]]],
+       device='cuda:0'),)
+(tensor([[[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-10.7500,  -1.9531,   0.2471,  ...,  -7.9375,  -7.4375,  -4.5938],
+         [ -9.7500,   4.5938,   3.1562,  ...,  -3.8125,  -2.9844,  -0.5078],
+         [  1.1328,   9.9375,   7.9688,  ...,   4.0312,   6.3125,   5.2500]],
+
+        [[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [ -9.4375,  -1.3594,   1.0312,  ...,  -7.5000,  -6.6875,  -4.0938],
+         [ -8.0000,   6.0312,   4.0938,  ...,  -3.1406,  -1.7969,   0.3965],
+         [  1.7891,  10.5625,   8.4375,  ...,   4.5000,   6.9062,   5.5625]]],
+       device='cuda:0'),)
+(tensor([[[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-10.9375,  -3.3125,  -0.3926,  ...,  -8.6250,  -8.0625,  -5.4688],
+         [-10.0000,   4.4375,   2.8750,  ...,  -4.4688,  -3.0938,  -0.9375],
+         [  1.5234,  10.3125,   8.1250,  ...,   3.8750,   6.1875,   5.4688]],
+
+        [[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-10.4375,  -2.7344,  -0.1108,  ...,  -8.4375,  -7.7812,  -5.2188],
+         [ -9.4375,   4.7812,   2.9688,  ...,  -3.9688,  -2.5625,  -0.5898],
+         [  1.5391,   9.5625,   7.7500,  ...,   3.7031,   6.3125,   5.0312]]],
+       device='cuda:0'),)
+(tensor([[[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-10.6875,  -3.3594,  -0.4277,  ...,  -8.5000,  -7.9062,  -5.4062],
+         [ -8.8125,   4.3750,   3.2031,  ...,  -3.7344,  -2.2344,  -0.3438],
+         [  1.3203,   9.5625,   7.7188,  ...,   3.4062,   5.9375,   5.1250]],
+
+        [[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-10.8750,  -2.7031,  -0.5234,  ...,  -8.3750,  -7.9688,  -5.4688],
+         [-11.1875,   3.8750,   2.1875,  ...,  -4.8125,  -3.8750,  -1.3516],
+         [  1.8984,   9.5000,   7.5000,  ...,   2.8594,   5.4375,   5.6250]]],
+       device='cuda:0'),)
+(tensor([[[-1.1562e+01, -7.0000e+00, -2.4375e+00,  ..., -1.0375e+01,
+          -5.3438e+00, -3.0312e+00],
+         [-1.1562e+01, -7.0000e+00, -2.4375e+00,  ..., -1.0375e+01,
+          -5.3438e+00, -3.0312e+00],
+         [-1.1562e+01, -7.0000e+00, -2.4375e+00,  ..., -1.0375e+01,
+          -5.3438e+00, -3.0312e+00],
+         ...,
+         [-1.0750e+01, -3.0938e+00, -2.4512e-01,  ..., -8.4375e+00,
+          -7.8750e+00, -5.3750e+00],
+         [-9.6875e+00,  4.6562e+00,  2.9844e+00,  ..., -4.3438e+00,
+          -2.7812e+00, -7.7344e-01],
+         [ 1.5156e+00,  1.0125e+01,  8.0625e+00,  ...,  3.9219e+00,
+           6.1875e+00,  5.4688e+00]],
+
+        [[-1.1562e+01, -7.0000e+00, -2.4375e+00,  ..., -1.0375e+01,
+          -5.3438e+00, -3.0312e+00],
+         [-1.1562e+01, -7.0000e+00, -2.4375e+00,  ..., -1.0375e+01,
+          -5.3438e+00, -3.0312e+00],
+         [-1.1562e+01, -7.0000e+00, -2.4375e+00,  ..., -1.0375e+01,
+          -5.3438e+00, -3.0312e+00],
+         ...,
+         [-1.0062e+01, -2.7969e+00,  5.4932e-03,  ..., -8.3125e+00,
+          -7.7188e+00, -4.8125e+00],
+         [-9.1250e+00,  4.4375e+00,  2.8750e+00,  ..., -4.3125e+00,
+          -3.0625e+00, -6.4844e-01],
+         [ 1.5234e+00,  9.5000e+00,  7.7500e+00,  ...,  3.3750e+00,
+           5.8750e+00,  5.2188e+00]]], device='cuda:0'),)
+(tensor([[[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-10.1250,  -2.7188,  -0.0188,  ...,  -8.3125,  -7.7500,  -4.8438],
+         [ -9.1250,   4.5000,   2.9062,  ...,  -4.2812,  -2.9219,  -0.6133],
+         [  1.5391,   9.6875,   7.7188,  ...,   3.5938,   5.8438,   5.3438]],
+
+        [[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-10.0625,  -2.3125,   0.2373,  ...,  -8.1250,  -7.6250,  -5.1250],
+         [ -9.5625,   5.5312,   3.6250,  ...,  -3.4375,  -2.9375,  -0.5117],
+         [  1.6328,  10.3125,   8.2500,  ...,   3.7344,   6.3750,   5.2500]]],
+       device='cuda:0'),)
+(tensor([[[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-10.7500,  -3.3125,  -0.4219,  ...,  -8.5625,  -7.9062,  -5.6250],
+         [ -9.1875,   4.9375,   3.4062,  ...,  -3.4219,  -2.3438,  -0.4570],
+         [  1.7188,  10.0625,   7.9062,  ...,   3.8594,   6.0938,   5.5625]],
+
+        [[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-10.9375,  -2.7969,  -0.3066,  ...,  -8.5625,  -7.7812,  -5.2500],
+         [ -9.6250,   4.6875,   3.2656,  ...,  -4.0312,  -2.3750,  -0.3945],
+         [  1.4531,   9.4375,   7.6562,  ...,   3.3438,   5.8125,   5.6875]]],
+       device='cuda:0'),)
+(tensor([[[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-11.1250,  -3.0938,  -0.4238,  ...,  -8.5625,  -7.8438,  -5.4688],
+         [ -8.8750,   4.6562,   3.2812,  ...,  -3.7812,  -2.2969,  -0.3750],
+         [  1.2578,   9.2500,   7.6250,  ...,   3.3125,   5.4375,   5.3750]],
+
+        [[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-10.6250,  -3.0312,  -0.0159,  ...,  -8.4375,  -8.0625,  -5.4062],
+         [ -9.0000,   5.2500,   3.4844,  ...,  -3.7031,  -2.4688,  -0.2402],
+         [  1.3516,  10.2500,   8.1250,  ...,   4.0312,   6.2500,   5.3125]]],
+       device='cuda:0'),)
+(tensor([[[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-10.5625,  -3.0938,  -0.2109,  ...,  -8.3125,  -7.8438,  -5.3750],
+         [ -8.6875,   4.6875,   3.4062,  ...,  -3.5000,  -2.0625,  -0.2637],
+         [  1.3750,   9.7500,   7.7812,  ...,   3.5781,   6.0000,   5.3438]],
+
+        [[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-10.7500,  -3.2812,  -0.3672,  ...,  -8.5625,  -7.9062,  -5.5625],
+         [-10.0625,   4.7188,   3.0469,  ...,  -4.0625,  -2.4375,  -0.7266],
+         [  1.6641,   9.8125,   7.8438,  ...,   3.6562,   6.4688,   5.1875]]],
+       device='cuda:0'),)
+(tensor([[[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-10.8125,  -3.1250,  -0.3066,  ...,  -8.3750,  -7.8125,  -5.3750],
+         [-10.2500,   3.9219,   2.6562,  ...,  -4.1250,  -2.9062,  -0.9805],
+         [  0.7031,   9.5000,   7.6250,  ...,   3.5625,   6.1562,   4.8125]],
+
+        [[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-10.5625,  -2.9844,  -0.2812,  ...,  -8.5000,  -7.8438,  -5.3438],
+         [-10.4375,   4.5000,   2.8281,  ...,  -4.2812,  -2.8125,  -0.7930],
+         [  1.6719,  10.1875,   7.9375,  ...,   3.7031,   6.4375,   5.3438]]],
+       device='cuda:0'),)
+(tensor([[[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-10.4375,  -2.8281,  -0.1963,  ...,  -8.5625,  -7.9062,  -5.2812],
+         [ -9.7500,   4.5938,   2.8750,  ...,  -4.0938,  -2.7812,  -0.7656],
+         [  1.7578,   9.6875,   7.9062,  ...,   3.6250,   6.3438,   5.0938]],
+
+        [[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [ -9.6875,  -1.7656,   0.4629,  ...,  -7.3750,  -7.0938,  -4.6562],
+         [ -9.0625,   5.4375,   3.8438,  ...,  -2.9688,  -2.1562,  -0.2363],
+         [  2.0312,  10.5000,   8.3125,  ...,   4.0625,   6.6250,   5.5625]]],
+       device='cuda:0'),)
+(tensor([[[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-10.9375,  -2.7500,  -0.3711,  ...,  -8.6875,  -7.9062,  -5.2188],
+         [-10.2500,   4.1250,   2.6719,  ...,  -4.5312,  -3.1250,  -0.7969],
+         [  1.3203,   9.5625,   7.6875,  ...,   3.2969,   5.5938,   5.5312]],
+
+        [[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-10.6250,  -3.2344,  -0.3672,  ...,  -8.6250,  -8.0000,  -5.5000],
+         [ -9.4375,   4.6562,   3.1094,  ...,  -4.1250,  -2.6875,  -0.6289],
+         [  1.5000,   9.8750,   7.7188,  ...,   3.5781,   5.8125,   5.5000]]],
+       device='cuda:0'),)
+(tensor([[[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [-10.8750,  -2.6406,  -0.4531,  ...,  -8.3125,  -7.7812,  -5.3438],
+         [-10.8750,   4.1562,   2.3594,  ...,  -4.6250,  -3.5156,  -1.0078],
+         [  1.6484,   9.6875,   7.5625,  ...,   3.0625,   5.5625,   5.5000]],
+
+        [[-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         [-11.5625,  -7.0000,  -2.4375,  ..., -10.3750,  -5.3438,  -3.0312],
+         ...,
+         [ -9.5000,  -1.9219,   0.8281,  ...,  -7.6875,  -6.7188,  -4.5938],
+         [ -8.1875,   5.8125,   4.2812,  ...,  -3.0000,  -1.5547,   0.1836],
+         [  1.8672,  10.6250,   8.7500,  ...,   4.5625,   6.7500,   5.4688]]],
+       device='cuda:0'),)
+{'eval_loss': 0.010541567578911781, 'eval_runtime': 30.3805, 'eval_samples_per_second': 7.768, 'eval_steps_per_second': 0.494, 'epoch': 0.25}
+
+======================================== [DEBUGGING AT GLOBAL STEP: 30] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'ABCD': 'Assuming the bottom face is the first cell in the second row of the net, then after folding, the front face is pink, the back face is green, the left face is red, the right face is blue, the top face is cyan, the bottom face is yellow.'} The final answer is <answer>B</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'ABCD': 'Assuming the bottom face is the first cell in the second row of the net, then after folding, the front face is pink, the back face is green, the left face is red, the right face is blue, the top face is cyan, the bottom face is yellow.'} The final answer is <answer>B</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 31] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'A': 'Option A is incorrect because holes in column 3 are missing.', 'C': 'Option C is incorrect because extra holes appear in column 4.', 'D': 'Option D is incorrect because holes that should appear in column 3 appear in column 4.'} The final answer is <answer>B</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'A': 'Option A is incorrect because holes in column 3 are missing.', 'C': 'Option C is incorrect because extra holes appear in column 4.', 'D': 'Option D is incorrect because holes that should appear in column 3 appear in column 4.'} The final answer is <answer>B</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 32] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'C': 'Option C is incorrect because the red cubes are not in the correct position in the view.', 'B': 'Option B is incorrect because the shape matches the right view instead of the left view, and the red cubes are not in the correct position.', 'D': 'Option D is incorrect because the image shows the right view of the cube stack instead of the left view.'} The final answer is <answer>A</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'C': 'Option C is incorrect because the red cubes are not in the correct position in the view.', 'B': 'Option B is incorrect because the shape matches the right view instead of the left view, and the red cubes are not in the correct position.', 'D': 'Option D is incorrect because the image shows the right view of the cube stack instead of the left view.'} The final answer is <answer>A</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 33] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'A': 'Option A is incorrect because holes in row 2 are missing.', 'C': 'Option C is incorrect because extra holes appear in row 4.', 'D': 'Option D is incorrect because holes that should appear in row 2 appear in row 4.'} The final answer is <answer>B</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'A': 'Option A is incorrect because holes in row 2 are missing.', 'C': 'Option C is incorrect because extra holes appear in row 4.', 'D': 'Option D is incorrect because holes that should appear in row 2 appear in row 4.'} The final answer is <answer>B</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 34] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'B': 'Option B is incorrect because it is the cross-section made by a plane perpendicular to the YZ plane and rotated 135 degrees around the x-axis.', 'D': 'Option D is incorrect because it is the cross-section made by a plane perpendicular to the YZ plane and rotated 45 degrees around the x-axis.', 'A': 'Option A is incorrect because it is the cross-section of the shape made by a plane parallel to the XZ plane.', 'C': 'Option C is correct because the corresponding cross-section does not match the shape shown in the reference image.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'B': 'Option B is incorrect because it is the cross-section made by a plane perpendicular to the YZ plane and rotated 135 degrees around the x-axis.', 'D': 'Option D is incorrect because it is the cross-section made by a plane perpendicular to the YZ plane and rotated 45 degrees around the x-axis.', 'A': 'Option A is incorrect because it is the cross-section of the shape made by a plane parallel to the XZ plane.', 'C': 'Option C is correct because the corresponding cross-section does not match the shape shown in the reference image.'} The final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 35] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'A': 'Option A is incorrect because the internal outlines are missing.', 'C': 'Option C is incorrect because the image is a horizontally or vertically mirrored version of an incorrect view.'} The final answer is <answer>B</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'A': 'Option A is incorrect because the internal outlines are missing.', 'C': 'Option C is incorrect because the image is a horizontally or vertically mirrored version of an incorrect view.'} The final answer is <answer>B</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 36] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'C': 'Option C is incorrect because the internal outlines are missing.', 'A': 'Option A is incorrect because the internal outlines are missing.'} The final answer is <answer>B</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'C': 'Option C is incorrect because the internal outlines are missing.', 'A': 'Option A is incorrect because the internal outlines are missing.'} The final answer is <answer>B</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 37] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'B': 'Option B is correct because it was obtained by rotating the original image 180 degrees.', 'C': 'Option C is incorrect because it was obtained by rotating the original image 180 degrees and then flipping it vertically.', 'A': 'Option A is incorrect because it was obtained by rotating the asymmetric patterns in the image.'} The final answer is <answer>B</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'B': 'Option B is correct because it was obtained by rotating the original image 180 degrees.', 'C': 'Option C is incorrect because it was obtained by rotating the original image 180 degrees and then flipping it vertically.', 'A': 'Option A is incorrect because it was obtained by rotating the asymmetric patterns in the image.'} The final answer is <answer>B</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 38] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'C': 'Option C is incorrect because holes in row 3 are missing.', 'A': 'Option A is incorrect because extra holes appear in row 2.', 'B': 'Option B is incorrect because holes that should appear in row 3 appear in row 2.'} The final answer is <answer>D</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'C': 'Option C is incorrect because holes in row 3 are missing.', 'A': 'Option A is incorrect because extra holes appear in row 2.', 'B': 'Option B is incorrect because holes that should appear in row 3 appear in row 2.'} The final answer is <answer>D</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 39] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'B': 'Option B is correct because it was obtained by rotating the original image 180 degrees.', 'A': 'Option A is incorrect because it was obtained by rotating the original image 180 degrees and then flipping it horizontally.', 'C': 'Option C is incorrect because it was obtained by rotating the original image 180 degrees and then flipping it vertically.'} The final answer is <answer>B</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'B': 'Option B is correct because it was obtained by rotating the original image 180 degrees.', 'A': 'Option A is incorrect because it was obtained by rotating the original image 180 degrees and then flipping it horizontally.', 'C': 'Option C is incorrect because it was obtained by rotating the original image 180 degrees and then flipping it vertically.'} The final answer is <answer>B</answer>[0m
+===========================================================================================================
+
+{'loss': 0.0111, 'grad_norm': 3.440953016281128, 'learning_rate': 3.8673703953060685e-06, 'epoch': 0.34}
+(tensor([[[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -8.8125,  -1.1953,   0.7734,  ...,  -7.5625,  -5.4688,  -3.9531],
+         [ -7.7188,   6.6875,   4.7500,  ...,  -2.6406,  -0.2773,   0.5430],
+         [  3.7656,  11.6875,   9.6875,  ...,   3.8438,   8.3125,   5.6250]],
+
+        [[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -8.6250,  -1.2812,   0.7656,  ...,  -7.6875,  -5.5938,  -4.0625],
+         [ -7.0938,   6.7500,   4.8438,  ...,  -2.4844,  -0.0698,   0.6602],
+         [  3.5625,  11.8750,   9.8750,  ...,   4.0312,   8.1875,   5.6562]]],
+       device='cuda:0'),)
+(tensor([[[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -8.8125,  -1.5234,   0.4668,  ...,  -7.5312,  -5.5938,  -4.1875],
+         [ -7.9062,   6.3750,   4.6250,  ...,  -2.6562,  -0.3281,   0.3027],
+         [  3.5938,  11.6250,   9.6875,  ...,   3.9062,   8.3125,   5.5000]],
+
+        [[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -8.6250,  -0.8320,   0.7305,  ...,  -7.5625,  -5.5000,  -3.8594],
+         [ -8.5625,   6.5938,   4.3438,  ...,  -3.0469,  -0.6367,   0.2490],
+         [  2.9375,  12.1250,   9.7500,  ...,   4.2812,   8.3125,   5.6250]]],
+       device='cuda:0'),)
+(tensor([[[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -6.7188,   1.2891,   2.3906,  ...,  -5.9062,  -3.5781,  -2.3281],
+         [ -6.1250,   8.3750,   5.8438,  ...,  -1.5703,   1.0078,   1.6719],
+         [  3.9219,  12.7500,  10.4375,  ...,   5.2500,   8.9375,   6.2188]],
+
+        [[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -9.0625,  -0.7617,   0.6758,  ...,  -7.0000,  -5.2500,  -4.0625],
+         [ -8.0000,   6.7812,   4.6250,  ...,  -2.7969,  -0.3711,   0.4414],
+         [  4.1250,  12.2500,   9.8125,  ...,   3.9688,   8.1250,   5.9688]]],
+       device='cuda:0'),)
+(tensor([[[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -8.2500,   0.3242,   1.4219,  ...,  -6.6250,  -4.7188,  -2.9688],
+         [ -7.3438,   7.4062,   5.1875,  ...,  -2.0625,   0.0933,   1.0625],
+         [  3.1250,  12.5000,  10.0625,  ...,   4.8438,   8.6250,   6.0312]],
+
+        [[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -7.4375,   0.6250,   1.8906,  ...,  -6.3750,  -4.2500,  -2.7188],
+         [ -6.3125,   8.0625,   5.5625,  ...,  -1.7891,   0.7461,   1.4141],
+         [  3.6094,  12.6875,  10.3125,  ...,   5.0938,   8.9375,   6.0938]]],
+       device='cuda:0'),)
+(tensor([[[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -8.3125,  -0.9844,   0.8242,  ...,  -7.3438,  -5.2812,  -3.8750],
+         [ -7.7188,   6.9375,   4.6250,  ...,  -2.7969,  -0.3594,   0.3379],
+         [  3.5625,  12.5625,  10.1250,  ...,   4.5625,   8.3750,   6.0000]],
+
+        [[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -8.8125,  -1.1953,   0.6836,  ...,  -7.7188,  -5.6250,  -4.2812],
+         [ -7.8438,   6.9688,   4.7188,  ...,  -2.4844,  -0.0898,   0.5195],
+         [  3.6094,  12.2500,  10.0000,  ...,   4.5000,   8.6250,   5.7188]]],
+       device='cuda:0'),)
+(tensor([[[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -8.8125,  -1.5312,   0.5898,  ...,  -7.5938,  -5.5625,  -4.2812],
+         [ -7.2500,   6.9375,   5.0625,  ...,  -2.1875,   0.2207,   0.6719],
+         [  3.5156,  12.0000,   9.9375,  ...,   4.1875,   8.3750,   5.6562]],
+
+        [[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -8.9375,  -0.8164,   0.4980,  ...,  -7.3438,  -5.6562,  -4.1875],
+         [ -8.5625,   6.8438,   4.4688,  ...,  -2.7656,  -0.7070,   0.3477],
+         [  4.2188,  12.1250,   9.7500,  ...,   3.8125,   7.8750,   6.1562]]],
+       device='cuda:0'),)
+(tensor([[[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -8.4375,  -1.0781,   0.8789,  ...,  -7.2188,  -5.1875,  -3.9375],
+         [ -7.3750,   7.0938,   4.7812,  ...,  -2.6250,  -0.0289,   0.5039],
+         [  3.6562,  12.2500,  10.0625,  ...,   4.4062,   8.3125,   5.9062]],
+
+        [[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -7.9688,  -0.8320,   1.0938,  ...,  -7.2812,  -5.1562,  -3.6094],
+         [ -6.9688,   7.0312,   4.8750,  ...,  -2.5625,  -0.1387,   0.6094],
+         [  3.7344,  11.8750,   9.8125,  ...,   4.0312,   8.2500,   5.7812]]],
+       device='cuda:0'),)
+(tensor([[[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -8.1875,  -0.8945,   0.9766,  ...,  -7.4062,  -5.2500,  -3.7500],
+         [ -7.0000,   7.0000,   4.8750,  ...,  -2.5312,  -0.0864,   0.6445],
+         [  3.6406,  12.1250,   9.8125,  ...,   4.2812,   8.3125,   5.9375]],
+
+        [[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -8.2500,  -0.4863,   1.1250,  ...,  -7.1562,  -5.1875,  -3.7031],
+         [ -7.0000,   8.1250,   5.5938,  ...,  -1.7188,   0.3457,   1.0859],
+         [  4.1250,  12.6250,  10.4375,  ...,   4.5625,   8.6250,   6.0000]]],
+       device='cuda:0'),)
+(tensor([[[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -8.6250,  -1.3281,   0.5273,  ...,  -7.6250,  -5.5938,  -4.2500],
+         [ -7.6250,   7.0625,   4.8125,  ...,  -2.1875,  -0.0146,   0.5703],
+         [  3.5938,  12.1875,   9.8125,  ...,   4.3125,   8.2500,   5.9688]],
+
+        [[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -8.9375,  -0.8906,   0.7773,  ...,  -7.5000,  -5.4375,  -3.9062],
+         [ -7.5938,   7.1250,   4.8750,  ...,  -2.5156,  -0.0679,   0.6172],
+         [  3.5156,  11.9375,   9.8125,  ...,   4.0312,   8.0625,   6.0938]]],
+       device='cuda:0'),)
+(tensor([[[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -8.6875,  -0.9570,   0.9766,  ...,  -7.2812,  -5.1875,  -4.0000],
+         [ -7.1875,   7.1875,   5.1562,  ...,  -2.2344,   0.0762,   0.7734],
+         [  3.6250,  11.9375,   9.8125,  ...,   4.3438,   8.0000,   6.0000]],
+
+        [[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -8.1250,  -0.9570,   1.0938,  ...,  -7.3125,  -5.2500,  -3.8594],
+         [ -6.9375,   7.5625,   5.2500,  ...,  -2.1250,   0.3555,   1.0234],
+         [  3.3125,  12.3750,  10.0625,  ...,   4.5312,   8.3750,   5.8125]]],
+       device='cuda:0'),)
+(tensor([[[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -8.7500,  -1.4609,   0.6758,  ...,  -7.4688,  -5.4688,  -4.2188],
+         [ -7.0938,   7.0938,   5.0938,  ...,  -2.1094,   0.2441,   0.6992],
+         [  3.5625,  12.0625,   9.8750,  ...,   4.2500,   8.3125,   5.7812]],
+
+        [[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -8.8125,  -1.5078,   0.5469,  ...,  -7.5625,  -5.5938,  -4.3750],
+         [ -8.1875,   6.9688,   4.6562,  ...,  -2.5781,  -0.0127,   0.3652],
+         [  3.7031,  12.3125,  10.0000,  ...,   4.3125,   8.6875,   5.7500]]],
+       device='cuda:0'),)
+(tensor([[[-1.0750e+01, -5.9062e+00, -1.7109e+00,  ..., -9.6250e+00,
+          -4.4375e+00, -2.3906e+00],
+         [-1.0750e+01, -5.9062e+00, -1.7109e+00,  ..., -9.6250e+00,
+          -4.4375e+00, -2.3906e+00],
+         [-1.0750e+01, -5.9062e+00, -1.7109e+00,  ..., -9.6250e+00,
+          -4.4375e+00, -2.3906e+00],
+         ...,
+         [-8.7500e+00, -1.1172e+00,  7.2266e-01,  ..., -7.4375e+00,
+          -5.4375e+00, -4.0000e+00],
+         [-7.8438e+00,  7.0312e+00,  4.7812e+00,  ..., -2.3750e+00,
+           7.8735e-03,  5.9375e-01],
+         [ 3.0000e+00,  1.2062e+01,  9.8125e+00,  ...,  4.4375e+00,
+           8.5000e+00,  5.5000e+00]],
+
+        [[-1.0750e+01, -5.9062e+00, -1.7109e+00,  ..., -9.6250e+00,
+          -4.4375e+00, -2.3906e+00],
+         [-1.0750e+01, -5.9062e+00, -1.7109e+00,  ..., -9.6250e+00,
+          -4.4375e+00, -2.3906e+00],
+         [-1.0750e+01, -5.9062e+00, -1.7109e+00,  ..., -9.6250e+00,
+          -4.4375e+00, -2.3906e+00],
+         ...,
+         [-8.5000e+00, -1.1328e+00,  6.3672e-01,  ..., -7.5000e+00,
+          -5.5000e+00, -4.0625e+00],
+         [-8.1250e+00,  6.9375e+00,  4.5625e+00,  ..., -2.6875e+00,
+          -2.7539e-01,  4.1602e-01],
+         [ 3.7500e+00,  1.2500e+01,  1.0062e+01,  ...,  4.4062e+00,
+           8.5625e+00,  5.8438e+00]]], device='cuda:0'),)
+(tensor([[[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -8.6875,  -1.2422,   0.6641,  ...,  -7.7500,  -5.6875,  -4.1875],
+         [ -7.8750,   7.0625,   4.7812,  ...,  -2.4844,  -0.0371,   0.5391],
+         [  3.7969,  12.3125,  10.0000,  ...,   4.4062,   8.6250,   5.7188]],
+
+        [[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -7.7500,   0.3262,   1.4375,  ...,  -6.3438,  -4.4062,  -3.1562],
+         [ -5.9375,   8.8125,   6.0625,  ...,  -0.9219,   1.2266,   1.7031],
+         [  4.4375,  13.1250,  10.5625,  ...,   5.1562,   9.0625,   6.4062]]],
+       device='cuda:0'),)
+(tensor([[[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -8.5625,  -0.9141,   0.7539,  ...,  -7.6250,  -5.5625,  -3.9531],
+         [ -8.0000,   6.6875,   4.4688,  ...,  -3.0469,  -0.6562,   0.2559],
+         [  3.3125,  11.7500,   9.6875,  ...,   4.0000,   7.7500,   5.8438]],
+
+        [[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -7.8125,  -1.0625,   1.1016,  ...,  -7.3438,  -5.3750,  -4.0938],
+         [ -7.1250,   6.9375,   4.9375,  ...,  -2.6094,  -0.1641,   0.4668],
+         [  3.5781,  12.0000,   9.8125,  ...,   4.0938,   8.0625,   5.8750]]],
+       device='cuda:0'),)
+(tensor([[[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -9.0000,  -0.5781,   0.6133,  ...,  -7.2188,  -5.3438,  -4.0000],
+         [ -8.1875,   7.1250,   4.6250,  ...,  -2.6562,  -0.3770,   0.5898],
+         [  4.2188,  12.3750,   9.8750,  ...,   3.9688,   8.0000,   6.1250]],
+
+        [[-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         [-10.7500,  -5.9062,  -1.7109,  ...,  -9.6250,  -4.4375,  -2.3906],
+         ...,
+         [ -7.2188,   0.3281,   1.7969,  ...,  -6.4375,  -4.1250,  -3.1719],
+         [ -6.1562,   8.4375,   5.8125,  ...,  -1.3750,   1.1016,   1.4844],
+         [  3.7031,  12.8125,  10.4375,  ...,   5.2500,   8.8750,   6.1250]]],
+       device='cuda:0'),)
+{'eval_loss': 0.0034108127001672983, 'eval_runtime': 30.4231, 'eval_samples_per_second': 7.757, 'eval_steps_per_second': 0.493, 'epoch': 0.34}
+
+======================================== [DEBUGGING AT GLOBAL STEP: 40] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'A': 'Option A is correct because it was obtained by removing one small cube from the original stack.', 'C': 'Option C is incorrect because the cube stack can be obtained by rotating the original stack around the z-axis by 90 degrees.', 'B': 'Option B is incorrect because the cube stack can be obtained by rotating the original stack around the z-axis by 180 degrees.'} The final answer is <answer>A</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'A': 'Option A is correct because it was obtained by removing one small cube from the original stack.', 'C': 'Option C is incorrect because the cube stack can be obtained by rotating the original stack around the z-axis by 90 degrees.', 'B': 'Option B is incorrect because the cube stack can be obtained by rotating the original stack around the z-axis by 180 degrees.'} The final answer is <answer>A</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 41] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'ABCD': 'Given three views, at least 10 cubes and at most 10 cubes are required to satisfy the constraints.'} The final answer is <answer>D</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'ABCD': 'Given three views, at least 10 cubes and at most 10 cubes are required to satisfy the constraints.'} The final answer is <answer>D</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 42] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'ABCD': 'Given two views, at least 7 cubes and at most 9 cubes are required to satisfy the constraints.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'ABCD': 'Given two views, at least 7 cubes and at most 9 cubes are required to satisfy the constraints.'} The final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 43] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'C': 'Option C is correct because the initial arrow can be transformed into the final arrow.', 'DAB': 'Option DAB is incorrect because the initial arrow cannot be transformed into the final arrow.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'C': 'Option C is correct because the initial arrow can be transformed into the final arrow.', 'DAAB': 'Option DAB is incorrect because the initial arrow cannot be transformed into the final arrow.'} The final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 44] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'A': 'Option A is incorrect because it is the cross-section of the shape made by a plane parallel to the XY plane.', 'D': 'Option D is incorrect because it is the cross-section of the shape made by a plane parallel to the XZ plane.', 'B': 'Option B is incorrect because it is the cross-section of the shape made by a plane parallel to the XZ plane.', 'C': 'Option C is correct because the corresponding cross-section does not match the shape shown in the reference image.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'A': 'Option A is incorrect because it is the cross-section of the shape made by a plane parallel to the XY plane.', 'D': 'Option D is incorrect because it is the cross-section of the shape made by a plane parallel to the XZ plane.', 'B': 'Option B is incorrect because it is the cross-section of the shape made by a plane parallel to the XZ plane.', 'C': 'Option C is correct because the corresponding cross-section does not match the shape shown in the reference image.'} The final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 45] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'A': 'Option A is incorrect because it is the cross-section of the shape made by a plane parallel to the XY plane.', 'D': 'Option D is incorrect because it is the cross-section of the shape made by a plane parallel to the XY plane.', 'B': 'Option B is incorrect because it is the cross-section of the shape made by a plane parallel to the YZ plane.', 'C': 'Option C is correct because the corresponding cross-section does not match the shape shown in the reference image.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'A': 'Option A is incorrect because it is the cross-section of the shape made by a plane parallel to the XY plane.', 'D': 'Option D is incorrect because it is the cross-section of the shape made by a plane parallel to the XY plane.', 'B': 'Option B is incorrect because it is the cross-section of the shape made by a plane parallel to the YZ plane.', 'C': 'Option C is correct because the corresponding cross-section does not match the shape shown in the reference image.'} The final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 46] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'C': 'Option C is incorrect because it is a horizontally mirrored version of the front-bottom-left view.', 'B': 'Option B is incorrect because it is a vertically mirrored version of the back-bottom-right view.', 'ABCD': 'Assuming the bottom face is the first cell in the second row of the net, then after folding, the front face is cyan, the back face is blue, the left face is green, the right face is red, the top face is yellow, the bottom face is pink.', 'A': 'Option A is correct because it shows the front-top-left view.'} The final answer is <answer>A</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'C': 'Option C is incorrect because it is a horizontally mirrored version of the front-bottom-left view.', 'B': 'Option B is incorrect because it is a vertically mirrored version of the back-bottom-right view.', 'ABCD': 'Assuming the bottom face is the first cell in the second row of the net, then after folding, the front face is cyan, the back face is blue, the left face is green, the right face is red, the top face is yellow, the bottom face is pink.', 'A': 'Option A is correct because it shows the front-top-left view.'} The final answer is <answer>A</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 47] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'C': 'Option C is correct because the initial arrow can be transformed into the final arrow.', 'DAB': 'Option DAB is incorrect because the initial arrow cannot be transformed into the final arrow.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'C': 'Option C is correct because the initial arrow can be transformed into the final arrow.', 'DAB': 'Option DAB is incorrect because the initial arrow cannot be transformed into the final arrow.'} The final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 48] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'C': 'Option C is correct because the squares with asymmetric patterns have been rotated, so it cannot form the cube shown in the left image.', 'B': 'Option B is incorrect because the relative positions of three faces match the cube shown in the left image.', 'D': 'Option D is incorrect because the relative positions of three faces match the cube shown in the left image.', 'A': 'Option A is incorrect because the relative positions of three faces match the cube shown in the left image.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'C': 'Option C is correct because the squares with asymmetric patterns have been rotated, so it cannot form the cube shown in the left image.', 'B': 'Option B is incorrect because the relative positions of three faces match the cube shown in the left image.', 'D': 'Option D is incorrect because the relative positions of three faces match the cube shown in the left image.', 'A': 'Option A is incorrect because the relative positions of three faces match the cube shown in the left image.'} The final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 49] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'ABCD': 'In this connection, the orange object rotates in the opposite direction to the green object.'} The final answer is <answer>B</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'ABCD': 'In this connection, the orange object rotates in the opposite direction to the green object.'} The final answer is <answer>B</answer>[0m
+===========================================================================================================
+
+{'loss': 0.0028, 'grad_norm': 0.21747906506061554, 'learning_rate': 3.246287027504237e-06, 'epoch': 0.42}
+(tensor([[[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -8.0625,  -2.2500,   0.0430,  ...,  -7.9688,  -6.1250,  -4.3125],
+         [ -7.6875,   4.4062,   3.7031,  ...,  -3.8438,  -0.8242,  -0.2305],
+         [  5.2812,  12.0000,   9.8750,  ...,   4.1875,   8.6875,   5.6562]],
+
+        [[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.6562,  -2.0312,   0.4531,  ...,  -7.6875,  -5.8125,  -4.1562],
+         [ -7.2500,   4.0938,   3.8281,  ...,  -3.8438,  -0.7109,  -0.2383],
+         [  5.1562,  12.1875,   9.9375,  ...,   4.5625,   8.6250,   5.7188]]],
+       device='cuda:0'),)
+(tensor([[[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -8.0000,  -2.3750,  -0.1177,  ...,  -7.7188,  -5.9062,  -4.2812],
+         [ -7.7812,   4.1250,   3.6406,  ...,  -3.7031,  -0.7344,  -0.3652],
+         [  4.9688,  11.8750,   9.8750,  ...,   4.2812,   8.8125,   5.5938]],
+
+        [[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.8125,  -1.6328,   0.0488,  ...,  -7.7812,  -6.0000,  -3.9844],
+         [ -8.2500,   4.3438,   3.3594,  ...,  -4.3125,  -1.1328,  -0.4980],
+         [  4.5625,  12.5000,   9.8750,  ...,   4.7500,   8.7500,   5.6875]]],
+       device='cuda:0'),)
+(tensor([[[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -6.2812,   0.1709,   1.5547,  ...,  -6.2812,  -4.2812,  -2.6719],
+         [ -6.7500,   5.8125,   4.5000,  ...,  -3.0312,   0.1602,   0.6055],
+         [  5.4688,  13.1250,  10.6250,  ...,   5.6875,   9.3750,   6.3125]],
+
+        [[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.8125,  -1.2969,   0.2910,  ...,  -7.1250,  -5.5312,  -4.0312],
+         [ -7.4062,   4.5938,   3.8281,  ...,  -3.7969,  -0.5859,  -0.1426],
+         [  5.8125,  12.7500,  10.0000,  ...,   4.6562,   8.6875,   6.3125]]],
+       device='cuda:0'),)
+(tensor([[[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.4062,  -0.6953,   0.6641,  ...,  -6.9688,  -5.3750,  -3.2656],
+         [ -7.4062,   5.1562,   4.0938,  ...,  -3.3438,  -0.5430,   0.2021],
+         [  4.6875,  12.6875,  10.0625,  ...,   5.1562,   8.9375,   5.8750]],
+
+        [[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -6.7500,  -0.2031,   1.2109,  ...,  -6.5312,  -4.6562,  -2.8438],
+         [ -6.9062,   5.7812,   4.3750,  ...,  -3.2344,   0.0145,   0.4668],
+         [  5.2812,  13.0000,  10.5000,  ...,   5.4062,   9.3125,   6.1250]]],
+       device='cuda:0'),)
+(tensor([[[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.3750,  -1.6953,   0.2695,  ...,  -7.5000,  -5.6562,  -3.8750],
+         [ -7.6875,   4.8750,   3.7656,  ...,  -3.9062,  -0.6953,  -0.3047],
+         [  5.2812,  12.9375,  10.3125,  ...,   5.0312,   8.8750,   6.0312]],
+
+        [[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.9062,  -2.0469,  -0.0383,  ...,  -7.9062,  -6.0938,  -4.3125],
+         [ -7.8125,   4.7812,   3.6094,  ...,  -3.8906,  -0.8008,  -0.3223],
+         [  5.0938,  12.6250,  10.1250,  ...,   4.8125,   9.0625,   5.6562]]],
+       device='cuda:0'),)
+(tensor([[[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -8.0625,  -2.4219,   0.0908,  ...,  -7.7500,  -5.8750,  -4.4062],
+         [ -7.2812,   4.1875,   4.0000,  ...,  -3.4531,  -0.4629,  -0.2021],
+         [  5.0000,  12.2500,  10.0000,  ...,   4.6250,   8.7500,   5.6875]],
+
+        [[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.7500,  -0.9180,   0.2969,  ...,  -7.2188,  -5.5938,  -3.8281],
+         [ -7.9062,   5.0938,   3.7344,  ...,  -3.9219,  -0.9766,  -0.1846],
+         [  5.8750,  12.8125,  10.1250,  ...,   4.6562,   8.4375,   6.5000]]],
+       device='cuda:0'),)
+(tensor([[[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.5312,  -1.9219,   0.3867,  ...,  -7.5625,  -5.7188,  -4.1562],
+         [ -7.3438,   4.8750,   4.0000,  ...,  -3.7031,  -0.4570,  -0.1143],
+         [  5.4062,  12.8750,  10.3750,  ...,   5.0625,   8.8125,   6.0938]],
+
+        [[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.2812,  -1.7891,   0.4805,  ...,  -7.5312,  -5.6250,  -3.9219],
+         [ -7.2812,   4.4375,   3.7500,  ...,  -3.7969,  -0.7383,  -0.2344],
+         [  5.2500,  12.0625,   9.8750,  ...,   4.4688,   8.5000,   5.6875]]],
+       device='cuda:0'),)
+(tensor([[[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.2188,  -1.8359,   0.5547,  ...,  -7.5312,  -5.6562,  -3.9844],
+         [ -7.1562,   4.6250,   3.9375,  ...,  -3.5625,  -0.4688,   0.0254],
+         [  5.3125,  12.4375,  10.0000,  ...,   4.8438,   8.6250,   5.9375]],
+
+        [[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.0000,  -0.7891,   0.8594,  ...,  -6.9688,  -5.2500,  -3.5781],
+         [ -7.1562,   6.0000,   4.5312,  ...,  -3.0312,  -0.1123,   0.5234],
+         [  5.7500,  13.0625,  10.7500,  ...,   5.0312,   9.0625,   6.1562]]],
+       device='cuda:0'),)
+(tensor([[[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.8750,  -2.2188,  -0.0289,  ...,  -7.8125,  -6.0938,  -4.4062],
+         [ -7.7812,   4.7812,   3.9375,  ...,  -3.3750,  -0.5742,  -0.1533],
+         [  5.0938,  12.5000,  10.1250,  ...,   4.9062,   8.8125,   6.0625]],
+
+        [[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -8.0625,  -1.5547,   0.3613,  ...,  -7.6562,  -5.8438,  -4.0312],
+         [ -7.6562,   4.7188,   3.9219,  ...,  -3.8438,  -0.8164,  -0.2891],
+         [  5.1250,  12.4375,  10.1875,  ...,   4.7188,   8.5000,   6.2188]]],
+       device='cuda:0'),)
+(tensor([[[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.8750,  -1.5781,   0.4023,  ...,  -7.4062,  -5.6250,  -4.0000],
+         [ -7.1562,   5.0625,   4.2500,  ...,  -3.2188,  -0.3262,   0.1562],
+         [  5.1875,  12.2500,   9.8750,  ...,   4.9688,   8.4375,   6.1250]],
+
+        [[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.5000,  -1.9297,   0.3555,  ...,  -7.7188,  -5.8125,  -4.1875],
+         [ -7.4062,   5.1250,   4.0312,  ...,  -3.5625,  -0.4785,   0.0425],
+         [  5.1250,  12.7500,  10.3125,  ...,   4.9062,   8.8125,   5.8750]]],
+       device='cuda:0'),)
+(tensor([[[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.9062,  -2.2656,   0.0718,  ...,  -7.6562,  -5.9062,  -4.3438],
+         [ -7.2812,   4.4062,   4.0000,  ...,  -3.4062,  -0.4473,  -0.2217],
+         [  5.0000,  12.2500,  10.0000,  ...,   4.6250,   8.6875,   5.8438]],
+
+        [[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.9688,  -2.2812,  -0.1543,  ...,  -7.9062,  -6.1250,  -4.5625],
+         [ -8.1875,   4.5625,   3.5469,  ...,  -3.9688,  -0.7656,  -0.4590],
+         [  5.2812,  12.7500,  10.1875,  ...,   4.6875,   9.1250,   5.7812]]],
+       device='cuda:0'),)
+(tensor([[[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.7812,  -1.8672,   0.0728,  ...,  -7.6250,  -5.8438,  -4.0625],
+         [ -7.6250,   4.9688,   3.8906,  ...,  -3.3281,  -0.4629,  -0.0608],
+         [  4.5000,  12.3125,   9.9375,  ...,   4.7500,   8.8750,   5.4375]],
+
+        [[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.7500,  -1.9766,  -0.0767,  ...,  -7.8125,  -6.0625,  -4.1875],
+         [ -8.0000,   4.6250,   3.5312,  ...,  -4.0625,  -0.8594,  -0.4297],
+         [  5.3125,  12.8750,  10.1875,  ...,   4.8750,   9.0000,   5.9375]]],
+       device='cuda:0'),)
+(tensor([[[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.8750,  -2.2500,  -0.1533,  ...,  -8.0625,  -6.2500,  -4.3750],
+         [ -7.9375,   4.5625,   3.5000,  ...,  -4.0312,  -0.9219,  -0.4102],
+         [  5.2188,  12.5000,  10.1250,  ...,   4.6562,   8.8750,   5.5938]],
+
+        [[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -6.6250,  -0.2295,   1.1797,  ...,  -6.2500,  -4.7188,  -3.2031],
+         [ -5.7188,   6.9688,   5.4062,  ...,  -1.7578,   1.0625,   1.2266],
+         [  5.8438,  13.6250,  10.9375,  ...,   5.6562,   9.5625,   6.5000]]],
+       device='cuda:0'),)
+(tensor([[[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.8438,  -1.3438,   0.3105,  ...,  -7.6250,  -5.8438,  -3.8906],
+         [ -8.2500,   4.5000,   3.5312,  ...,  -4.2500,  -1.2500,  -0.5391],
+         [  4.9375,  12.2500,   9.9375,  ...,   4.6562,   8.2500,   6.0000]],
+
+        [[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.4688,  -1.7656,   0.3789,  ...,  -7.5312,  -5.6875,  -4.0312],
+         [ -7.5938,   4.6562,   3.8281,  ...,  -3.7344,  -0.6445,  -0.1943],
+         [  5.4062,  12.8125,  10.1875,  ...,   5.0312,   8.8125,   6.2812]]],
+       device='cuda:0'),)
+(tensor([[[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.7500,  -1.1641,   0.2422,  ...,  -7.3125,  -5.6562,  -3.9688],
+         [ -7.6562,   4.9375,   3.7656,  ...,  -3.8750,  -0.8594,  -0.1494],
+         [  5.7812,  12.6250,  10.0000,  ...,   4.5625,   8.4375,   6.3125]],
+
+        [[-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         [-10.1875,  -5.4062,  -1.3594,  ...,  -9.3750,  -4.4688,  -1.8828],
+         ...,
+         [ -7.0000,  -0.4980,   1.0938,  ...,  -6.6562,  -4.6875,  -3.2031],
+         [ -6.8125,   5.8125,   4.6875,  ...,  -2.6250,   0.4004,   0.5781],
+         [  5.4688,  13.0625,  10.6875,  ...,   5.6875,   9.3750,   6.3438]]],
+       device='cuda:0'),)
+{'eval_loss': 0.002350824186578393, 'eval_runtime': 30.4277, 'eval_samples_per_second': 7.756, 'eval_steps_per_second': 0.493, 'epoch': 0.42}
+2025-09-29 22:18:12,996 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+
+======================================== [DEBUGGING AT GLOBAL STEP: 50] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'B': 'Assuming the bottom face is the first cell in the second row of the net, and the right face is the cell to its right. Option B is correct because it shows the front-bottom-left view.', 'D': 'Assuming the bottom face is the first cell in the second row of the net, and the right face is the cell to its right. Option D is incorrect because it includes rotated non-symmetric faces.', 'A': 'Assuming the bottom face is the first cell in the second row of the net, and the right face is the cell to its right. Option A is incorrect because it includes rotated non-symmetric faces.', 'C': 'Assuming the bottom face is the first cell in the second row of the net, and the right face is the cell to its right. Option C is incorrect because it is a horizontally mirrored version of the front-bottom-right view.'} The final answer is <answer>B</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'B': 'Assuming the bottom face is the first cell in the second row of the net, and the right face is the cell to its right. Option B is correct because it shows the front-bottom-left view.', 'D': 'Assuming the bottom face is the first cell in the second row of the net, and the right face is the cell to its right. Option D is incorrect because it includes rotated non-symmetric faces.', 'A': 'Assuming the bottom face is the first cell in the second row of the net, and the right face is the cell to its right. Option A is incorrect because it includes rotated non-symmetric faces.', 'C': 'Assuming the bottom face is the first cell in the second row of the net, and the right face is the cell to its right. Option C is incorrect because it is a horizontally mirrored version of the front-bottom-right view.'} The final answer is <answer>B</answer>[0m
+===========================================================================================================
+ 46%|██████████████████████████████████████████████████████▍                                                                | 54/118 [13:07<19:58, 18.73s/it]
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 51] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'ABCD': 'The yellow gear directly meshes with the green gear and therefore rotates in the opposite direction. The pink gear, driven through two meshing steps, rotates in the same direction as the green gear.'} The final answer is <answer>D</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'ABCD': 'The yellow gear directly meshes with the green gear and therefore rotates in the opposite direction. The pink gear, driven through two meshing steps, rotates in the same direction as the green gear.'} The final answer is <answer>D</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 52] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'D': 'Option D is correct because the initial state can be transformed into the final state.', 'ABC': 'Option ABC is incorrect because the initial state cannot be transformed into the final state.'} The final answer is <answer>D</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'D': 'Option D is correct because the initial state can be transformed into the final state.', 'ABC': 'Option ABC is incorrect because the initial state cannot be transformed into the final state.'} The final answer is <answer>D</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 53] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'ABCD': 'In the current state, the orange object pushes the blue object to the left, causing it to rotate counterclockwise.'} The final answer is <answer>D</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'ABCD': 'In the current state, the orange object pushes the blue object to the left, causing it to rotate counterclockwise.'} The final answer is <answer>D</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 54] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'B': 'Option B is incorrect because holes in column 2 are missing.', 'D': 'Option D is incorrect because extra holes appear in column 3.', 'A': 'Option A is incorrect because holes that should appear in column 2 appear in column 3.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'B': 'Option B is incorrect because holes in column 2 are missing.', 'D': 'Option D is incorrect because extra holes appear in column 3.', 'A': 'Option A is incorrect because holes that should appear in column 2 appear in column 3.'} The final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 55] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'ABCD': 'Given three views, at least 16 cubes and at most 21 cubes are required to satisfy the constraints.'} The final answer is <answer>D</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'ABCD': 'Given three views, at least 16 cubes and at most 21 cubes are required to satisfy the constraints.'} The final answer is <answer>D</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 56] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'A': 'Option A is incorrect because it is the cross-section of the shape made by a plane parallel to the XZ plane.', 'C': 'Option C is incorrect because it is the cross-section of the shape made by a plane parallel to the XZ plane.', 'D': 'Option D is incorrect because it is the cross-section of the shape made by a plane parallel to the YZ plane.', 'B': 'Option B is correct because the corresponding cross-section does not match the shape shown in the reference image.'} The final answer is <answer>B</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'A': 'Option A is incorrect because it is the cross-section of the shape made by a plane parallel to the XZ plane.', 'C': 'Option C is incorrect because it is the cross-section of the shape made by a plane parallel to the XZ plane.', 'D': 'Option D is incorrect because it is the cross-section of the shape made by a plane parallel to the YZ plane.', 'B': 'Option B is correct because the corresponding cross-section does not match the shape shown in the reference image.'} The final answer is <answer>B</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 57] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'C': 'Option C is incorrect because it is the cross-section of the shape made by a plane parallel to the XZ plane.', 'B': 'Option B is incorrect because it is the cross-section of the shape made by a plane parallel to the YZ plane.', 'A': 'Option A is incorrect because it is the cross-section of the shape made by a plane parallel to the XY plane.', 'D': 'Option D is correct because the corresponding cross-section does not match the shape shown in the reference image.'} The final answer is <answer>D</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'C': 'Option C is incorrect because it is the cross-section of the shape made by a plane parallel to the XZ plane.', 'B': 'Option B is incorrect because it is the cross-section of the shape made by a plane parallel to the YZ plane.', 'A': 'Option A is incorrect because it is the cross-section of the shape made by a plane parallel to the XY plane.', 'D': 'Option D is correct because the corresponding cross-section does not match the shape shown in the reference image.'} The final answer is <answer>D</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 58] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'A': 'Option A is correct because it was obtained by removing one small cube from the original stack.', 'C': 'Option C is incorrect because the cube stack can be obtained by rotating the original stack around the y-axis by 180 degrees.', 'B': 'Option B is incorrect because the cube stack can be obtained by rotating the original stack around the z-axis by 90 degrees.'} The final answer is <answer>A</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'A': 'Option A is correct because it was obtained by removing one small cube from the original stack.', 'C': 'Option C is incorrect because the cube stack can be obtained by rotating the original stack around the y-axis by 180 degrees.', 'B': 'Option B is incorrect because the cube stack can be obtained by rotating the original stack around the z-axis by 90 degrees.'} The final answer is <answer>A</answer>[0m
+===========================================================================================================
+
+
+======================================== [DEBUGGING AT GLOBAL STEP: 59] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m'ABCD': 'Given three views, at least 9 cubes and at most 9 cubes are required to satisfy the constraints.'} The final answer is <answer>D</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93m'ABCD': 'Given three views, at least 9 cubes and at most 9 cubes are required to satisfy the constraints.'} The final answer is <answer>D</answer>[0m
+===========================================================================================================
+
+{'loss': 0.0021, 'grad_norm': 0.025184020400047302, 'learning_rate': 2.5688858559204056e-06, 'epoch': 0.51}
+(tensor([[[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.5625,  -2.6094,  -0.5039,  ...,  -7.9688,  -6.5000,  -4.3750],
+         [ -9.1875,   1.9922,   1.8359,  ...,  -5.8750,  -3.0938,  -1.8047],
+         [  4.8125,  10.6875,   8.3125,  ...,   3.5312,   8.0000,   5.1250]],
+
+        [[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.5000,  -2.6250,  -0.5039,  ...,  -8.0000,  -6.5625,  -4.4062],
+         [ -9.1875,   1.7031,   1.7500,  ...,  -5.9062,  -3.2031,  -1.9375],
+         [  4.5625,  10.9375,   8.4375,  ...,   3.8125,   7.8125,   5.2812]]],
+       device='cuda:0'),)
+ 13%|████████████████▏                                                                                                        | 2/15 [00:02<00:14,  1.10s/it]
+(tensor([[[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.7500,  -2.7344,  -0.6367,  ...,  -7.8125,  -6.2500,  -4.3438],
+         [ -9.0000,   2.0938,   2.0000,  ...,  -5.4062,  -2.7969,  -1.6172],
+         [  4.7500,  10.6250,   8.4375,  ...,   3.7344,   8.1250,   5.1250]],
+
+        [[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.5625,  -2.0938,  -0.4629,  ...,  -7.7188,  -6.3750,  -3.9844],
+         [ -9.5625,   2.2969,   1.7031,  ...,  -6.1562,  -3.3750,  -1.9141],
+         [  4.3438,  11.1875,   8.3750,  ...,   4.1250,   8.0000,   5.4688]]],
+       device='cuda:0'),)
+(tensor([[[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -7.2500,  -0.9961,   0.5469,  ...,  -6.9375,  -5.3125,  -3.1875],
+         [ -8.2500,   3.0625,   2.5469,  ...,  -5.1562,  -2.1250,  -1.0625],
+         [  5.0000,  11.5625,   9.0625,  ...,   4.8750,   8.5625,   5.7812]],
+
+        [[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.5000,  -1.8594,  -0.2158,  ...,  -7.4688,  -6.0000,  -4.0312],
+         [ -8.6250,   2.1094,   1.8281,  ...,  -5.9688,  -2.8750,  -1.6875],
+         [  5.5938,  11.3125,   8.6250,  ...,   4.1875,   7.9375,   6.2500]]],
+       device='cuda:0'),)
+(tensor([[[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.1875,  -1.3516,  -0.0332,  ...,  -7.2812,  -6.0312,  -3.5625],
+         [ -8.5625,   3.0625,   2.3906,  ...,  -5.0312,  -2.4375,  -0.9805],
+         [  4.5000,  11.4375,   8.6250,  ...,   4.5938,   8.1250,   5.5938]],
+
+        [[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -7.3438,  -1.0312,   0.4160,  ...,  -6.9375,  -5.3750,  -3.1875],
+         [ -8.4375,   3.0000,   2.3594,  ...,  -5.3750,  -2.2812,  -1.1328],
+         [  5.0312,  11.5000,   9.0000,  ...,   4.7188,   8.5625,   5.6875]]],
+       device='cuda:0'),)
+(tensor([[[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.3750,  -2.4062,  -0.5078,  ...,  -7.7812,  -6.3750,  -4.1562],
+         [ -9.5625,   1.9219,   1.4922,  ...,  -6.3750,  -3.4688,  -2.2188],
+         [  4.8438,  11.5000,   8.6250,  ...,   4.1875,   7.8750,   5.6562]],
+
+        [[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.6875,  -2.6406,  -0.7109,  ...,  -8.0625,  -6.5938,  -4.4375],
+         [ -9.6875,   1.8828,   1.4844,  ...,  -6.1562,  -3.2969,  -2.1406],
+         [  4.5938,  11.2500,   8.5000,  ...,   4.2500,   8.2500,   5.1875]]],
+       device='cuda:0'),)
+(tensor([[[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.7500,  -2.8281,  -0.5781,  ...,  -7.8125,  -6.3125,  -4.5000],
+         [ -8.7500,   2.3281,   2.4062,  ...,  -5.1250,  -2.5469,  -1.4766],
+         [  4.5938,  11.0000,   8.5000,  ...,   3.9375,   8.0000,   5.2812]],
+
+        [[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.1250,  -1.1719,   0.3633,  ...,  -7.2500,  -5.8125,  -3.6719],
+         [ -8.4375,   2.8906,   2.2656,  ...,  -5.6562,  -2.7031,  -1.0859],
+         [  5.5625,  11.1250,   8.8750,  ...,   4.4062,   7.7812,   6.5000]]],
+       device='cuda:0'),)
+(tensor([[[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.4375,  -2.5938,  -0.4902,  ...,  -7.8438,  -6.4062,  -4.3125],
+         [ -9.3750,   1.7969,   1.4844,  ...,  -6.4062,  -3.4375,  -2.2344],
+         [  5.0000,  11.6250,   8.7500,  ...,   4.2188,   8.0000,   5.6875]],
+
+        [[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.0625,  -2.3906,  -0.4570,  ...,  -7.8125,  -6.3438,  -4.1250],
+         [ -9.0000,   2.0938,   1.7422,  ...,  -5.7812,  -3.0312,  -1.6953],
+         [  4.6562,  10.7500,   8.1875,  ...,   3.7031,   7.7500,   5.4062]]],
+       device='cuda:0'),)
+(tensor([[[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.0625,  -2.4219,  -0.4512,  ...,  -7.8438,  -6.4062,  -4.1562],
+         [ -8.8125,   2.2031,   1.8281,  ...,  -5.7500,  -2.9219,  -1.6406],
+         [  4.6875,  10.9375,   8.1875,  ...,   3.9062,   7.7500,   5.5000]],
+
+        [[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -7.7188,  -1.7266,   0.0520,  ...,  -7.4062,  -5.9688,  -3.9375],
+         [ -8.4375,   2.9219,   2.4375,  ...,  -5.3438,  -2.3906,  -1.1406],
+         [  5.3438,  11.8125,   9.1250,  ...,   4.5000,   8.3750,   5.7188]]],
+       device='cuda:0'),)
+(tensor([[[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.5000,  -2.4062,  -0.3809,  ...,  -7.9062,  -6.3438,  -4.4062],
+         [ -8.8750,   2.4531,   2.2188,  ...,  -5.3750,  -2.8906,  -1.6875],
+         [  4.9375,  11.1250,   8.8750,  ...,   4.4375,   8.1250,   6.0000]],
+
+        [[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -7.7500,  -0.3262,   1.1172,  ...,  -6.6875,  -5.0312,  -2.8906],
+         [ -8.4375,   3.2500,   2.8438,  ...,  -5.0625,  -2.5000,  -0.8555],
+         [  5.5000,  11.8750,   9.4375,  ...,   5.2500,   8.5625,   7.1562]]],
+       device='cuda:0'),)
+(tensor([[[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.5625,  -2.0938,  -0.2314,  ...,  -7.6875,  -6.0938,  -4.0938],
+         [ -8.3750,   2.9062,   2.5312,  ...,  -4.9688,  -2.5312,  -1.2891],
+         [  4.8750,  10.8125,   8.4375,  ...,   4.1875,   7.5000,   5.8438]],
+
+        [[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.0000,  -2.3281,  -0.1836,  ...,  -7.6875,  -6.1562,  -4.1250],
+         [ -8.8125,   2.5625,   2.0625,  ...,  -5.6562,  -2.8281,  -1.5781],
+         [  4.7188,  11.5625,   8.8125,  ...,   4.1875,   7.9688,   5.4688]]],
+       device='cuda:0'),)
+(tensor([[[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.5000,  -2.5312,  -0.4590,  ...,  -7.6250,  -6.1562,  -4.2812],
+         [ -8.6875,   2.3281,   2.2969,  ...,  -5.0938,  -2.6094,  -1.4844],
+         [  4.6562,  10.9375,   8.4375,  ...,   4.0312,   8.0000,   5.5000]],
+
+        [[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.8125,  -2.7188,  -0.7305,  ...,  -7.9688,  -6.5312,  -4.5312],
+         [ -9.8125,   1.7969,   1.4609,  ...,  -6.3125,  -3.4219,  -2.2969],
+         [  4.7500,  11.5000,   8.6250,  ...,   4.0938,   8.4375,   5.3750]]],
+       device='cuda:0'),)
+(tensor([[[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.6250,  -2.4219,  -0.5977,  ...,  -7.8438,  -6.3125,  -4.2188],
+         [ -9.0000,   2.6719,   2.0625,  ...,  -5.2812,  -2.7656,  -1.6172],
+         [  4.3750,  11.0625,   8.5000,  ...,   4.2188,   8.2500,   5.1562]],
+
+        [[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.5000,  -2.3906,  -0.6641,  ...,  -7.8750,  -6.4688,  -4.2500],
+         [ -9.7500,   1.8047,   1.4219,  ...,  -6.3750,  -3.5312,  -2.3125],
+         [  4.6875,  11.4375,   8.5000,  ...,   4.1250,   8.1875,   5.3750]]],
+       device='cuda:0'),)
+(tensor([[[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -8.5625,  -2.6562,  -0.6836,  ...,  -8.0625,  -6.6562,  -4.5000],
+         [ -9.5625,   1.9297,   1.6094,  ...,  -6.1250,  -3.2969,  -2.1094],
+         [  4.6875,  11.2500,   8.5625,  ...,   4.0938,   8.1875,   5.2188]],
+
+        [[-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         [-10.8125,  -5.5938,  -1.5234,  ...,  -9.3750,  -4.5312,  -2.1094],
+         ...,
+         [ -7.8438,  -1.4531,   0.2119,  ...,  -6.9062,  -5.6562,  -3.7500],
+         [ -7.2188,   3.8438,   3.3125,  ...,  -4.2500,  -1.4297,  -0.4980],
+         [  5.6562,  12.5000,   9.5625,  ...,   5.0938,   9.0000,   6.1250]]],
+       device='cuda:0'),)
+    main()
+  File "/data1/oujingfeng/project/twgi/Orthus/train/train_orthus.py", line 157, in main
+    trainer.train(resume_from_checkpoint=True if os.path.isdir(args.output_dir) and any(fn.startswith("checkpoint-") for fn in os.listdir(args.output_dir)) else False)
+  File "/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/trainer.py", line 2122, in train
+    return inner_training_loop(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/trainer.py", line 2541, in _inner_training_loop
+    self._maybe_log_save_evaluate(tr_loss, grad_norm, model, trial, epoch, ignore_keys_for_eval)
+  File "/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/trainer.py", line 2997, in _maybe_log_save_evaluate
+    metrics = self._evaluate(trial, ignore_keys_for_eval)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/trainer.py", line 2951, in _evaluate
+    metrics = self.evaluate(ignore_keys=ignore_keys_for_eval)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/trainer.py", line 3964, in evaluate
+    output = eval_loop(
+             ^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/trainer.py", line 4158, in evaluation_loop
+    losses, logits, labels = self.prediction_step(model, inputs, prediction_loss_only, ignore_keys=ignore_keys)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/trainer.py", line 4374, in prediction_step
+    loss, outputs = self.compute_loss(model, inputs, return_outputs=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/Orthus/train/sft_orthus.py", line 212, in compute_loss
+    outputs = model(**inputs, mode='discrete')
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1879, in _call_impl
+    return inner()
+           ^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1827, in inner
+    result = forward_call(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/Orthus/models/modeling_orthus_for_inteleave_cfg.py", line 2098, in forward
+    outputs = self.model(
+              ^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1879, in _call_impl
+    return inner()
+           ^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1827, in inner
+    result = forward_call(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/Orthus/models/modeling_orthus_for_inteleave_cfg.py", line 1691, in forward
+    layer_outputs = decoder_layer(
+                    ^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1879, in _call_impl
+    return inner()
+           ^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1827, in inner
+    result = forward_call(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/Orthus/models/modeling_orthus_for_inteleave_cfg.py", line 727, in forward
+    hidden_states = self.mlp(hidden_states)
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1879, in _call_impl
+    return inner()
+           ^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1827, in inner
+    result = forward_call(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/Orthus/models/modeling_orthus_for_inteleave_cfg.py", line 284, in forward
+    down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1879, in _call_impl
+    return inner()
+           ^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1816, in inner
+    args_result = hook(self, args)
+                  ^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 929, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/deepspeed/runtime/zero/parameter_offload.py", line 298, in _pre_forward_module_hook
+    self.pre_sub_module_forward_function(module)
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/deepspeed/runtime/zero/parameter_offload.py", line 473, in pre_sub_module_forward_function
+    param_coordinator.fetch_sub_module(sub_module, forward=True)
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 929, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/deepspeed/utils/nvtx.py", line 20, in wrapped_fn
+    ret_val = func(*args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/deepspeed/runtime/zero/partitioned_param_coordinator.py", line 415, in fetch_sub_module
+    self.__all_gather_params(params_to_prefetch, forward)
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/deepspeed/utils/nvtx.py", line 20, in wrapped_fn
+    ret_val = func(*args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/deepspeed/runtime/zero/partitioned_param_coordinator.py", line 475, in __all_gather_params
+    self.__all_gather_params_(nonquantized_params, forward, quantize=self.zero_quantized_weights)
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/deepspeed/runtime/zero/partitioned_param_coordinator.py", line 504, in __all_gather_params_
+    handle = param_group[0].all_gather_coalesced(param_group, quantize=quantize)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/deepspeed/utils/nvtx.py", line 20, in wrapped_fn
+    ret_val = func(*args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/deepspeed/runtime/zero/partition_parameters.py", line 1332, in all_gather_coalesced
+    param_ds_tensor.to(get_accelerator().current_device_name()).to(allgather_dtype),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/data1/oujingfeng/project/twgi/Orthus/train/train_orthus.py", line 172, in <module>
+[rank0]:     main()
+[rank0]:   File "/data1/oujingfeng/project/twgi/Orthus/train/train_orthus.py", line 157, in main
+[rank0]:     trainer.train(resume_from_checkpoint=True if os.path.isdir(args.output_dir) and any(fn.startswith("checkpoint-") for fn in os.listdir(args.output_dir)) else False)
+[rank0]:   File "/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/trainer.py", line 2122, in train
+[rank0]:     return inner_training_loop(
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/trainer.py", line 2541, in _inner_training_loop
+[rank0]:     self._maybe_log_save_evaluate(tr_loss, grad_norm, model, trial, epoch, ignore_keys_for_eval)
+[rank0]:   File "/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/trainer.py", line 2997, in _maybe_log_save_evaluate
+[rank0]:     metrics = self._evaluate(trial, ignore_keys_for_eval)
+[rank0]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/trainer.py", line 2951, in _evaluate
+[rank0]:     metrics = self.evaluate(ignore_keys=ignore_keys_for_eval)
+[rank0]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/trainer.py", line 3964, in evaluate
+[rank0]:     output = eval_loop(
+[rank0]:              ^^^^^^^^^^
+[rank0]:   File "/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/trainer.py", line 4158, in evaluation_loop
+[rank0]:     losses, logits, labels = self.prediction_step(model, inputs, prediction_loss_only, ignore_keys=ignore_keys)
+[rank0]:                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/trainer.py", line 4374, in prediction_step
+[rank0]:     loss, outputs = self.compute_loss(model, inputs, return_outputs=True)
+[rank0]:                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/oujingfeng/project/twgi/Orthus/train/sft_orthus.py", line 212, in compute_loss
+[rank0]:     outputs = model(**inputs, mode='discrete')
+[rank0]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1879, in _call_impl
+[rank0]:     return inner()
+[rank0]:            ^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1827, in inner
+[rank0]:     result = forward_call(*args, **kwargs)
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/oujingfeng/project/twgi/Orthus/models/modeling_orthus_for_inteleave_cfg.py", line 2098, in forward
+[rank0]:     outputs = self.model(
+[rank0]:               ^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1879, in _call_impl
+[rank0]:     return inner()
+[rank0]:            ^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1827, in inner
+[rank0]:     result = forward_call(*args, **kwargs)
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/oujingfeng/project/twgi/Orthus/models/modeling_orthus_for_inteleave_cfg.py", line 1691, in forward
+[rank0]:     layer_outputs = decoder_layer(
+[rank0]:                     ^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1879, in _call_impl
+[rank0]:     return inner()
+[rank0]:            ^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1827, in inner
+[rank0]:     result = forward_call(*args, **kwargs)
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/oujingfeng/project/twgi/Orthus/models/modeling_orthus_for_inteleave_cfg.py", line 727, in forward
+[rank0]:     hidden_states = self.mlp(hidden_states)
+[rank0]:                     ^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1879, in _call_impl
+[rank0]:     return inner()
+[rank0]:            ^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1827, in inner
+[rank0]:     result = forward_call(*args, **kwargs)
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/oujingfeng/project/twgi/Orthus/models/modeling_orthus_for_inteleave_cfg.py", line 284, in forward
+[rank0]:     down_proj = self.down_proj(self.act_fn(self.gate_proj(x)) * self.up_proj(x))
+[rank0]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1879, in _call_impl
+[rank0]:     return inner()
+[rank0]:            ^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1816, in inner
+[rank0]:     args_result = hook(self, args)
+[rank0]:                   ^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 929, in _fn
+[rank0]:     return fn(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/deepspeed/runtime/zero/parameter_offload.py", line 298, in _pre_forward_module_hook
+[rank0]:     self.pre_sub_module_forward_function(module)
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/deepspeed/runtime/zero/parameter_offload.py", line 473, in pre_sub_module_forward_function
+[rank0]:     param_coordinator.fetch_sub_module(sub_module, forward=True)
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/_dynamo/eval_frame.py", line 929, in _fn
+[rank0]:     return fn(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/deepspeed/utils/nvtx.py", line 20, in wrapped_fn
+[rank0]:     ret_val = func(*args, **kwargs)
+[rank0]:               ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/deepspeed/runtime/zero/partitioned_param_coordinator.py", line 415, in fetch_sub_module
+[rank0]:     self.__all_gather_params(params_to_prefetch, forward)
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/deepspeed/utils/nvtx.py", line 20, in wrapped_fn
+[rank0]:     ret_val = func(*args, **kwargs)
+[rank0]:               ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/deepspeed/runtime/zero/partitioned_param_coordinator.py", line 475, in __all_gather_params
+[rank0]:     self.__all_gather_params_(nonquantized_params, forward, quantize=self.zero_quantized_weights)
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/deepspeed/runtime/zero/partitioned_param_coordinator.py", line 504, in __all_gather_params_
+[rank0]:     handle = param_group[0].all_gather_coalesced(param_group, quantize=quantize)
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/deepspeed/utils/nvtx.py", line 20, in wrapped_fn
+[rank0]:     ret_val = func(*args, **kwargs)
+[rank0]:               ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/deepspeed/runtime/zero/partition_parameters.py", line 1332, in all_gather_coalesced
+[rank0]:     param_ds_tensor.to(get_accelerator().current_device_name()).to(allgather_dtype),
+[rank0]:     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]: KeyboardInterrupt

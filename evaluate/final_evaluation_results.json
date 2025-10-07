@@ -1,0 +1,121 @@
+{
+    "Overall": {
+        "Correct": 298,
+        "Missing": 243,
+        "Total": 1180,
+        "Accuracy (%)": "25.25",
+        "Missing Rate (%)": "20.59"
+    },
+    "MentalAnimation": {
+        "Correct": 85,
+        "Missing": 53,
+        "Total": 240,
+        "Accuracy (%)": "35.42",
+        "Missing Rate (%)": "22.08"
+    },
+    "MentalFolding": {
+        "Correct": 68,
+        "Missing": 54,
+        "Total": 360,
+        "Accuracy (%)": "18.89",
+        "Missing Rate (%)": "15.00"
+    },
+    "MentalRotation": {
+        "Correct": 76,
+        "Missing": 46,
+        "Total": 260,
+        "Accuracy (%)": "29.23",
+        "Missing Rate (%)": "17.69"
+    },
+    "VisualPenetration": {
+        "Correct": 69,
+        "Missing": 90,
+        "Total": 320,
+        "Accuracy (%)": "21.56",
+        "Missing Rate (%)": "28.12"
+    },
+    "2DRotation": {
+        "Correct": 21,
+        "Missing": 19,
+        "Total": 80,
+        "Accuracy (%)": "26.25",
+        "Missing Rate (%)": "23.75"
+    },
+    "3DRotation": {
+        "Correct": 25,
+        "Missing": 23,
+        "Total": 80,
+        "Accuracy (%)": "31.25",
+        "Missing Rate (%)": "28.75"
+    },
+    "3ViewProjection": {
+        "Correct": 30,
+        "Missing": 4,
+        "Total": 100,
+        "Accuracy (%)": "30.00",
+        "Missing Rate (%)": "4.00"
+    },
+    "ArrowMoving": {
+        "Correct": 13,
+        "Missing": 13,
+        "Total": 80,
+        "Accuracy (%)": "16.25",
+        "Missing Rate (%)": "16.25"
+    },
+    "BlockMoving": {
+        "Correct": 29,
+        "Missing": 33,
+        "Total": 80,
+        "Accuracy (%)": "36.25",
+        "Missing Rate (%)": "41.25"
+    },
+    "CrossSection": {
+        "Correct": 17,
+        "Missing": 13,
+        "Total": 120,
+        "Accuracy (%)": "14.17",
+        "Missing Rate (%)": "10.83"
+    },
+    "CubeAssembly": {
+        "Correct": 18,
+        "Missing": 30,
+        "Total": 80,
+        "Accuracy (%)": "22.50",
+        "Missing Rate (%)": "37.50"
+    },
+    "CubeCounting": {
+        "Correct": 34,
+        "Missing": 47,
+        "Total": 120,
+        "Accuracy (%)": "28.33",
+        "Missing Rate (%)": "39.17"
+    },
+    "CubeReconstruction": {
+        "Correct": 23,
+        "Missing": 14,
+        "Total": 120,
+        "Accuracy (%)": "19.17",
+        "Missing Rate (%)": "11.67"
+    },
+    "CubeUnfolding": {
+        "Correct": 22,
+        "Missing": 18,
+        "Total": 120,
+        "Accuracy (%)": "18.33",
+        "Missing Rate (%)": "15.00"
+    },
+    "MechanicalSystem": {
+        "Correct": 43,
+        "Missing": 7,
+        "Total": 80,
+        "Accuracy (%)": "53.75",
+        "Missing Rate (%)": "8.75"
+    },
+    "PaperFolding": {
+        "Correct": 23,
+        "Missing": 22,
+        "Total": 120,
+        "Accuracy (%)": "19.17",
+        "Missing Rate (%)": "18.33"
+    }
+}

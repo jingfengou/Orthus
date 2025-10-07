@@ -1,0 +1,71 @@
+[34m[1mwandb[0m: [33mWARNING[0m Serializing object of type dict that is 1922480 bytes
+ 67%|█████████████████████████████████████████████████████████████████████████████████▎                                        | 2/3 [00:26<00:12, 12.62s/it]
+
+======================================== [DEBUGGING AT GLOBAL STEP: 0] ========================================
+
+--- [1. Ground Truth Labels] ---
+Decoded Labels: [92m'C': 'Option C is correct because the relative positions of three faces match the cube shown in the left image.', 'B': 'Option B is incorrect because the squares with asymmetric patterns have been rotated.', 'D': 'Option D is incorrect because the squares with asymmetric patterns have been rotated.', 'A': 'Option A is incorrect because two faces have swapped positions.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+Decoded Prediction: [93m[0m
+
+--- [3. Live Generation Output] ---
+[91mCould not generate output for debugging: OrthusForConditionalGeneration.generate() got an unexpected keyword argument 'input_ids'[0m
+===========================================================================================================
+
+{'loss': 26.6719, 'grad_norm': 139.6077880859375, 'learning_rate': 3.3333333333333335e-05, 'epoch': 0.5}
+
+======================================== [DEBUGGING AT GLOBAL STEP: 1] ========================================
+
+--- [1. Ground Truth Labels] ---
+Decoded Labels: [92m'C': 'Option C is correct because the squares with asymmetric patterns have been rotated, so it cannot form the cube shown in the left image.', 'B': 'Option B is incorrect because the relative positions of three faces match the cube shown in the left image.', 'A': 'Option A is incorrect because the relative positions of three faces match the cube shown in the left image.', 'D': 'Option D is incorrect because the relative positions of three faces match the cube shown in the left image.'} The final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+Decoded Prediction: [93m[0m
+
+--- [3. Live Generation Output] ---
+[91mCould not generate output for debugging: OrthusForConditionalGeneration.generate() got an unexpected keyword argument 'input_ids'[0m
+===========================================================================================================
+
+{'loss': 9.1094, 'grad_norm': 98.78988647460938, 'learning_rate': 1.6666666666666667e-05, 'epoch': 1.0}
+(tensor([[[-14.5000, -12.7500,  -5.5000,  ..., -14.5625,  -9.5000,  -7.7188],
+         [-14.5000, -12.7500,  -5.5000,  ..., -14.5625,  -9.5000,  -7.7188],
+         [-14.5000, -12.7500,  -5.5000,  ..., -14.5625,  -9.5000,  -7.7188],
+         ...,
+         [  6.0938,   8.6875,   9.8125,  ...,   2.7969,   6.3750,   5.9375],
+         [  5.8438,   8.6875,   9.9375,  ...,   2.8906,   6.5625,   6.0625],
+         [  5.8438,   8.6250,  10.3125,  ...,   3.6250,   7.0312,   6.2812]]],
+       device='cuda:0'),)
+                                                                                                                                                             
+(tensor([[[-14.5000, -12.7500,  -5.5000,  ..., -14.5625,  -9.5000,  -7.7188],
+         [-14.5000, -12.7500,  -5.5000,  ..., -14.5625,  -9.5000,  -7.7188],
+         [-14.5000, -12.7500,  -5.5000,  ..., -14.5625,  -9.5000,  -7.7188],
+         ...,
+         [  6.0000,   8.5625,   9.4375,  ...,   2.9062,   6.0625,   5.5000],
+         [  5.8438,   8.6250,   9.6875,  ...,   3.0156,   6.2188,   5.6875],
+         [  5.7188,   8.5625,  10.0625,  ...,   3.6250,   6.6562,   5.8750]]],
+       device='cuda:0'),)
+{'eval_loss': 8.464017868041992, 'eval_runtime': 3.9418, 'eval_samples_per_second': 4.059, 'eval_steps_per_second': 0.507, 'epoch': 1.0}
+
+======================================== [DEBUGGING AT GLOBAL STEP: 2] ========================================
+
+--- [1. Ground Truth Labels] ---
+Decoded Labels: [92m'C': 'Option C is incorrect because it is the cross-section of the shape made by a plane parallel to the XZ plane.', 'A': 'Option A is incorrect because it is the cross-section of the shape made by a plane parallel to the XY plane.', 'B': 'Option B is incorrect because it is the cross-section of the shape made by a plane parallel to the XZ plane.', 'D': 'Option D is correct because the corresponding cross-section does not match the shape shown in the reference image.'} The final answer is <answer>D</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+Decoded Prediction: [93mصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحهصفحه[0m
+
+--- [3. Live Generation Output] ---
+[91mCould not generate output for debugging: OrthusForConditionalGeneration.generate() got an unexpected keyword argument 'input_ids'[0m
+===========================================================================================================
+
+{'loss': 8.4336, 'grad_norm': 248.66436767578125, 'learning_rate': 0.0, 'epoch': 1.5}
+{'train_runtime': 44.6322, 'train_samples_per_second': 0.538, 'train_steps_per_second': 0.067, 'train_loss': 14.73828125, 'epoch': 1.5}
+
+
+✅ [Success] The SFT training pipeline test completed successfully!
+This confirms that:
+  - Data loading and preprocessing are correct.
+  - The model's forward pass can compute a loss with your data.
+  - The training and evaluation loops can run without crashing.
+You are now ready for a full training run!

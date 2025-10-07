@@ -1,0 +1,11 @@
+{"time":"2025-09-29T22:22:42.331771483Z","level":"INFO","msg":"stream: starting","core version":"0.22.0"}
+{"time":"2025-09-29T22:22:42.780764275Z","level":"INFO","msg":"stream: created new stream","id":"mx4apmit"}
+{"time":"2025-09-29T22:22:42.780820679Z","level":"INFO","msg":"stream: started","id":"mx4apmit"}
+{"time":"2025-09-29T22:22:42.780855155Z","level":"INFO","msg":"writer: started","stream_id":"mx4apmit"}
+{"time":"2025-09-29T22:22:42.780911689Z","level":"INFO","msg":"handler: started","stream_id":"mx4apmit"}
+{"time":"2025-09-29T22:22:42.780865709Z","level":"INFO","msg":"sender: started","stream_id":"mx4apmit"}
+{"time":"2025-09-29T22:22:44.332202914Z","level":"INFO","msg":"stream: closing","id":"mx4apmit"}
+{"time":"2025-09-29T22:22:49.25415084Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-09-29T22:22:49.788910685Z","level":"INFO","msg":"handler: closed","stream_id":"mx4apmit"}
+{"time":"2025-09-29T22:22:49.789071984Z","level":"INFO","msg":"sender: closed","stream_id":"mx4apmit"}
+{"time":"2025-09-29T22:22:49.78910072Z","level":"INFO","msg":"stream: closed","id":"mx4apmit"}

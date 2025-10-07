@@ -1,0 +1,33 @@
+[34m[1mwandb[0m: [33mWARNING[0m Serializing object of type dict that is 1922480 bytes
+  0%|                                                                                                                                 | 0/21 [00:00<?, ?it/s]2025-09-29 04:55:25,215 - ERROR -
+
+❌ [Failure] Training failed with an error: no_sync context manager is incompatible with gradient partitioning logic of ZeRO stage 3
+Traceback (most recent call last):
+  File "/data1/oujingfeng/project/twgi/Orthus/train/train_orthus.py", line 156, in main
+    trainer.train(resume_from_checkpoint=True if os.path.isdir(args.output_dir) and any(fn.startswith("checkpoint-") for fn in os.listdir(args.output_dir)) else False)
+  File "/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/trainer.py", line 2122, in train
+    return inner_training_loop(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/trainer.py", line 2473, in _inner_training_loop
+    with self.accelerator.accumulate(model):
+  File "/data1/conda/envs/orthus/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/accelerate/accelerator.py", line 1113, in accumulate
+    cm_stack.enter_context(contextlib.nullcontext() if allow_gradient_sync else self.no_sync(m))
+  File "/data1/conda/envs/orthus/lib/python3.11/contextlib.py", line 517, in enter_context
+    result = _enter(cm)
+             ^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/accelerate/accelerator.py", line 994, in no_sync
+    with context():
+  File "/data1/conda/envs/orthus/lib/python3.11/contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/deepspeed/runtime/engine.py", line 2299, in no_sync
+    assert not self.zero_optimization_partition_gradients(), \
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: no_sync context manager is incompatible with gradient partitioning logic of ZeRO stage 3
+  0%|                                                                                                                                 | 0/21 [00:05<?, ?it/s]

@@ -4377,6 +4377,7 @@ class Trainer:
                     if isinstance(outputs, dict):
                         logits = tuple(v for k, v in outputs.items() if k not in ignore_keys + ["loss"])
                     else:
+                        print(outputs)
                         logits = outputs[1:]
                 else:
                     loss = None
