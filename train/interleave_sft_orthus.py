@@ -8,6 +8,7 @@ import json
 from transformers import Trainer, TrainingArguments
 from torch.nn import CrossEntropyLoss
 import traceback
+import numpy as np
 root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 # 2. 将项目根目录临时添加到Python解释器的“模块搜索路径”列表中
@@ -23,7 +24,7 @@ class InterleaveSFTDataset(Dataset):
     为 Orthus 的图文交错模式进行SFT微调的数据集。
     这个版本只为文本logit loss准备标签。
     """
-    def __init__(self, dataset, image_base_dir, processor, vqmodel, max_length=2048):
+    def __init__(self, dataset, image_base_dir, processor, vqmodel, max_length=4096):
 
 
         """
@@ -53,7 +54,8 @@ class InterleaveSFTDataset(Dataset):
         # print(f"Loading image from: {image_path}")
 
         # 问题图片
-        question_image_path = os.path.join(self.image_base_dir, category, task, level, item.get('Question_image', ''))
+        # question_image_path = os.path.join(self.image_base_dir, category, task, level, item.get('Combined_image', ''))
+        question_image_path = os.path.join(self.image_base_dir, image_id, item.get('Combined_image', ''))
         try:
             question_image = Image.open(question_image_path).convert("RGB")
         except FileNotFoundError:
@@ -63,7 +65,8 @@ class InterleaveSFTDataset(Dataset):
         # 步骤图片
         step_images = []
         for step in item.get('Rotation_steps', []):
-            step_image_path = os.path.join(self.image_base_dir, category, task, level, step.get('image', ''))
+            # step_image_path = os.path.join(self.image_base_dir, category, task, level, step.get('image', ''))
+            step_image_path = os.path.join(self.image_base_dir, image_id, step.get('image', ''))
             try:
                 img = Image.open(step_image_path).convert("RGB")
             except FileNotFoundError:
@@ -84,7 +87,7 @@ class InterleaveSFTDataset(Dataset):
         choices_text = "\n".join([f"{chr(65+i)}) {choice}" for i, choice in enumerate(item.get('Choices', []))])
 
         prompt_text = instruction + f"<image>\n\nQuestion: {question}\n{choices_text}\n\nAnswer: "
-        
+        prompt_image_num = prompt_text.count('<image>')
         # 根据您的要求，label是纯文本，我们教模型先输出解释，再输出答案
         target_text = item.get('Reasoning', '')
         
@@ -113,21 +116,86 @@ class InterleaveSFTDataset(Dataset):
         model_inputs["image_latents"] = input_image_latents
         model_inputs["target_image_latents"] = target_image_latents
 
-
-        target_start_idx = np.where(labels[0] != -100)[0][0]
-        model_inputs["target_start_idx"] = target_start_idx
+        # 1. 获取 attention_mask 张量
+        #    因为 batch_size 为 1，我们直接取第一个（也是唯一一个）样本
+        attention_mask = model_inputs['attention_mask'][0]
+        
+        # 2. 计算真实内容的长度（即 attention_mask 中 1 的数量）
+        actual_content_length = attention_mask.sum().item()
+        
+        # 3. 获取序列的总长度 (等于 self.max_length)
+        total_length = len(attention_mask)
+        
+        # 4. 计算填充的 token 数量
+        padding_length = total_length - actual_content_length
         # --- 5. 构建 labels ---
+        # 步骤 1: 定义图片 token 的相关常量
+        try:
+            boi_token_id = self.processor.tokenizer.boi_token_id
+        except AttributeError:
+            boi_token_id = 8197 
+            print(f"Warning: processor.tokenizer.boi_token_id not found. Using default ID: {boi_token_id}")
+        image_token_len = 1024
         labels = model_inputs['input_ids'].clone()
-        target_len_no_special = len(self.processor.tokenizer(target_text, add_special_tokens=False).input_ids)
-        labels[0, :-target_len_no_special] = -100
-        model_inputs["labels"] = labels
+        prompt_len = len(self.processor.tokenizer(prompt_text, add_special_tokens=False).input_ids)
+        prompt_len += 1024 * prompt_image_num + padding_length
+        labels[0, :(prompt_len+1)] = -100  # +1 to include the last token of the prompt
+        # 这里的 +1 是为了确保 prompt 的最后一个 token 也被忽略掉
+        # print("label prompt position:", labels[0, prompt_len])
+        # 步骤 4: 屏蔽（忽略）所有图片 token
+        image_start_indices = (model_inputs['input_ids'][0] == boi_token_id).nonzero(as_tuple=True)[0]
+        for start_idx in image_start_indices:
+            end_idx = start_idx + image_token_len
+            # 这部分代码的意图是：【告诉模型，不要对任何图片 token 计算 loss】
+            # 这会覆盖掉 target 中穿插的图片部分
+            # print("label start:", labels[0, start_idx])
+            # print("label end:", labels[0, end_idx])
+            labels[0, (start_idx+1):(end_idx+2)] = -100  # start+1 为了预测BOI, end+2 为了不预测EOI
+            # print("label start:", labels[0, start_idx])
+            # print("label end:", labels[0, end_idx])
 
+        model_inputs["labels"] = labels
+        # torch.set_printoptions(profile="full")
+
+        # print("input_ids:", model_inputs['input_ids'])
+        # print("attention_mask:", model_inputs['attention_mask'])
+        # print("labels:", model_inputs['labels'])
+        # print("prompt len:", model_inputs['input_ids'][0][prompt_len])
+        # # 獲取所有需要儲存的變數
+        # input_ids_val = model_inputs['input_ids']
+        # attention_mask_val = model_inputs['attention_mask']
+        # labels_val = model_inputs['labels']
+        # prompt_len_token_val = model_inputs['input_ids'][0][prompt_len]
+
+        # # 使用 with open 將所有內容寫入一個檔案
+        # with open("model_inputs_log.txt", "w") as f:
+        #     f.write("--- input_ids ---\n")
+        #     f.write(str(input_ids_val))
+        #     f.write("\n\n") # 空兩行方便閱讀
+
+        #     f.write("--- attention_mask ---\n")
+        #     f.write(str(attention_mask_val))
+        #     f.write("\n\n")
+
+        #     f.write("--- labels ---\n")
+        #     f.write(str(labels_val))
+        #     f.write("\n\n")
+
+        #     f.write("--- Token at prompt_len ---\n")
+        #     f.write(str(prompt_len_token_val.item())) # .item() 獲取純數字
+
+        # print("資料已成功寫入 model_inputs_log.txt")
+        # 找到第一个不为 -100 的索引，即为 target 的起始位置
+        # target_start_idx = np.where(labels[0].cpu() != -100)[0][0] # 加上 .cpu() 以防 labels 在GPU上
+        model_inputs["target_start_idx"] = torch.tensor(prompt_len, dtype=torch.long)
+        # print("target_start_idx", model_inputs["target_start_idx"])
         # 清理
         if "vqmodel" in model_inputs:
             model_inputs.pop("vqmodel")
         for key, value in model_inputs.items():
             if isinstance(value, torch.Tensor):
                 model_inputs[key] = value.squeeze(0)
+                # print(f"{key}.shape: {model_inputs[key].shape}")
 
         return model_inputs
     
@@ -196,7 +264,8 @@ class InterleaveSFTTrainer(Trainer):
         # 从输入中分离出 labels 和 target_image_latents
         labels = inputs.pop("labels")
         # target_image_latents = inputs.pop("target_image_latents")
-
+        # 【新增修改 1】: 从 inputs 中取出 target_start_idx
+        # target_start_idx = inputs.pop("target_start_idx")
         # ==================== 调试代码块 (开始) ====================
         # 只在训练和评估时打印，不在 generate 时打印
         # model.training 是训练状态， not model.training 是评估状态
@@ -223,10 +292,20 @@ class InterleaveSFTTrainer(Trainer):
         # if model.training:
             # outputs_tuple = model(**inputs, target_image_latents=target_image_latents, train_mode='interleave')
             # logits, diff_loss = outputs_tuple
-        outputs_tuple = model(**inputs, train_mode='interleave')
-        logits, diff_loss = outputs_tuple
+        # 【新增修改 2】: 将 target_start_idx 传递给 model
+        if model.training:
+            outputs_tuple = model(
+                **inputs, 
+                # target_image_latents=target_image_latents, 
+                # target_start_idx=target_start_idx, # <--- 在这里传入
+                train_mode='interleave'
+            )
+            logits, diff_loss = outputs_tuple
         # model_outputs_for_return = outputs_tuple
-
+        else:
+            outputs = model(**inputs, mode='discrete')
+            logits = outputs.logits.float()
+            diff_loss = torch.tensor(0.0)  # 评估时没有 diff_loss
 
         # --- 计算损失 ---
         shift_logits = logits[:, :-1, :].contiguous()  # 去掉最后一个位置

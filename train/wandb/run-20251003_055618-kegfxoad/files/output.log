@@ -1,2 +1,0 @@
-[34m[1mwandb[0m: [33mWARNING[0m Serializing object of type dict that is 1922480 bytes
-  0%|                                                                                                            | 0/300 [00:00<?, ?it/s]2025-10-03 05:56:22,069 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.

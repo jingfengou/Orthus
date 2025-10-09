@@ -1592,6 +1592,8 @@ class OrthusModel(ChameleonPreTrainedModel):
         return_dict: Optional[bool] = None,
         cache_position: Optional[torch.LongTensor] = None,
         pixel_values: Optional[torch.FloatTensor] = None,
+        target_start_idx: Optional[torch.LongTensor] = None, # <--- 【第一处修改】: 接收参数
+
     ) -> Union[Tuple, BaseModelOutputWithPast]:
         output_attentions = output_attentions if output_attentions is not None else self.config.output_attentions
         output_hidden_states = (
@@ -1626,6 +1628,59 @@ class OrthusModel(ChameleonPreTrainedModel):
             # get the position of image_tokens (<boi>, <eoi> are excluded.)
             image_mask = input_ids==8711
             for id in range(bsz):                    
+                                # --- 【在此处插入诊断代码】 ---
+                # # ==================== 诊断代码开始 ====================
+                # if target_start_idx is not None:
+                #     print("\n" + "="*50)
+                #     print(f"====== DIAGNOSTICS FOR BATCH ITEM {id} ======")
+                    
+                #     current_target_start_idx = target_start_idx[id].item()
+                #     print(f"[*] 'target_start_idx' received: {current_target_start_idx}")
+                    
+                #     # 1. 检查解码后的文本分区是否符合预期
+                #     # 我们需要 tokenizer，可以从 self.embed_tokens 的上层模块获取
+                #     try:
+                #         tokenizer = self.model.processor.tokenizer # 假设可以这样访问
+                #     except AttributeError:
+                #         # 如果上面的访问方式不对，这是一个备用方案，但可能不存在
+                #         # 在实际应用中，你可能需要将 tokenizer 作为参数传入或以其他方式获取
+                #         print("[Warning] Could not access tokenizer for decoding.")
+                #         pass
+                    
+                #     if 'tokenizer' in locals():
+                #         prompt_tokens = input_ids[id, :current_target_start_idx]
+                #         target_tokens = input_ids[id, current_target_start_idx:]
+                #         decoded_prompt = tokenizer.decode(prompt_tokens, skip_special_tokens=False)
+                #         decoded_target = tokenizer.decode(target_tokens, skip_special_tokens=False)
+                #         print(f"\n--- DECODED PROMPT (Input) ---")
+                #         print(decoded_prompt)
+                #         print(f"---------------------------------")
+                #         print(f"\n--- DECODED TARGET (Label) ---")
+                #         print(decoded_target)
+                #         print(f"---------------------------------\n")
+
+                #     # 2. 检查应用掩码前后的图片token数量
+
+                #     initial_image_tokens = image_mask[id].sum().item()
+                    
+                #     print(f"[*] Image tokens BEFORE masking target: {initial_image_tokens} (应为 3072)")
+                    
+                #     temp_mask = image_mask.clone()
+                #     temp_mask[id, current_target_start_idx:] = False
+                #     final_image_tokens = temp_mask[id].sum().item()
+                #     print(f"[*] Image tokens AFTER masking target: {final_image_tokens} (期望为 1024)")
+
+                #     if final_image_tokens != 1024:
+                #         print("\n\033[91m[ERROR] Mismatch found! The number of image tokens in the prompt is not 1024. 'target_start_idx' is likely incorrect.\033[0m")
+                    
+                #     print("="*50 + "\n")
+                # # ===================== 诊断代码结束 =====================
+                # --- 【第二处修改】: 使用 target_start_idx 过滤 image_mask ---
+                if target_start_idx is not None:
+                    current_target_start_idx = target_start_idx[id].item()
+                    # 将 target 部分的所有 image token 标记为 False，这样就不会被计入
+                    image_mask[id, current_target_start_idx:] = False
+
                 image_latents_ = image_latents[id].view(-1, self.vqmodel.quantize.embedding_dim).to(self.codebook_in.weight.dtype)
                 # distances from z to embeddings e_j (z - e)^2 = z^2 + e^2 - 2 e * z
                 distances = (
@@ -1638,7 +1693,9 @@ class OrthusModel(ChameleonPreTrainedModel):
                 image_embeds = torch.matmul(weighted_indices.to(self.embed_tokens.weight.dtype), self.embed_tokens.weight[4:8196])
 
                 # Reshape image_embeds to match the number of positions in image_mask
-                num_image_tokens = image_mask[id].sum().item()  # Number of image tokens for this batch item              
+                # num_image_tokens = image_mask[id].sum().item()  # Number of image tokens for this batch item              
+                # 此时的 num_image_tokens 将只会是 prompt 部分的数量 (e.g., 1024)
+                num_image_tokens = image_mask[id].sum().item()
 
                 if use_cache and image_mask.shape[1] == 1:  # Generate image_latents & use_cache mode
                     image_embeds = image_embeds.view(1, -1, self.config.hidden_size)
@@ -2061,6 +2118,8 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
         cfg_text: torch.FloatTensor = 1.0,#CHANGE_for_pix2pix
         cfg_image: torch.FloatTensor = 1.0,#CHANGE_for_pix2pix
         target_image_latents: torch.FloatTensor = None,
+        # 【新增修改 1】: 在方法签名中添加 target_start_idx
+        target_start_idx: Optional[torch.LongTensor] = None,
         pixel_values: torch.LongTensor = None,
         train_mode: Optional[str] = 'mmg',
         mode: Optional[str] = None,
@@ -2093,7 +2152,8 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
             output_hidden_states if output_hidden_states is not None else self.config.output_hidden_states
         )
         return_dict = return_dict if return_dict is not None else self.config.use_return_dict 
-        
+        # print("target_image_latents.shape",target_image_latents.shape) 
+        # print("target_start_idx.shape",target_start_idx.shape)
         # decoder outputs consists of (dec_features, layer_state, dec_hidden, dec_attn)
         outputs = self.model(
             input_ids=input_ids,
@@ -2107,6 +2167,8 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
             output_hidden_states=output_hidden_states,
             return_dict=return_dict,
             cache_position=cache_position,
+            target_start_idx=target_start_idx # <--- 【新增】将 target_start_idx 传给 self.model
+
         )
 
         hidden_states = outputs[0] 
@@ -2165,49 +2227,113 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
             
             return logits
 
+        # elif self.model.training and train_mode=='interleave':
+
+
+            # # Set up variables
+            # is_boi_token = input_ids == 8197
+
+            # target_image_latents = target_image_latents.view(-1, 1024, 256)
+            # bsz, seq_len, _ = target_image_latents.shape# [bsz, 1024, 256]
+            
+            # # Initialize storage for image latents
+            # z = []
+            # for id in range(bsz):
+            #     start_positions = torch.nonzero(is_boi_token[id]).squeeze()
+            #     # Collect images within the current batch item
+            #     images_in_batch = []
+            #     try: 
+            #         for start_pos in start_positions:
+            #             images_in_batch.append(hidden_states[id, start_pos : start_pos + 1024, :])
+            #     except:
+            #         images_in_batch.append(hidden_states[id, start_positions : start_positions + 1024, :])
+            #     # Stack collected images into a tensor and add to list `z`
+            #     images_in_batch = torch.stack(images_in_batch, dim=0)  # (num_images, 1024, hidden_size)
+            #     z.append(images_in_batch)
+
+            # z = torch.stack(z, dim=0)  # (bsz, num_images, 1024, hidden_size)
+            # # repeat with diffusion_batch_mul
+            # latents = target_image_latents.reshape(bsz * seq_len, -1).repeat(self.diffusion_batch_mul, 1)
+            # z = z.reshape(bsz * seq_len, -1).repeat(self.diffusion_batch_mul, 1)
+            # # normalization
+            # latents= latents * 0.1
+
+            # timesteps = torch.randint(0, 1000, (z.shape[0],), dtype=torch.int64, device=z.device)
+            # noise = torch.randn_like(latents, device=z.device)
+            # noisy_latents = self.train_scheduler.add_noise(latents, noise, timesteps)
+            # target = self.train_scheduler.get_velocity(latents, noise, timesteps)
+
+            # model_pred = self.mlp_head(noisy_latents, timesteps, z)
+
+
+            # diff_loss = F.mse_loss(model_pred.float(), target.float(), reduction="mean")
+
+
+            # return logits, diff_loss
+
         elif self.model.training and train_mode=='interleave':
 
             # Set up variables
             is_boi_token = input_ids == 8197
-
-            target_image_latents = target_image_latents.view(-1, 1024, 256)
-            bsz, seq_len, _ = target_image_latents.shape# [bsz, 1024, 256]
+            # print('is_boi_token',is_boi_token)
+            # print('input_ids',input_ids.shape)
+            # print('is_boi_token',is_boi_token.shape)
+            # print("target_image_latents",target_image_latents.shape)
+            target_image_latents = target_image_latents.view(input_ids.shape[0], -1, 1024, 256)
+            # print("target_image_latents",target_image_latents.shape)
+            bsz, num_images, seq_len, _  = target_image_latents.shape   # [bsz, num_images, 1024, 256]
             
             # Initialize storage for image latents
             z = []
             for id in range(bsz):
+
                 start_positions = torch.nonzero(is_boi_token[id]).squeeze()
+                start_positions = start_positions[-target_image_latents.shape[1]:] # only keep the last num_images positions
+                
+                # print('start_positions', start_positions, start_positions.shape)
+
                 # Collect images within the current batch item
                 images_in_batch = []
                 try: 
                     for start_pos in start_positions:
+                        # print(hidden_states.shape)
                         images_in_batch.append(hidden_states[id, start_pos : start_pos + 1024, :])
                 except:
                     images_in_batch.append(hidden_states[id, start_positions : start_positions + 1024, :])
                 # Stack collected images into a tensor and add to list `z`
                 images_in_batch = torch.stack(images_in_batch, dim=0)  # (num_images, 1024, hidden_size)
                 z.append(images_in_batch)
-
+            # print('z1', len(z))
             z = torch.stack(z, dim=0)  # (bsz, num_images, 1024, hidden_size)
+            # print('z2', z.shape)
             # repeat with diffusion_batch_mul
-            latents = target_image_latents.reshape(bsz * seq_len, -1).repeat(self.diffusion_batch_mul, 1)
-            z = z.reshape(bsz * seq_len, -1).repeat(self.diffusion_batch_mul, 1)
+            latents = target_image_latents.reshape(bsz, num_images * seq_len, -1).repeat(1, self.diffusion_batch_mul, 1)
+            # print('latents', latents.shape)
+            z = z.reshape(bsz, num_images * seq_len, -1).repeat(1, self.diffusion_batch_mul, 1)
+            # print('z3', z.shape)
             # normalization
             latents= latents * 0.1
 
             timesteps = torch.randint(0, 1000, (z.shape[0],), dtype=torch.int64, device=z.device)
             noise = torch.randn_like(latents, device=z.device)
+            # # --- 在这里插入你的调试代码 ---
+            # print("--- DEBUG START ---")
+            # print(f"latents shape: {latents.shape}, dtype: {latents.dtype}")
+            # print(f"noise shape: {noise.shape}, dtype: {noise.dtype}")
+            # print(f"timesteps shape: {timesteps.shape}, dtype: {timesteps.dtype}")
+            # print("--- About to call add_noise ---")
+            # # --- 调试代码结束 ---
             noisy_latents = self.train_scheduler.add_noise(latents, noise, timesteps)
+            # print('noisy_latents', noisy_latents.shape)
             target = self.train_scheduler.get_velocity(latents, noise, timesteps)
-
+            # print('target', target.shape)
             model_pred = self.mlp_head(noisy_latents, timesteps, z)
 
 
             diff_loss = F.mse_loss(model_pred.float(), target.float(), reduction="mean")
 
 
-            return logits, diff_loss
-            
+            return logits, diff_loss  
 
 
         elif mode == 'discrete': # discrete output

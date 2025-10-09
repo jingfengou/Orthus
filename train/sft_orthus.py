@@ -107,7 +107,7 @@ class InterleaveSFTDataset(Dataset):
         # d. 执行屏蔽
         #    labels[0, :mask_len] 正是屏蔽了从0开始到prompt结束的所有部分
         #    对于左填充来说，这部分恰好就是 [PAD, PAD, ..., PROMPT]
-        labels[0, :-target_len_no_special] = -100
+        labels[0, :-(target_len_no_special-1)] = -100
         # print(f"Masked labels: {labels}")
         model_inputs["labels"] = labels
         

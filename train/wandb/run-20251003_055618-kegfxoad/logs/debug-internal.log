@@ -1,6 +1,0 @@
-{"time":"2025-10-03T05:56:18.641163933Z","level":"INFO","msg":"stream: starting","core version":"0.22.0"}
-{"time":"2025-10-03T05:56:19.079650552Z","level":"INFO","msg":"stream: created new stream","id":"kegfxoad"}
-{"time":"2025-10-03T05:56:19.079733568Z","level":"INFO","msg":"stream: started","id":"kegfxoad"}
-{"time":"2025-10-03T05:56:19.079765423Z","level":"INFO","msg":"writer: started","stream_id":"kegfxoad"}
-{"time":"2025-10-03T05:56:19.079797774Z","level":"INFO","msg":"sender: started","stream_id":"kegfxoad"}
-{"time":"2025-10-03T05:56:19.079990359Z","level":"INFO","msg":"handler: started","stream_id":"kegfxoad"}
