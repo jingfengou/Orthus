@@ -113,7 +113,7 @@ class InterleaveSFTDataset(Dataset):
         target_image_latents = image_latents[1:]  # 步骤图片
 
         # 兼容后续代码，拼回到 batch 维度
-        model_inputs["image_latents"] = input_image_latents
+        # model_inputs["image_latents"] = input_image_latents
         model_inputs["target_image_latents"] = target_image_latents
 
         # 1. 获取 attention_mask 张量
@@ -316,7 +316,7 @@ class InterleaveSFTTrainer(Trainer):
 
         # --- 融合 diff_loss ---
         alpha = 1.0  # 文本损失权重
-        beta = 1.0   # diff_loss 权重（可根据实验调整）
+        beta = 100.0   # diff_loss 权重（可根据实验调整）
         loss = alpha * text_loss + beta * diff_loss
 
         model_outputs_for_return = (text_loss, diff_loss)

@@ -6,10 +6,10 @@ accelerate launch --num_processes ${NPROC_PER_NODE} train_orthus.py \
     --train_file "/data1/oujingfeng/project/twgi/datasets/SpatialViz/datasets/train.jsonl" \
     --eval_file "/data1/oujingfeng/project/twgi/datasets/SpatialViz/datasets/test.jsonl" \
     --image_folder "/data1/oujingfeng/project/twgi/datasets/SpatialViz" \
-    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/orthus-7b-sft-think-v1" \
-    --num_train_epochs 10 \
-    --per_device_train_batch_size 8 \
-    --per_device_eval_batch_size 8 \
+    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/orthus-7b-sft-think-v2" \
+    --num_train_epochs 200 \
+    --per_device_train_batch_size 16 \
+    --per_device_eval_batch_size 16 \
     --learning_rate 5e-6 \
     --warmup_ratio 0.03 \
     --logging_steps 5 \

@@ -1,0 +1,98 @@
+--- Case 1 (来自原始文件ID: MentalAnimation-ArrowMoving-Level1-17-3-3-2) ---
+Correct Answer: D
+--------------------
+
+| 'ABCD': 'Assuming the initial state is $$| 1 D|$$, then after the given sequence of steps, the final state is $$| 'ABA': 'Option ABCD is correct because the initial state can be transformed into the target state.'}</think> The final answer is <answer>ABA</answer>
+
+================================================================================
+
+--- Case 2 (来自原始文件ID: MentalAnimation-BlockMoving-Level0-0-3-3-1-2) ---
+Correct Answer: A
+--------------------
+
+'ABCD': 'Assuming the bottom block is the first cell in the second row of the target state, then after transformation, it becomes: 'ABCD'.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''.''final state:
+
+================================================================================
+
+--- Case 3 (来自原始文件ID: MentalAnimation-MechanicalSystem-Level0-22) ---
+Correct Answer: D
+--------------------
+
+This is the final answer is <answer>D</answer>
+
+================================================================================
+
+--- Case 4 (来自原始文件ID: MentalFolding-PaperFolding-Level0-36-3-3-2-1) ---
+Correct Answer: C
+--------------------
+
+{'B': 'Option B is incorrect because holes in column 1 1 are missing.', 'D': 'Option D is incorrect because extra holes appear in column 4.', 'A': 'Option A is incorrect because holes that should appear in column 1-1 appear in column 3.'}</think> The final answer is <answer>C</answer>
+
+================================================================================
+
+--- Case 5 (来自原始文件ID: MentalFolding-CubeReconstruction-Level1-33) ---
+Correct Answer: B
+--------------------
+
+<think>{'D': 'Assuming the bottom face is the first cell in the second row of the cube, and the right face is the cell to its right. Option D is correct because it shows the back-bottom-left view.', 'C': 'Assuming the bottom face is the first cell in the second row of the cube, and the right face is the cell to its right. Option C is incorrect because it includes rotated non-symmetric faces.', 'A': 'Assuming the bottom face is the first cell in the second row of the cube, and the right face is the cell to its right. Option A is incorrect because it is a horizontally mirrored version of the front-bottom-left view.', 'B': 'Assuming the bottom faceface is the first cell in the second row of the cube, and the right face is the cell to its right. Option B is incorrect because it is a horizontally mirrored version of the back-top-left view.'}</think> The final answer is <answer>D</answer>
+
+================================================================================
+
+--- Case 6 (来自原始文件ID: MentalFolding-CubeUnfolding-Level2-9) ---
+Correct Answer: D
+--------------------
+
+<think>{'D': 'Option D is correct because two faces have swapped positions, so it cannot form the cube shown in the left image.。', 'A': 'Option A is incorrect because the relative positions of three faces match the cube shown in the left image.', 'B': 'Option B is incorrect because the relative positions of three faces match the cube shown in the left image.', 'C': 'Option C is incorrect because the relative positions of three faces match the cube shown in the left image.'}</think> The final answer is <answer>D</answer>
+
+================================================================================
+
+--- Case 7 (来自原始文件ID: MentalRotation-2DRotation-Level1-31-3-3) ---
+Correct Answer: A
+--------------------
+
+| '{ 'B': 'Option B is correct because it was obtained by rotating the original image 270 degrees.', 'A': 'Option A is incorrect because it was obtained by rotating the original image 1 90 degrees and then flipping it vertically.', 'C': 'Option C is incorrect because it was obtained by rotating the asymmetric patterns in the image.'}</think> The final answer is <answer>B</answer>
+
+================================================================================
+
+--- Case 8 (来自原始文件ID: MentalRotation-3DRotation-Level1-37-3-2-2-8) ---
+Correct Answer: C
+--------------------
+
+'ABCD' is incorrect because it is a vertically mirrored version of the original cube stack. To obtain this cube stack, remove one small cube from the bottom row and one from the top row.'
+
+================================================================================
+
+--- Case 9 (来自原始文件ID: MentalRotation-3ViewProjection-Level0-Cubes3View-24-3-3-3-10) ---
+Correct Answer: C
+--------------------
+
+<think>{'B': 'Option B is incorrect because the red cubes are not in the correct position in the view.', 'A': 'Option A is incorrect because the shape matches the right view instead of the left view, and the red cubes are not in the correct position.', 'D': 'Option D is incorrect because the image shows the right view of the cube stack instead of the left view.'}</think> The final answer is <answer>C</answer>
+
+================================================================================
+
+--- Case 10 (来自原始文件ID: VisualPenetration-CrossSection-Level2-19-frustum_circle-triangular_prism) ---
+Correct Answer: A
+--------------------
+
+Option D is incorrect because it is the cross-section of the shape made by a plane parallel to the YZ plane. Option B is incorrect because it is the cross-section of the shape made by a plane parallel to the XZ plane. 
+
+Option C is correct because the corresponding cross-section does not match the shape shown in the reference image. The shape shown in the reference image is the shape made by a plane parallel to the YZ plane, which is not reflected in this image. The final answer is <answer>C</answer>
+
+================================================================================
+
+--- Case 11 (来自原始文件ID: VisualPenetration-CubeCounting-Level0-37-3-2-3-8) ---
+Correct Answer: D
+--------------------
+
+Given two views, at least 9 cubes and at most 11 cubes are required to satisfy the constraints. The final answer is <answer>D</answer>
+
+================================================================================
+
+--- Case 12 (来自原始文件ID: VisualPenetration-CubeAssembly-Level0-27-2-3-3-8-2) ---
+Correct Answer: B
+--------------------
+
+'ABCD': The original cube stack comprises seven cubes, with 'ABCD' being the cube stack that results after removing one cube. Options 'A', 'B', and 'C' are incorrect because they are non-symmetric cube stacks.'
+
+================================================================================
+

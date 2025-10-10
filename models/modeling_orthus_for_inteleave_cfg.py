@@ -1627,6 +1627,9 @@ class OrthusModel(ChameleonPreTrainedModel):
             bsz = inputs_embeds.shape[0]
             # get the position of image_tokens (<boi>, <eoi> are excluded.)
             image_mask = input_ids==8711
+            IMAGE_PLACEHOLDER_LENGTH = 1024
+            IMAGE_TOKEN_ID = 8711
+            
             for id in range(bsz):                    
                                 # --- 【在此处插入诊断代码】 ---
                 # # ==================== 诊断代码开始 ====================
@@ -1676,33 +1679,75 @@ class OrthusModel(ChameleonPreTrainedModel):
                 #     print("="*50 + "\n")
                 # # ===================== 诊断代码结束 =====================
                 # --- 【第二处修改】: 使用 target_start_idx 过滤 image_mask ---
-                if target_start_idx is not None:
-                    current_target_start_idx = target_start_idx[id].item()
-                    # 将 target 部分的所有 image token 标记为 False，这样就不会被计入
-                    image_mask[id, current_target_start_idx:] = False
-
-                image_latents_ = image_latents[id].view(-1, self.vqmodel.quantize.embedding_dim).to(self.codebook_in.weight.dtype)
-                # distances from z to embeddings e_j (z - e)^2 = z^2 + e^2 - 2 e * z
-                distances = (
-                    torch.sum(image_latents_**2, dim=1, keepdim=True) + \
+                # if target_start_idx is not None:
+                #     current_target_start_idx = target_start_idx[id].item()
+                #     # 将 target 部分的所有 image token 标记为 False，这样就不会被计入
+                #     image_mask[id, current_target_start_idx:] = False
+                # print(f'ksq: {image_latents.shape}, {image_mask.shape}')
+                all_image_indices = (input_ids[id] == IMAGE_TOKEN_ID).nonzero(as_tuple=True)[0]
+                if  len(image_latents.shape) == 4: # (bsz, 32, 32, 256)
+                    image_latents = image_latents.unsqueeze(1)  # (bsz, 1, 32, 32, 256)
+                    
+                for img_idx in range(image_latents.shape[1]):
+                    current_image_latents_ = image_latents[id, img_idx].view(-1, self.vqmodel.quantize.embedding_dim).to(self.codebook_in.weight.dtype)
+                    distances = (
+                    torch.sum(current_image_latents_**2, dim=1, keepdim=True) + \
                     torch.sum(self.codebook_in.weight**2, dim=1) - \
-                    torch.tensor(2, dtype=image_latents_.dtype, device=image_latents_.device) * torch.einsum("bd,dn->bn", image_latents_, self.codebook_in.weight.transpose(0, 1))
+                    torch.tensor(2, dtype=current_image_latents_.dtype, device=current_image_latents_.device) * torch.einsum("bd,dn->bn", current_image_latents_, self.codebook_in.weight.transpose(0, 1))
                 )
-                weighted_indices = F.softmax(-distances, dim=-1)
-                # Calculate the embeddings for the image tokens
-                image_embeds = torch.matmul(weighted_indices.to(self.embed_tokens.weight.dtype), self.embed_tokens.weight[4:8196])
+                    weighted_indices = F.softmax(-distances, dim=-1)
+                    # Calculate the embeddings for the image tokens
+                    current_image_embeds = torch.matmul(weighted_indices.to(self.embed_tokens.weight.dtype), self.embed_tokens.weight[4:8196])
+                    start_idx = img_idx * IMAGE_PLACEHOLDER_LENGTH
+                    end_idx = start_idx + IMAGE_PLACEHOLDER_LENGTH
+                    current_image_indices = all_image_indices[start_idx:end_idx]
+                    is_generation_phase = use_cache and input_ids.shape[1] == 1
+                    
+                    if is_generation_phase:
+                        # --- 生成模式 (一次只處理一個 token) ---
+                        # 如果當前的單一 token 是圖片占位符，這個 if 會成立
+                        if len(current_image_indices) == 1:
+                            # 原始邏輯是取最後一個 embedding，我們在此復現
+                            # 從 [1024, 4096] 中取出最後一個 [4096]
+                            single_image_embed = current_image_embeds[-1, :]
+                            
+                            # 替換 inputs_embeds 中的那一個位置
+                            inputs_embeds[id, current_image_indices] = single_image_embed.to(inputs_embeds.dtype)
+                    else:
+                        # --- 訓練或完整提示詞處理模式 ---
+                        # 這是標準情況，進行一對一的完整替換
+                        if current_image_embeds.shape[0] != len(current_image_indices):
+                            print(current_image_embeds.shape)
+                            print(f"Error: Embedding count {current_image_embeds.shape[0]} does not match placeholder count {len(current_image_indices)} for batch item {id}, image index {img_idx}.")
+                            raise ValueError("Embedding count mismatch.")
+                        
+                        inputs_embeds[id, current_image_indices] = current_image_embeds.to(inputs_embeds.dtype)
 
-                # Reshape image_embeds to match the number of positions in image_mask
-                # num_image_tokens = image_mask[id].sum().item()  # Number of image tokens for this batch item              
-                # 此时的 num_image_tokens 将只会是 prompt 部分的数量 (e.g., 1024)
-                num_image_tokens = image_mask[id].sum().item()
 
-                if use_cache and image_mask.shape[1] == 1:  # Generate image_latents & use_cache mode
-                    image_embeds = image_embeds.view(1, -1, self.config.hidden_size)
-                    inputs_embeds[id, image_mask[id] == 1] = image_embeds[:, -1, :].to(inputs_embeds.dtype)
-                else:
-                    image_embeds = image_embeds.view(num_image_tokens, -1).unsqueeze(0).expand(1, num_image_tokens, self.config.hidden_size)
-                    inputs_embeds[id, image_mask[id] == 1] = image_embeds.to(inputs_embeds.dtype)
+
+
+                # image_latents_ = image_latents[id].view(-1, self.vqmodel.quantize.embedding_dim).to(self.codebook_in.weight.dtype)
+                # # distances from z to embeddings e_j (z - e)^2 = z^2 + e^2 - 2 e * z
+                # distances = (
+                #     torch.sum(image_latents_**2, dim=1, keepdim=True) + \
+                #     torch.sum(self.codebook_in.weight**2, dim=1) - \
+                #     torch.tensor(2, dtype=image_latents_.dtype, device=image_latents_.device) * torch.einsum("bd,dn->bn", image_latents_, self.codebook_in.weight.transpose(0, 1))
+                # )
+                # weighted_indices = F.softmax(-distances, dim=-1)
+                # # Calculate the embeddings for the image tokens
+                # image_embeds = torch.matmul(weighted_indices.to(self.embed_tokens.weight.dtype), self.embed_tokens.weight[4:8196])
+
+                # # Reshape image_embeds to match the number of positions in image_mask
+                # # num_image_tokens = image_mask[id].sum().item()  # Number of image tokens for this batch item              
+                # # 此时的 num_image_tokens 将只会是 prompt 部分的数量 (e.g., 1024)
+                # num_image_tokens = image_mask[id].sum().item()
+
+                # if use_cache and image_mask.shape[1] == 1:  # Generate image_latents & use_cache mode
+                #     image_embeds = image_embeds.view(1, -1, self.config.hidden_size)
+                #     inputs_embeds[id, image_mask[id] == 1] = image_embeds[:, -1, :].to(inputs_embeds.dtype)
+                # else:
+                #     image_embeds = image_embeds.view(num_image_tokens, -1).unsqueeze(0).expand(1, num_image_tokens, self.config.hidden_size)
+                #     inputs_embeds[id, image_mask[id] == 1] = image_embeds.to(inputs_embeds.dtype)
                 
         else:
             raise ValueError(

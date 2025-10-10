@@ -6,8 +6,9 @@ __pycache__/
 *.jpg
 *.zip
 
-results/
-
+results/t2i_generation
+results/interleave_generation_cfg
+/train/wandb
 
 # 操作系统特定的文件 (例如 macOS)
 .DS_Store

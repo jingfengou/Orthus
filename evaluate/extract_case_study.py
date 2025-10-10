@@ -9,8 +9,9 @@ from datasets import load_dataset # <-- 新增：需要 datasets 库来读取 .p
 # 输入文件名
 INPUT_FILE = 'orthus_output_svb_final.jsonl'
 # 请确保这个路径是正确的
-BENCHMARK_DIR = '/home/server/oujingfeng/project/twgi/datasets/SpatialViz' 
+BENCHMARK_DIR = '/data1/oujingfeng/project/twgi/datasets/SpatialViz' 
 GROUND_TRUTH_FILE = os.path.join(BENCHMARK_DIR, 'test-00000-of-00001.parquet')
+
 # 输出文件名，用于存放提取的 case
 OUTPUT_FILE = 'case_study_responses.txt'
 

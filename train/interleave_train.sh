@@ -52,7 +52,7 @@ $LAUNCH_CMD train_interleave_orthus.py \
     --train_file "/data1/oujingfeng/project/twgi/datasets/mydatasets/metadata.json" \
     --eval_file "/data1/oujingfeng/project/twgi/datasets/mydatasets/metadata.json" \
     --image_folder "/data1/oujingfeng/project/twgi/datasets/mydatasets" \
-    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-think-v1" \
+    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-think-v4" \
     --num_train_epochs $EPOCHS \
     --per_device_train_batch_size $BATCH_SIZE \
     --per_device_eval_batch_size $BATCH_SIZE \

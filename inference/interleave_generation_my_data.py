@@ -21,7 +21,7 @@ import torch.nn.functional as F
 import json
 from PIL import Image
 
-ckpt_path = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-think-v1"
+ckpt_path = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-think-v4"
 processor = OrthusProcessor.from_pretrained(ckpt_path)
 model = OrthusForConditionalGeneration.from_pretrained(
     ckpt_path,
@@ -30,7 +30,7 @@ model = OrthusForConditionalGeneration.from_pretrained(
     attn_implementation='eager',
 )
 
-exp_dir = os.path.join(root_path, "results/mydatasets")
+exp_dir = os.path.join(root_path, "results/mydatasets/sftv4")
 os.makedirs(exp_dir, exist_ok=True)
 
 set_seed(50)
