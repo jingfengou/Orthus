@@ -1,0 +1,1827 @@
+W1014 03:15:37.178000 3424719 site-packages/torch/distributed/run.py:774] 
+W1014 03:15:37.178000 3424719 site-packages/torch/distributed/run.py:774] *****************************************
+W1014 03:15:37.178000 3424719 site-packages/torch/distributed/run.py:774] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W1014 03:15:37.178000 3424719 site-packages/torch/distributed/run.py:774] *****************************************
+Some kwargs in processor config are unused and will not have any effect: image_token, image_seq_length. 
+Some kwargs in processor config are unused and will not have any effect: image_token, image_seq_length. 
+Some kwargs in processor config are unused and will not have any effect: image_seq_length, image_token. 
+Some kwargs in processor config are unused and will not have any effect: image_seq_length, image_token. 
+2025-10-14 03:15:43,426 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+2025-10-14 03:15:43,536 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+2025-10-14 03:15:43,537 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+2025-10-14 03:15:43,580 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:04,  2.39s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:04,  2.35s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:04,  2.39s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.56s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:04<00:02,  2.29s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:04<00:02,  2.29s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:04<00:02,  2.27s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:04<00:02,  2.40s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.09s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.16s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.08s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.14s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.09s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.16s/it]
+2025-10-14 03:15:50,308 - INFO - Base model loaded in bfloat16.
+2025-10-14 03:15:50,309 - INFO - Model and processor loaded successfully.
+2025-10-14 03:15:50,310 - INFO - 
+--- [Step 2/5] Initializing full datasets... ---
+2025-10-14 03:15:50,310 - INFO - Base model loaded in bfloat16.
+2025-10-14 03:15:50,311 - INFO - Base model loaded in bfloat16.
+2025-10-14 03:15:50,311 - INFO - Model and processor loaded successfully.
+2025-10-14 03:15:50,312 - INFO - 
+--- [Step 2/5] Initializing full datasets... ---
+2025-10-14 03:15:50,312 - INFO - Model and processor loaded successfully.
+2025-10-14 03:15:50,312 - INFO - 
+--- [Step 2/5] Initializing full datasets... ---
+Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.21s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.28s/it]
+2025-10-14 03:15:50,633 - INFO - Base model loaded in bfloat16.
+2025-10-14 03:15:50,634 - INFO - Model and processor loaded successfully.
+2025-10-14 03:15:50,634 - INFO - 
+--- [Step 2/5] Initializing full datasets... ---
+2025-10-14 03:15:51,290 - INFO - Full train dataset size: 944
+2025-10-14 03:15:51,290 - INFO - Full eval dataset size: 236
+Initialized dataset with 944 examples.
+Initialized dataset with 236 examples.
+2025-10-14 03:15:51,290 - INFO - Custom SFT datasets created.
+2025-10-14 03:15:51,290 - INFO - 
+--- [Step 3/5] Configuring Training Arguments... ---
+/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/training_args.py:1559: FutureWarning: `evaluation_strategy` is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+2025-10-14 03:15:51,303 - INFO - Full train dataset size: 944
+2025-10-14 03:15:51,303 - INFO - Full eval dataset size: 236
+Initialized dataset with 944 examples.
+Initialized dataset with 236 examples.
+2025-10-14 03:15:51,303 - INFO - Custom SFT datasets created.
+2025-10-14 03:15:51,303 - INFO - 
+--- [Step 3/5] Configuring Training Arguments... ---
+/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/training_args.py:1559: FutureWarning: `evaluation_strategy` is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+2025-10-14 03:15:51,315 - INFO - Full train dataset size: 944
+2025-10-14 03:15:51,315 - INFO - Full eval dataset size: 236
+Initialized dataset with 944 examples.
+Initialized dataset with 236 examples.
+2025-10-14 03:15:51,316 - INFO - Custom SFT datasets created.
+2025-10-14 03:15:51,316 - INFO - 
+--- [Step 3/5] Configuring Training Arguments... ---
+/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/training_args.py:1559: FutureWarning: `evaluation_strategy` is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+2025-10-14 03:15:51,623 - INFO - Full train dataset size: 944
+2025-10-14 03:15:51,623 - INFO - Full eval dataset size: 236
+Initialized dataset with 944 examples.
+Initialized dataset with 236 examples.
+2025-10-14 03:15:51,623 - INFO - Custom SFT datasets created.
+2025-10-14 03:15:51,623 - INFO - 
+--- [Step 3/5] Configuring Training Arguments... ---
+/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/training_args.py:1559: FutureWarning: `evaluation_strategy` is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+2025-10-14 03:15:54,037 - INFO - 
+--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---
+2025-10-14 03:15:54,052 - INFO - 
+--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---
+2025-10-14 03:15:54,059 - INFO - 
+--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---
+2025-10-14 03:15:54,075 - INFO - 
+--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---
+2025-10-14 03:15:54,670 - INFO - 
+--- [Step 5/5] Starting the formal training run... ---
+2025-10-14 03:15:54,675 - INFO - 
+--- [Step 5/5] Starting the formal training run... ---
+2025-10-14 03:15:54,707 - INFO - 
+--- [Step 5/5] Starting the formal training run... ---
+2025-10-14 03:15:54,932 - INFO - 
+--- [Step 5/5] Starting the formal training run... ---
+[rank3]:W1014 03:15:58.662000 3424991 site-packages/torch/utils/cpp_extension.py:2425] TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[rank3]:W1014 03:15:58.662000 3424991 site-packages/torch/utils/cpp_extension.py:2425] If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'] to specific architectures.
+[rank1]:W1014 03:15:58.694000 3424989 site-packages/torch/utils/cpp_extension.py:2425] TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[rank1]:W1014 03:15:58.694000 3424989 site-packages/torch/utils/cpp_extension.py:2425] If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'] to specific architectures.
+[rank0]:W1014 03:15:58.731000 3424988 site-packages/torch/utils/cpp_extension.py:2425] TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[rank0]:W1014 03:15:58.731000 3424988 site-packages/torch/utils/cpp_extension.py:2425] If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'] to specific architectures.
+[rank2]:W1014 03:15:59.027000 3424990 site-packages/torch/utils/cpp_extension.py:2425] TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[rank2]:W1014 03:15:59.027000 3424990 site-packages/torch/utils/cpp_extension.py:2425] If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'] to specific architectures.
+Parameter Offload - Persistent parameters statistics: param_count = 428, numel = 1098371
+wandb: WARNING The `run_name` is currently set to the same value as `TrainingArguments.output_dir`. If this was not intended, please specify a different run name by setting the `TrainingArguments.run_name` parameter.
+wandb: Currently logged in as: xjy110156 (xjy110156-) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: creating run
+wandb: Tracking run with wandb version 0.22.0
+wandb: Run data is saved locally in /data1/oujingfeng/project/twgi/Orthus/train/wandb/run-20251014_031626-2ikq2s81
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run /data1/oujingfeng/project/twgi/checkpoints/orthus-7b-sft-think-v4
+wandb: ⭐️ View project at https://wandb.ai/xjy110156-/huggingface
+wandb: 🚀 View run at https://wandb.ai/xjy110156-/huggingface/runs/2ikq2s81
+wandb: WARNING Serializing object of type dict that is 1922480 bytes
+  0%|          | 0/3000 [00:00<?, ?it/s]2025-10-14 03:16:31,693 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+2025-10-14 03:16:31,693 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+2025-10-14 03:16:31,693 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+2025-10-14 03:16:31,705 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+  0%|          | 1/3000 [00:30<25:11:35, 30.24s/it]  0%|          | 2/3000 [00:52<21:27:49, 25.77s/it]  0%|          | 3/3000 [01:15<20:09:58, 24.22s/it]--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>B</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>B</answer>'
+--------------------------
+  0%|          | 4/3000 [01:36<19:16:58, 23.17s/it]  0%|          | 5/3000 [01:57<18:30:31, 22.25s/it]                                                   {'loss': 0.7693, 'grad_norm': 15.644885063171387, 'learning_rate': 2.7777777777777776e-07, 'epoch': 0.17}
+  0%|          | 5/3000 [01:57<18:30:31, 22.25s/it]  0%|          | 6/3000 [02:18<18:10:44, 21.86s/it]  0%|          | 7/3000 [02:39<17:58:28, 21.62s/it]  0%|          | 8/3000 [03:00<17:49:37, 21.45s/it]  0%|          | 9/3000 [03:21<17:43:42, 21.34s/it]  0%|          | 10/3000 [03:42<17:36:16, 21.20s/it]                                                    {'loss': 0.7465, 'grad_norm': 16.690855026245117, 'learning_rate': 5.555555555555555e-07, 'epoch': 0.33}
+  0%|          | 10/3000 [03:42<17:36:16, 21.20s/it]  0%|          | 11/3000 [04:03<17:32:37, 21.13s/it]  0%|          | 12/3000 [04:24<17:31:45, 21.12s/it]  0%|          | 13/3000 [04:46<17:33:30, 21.16s/it]  0%|          | 14/3000 [05:06<17:24:47, 20.99s/it]  0%|          | 15/3000 [05:27<17:23:47, 20.98s/it]                                                    {'loss': 0.5737, 'grad_norm': 35.876914978027344, 'learning_rate': 8.333333333333333e-07, 'epoch': 0.5}
+  0%|          | 15/3000 [05:27<17:23:47, 20.98s/it]  1%|          | 16/3000 [05:48<17:24:56, 21.01s/it]  1%|          | 17/3000 [06:10<17:29:06, 21.10s/it]  1%|          | 18/3000 [06:30<17:25:19, 21.03s/it]  1%|          | 19/3000 [06:53<17:42:44, 21.39s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 19] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>A</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>A</answer>[0m
+===========================================================================================================
+
+  1%|          | 20/3000 [07:14<17:46:48, 21.48s/it]                                                    {'loss': 0.0958, 'grad_norm': 0.011330662295222282, 'learning_rate': 1.111111111111111e-06, 'epoch': 0.67}
+  1%|          | 20/3000 [07:14<17:46:48, 21.48s/it]  1%|          | 21/3000 [07:35<17:39:09, 21.33s/it]--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+  1%|          | 22/3000 [07:56<17:33:37, 21.23s/it]  1%|          | 23/3000 [08:17<17:25:02, 21.06s/it]  1%|          | 24/3000 [08:37<17:15:34, 20.88s/it]  1%|          | 25/3000 [08:59<17:21:54, 21.01s/it]                                                    {'loss': 0.0001, 'grad_norm': 0.009181421250104904, 'learning_rate': 1.3888888888888892e-06, 'epoch': 0.83}
+  1%|          | 25/3000 [08:59<17:21:54, 21.01s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+  1%|          | 26/3000 [09:20<17:21:18, 21.01s/it]  1%|          | 27/3000 [09:41<17:18:44, 20.96s/it]--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>D</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>D</answer>'
+--------------------------
+  1%|          | 28/3000 [10:02<17:21:09, 21.02s/it]  1%|          | 29/3000 [10:22<17:12:49, 20.86s/it]  1%|          | 30/3000 [10:42<16:55:06, 20.51s/it]                                                    {'loss': 0.0001, 'grad_norm': 0.058612070977687836, 'learning_rate': 1.6666666666666667e-06, 'epoch': 1.0}
+  1%|          | 30/3000 [10:42<16:55:06, 20.51s/it]--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+  1%|          | 31/3000 [11:06<17:51:31, 21.65s/it]  1%|          | 32/3000 [11:28<17:46:48, 21.57s/it]  1%|          | 33/3000 [11:49<17:40:17, 21.44s/it]  1%|          | 34/3000 [12:09<17:28:04, 21.20s/it]  1%|          | 35/3000 [12:32<17:49:14, 21.64s/it]                                                    {'loss': 0.0001, 'grad_norm': 0.014433288015425205, 'learning_rate': 1.944444444444445e-06, 'epoch': 1.17}
+  1%|          | 35/3000 [12:32<17:49:14, 21.64s/it]  1%|          | 36/3000 [12:56<18:17:54, 22.22s/it]  1%|          | 37/3000 [13:20<18:52:03, 22.92s/it]--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>B</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>B</answer>'
+--------------------------
+  1%|▏         | 38/3000 [13:46<19:27:50, 23.66s/it]  1%|▏         | 39/3000 [14:11<19:49:49, 24.11s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 39] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>B</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>B</answer>[0m
+===========================================================================================================
+
+  1%|▏         | 40/3000 [14:36<20:10:38, 24.54s/it]                                                    {'loss': 0.0, 'grad_norm': 0.003939325921237469, 'learning_rate': 2.222222222222222e-06, 'epoch': 1.33}
+  1%|▏         | 40/3000 [14:36<20:10:38, 24.54s/it]  1%|▏         | 41/3000 [15:01<20:09:58, 24.53s/it]  1%|▏         | 42/3000 [15:26<20:19:36, 24.74s/it]  1%|▏         | 43/3000 [15:51<20:21:16, 24.78s/it]  1%|▏         | 44/3000 [16:14<19:56:22, 24.28s/it]  2%|▏         | 45/3000 [16:35<19:08:02, 23.31s/it]                                                    {'loss': 0.0, 'grad_norm': 0.0022828825749456882, 'learning_rate': 2.5e-06, 'epoch': 1.5}
+  2%|▏         | 45/3000 [16:35<19:08:02, 23.31s/it]  2%|▏         | 46/3000 [16:57<18:52:34, 23.00s/it]  2%|▏         | 47/3000 [17:20<18:51:55, 23.00s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+  2%|▏         | 48/3000 [17:42<18:35:02, 22.66s/it]  2%|▏         | 49/3000 [18:03<18:12:36, 22.21s/it]  2%|▏         | 50/3000 [18:24<17:56:03, 21.89s/it]                                                    {'loss': 0.0, 'grad_norm': 0.0020858864299952984, 'learning_rate': 2.7777777777777783e-06, 'epoch': 1.67}
+  2%|▏         | 50/3000 [18:24<17:56:03, 21.89s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+(tensor(1.3284e-05, device='cuda:2'),)
+(tensor(1.2398e-05, device='cuda:0'),)
+(tensor(0.1156, device='cuda:1'),)
+(tensor(1.0539e-05, device='cuda:3'),)
+
+  0%|          | 0/8 [00:00<?, ?it/s][A(tensor(0.0055, device='cuda:1'),)
+(tensor(0.1389, device='cuda:0'),)
+(tensor(1.2286e-05, device='cuda:3'),)
+(tensor(1.3214e-05, device='cuda:2'),)
+
+ 25%|██▌       | 2/8 [00:04<00:13,  2.26s/it][A(tensor(0.0521, device='cuda:0'),)
+(tensor(0.2053, device='cuda:2'),)
+(tensor(0.0774, device='cuda:1'),)
+(tensor(0.0957, device='cuda:3'),)
+
+ 38%|███▊      | 3/8 [00:09<00:17,  3.51s/it][A(tensor(0.0936, device='cuda:2'),)
+(tensor(1.1055e-05, device='cuda:1'),)
+(tensor(1.0580e-05, device='cuda:3'),)
+(tensor(1.3445e-05, device='cuda:0'),)
+
+ 50%|█████     | 4/8 [00:13<00:14,  3.56s/it][A(tensor(5.1740e-05, device='cuda:0'),)
+(tensor(2.5178e-05, device='cuda:1'),)
+(tensor(0.1267, device='cuda:3'),)
+(tensor(0.0906, device='cuda:2'),)
+
+ 62%|██████▎   | 5/8 [00:17<00:11,  3.67s/it][A(tensor(1.2146e-05, device='cuda:1'),)
+(tensor(1.3315e-05, device='cuda:2'),)
+(tensor(5.5369e-05, device='cuda:3'),)
+(tensor(0.1053, device='cuda:0'),)
+
+ 75%|███████▌  | 6/8 [00:21<00:07,  3.77s/it][A--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+(tensor(0.0817, device='cuda:2'),)
+(tensor(1.3647e-05, device='cuda:0'),)
+(tensor(0.0184, device='cuda:1'),)
+(tensor(1.2992e-05, device='cuda:3'),)
+
+ 88%|████████▊ | 7/8 [00:24<00:03,  3.74s/it][A(tensor(1.4881e-05, device='cuda:1'),)
+(tensor(0.1156, device='cuda:2'),)
+(tensor(0.0040, device='cuda:0'),)(tensor(1.2304e-05, device='cuda:3'),)
+
+
+100%|██████████| 8/8 [00:27<00:00,  3.42s/it][A                                                    
+                                             [A{'eval_loss': 0.04105611518025398, 'eval_runtime': 33.885, 'eval_samples_per_second': 6.965, 'eval_steps_per_second': 0.236, 'epoch': 1.67}
+  2%|▏         | 50/3000 [18:58<17:56:03, 21.89s/it]
+100%|██████████| 8/8 [00:27<00:00,  3.42s/it][A
+                                             [A--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>D</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>D</answer>'
+--------------------------
+  2%|▏         | 51/3000 [19:22<26:44:09, 32.64s/it]--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+  2%|▏         | 52/3000 [19:46<24:33:35, 29.99s/it]  2%|▏         | 53/3000 [20:08<22:35:44, 27.60s/it]  2%|▏         | 54/3000 [20:29<20:58:27, 25.63s/it]  2%|▏         | 55/3000 [20:50<19:46:38, 24.18s/it]                                                    {'loss': 0.0, 'grad_norm': 0.0013838058803230524, 'learning_rate': 3.055555555555556e-06, 'epoch': 1.83}
+  2%|▏         | 55/3000 [20:50<19:46:38, 24.18s/it]  2%|▏         | 56/3000 [21:11<19:00:52, 23.25s/it]  2%|▏         | 57/3000 [21:32<18:23:50, 22.50s/it]  2%|▏         | 58/3000 [21:53<18:00:08, 22.03s/it]  2%|▏         | 59/3000 [22:14<17:44:23, 21.71s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 59] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+  2%|▏         | 60/3000 [22:33<17:14:39, 21.12s/it]                                                    {'loss': 0.0055, 'grad_norm': 0.3606567680835724, 'learning_rate': 3.3333333333333333e-06, 'epoch': 2.0}
+  2%|▏         | 60/3000 [22:33<17:14:39, 21.12s/it]  2%|▏         | 61/3000 [22:58<18:04:59, 22.15s/it]  2%|▏         | 62/3000 [23:19<17:53:23, 21.92s/it]--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>D</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>D</answer>'
+--------------------------
+  2%|▏         | 63/3000 [23:40<17:37:24, 21.60s/it]  2%|▏         | 64/3000 [24:01<17:27:26, 21.41s/it]--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+  2%|▏         | 65/3000 [24:22<17:21:31, 21.29s/it]                                                    {'loss': 0.0107, 'grad_norm': 13.183207511901855, 'learning_rate': 3.6111111111111115e-06, 'epoch': 2.17}
+  2%|▏         | 65/3000 [24:22<17:21:31, 21.29s/it]  2%|▏         | 66/3000 [24:43<17:21:33, 21.30s/it]  2%|▏         | 67/3000 [25:04<17:17:18, 21.22s/it]  2%|▏         | 68/3000 [25:25<17:13:02, 21.14s/it]  2%|▏         | 69/3000 [25:46<17:10:46, 21.10s/it]  2%|▏         | 70/3000 [26:08<17:12:33, 21.14s/it]                                                    {'loss': 0.0104, 'grad_norm': 4.385367393493652, 'learning_rate': 3.88888888888889e-06, 'epoch': 2.33}
+  2%|▏         | 70/3000 [26:08<17:12:33, 21.14s/it]  2%|▏         | 71/3000 [26:29<17:13:57, 21.18s/it]  2%|▏         | 72/3000 [26:50<17:14:58, 21.21s/it]  2%|▏         | 73/3000 [27:11<17:07:08, 21.06s/it]  2%|▏         | 74/3000 [27:32<17:07:38, 21.07s/it]  2%|▎         | 75/3000 [27:53<17:05:55, 21.04s/it]                                                    {'loss': 0.0118, 'grad_norm': 1.9422292709350586, 'learning_rate': 4.166666666666667e-06, 'epoch': 2.5}
+  2%|▎         | 75/3000 [27:53<17:05:55, 21.04s/it]  3%|▎         | 76/3000 [28:14<17:06:45, 21.07s/it]  3%|▎         | 77/3000 [28:35<17:04:09, 21.02s/it]--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>B</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>B</answer>'
+--------------------------
+  3%|▎         | 78/3000 [28:56<17:02:58, 21.01s/it]  3%|▎         | 79/3000 [29:17<17:04:43, 21.05s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 79] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>B</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>B</answer>[0m
+===========================================================================================================
+
+  3%|▎         | 80/3000 [29:38<17:04:41, 21.06s/it]                                                    {'loss': 0.0076, 'grad_norm': 0.6640977263450623, 'learning_rate': 4.444444444444444e-06, 'epoch': 2.67}
+  3%|▎         | 80/3000 [29:38<17:04:41, 21.06s/it]  3%|▎         | 81/3000 [29:59<17:06:45, 21.11s/it]  3%|▎         | 82/3000 [30:20<17:01:55, 21.01s/it]  3%|▎         | 83/3000 [30:41<17:03:05, 21.04s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+  3%|▎         | 84/3000 [31:03<17:03:59, 21.07s/it]  3%|▎         | 85/3000 [31:24<17:08:16, 21.17s/it]                                                    {'loss': 0.0146, 'grad_norm': 0.5364760160446167, 'learning_rate': 4.722222222222222e-06, 'epoch': 2.83}
+  3%|▎         | 85/3000 [31:24<17:08:16, 21.17s/it]--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+  3%|▎         | 86/3000 [31:45<17:01:07, 21.03s/it]  3%|▎         | 87/3000 [32:06<17:05:54, 21.13s/it]  3%|▎         | 88/3000 [32:27<17:02:40, 21.07s/it]  3%|▎         | 89/3000 [32:48<17:03:34, 21.10s/it]  3%|▎         | 90/3000 [33:08<16:45:18, 20.73s/it]                                                    {'loss': 0.0189, 'grad_norm': 1.123495101928711, 'learning_rate': 5e-06, 'epoch': 3.0}
+  3%|▎         | 90/3000 [33:08<16:45:18, 20.73s/it]  3%|▎         | 91/3000 [33:33<17:41:50, 21.90s/it]  3%|▎         | 92/3000 [33:54<17:39:39, 21.86s/it]  3%|▎         | 93/3000 [34:15<17:24:35, 21.56s/it]--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+  3%|▎         | 94/3000 [34:36<17:15:36, 21.38s/it]  3%|▎         | 95/3000 [34:57<17:10:37, 21.29s/it]                                                    {'loss': 0.01, 'grad_norm': 0.5362911820411682, 'learning_rate': 4.999963578088516e-06, 'epoch': 3.17}
+  3%|▎         | 95/3000 [34:57<17:10:37, 21.29s/it]  3%|▎         | 96/3000 [35:18<17:09:04, 21.26s/it]--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>D</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>D</answer>'
+--------------------------
+  3%|▎         | 97/3000 [35:40<17:07:14, 21.23s/it]  3%|▎         | 98/3000 [36:01<17:03:14, 21.16s/it]  3%|▎         | 99/3000 [36:22<16:59:56, 21.09s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 99] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer><</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+  3%|▎         | 100/3000 [36:43<16:59:15, 21.09s/it]                                                     {'loss': 0.0124, 'grad_norm': 18.492568969726562, 'learning_rate': 4.999854313415309e-06, 'epoch': 3.33}
+  3%|▎         | 100/3000 [36:43<16:59:15, 21.09s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+(tensor(2.1666e-05, device='cuda:2'),)
+(tensor(0.0217, device='cuda:1'),)
+(tensor(9.8073e-05, device='cuda:0'),)
+(tensor(2.0865e-05, device='cuda:3'),)
+
+  0%|          | 0/8 [00:00<?, ?it/s][A(tensor(0.0244, device='cuda:0'),)
+(tensor(0.0344, device='cuda:1'),)
+(tensor(0.0113, device='cuda:2'),)
+(tensor(4.2369e-05, device='cuda:3'),)
+
+ 25%|██▌       | 2/8 [00:04<00:13,  2.23s/it][A(tensor(0.0125, device='cuda:2'),)
+(tensor(0.0004, device='cuda:0'),)
+(tensor(0.0120, device='cuda:1'),)
+(tensor(0.0019, device='cuda:3'),)
+
+ 38%|███▊      | 3/8 [00:08<00:14,  2.95s/it][A(tensor(0.0306, device='cuda:2'),)(tensor(1.8253e-05, device='cuda:1'),)
+
+(tensor(0.0001, device='cuda:3'),)
+(tensor(4.0566e-05, device='cuda:0'),)
+
+ 50%|█████     | 4/8 [00:12<00:12,  3.21s/it][A(tensor(0.0263, device='cuda:0'),)
+(tensor(0.0061, device='cuda:3'),)
+(tensor(0.0005, device='cuda:2'),)
+(tensor(0.0052, device='cuda:1'),)
+
+ 62%|██████▎   | 5/8 [00:15<00:10,  3.45s/it][A(tensor(3.2158e-05, device='cuda:1'),)
+(tensor(1.8633e-05, device='cuda:2'),)
+(tensor(9.5358e-05, device='cuda:3'),)
+(tensor(0.0007, device='cuda:0'),)
+
+ 75%|███████▌  | 6/8 [00:19<00:07,  3.63s/it][A--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+(tensor(0.0293, device='cuda:2'),)
+(tensor(0.0111, device='cuda:0'),)
+(tensor(0.0151, device='cuda:1'),)(tensor(0.0001, device='cuda:3'),)
+
+
+ 88%|████████▊ | 7/8 [00:23<00:03,  3.65s/it][A(tensor(0.0009, device='cuda:1'),)
+(tensor(0.0193, device='cuda:2'),)
+(tensor(0.0011, device='cuda:0'),)
+(tensor(0.0024, device='cuda:3'),)
+
+100%|██████████| 8/8 [00:26<00:00,  3.35s/it][A                                                     
+                                             [A{'eval_loss': 0.008319909684360027, 'eval_runtime': 32.541, 'eval_samples_per_second': 7.252, 'eval_steps_per_second': 0.246, 'epoch': 3.33}
+  3%|▎         | 100/3000 [37:15<16:59:15, 21.09s/it]
+100%|██████████| 8/8 [00:26<00:00,  3.35s/it][A
+                                             [A  3%|▎         | 101/3000 [37:39<25:28:55, 31.64s/it]  3%|▎         | 102/3000 [38:02<23:26:58, 29.13s/it]  3%|▎         | 103/3000 [38:24<21:37:23, 26.87s/it]  3%|▎         | 104/3000 [38:44<20:07:39, 25.02s/it]  4%|▎         | 105/3000 [39:05<19:05:05, 23.73s/it]                                                     {'loss': 0.0117, 'grad_norm': 0.44822555780410767, 'learning_rate': 4.9996722091640805e-06, 'epoch': 3.5}
+  4%|▎         | 105/3000 [39:05<19:05:05, 23.73s/it]  4%|▎         | 106/3000 [39:26<18:17:27, 22.75s/it]  4%|▎         | 107/3000 [39:47<17:53:08, 22.26s/it]  4%|▎         | 108/3000 [40:08<17:39:22, 21.98s/it]  4%|▎         | 109/3000 [40:29<17:25:08, 21.69s/it]  4%|▎         | 110/3000 [40:50<17:16:41, 21.52s/it]                                                     {'loss': 0.0057, 'grad_norm': 6.420009136199951, 'learning_rate': 4.999417270640899e-06, 'epoch': 3.67}
+  4%|▎         | 110/3000 [40:50<17:16:41, 21.52s/it]  4%|▎         | 111/3000 [41:11<17:06:37, 21.32s/it]  4%|▎         | 112/3000 [41:32<17:00:08, 21.19s/it]--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>B</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>B</answer>'
+--------------------------
+  4%|▍         | 113/3000 [41:53<16:54:36, 21.09s/it]  4%|▍         | 114/3000 [42:14<16:56:36, 21.14s/it]  4%|▍         | 115/3000 [42:35<16:57:21, 21.16s/it]                                                     {'loss': 0.0097, 'grad_norm': 0.4467775225639343, 'learning_rate': 4.999089505274044e-06, 'epoch': 3.83}
+  4%|▍         | 115/3000 [42:35<16:57:21, 21.16s/it]  4%|▍         | 116/3000 [42:57<17:12:46, 21.49s/it]  4%|▍         | 117/3000 [43:20<17:20:50, 21.66s/it]  4%|▍         | 118/3000 [43:43<17:52:07, 22.32s/it]--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+  4%|▍         | 119/3000 [44:06<17:58:41, 22.46s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 119] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+  4%|▍         | 120/3000 [44:26<17:24:18, 21.76s/it]                                                     {'loss': 0.0099, 'grad_norm': 0.5989132523536682, 'learning_rate': 4.998688922613788e-06, 'epoch': 4.0}
+  4%|▍         | 120/3000 [44:26<17:24:18, 21.76s/it]  4%|▍         | 121/3000 [44:51<18:02:15, 22.55s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+  4%|▍         | 122/3000 [45:12<17:46:09, 22.23s/it]  4%|▍         | 123/3000 [45:33<17:31:38, 21.93s/it]  4%|▍         | 124/3000 [45:55<17:19:09, 21.68s/it]  4%|▍         | 125/3000 [46:15<17:07:12, 21.44s/it]                                                     {'loss': 0.0061, 'grad_norm': 0.21520090103149414, 'learning_rate': 4.998215534332119e-06, 'epoch': 4.17}
+  4%|▍         | 125/3000 [46:15<17:07:12, 21.44s/it]  4%|▍         | 126/3000 [46:36<17:00:13, 21.30s/it]--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>D</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>D</answer>'
+--------------------------
+  4%|▍         | 127/3000 [46:57<16:46:52, 21.03s/it]--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>B</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>B</answer>'
+--------------------------
+  4%|▍         | 128/3000 [47:17<16:41:40, 20.93s/it]  4%|▍         | 129/3000 [47:39<16:45:09, 21.01s/it]  4%|▍         | 130/3000 [48:00<16:56:17, 21.25s/it]                                                     {'loss': 0.0043, 'grad_norm': 0.07138219475746155, 'learning_rate': 4.997669354222402e-06, 'epoch': 4.33}
+  4%|▍         | 130/3000 [48:00<16:56:17, 21.25s/it]  4%|▍         | 131/3000 [48:24<17:21:58, 21.79s/it]--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+  4%|▍         | 132/3000 [48:46<17:35:26, 22.08s/it]  4%|▍         | 133/3000 [49:08<17:33:43, 22.05s/it]--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+  4%|▍         | 134/3000 [49:30<17:30:38, 22.00s/it]  4%|▍         | 135/3000 [49:51<17:20:17, 21.79s/it]                                                     {'loss': 0.0053, 'grad_norm': 0.23151157796382904, 'learning_rate': 4.997050398198977e-06, 'epoch': 4.5}
+  4%|▍         | 135/3000 [49:51<17:20:17, 21.79s/it]  5%|▍         | 136/3000 [50:12<17:03:32, 21.44s/it]  5%|▍         | 137/3000 [50:33<16:54:15, 21.26s/it]  5%|▍         | 138/3000 [50:54<16:51:31, 21.21s/it]  5%|▍         | 139/3000 [51:15<16:52:32, 21.23s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 139] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>A</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>A</answer>[0m
+===========================================================================================================
+
+  5%|▍         | 140/3000 [51:39<17:22:32, 21.87s/it]                                                     {'loss': 0.0081, 'grad_norm': 0.4378415644168854, 'learning_rate': 4.9963586842966925e-06, 'epoch': 4.67}
+  5%|▍         | 140/3000 [51:39<17:22:32, 21.87s/it]  5%|▍         | 141/3000 [52:04<18:06:13, 22.80s/it]  5%|▍         | 142/3000 [52:28<18:29:31, 23.29s/it]  5%|▍         | 143/3000 [52:52<18:35:27, 23.43s/it]  5%|▍         | 144/3000 [53:15<18:36:59, 23.47s/it]  5%|▍         | 145/3000 [53:40<18:52:34, 23.80s/it]                                                     {'loss': 0.003, 'grad_norm': 0.18052519857883453, 'learning_rate': 4.995594232670383e-06, 'epoch': 4.83}
+  5%|▍         | 145/3000 [53:40<18:52:34, 23.80s/it]  5%|▍         | 146/3000 [54:05<19:05:00, 24.07s/it]  5%|▍         | 147/3000 [54:29<19:08:03, 24.14s/it]  5%|▍         | 148/3000 [54:53<19:01:17, 24.01s/it]  5%|▍         | 149/3000 [55:13<18:15:21, 23.05s/it]  5%|▌         | 150/3000 [55:33<17:21:49, 21.93s/it]                                                     {'loss': 0.0066, 'grad_norm': 0.33008304238319397, 'learning_rate': 4.99475706559428e-06, 'epoch': 5.0}
+  5%|▌         | 150/3000 [55:33<17:21:49, 21.93s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+(tensor(7.2088e-06, device='cuda:2'),)
+(tensor(0.0265, device='cuda:1'),)
+(tensor(9.5988e-06, device='cuda:0'),)
+(tensor(1.5179e-05, device='cuda:3'),)
+
+  0%|          | 0/8 [00:00<?, ?it/s][A(tensor(0.0014, device='cuda:1'),)
+(tensor(0.0244, device='cuda:0'),)
+(tensor(0.0005, device='cuda:2'),)
+(tensor(1.3721e-05, device='cuda:3'),)
+
+ 25%|██▌       | 2/8 [00:04<00:13,  2.24s/it][A(tensor(0.0442, device='cuda:2'),)
+(tensor(0.0251, device='cuda:1'),)
+(tensor(0.0062, device='cuda:0'),)
+(tensor(0.0001, device='cuda:3'),)
+
+ 38%|███▊      | 3/8 [00:08<00:14,  2.96s/it][A(tensor(6.2812e-06, device='cuda:1'),)
+(tensor(0.0155, device='cuda:2'),)
+(tensor(8.3670e-06, device='cuda:3'),)
+(tensor(7.3341e-06, device='cuda:0'),)
+
+ 50%|█████     | 4/8 [00:12<00:12,  3.22s/it][A(tensor(0.0074, device='cuda:1'),)
+(tensor(0.0319, device='cuda:0'),)
+(tensor(0.0016, device='cuda:3'),)
+(tensor(0.0006, device='cuda:2'),)
+
+ 62%|██████▎   | 5/8 [00:15<00:10,  3.45s/it][A(tensor(1.1174e-05, device='cuda:1'),)
+(tensor(6.9675e-06, device='cuda:2'),)
+(tensor(1.5487e-05, device='cuda:3'),)
+(tensor(0.0109, device='cuda:0'),)
+
+ 75%|███████▌  | 6/8 [00:20<00:07,  3.64s/it][A--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+(tensor(0.0292, device='cuda:2'),)
+(tensor(0.0071, device='cuda:0'),)
+(tensor(2.6271e-05, device='cuda:3'),)
+(tensor(0.0157, device='cuda:1'),)
+
+ 88%|████████▊ | 7/8 [00:23<00:03,  3.65s/it][A(tensor(0.0025, device='cuda:1'),)
+(tensor(0.0261, device='cuda:2'),)
+(tensor(0.0004, device='cuda:3'),)
+(tensor(0.0006, device='cuda:0'),)
+
+100%|██████████| 8/8 [00:26<00:00,  3.36s/it][A                                                     
+                                             [A{'eval_loss': 0.008474764414131641, 'eval_runtime': 32.5626, 'eval_samples_per_second': 7.248, 'eval_steps_per_second': 0.246, 'epoch': 5.0}
+  5%|▌         | 150/3000 [56:05<17:21:49, 21.93s/it]
+100%|██████████| 8/8 [00:26<00:00,  3.36s/it][A
+                                             [A  5%|▌         | 151/3000 [56:33<26:24:29, 33.37s/it]  5%|▌         | 152/3000 [56:54<23:35:14, 29.82s/it]  5%|▌         | 153/3000 [57:15<21:21:42, 27.01s/it]  5%|▌         | 154/3000 [57:36<19:51:42, 25.12s/it]  5%|▌         | 155/3000 [57:56<18:44:29, 23.72s/it]                                                     {'loss': 0.0019, 'grad_norm': 0.022088875994086266, 'learning_rate': 4.993847207461362e-06, 'epoch': 5.17}
+  5%|▌         | 155/3000 [57:56<18:44:29, 23.72s/it]  5%|▌         | 156/3000 [58:18<18:13:47, 23.08s/it]--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>B</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>B</answer>'
+--------------------------
+  5%|▌         | 157/3000 [58:38<17:40:01, 22.37s/it]  5%|▌         | 158/3000 [59:00<17:27:17, 22.11s/it]  5%|▌         | 159/3000 [59:21<17:16:38, 21.89s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 159] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+  5%|▌         | 160/3000 [59:42<16:58:08, 21.51s/it]                                                     {'loss': 0.0035, 'grad_norm': 0.12203607708215714, 'learning_rate': 4.9928646847826494e-06, 'epoch': 5.33}
+  5%|▌         | 160/3000 [59:42<16:58:08, 21.51s/it]--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>D</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>D</answer>'
+--------------------------
+  5%|▌         | 161/3000 [1:00:03<16:51:58, 21.39s/it]  5%|▌         | 162/3000 [1:00:25<16:58:08, 21.53s/it]  5%|▌         | 163/3000 [1:00:45<16:44:07, 21.24s/it]  5%|▌         | 164/3000 [1:01:07<16:53:39, 21.45s/it]--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+  6%|▌         | 165/3000 [1:01:28<16:39:24, 21.15s/it]                                                       {'loss': 0.002, 'grad_norm': 0.0014139629201963544, 'learning_rate': 4.991809526186424e-06, 'epoch': 5.5}
+  6%|▌         | 165/3000 [1:01:28<16:39:24, 21.15s/it]  6%|▌         | 166/3000 [1:01:48<16:27:25, 20.91s/it]  6%|▌         | 167/3000 [1:02:09<16:29:33, 20.96s/it]  6%|▌         | 168/3000 [1:02:30<16:23:14, 20.83s/it]  6%|▌         | 169/3000 [1:02:52<16:50:22, 21.41s/it]  6%|▌         | 170/3000 [1:03:17<17:29:16, 22.25s/it]                                                       {'loss': 0.0023, 'grad_norm': 0.0017985180020332336, 'learning_rate': 4.9906817624174e-06, 'epoch': 5.67}
+  6%|▌         | 170/3000 [1:03:17<17:29:16, 22.25s/it]  6%|▌         | 171/3000 [1:03:52<20:28:46, 26.06s/it]  6%|▌         | 172/3000 [1:04:14<19:37:08, 24.97s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+  6%|▌         | 173/3000 [1:04:35<18:40:00, 23.77s/it]  6%|▌         | 174/3000 [1:04:56<17:54:49, 22.82s/it]  6%|▌         | 175/3000 [1:05:15<17:08:43, 21.85s/it]                                                       {'loss': 0.0027, 'grad_norm': 0.6020832061767578, 'learning_rate': 4.989481426335828e-06, 'epoch': 5.83}
+  6%|▌         | 175/3000 [1:05:15<17:08:43, 21.85s/it]  6%|▌         | 176/3000 [1:05:36<16:50:49, 21.48s/it]  6%|▌         | 177/3000 [1:05:56<16:35:15, 21.15s/it]--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+  6%|▌         | 178/3000 [1:06:16<16:15:57, 20.75s/it]  6%|▌         | 179/3000 [1:06:36<16:05:15, 20.53s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 179] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+  6%|▌         | 180/3000 [1:06:54<15:34:39, 19.89s/it]                                                       {'loss': 0.0008, 'grad_norm': 0.10038642585277557, 'learning_rate': 4.988208552916535e-06, 'epoch': 6.0}
+  6%|▌         | 180/3000 [1:06:54<15:34:39, 19.89s/it]--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+  6%|▌         | 181/3000 [1:07:18<16:22:57, 20.92s/it]  6%|▌         | 182/3000 [1:07:39<16:23:12, 20.93s/it]  6%|▌         | 183/3000 [1:07:58<16:06:13, 20.58s/it]  6%|▌         | 184/3000 [1:08:19<16:04:38, 20.55s/it]  6%|▌         | 185/3000 [1:08:39<16:00:06, 20.46s/it]                                                       {'loss': 0.0025, 'grad_norm': 0.010492314584553242, 'learning_rate': 4.986863179247908e-06, 'epoch': 6.17}
+  6%|▌         | 185/3000 [1:08:39<16:00:06, 20.46s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+  6%|▌         | 186/3000 [1:08:59<15:52:33, 20.31s/it]  6%|▌         | 187/3000 [1:09:21<16:12:26, 20.74s/it]  6%|▋         | 188/3000 [1:09:42<16:18:47, 20.88s/it]--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>B</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>B</answer>'
+--------------------------
+--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+  6%|▋         | 189/3000 [1:10:04<16:36:36, 21.27s/it]  6%|▋         | 190/3000 [1:10:25<16:27:09, 21.08s/it]                                                       {'loss': 0.0004, 'grad_norm': 0.09615708887577057, 'learning_rate': 4.985445344530811e-06, 'epoch': 6.33}
+  6%|▋         | 190/3000 [1:10:25<16:27:09, 21.08s/it]  6%|▋         | 191/3000 [1:10:45<16:06:08, 20.64s/it]  6%|▋         | 192/3000 [1:11:05<16:01:21, 20.54s/it]  6%|▋         | 193/3000 [1:11:24<15:46:31, 20.23s/it]  6%|▋         | 194/3000 [1:11:44<15:38:21, 20.06s/it]  6%|▋         | 195/3000 [1:12:04<15:39:45, 20.10s/it]                                                       {'loss': 0.0034, 'grad_norm': 0.8098737001419067, 'learning_rate': 4.983955090077445e-06, 'epoch': 6.5}
+  6%|▋         | 195/3000 [1:12:04<15:39:45, 20.10s/it]  7%|▋         | 196/3000 [1:12:24<15:37:29, 20.06s/it]  7%|▋         | 197/3000 [1:12:47<16:09:21, 20.75s/it]  7%|▋         | 198/3000 [1:13:08<16:19:53, 20.98s/it]  7%|▋         | 199/3000 [1:13:28<16:01:17, 20.59s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 199] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>A</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>A</answer>[0m
+===========================================================================================================
+
+  7%|▋         | 200/3000 [1:13:48<16:03:18, 20.64s/it]                                                       {'loss': 0.0008, 'grad_norm': 0.006908507086336613, 'learning_rate': 4.982392459310142e-06, 'epoch': 6.67}
+  7%|▋         | 200/3000 [1:13:48<16:03:18, 20.64s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+(tensor(2.1001e-06, device='cuda:0'),)
+(tensor(2.3534e-06, device='cuda:2'),)
+(tensor(0.0295, device='cuda:1'),)
+(tensor(2.1408e-06, device='cuda:3'),)
+
+  0%|          | 0/8 [00:00<?, ?it/s][A(tensor(0.0002, device='cuda:1'),)
+(tensor(0.0348, device='cuda:0'),)
+(tensor(0.0002, device='cuda:2'),)
+(tensor(2.7070e-06, device='cuda:3'),)
+
+ 25%|██▌       | 2/8 [00:04<00:13,  2.23s/it][A(tensor(0.0106, device='cuda:1'),)
+(tensor(1.7191e-05, device='cuda:0'),)
+(tensor(0.0281, device='cuda:2'),)
+(tensor(9.1798e-05, device='cuda:3'),)
+
+ 38%|███▊      | 3/8 [00:08<00:14,  2.98s/it][A(tensor(1.9063e-06, device='cuda:1'),)
+(tensor(0.0040, device='cuda:2'),)
+(tensor(2.3703e-06, device='cuda:3'),)
+(tensor(1.9282e-06, device='cuda:0'),)
+
+ 50%|█████     | 4/8 [00:12<00:12,  3.24s/it][A(tensor(0.0003, device='cuda:1'),)
+(tensor(0.0082, device='cuda:0'),)
+(tensor(0.0001, device='cuda:3'),)
+(tensor(0.0001, device='cuda:2'),)
+
+ 62%|██████▎   | 5/8 [00:16<00:10,  3.47s/it][A(tensor(2.2431e-06, device='cuda:1'),)
+(tensor(2.0504e-06, device='cuda:2'),)
+(tensor(2.4656e-06, device='cuda:3'),)
+(tensor(0.0001, device='cuda:0'),)
+
+ 75%|███████▌  | 6/8 [00:20<00:07,  3.64s/it][A--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+(tensor(3.7023e-06, device='cuda:3'),)
+(tensor(0.0007, device='cuda:0'),)
+(tensor(0.0149, device='cuda:2'),)
+(tensor(0.0032, device='cuda:1'),)
+
+ 88%|████████▊ | 7/8 [00:23<00:03,  3.65s/it][A(tensor(9.3418e-05, device='cuda:1'),)
+(tensor(0.0294, device='cuda:2'),)
+(tensor(0.0001, device='cuda:0'),)
+(tensor(8.0634e-05, device='cuda:3'),)
+
+100%|██████████| 8/8 [00:26<00:00,  3.36s/it][A                                                       
+                                             [A{'eval_loss': 0.00458895368501544, 'eval_runtime': 32.6236, 'eval_samples_per_second': 7.234, 'eval_steps_per_second': 0.245, 'epoch': 6.67}
+  7%|▋         | 200/3000 [1:14:21<16:03:18, 20.64s/it]
+100%|██████████| 8/8 [00:26<00:00,  3.36s/it][A
+                                             [A2025-10-14 04:30:59,218 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+2025-10-14 04:30:59,219 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+2025-10-14 04:30:59,250 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>D</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>D</answer>'
+--------------------------
+  7%|▋         | 201/3000 [1:15:32<35:19:47, 45.44s/it]  7%|▋         | 202/3000 [1:15:54<29:59:13, 38.58s/it]  7%|▋         | 203/3000 [1:16:15<25:48:44, 33.22s/it]  7%|▋         | 204/3000 [1:16:35<22:40:12, 29.19s/it]  7%|▋         | 205/3000 [1:16:55<20:29:05, 26.38s/it]                                                       {'loss': 0.0019, 'grad_norm': 0.03084252029657364, 'learning_rate': 4.980757497760101e-06, 'epoch': 6.83}
+  7%|▋         | 205/3000 [1:16:55<20:29:05, 26.38s/it]  7%|▋         | 206/3000 [1:17:15<19:00:30, 24.49s/it]  7%|▋         | 207/3000 [1:17:35<18:06:47, 23.35s/it]  7%|▋         | 208/3000 [1:17:56<17:28:54, 22.54s/it]--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+  7%|▋         | 209/3000 [1:18:16<16:50:51, 21.73s/it]  7%|▋         | 210/3000 [1:18:35<16:17:00, 21.01s/it]                                                       {'loss': 0.0024, 'grad_norm': 0.23017415404319763, 'learning_rate': 4.979050253066064e-06, 'epoch': 7.0}
+  7%|▋         | 210/3000 [1:18:35<16:17:00, 21.01s/it]  7%|▋         | 211/3000 [1:18:59<16:49:13, 21.71s/it]--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>B</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>B</answer>'
+--------------------------
+  7%|▋         | 212/3000 [1:19:19<16:30:46, 21.32s/it]  7%|▋         | 213/3000 [1:19:39<16:11:19, 20.91s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+  7%|▋         | 214/3000 [1:19:59<15:56:38, 20.60s/it]  7%|▋         | 215/3000 [1:20:20<15:57:33, 20.63s/it]                                                       {'loss': 0.0013, 'grad_norm': 0.013902345672249794, 'learning_rate': 4.9772707749729205e-06, 'epoch': 7.17}
+  7%|▋         | 215/3000 [1:20:20<15:57:33, 20.63s/it]  7%|▋         | 216/3000 [1:20:40<15:58:46, 20.66s/it]  7%|▋         | 217/3000 [1:21:00<15:48:13, 20.44s/it]  7%|▋         | 218/3000 [1:21:21<15:49:58, 20.49s/it]--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+  7%|▋         | 219/3000 [1:21:41<15:45:58, 20.41s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 219] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>B</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>B</answer>[0m
+===========================================================================================================
+
+  7%|▋         | 220/3000 [1:22:01<15:43:55, 20.37s/it]                                                       {'loss': 0.0013, 'grad_norm': 0.020513111725449562, 'learning_rate': 4.975419115330267e-06, 'epoch': 7.33}
+  7%|▋         | 220/3000 [1:22:01<15:43:55, 20.37s/it]  7%|▋         | 221/3000 [1:22:22<15:44:46, 20.40s/it]  7%|▋         | 222/3000 [1:22:42<15:37:03, 20.24s/it]  7%|▋         | 223/3000 [1:23:02<15:41:22, 20.34s/it]--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+  7%|▋         | 224/3000 [1:23:23<15:43:26, 20.39s/it]  8%|▊         | 225/3000 [1:23:43<15:41:35, 20.36s/it]                                                       {'loss': 0.0001, 'grad_norm': 0.0011252101976424456, 'learning_rate': 4.973495328090891e-06, 'epoch': 7.5}
+  8%|▊         | 225/3000 [1:23:43<15:41:35, 20.36s/it]  8%|▊         | 226/3000 [1:24:04<15:47:18, 20.49s/it]--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>D</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>D</answer>'
+--------------------------
+  8%|▊         | 227/3000 [1:24:24<15:47:04, 20.49s/it]  8%|▊         | 228/3000 [1:24:44<15:40:06, 20.35s/it]  8%|▊         | 229/3000 [1:25:05<15:44:50, 20.46s/it]  8%|▊         | 230/3000 [1:25:25<15:34:22, 20.24s/it]                                                       {'loss': 0.0011, 'grad_norm': 0.021559076383709908, 'learning_rate': 4.971499469309197e-06, 'epoch': 7.67}
+  8%|▊         | 230/3000 [1:25:25<15:34:22, 20.24s/it]  8%|▊         | 231/3000 [1:25:45<15:37:35, 20.32s/it]  8%|▊         | 232/3000 [1:26:06<15:39:20, 20.36s/it]  8%|▊         | 233/3000 [1:26:26<15:31:51, 20.21s/it]  8%|▊         | 234/3000 [1:26:46<15:40:43, 20.41s/it]  8%|▊         | 235/3000 [1:27:07<15:41:17, 20.43s/it]                                                       {'loss': 0.0008, 'grad_norm': 0.029299013316631317, 'learning_rate': 4.969431597139581e-06, 'epoch': 7.83}
+  8%|▊         | 235/3000 [1:27:07<15:41:17, 20.43s/it]  8%|▊         | 236/3000 [1:27:27<15:36:09, 20.32s/it]  8%|▊         | 237/3000 [1:27:48<15:44:11, 20.50s/it]  8%|▊         | 238/3000 [1:28:08<15:33:58, 20.29s/it]  8%|▊         | 239/3000 [1:28:28<15:33:14, 20.28s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 239] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>B</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>B</answer>[0m
+===========================================================================================================
+
+  8%|▊         | 240/3000 [1:28:47<15:15:46, 19.91s/it]                                                       {'loss': 0.0026, 'grad_norm': 0.0025534641463309526, 'learning_rate': 4.967291771834727e-06, 'epoch': 8.0}
+  8%|▊         | 240/3000 [1:28:47<15:15:46, 19.91s/it]--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+  8%|▊         | 241/3000 [1:29:10<16:02:17, 20.93s/it]  8%|▊         | 242/3000 [1:29:32<16:07:44, 21.05s/it]  8%|▊         | 243/3000 [1:29:52<16:01:07, 20.92s/it]  8%|▊         | 244/3000 [1:30:12<15:46:31, 20.61s/it]  8%|▊         | 245/3000 [1:30:33<15:46:33, 20.61s/it]                                                       {'loss': 0.0001, 'grad_norm': 0.023943167179822922, 'learning_rate': 4.965080055743859e-06, 'epoch': 8.17}
+  8%|▊         | 245/3000 [1:30:33<15:46:33, 20.61s/it]  8%|▊         | 246/3000 [1:30:53<15:35:10, 20.37s/it]  8%|▊         | 247/3000 [1:31:13<15:33:07, 20.34s/it]--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>B</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>B</answer>'
+--------------------------
+  8%|▊         | 248/3000 [1:31:33<15:30:44, 20.29s/it]  8%|▊         | 249/3000 [1:31:53<15:23:35, 20.14s/it]  8%|▊         | 250/3000 [1:32:14<15:35:21, 20.41s/it]                                                       {'loss': 0.0001, 'grad_norm': 0.025548001751303673, 'learning_rate': 4.962796513310917e-06, 'epoch': 8.33}
+  8%|▊         | 250/3000 [1:32:14<15:35:21, 20.41s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+(tensor(1.3103e-06, device='cuda:0'),)
+(tensor(0.0413, device='cuda:1'),)
+(tensor(1.3163e-06, device='cuda:2'),)
+(tensor(1.2557e-06, device='cuda:3'),)
+
+  0%|          | 0/8 [00:00<?, ?it/s][A(tensor(0.0547, device='cuda:0'),)
+(tensor(8.8191e-06, device='cuda:1'),)
+(tensor(8.4035e-06, device='cuda:2'),)
+(tensor(1.5706e-06, device='cuda:3'),)
+
+ 25%|██▌       | 2/8 [00:04<00:13,  2.23s/it][A(tensor(0.0939, device='cuda:2'),)
+(tensor(0.0081, device='cuda:1'),)
+(tensor(2.4993e-06, device='cuda:0'),)
+(tensor(3.5472e-06, device='cuda:3'),)
+
+ 38%|███▊      | 3/8 [00:08<00:14,  2.95s/it][A(tensor(1.3600e-06, device='cuda:1'),)
+(tensor(0.0058, device='cuda:2'),)
+(tensor(1.2894e-06, device='cuda:0'),)
+(tensor(1.3818e-06, device='cuda:3'),)
+
+ 50%|█████     | 4/8 [00:12<00:12,  3.23s/it][A(tensor(0.0459, device='cuda:0'),)
+(tensor(9.9350e-06, device='cuda:3'),)
+(tensor(0.0002, device='cuda:1'),)
+(tensor(1.0997e-05, device='cuda:2'),)
+
+ 62%|██████▎   | 5/8 [00:16<00:10,  3.46s/it][A(tensor(1.4524e-06, device='cuda:1'),)
+(tensor(1.2477e-06, device='cuda:2'),)
+(tensor(1.4851e-06, device='cuda:3'),)
+(tensor(4.8246e-06, device='cuda:0'),)
+
+ 75%|███████▌  | 6/8 [00:19<00:07,  3.63s/it][A--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+(tensor(0.0105, device='cuda:2'),)
+(tensor(0.0053, device='cuda:1'),)
+(tensor(1.6073e-06, device='cuda:3'),)
+(tensor(4.3470e-05, device='cuda:0'),)
+
+ 88%|████████▊ | 7/8 [00:23<00:03,  3.65s/it][A(tensor(7.8546e-05, device='cuda:1'),)
+(tensor(0.0413, device='cuda:2'),)
+(tensor(1.2242e-05, device='cuda:0'),)
+(tensor(4.2910e-06, device='cuda:3'),)
+
+100%|██████████| 8/8 [00:26<00:00,  3.35s/it][A                                                       
+                                             [A{'eval_loss': 0.009013648144900799, 'eval_runtime': 32.5635, 'eval_samples_per_second': 7.247, 'eval_steps_per_second': 0.246, 'epoch': 8.33}
+  8%|▊         | 250/3000 [1:32:46<15:35:21, 20.41s/it]
+100%|██████████| 8/8 [00:26<00:00,  3.35s/it][A
+                                             [A  8%|▊         | 251/3000 [1:33:10<23:43:40, 31.07s/it]  8%|▊         | 252/3000 [1:33:33<21:50:13, 28.61s/it]  8%|▊         | 253/3000 [1:33:54<20:03:48, 26.29s/it]--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>D</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>D</answer>'
+--------------------------
+  8%|▊         | 254/3000 [1:34:14<18:45:21, 24.59s/it]  8%|▊         | 255/3000 [1:34:34<17:44:01, 23.26s/it]                                                       {'loss': 0.0005, 'grad_norm': 0.016891589388251305, 'learning_rate': 4.960441211072686e-06, 'epoch': 8.5}
+  8%|▊         | 255/3000 [1:34:34<17:44:01, 23.26s/it]  9%|▊         | 256/3000 [1:34:55<17:07:05, 22.46s/it]  9%|▊         | 257/3000 [1:35:15<16:36:01, 21.79s/it]  9%|▊         | 258/3000 [1:35:35<16:09:57, 21.22s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+  9%|▊         | 259/3000 [1:35:56<16:04:13, 21.11s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 259] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+  9%|▊         | 260/3000 [1:36:17<16:01:45, 21.06s/it]                                                       {'loss': 0.0, 'grad_norm': 0.0002460364194121212, 'learning_rate': 4.958014217656855e-06, 'epoch': 8.67}
+  9%|▊         | 260/3000 [1:36:17<16:01:45, 21.06s/it]  9%|▊         | 261/3000 [1:36:37<15:53:43, 20.89s/it]  9%|▊         | 262/3000 [1:36:58<15:46:19, 20.74s/it]  9%|▉         | 263/3000 [1:37:18<15:33:54, 20.47s/it]  9%|▉         | 264/3000 [1:37:38<15:33:45, 20.48s/it]--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+  9%|▉         | 265/3000 [1:37:58<15:31:27, 20.43s/it]                                                       {'loss': 0.0011, 'grad_norm': 0.00014835216279607266, 'learning_rate': 4.955515603780013e-06, 'epoch': 8.83}
+  9%|▉         | 265/3000 [1:37:58<15:31:27, 20.43s/it]  9%|▉         | 266/3000 [1:38:19<15:31:33, 20.44s/it]  9%|▉         | 267/3000 [1:38:39<15:31:54, 20.46s/it]  9%|▉         | 268/3000 [1:39:00<15:39:12, 20.63s/it]--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+  9%|▉         | 269/3000 [1:39:23<16:02:42, 21.15s/it]  9%|▉         | 270/3000 [1:39:45<16:23:46, 21.62s/it]                                                       {'loss': 0.0002, 'grad_norm': 0.000761571282055229, 'learning_rate': 4.952945442245598e-06, 'epoch': 9.0}
+  9%|▉         | 270/3000 [1:39:45<16:23:46, 21.62s/it]  9%|▉         | 271/3000 [1:40:12<17:28:17, 23.05s/it]  9%|▉         | 272/3000 [1:40:36<17:38:10, 23.27s/it]  9%|▉         | 273/3000 [1:40:58<17:21:00, 22.90s/it]  9%|▉         | 274/3000 [1:41:20<17:13:53, 22.76s/it]--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>B</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>B</answer>'
+--------------------------
+  9%|▉         | 275/3000 [1:41:45<17:38:04, 23.30s/it]                                                       {'loss': 0.0004, 'grad_norm': 0.3645190894603729, 'learning_rate': 4.950303807941764e-06, 'epoch': 9.17}
+  9%|▉         | 275/3000 [1:41:45<17:38:04, 23.30s/it]  9%|▉         | 276/3000 [1:42:07<17:27:17, 23.07s/it]  9%|▉         | 277/3000 [1:42:32<17:47:24, 23.52s/it]  9%|▉         | 278/3000 [1:42:55<17:39:56, 23.36s/it]  9%|▉         | 279/3000 [1:43:19<17:48:01, 23.55s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 279] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>A</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>A</answer>[0m
+===========================================================================================================
+
+  9%|▉         | 280/3000 [1:43:42<17:41:11, 23.41s/it]                                                       {'loss': 0.0002, 'grad_norm': 0.0023300431203097105, 'learning_rate': 4.9475907778392095e-06, 'epoch': 9.33}
+  9%|▉         | 280/3000 [1:43:42<17:41:11, 23.41s/it]--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+  9%|▉         | 281/3000 [1:44:06<17:46:39, 23.54s/it]  9%|▉         | 282/3000 [1:44:29<17:46:48, 23.55s/it]  9%|▉         | 283/3000 [1:44:53<17:47:02, 23.56s/it]  9%|▉         | 284/3000 [1:45:15<17:33:44, 23.28s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+ 10%|▉         | 285/3000 [1:45:38<17:29:45, 23.20s/it]                                                       {'loss': 0.0006, 'grad_norm': 0.39009442925453186, 'learning_rate': 4.944806430988927e-06, 'epoch': 9.5}
+ 10%|▉         | 285/3000 [1:45:38<17:29:45, 23.20s/it] 10%|▉         | 286/3000 [1:46:02<17:28:39, 23.18s/it] 10%|▉         | 287/3000 [1:46:23<16:59:31, 22.55s/it]--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+ 10%|▉         | 288/3000 [1:46:43<16:24:15, 21.78s/it] 10%|▉         | 289/3000 [1:47:03<16:00:52, 21.27s/it] 10%|▉         | 290/3000 [1:47:24<16:03:37, 21.34s/it]                                                       {'loss': 0.0005, 'grad_norm': 0.000384631275665015, 'learning_rate': 4.9419508485199045e-06, 'epoch': 9.67}
+ 10%|▉         | 290/3000 [1:47:24<16:03:37, 21.34s/it] 10%|▉         | 291/3000 [1:47:46<16:12:24, 21.54s/it] 10%|▉         | 292/3000 [1:48:08<16:18:44, 21.69s/it] 10%|▉         | 293/3000 [1:48:32<16:43:23, 22.24s/it] 10%|▉         | 294/3000 [1:48:54<16:45:02, 22.28s/it] 10%|▉         | 295/3000 [1:49:18<17:00:42, 22.64s/it]                                                       {'loss': 0.0, 'grad_norm': 0.00020740773470606655, 'learning_rate': 4.93902411363676e-06, 'epoch': 9.83}
+ 10%|▉         | 295/3000 [1:49:18<17:00:42, 22.64s/it] 10%|▉         | 296/3000 [1:49:41<17:08:08, 22.81s/it]--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>D</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>D</answer>'
+--------------------------
+ 10%|▉         | 297/3000 [1:50:04<17:05:35, 22.77s/it] 10%|▉         | 298/3000 [1:50:26<16:55:14, 22.54s/it] 10%|▉         | 299/3000 [1:50:49<17:02:46, 22.72s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 299] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>C</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>C</answer>[0m
+===========================================================================================================
+
+ 10%|█         | 300/3000 [1:51:11<16:51:27, 22.48s/it]                                                       {'loss': 0.0, 'grad_norm': 0.000463698961539194, 'learning_rate': 4.936026311617316e-06, 'epoch': 10.0}
+ 10%|█         | 300/3000 [1:51:11<16:51:27, 22.48s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+(tensor(1.2010e-06, device='cuda:2'),)
+(tensor(0.0766, device='cuda:1'),)
+(tensor(1.1514e-06, device='cuda:0'),)
+(tensor(1.1206e-06, device='cuda:3'),)
+
+  0%|          | 0/8 [00:00<?, ?it/s][A(tensor(0.0599, device='cuda:0'),)
+(tensor(4.2444e-06, device='cuda:1'),)
+(tensor(4.6018e-06, device='cuda:2'),)
+(tensor(1.8189e-06, device='cuda:3'),)
+
+ 25%|██▌       | 2/8 [00:04<00:13,  2.30s/it][A(tensor(0.1386, device='cuda:2'),)
+(tensor(1.3639e-06, device='cuda:0'),)
+(tensor(0.0416, device='cuda:1'),)
+(tensor(1.5130e-06, device='cuda:3'),)
+
+ 38%|███▊      | 3/8 [00:08<00:15,  3.01s/it][A(tensor(0.0035, device='cuda:2'),)
+(tensor(1.3441e-06, device='cuda:1'),)
+(tensor(1.1772e-06, device='cuda:0'),)
+(tensor(1.1096e-06, device='cuda:3'),)
+
+ 50%|█████     | 4/8 [00:12<00:13,  3.32s/it][A(tensor(0.0007, device='cuda:1'),)
+(tensor(0.0142, device='cuda:0'),)
+(tensor(4.8374e-06, device='cuda:3'),)
+(tensor(5.9135e-06, device='cuda:2'),)
+
+ 62%|██████▎   | 5/8 [00:16<00:10,  3.52s/it][A(tensor(1.3749e-06, device='cuda:1'),)
+(tensor(5.9217e-06, device='cuda:0'),)
+(tensor(1.1841e-06, device='cuda:2'),)
+(tensor(1.2149e-06, device='cuda:3'),)
+
+ 75%|███████▌  | 6/8 [00:20<00:07,  3.72s/it][A--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+(tensor(0.0006, device='cuda:1'),)
+(tensor(0.0034, device='cuda:2'),)
+(tensor(9.5605e-06, device='cuda:0'),)
+(tensor(1.6749e-06, device='cuda:3'),)
+
+ 88%|████████▊ | 7/8 [00:24<00:03,  3.72s/it][A(tensor(8.8279e-06, device='cuda:1'),)
+(tensor(0.0766, device='cuda:2'),)
+(tensor(7.0247e-06, device='cuda:0'),)
+(tensor(2.6304e-06, device='cuda:3'),)
+
+100%|██████████| 8/8 [00:26<00:00,  3.42s/it][A                                                       
+                                             [A{'eval_loss': 0.011489320546388626, 'eval_runtime': 33.3623, 'eval_samples_per_second': 7.074, 'eval_steps_per_second': 0.24, 'epoch': 10.0}
+ 10%|█         | 300/3000 [1:51:44<16:51:27, 22.48s/it]
+100%|██████████| 8/8 [00:26<00:00,  3.42s/it][A
+                                             [A 10%|█         | 301/3000 [1:52:13<25:49:02, 34.44s/it] 10%|█         | 302/3000 [1:52:37<23:32:36, 31.41s/it]--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+ 10%|█         | 303/3000 [1:53:01<21:43:10, 28.99s/it] 10%|█         | 304/3000 [1:53:25<20:40:30, 27.61s/it] 10%|█         | 305/3000 [1:53:48<19:41:58, 26.31s/it]                                                       {'loss': 0.0001, 'grad_norm': 0.1520117074251175, 'learning_rate': 4.932957529810116e-06, 'epoch': 10.17}
+ 10%|█         | 305/3000 [1:53:48<19:41:58, 26.31s/it]--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>B</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>B</answer>'
+--------------------------
+ 10%|█         | 306/3000 [1:54:12<18:59:22, 25.38s/it] 10%|█         | 307/3000 [1:54:36<18:49:17, 25.16s/it] 10%|█         | 308/3000 [1:54:59<18:22:37, 24.58s/it] 10%|█         | 309/3000 [1:55:23<18:04:58, 24.19s/it] 10%|█         | 310/3000 [1:55:46<17:58:46, 24.06s/it]                                                       {'loss': 0.0008, 'grad_norm': 0.007847250439226627, 'learning_rate': 4.92981785763188e-06, 'epoch': 10.33}
+ 10%|█         | 310/3000 [1:55:46<17:58:46, 24.06s/it] 10%|█         | 311/3000 [1:56:10<17:45:26, 23.77s/it] 10%|█         | 312/3000 [1:56:33<17:45:45, 23.79s/it] 10%|█         | 313/3000 [1:56:56<17:31:57, 23.49s/it]--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>D</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>D</answer>'
+--------------------------
+ 10%|█         | 314/3000 [1:57:21<17:43:03, 23.75s/it] 10%|█         | 315/3000 [1:57:44<17:36:15, 23.60s/it]                                                       {'loss': 0.0, 'grad_norm': 0.00014362773799803108, 'learning_rate': 4.926607386564898e-06, 'epoch': 10.5}
+ 10%|█         | 315/3000 [1:57:44<17:36:15, 23.60s/it] 11%|█         | 316/3000 [1:58:08<17:41:54, 23.74s/it] 11%|█         | 317/3000 [1:58:32<17:42:29, 23.76s/it] 11%|█         | 318/3000 [1:58:55<17:35:09, 23.61s/it] 11%|█         | 319/3000 [1:59:19<17:38:13, 23.68s/it]--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+
+======================================== [DEBUGGING AT GLOBAL STEP: 319] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>D</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>D</answer>[0m
+===========================================================================================================
+
+ 11%|█         | 320/3000 [1:59:42<17:25:24, 23.40s/it]                                                       {'loss': 0.0002, 'grad_norm': 0.002372375689446926, 'learning_rate': 4.923326210154364e-06, 'epoch': 10.67}
+ 11%|█         | 320/3000 [1:59:42<17:25:24, 23.40s/it] 11%|█         | 321/3000 [2:00:06<17:37:04, 23.67s/it] 11%|█         | 322/3000 [2:00:29<17:34:34, 23.63s/it] 11%|█         | 323/3000 [2:00:53<17:35:04, 23.65s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+ 11%|█         | 324/3000 [2:01:16<17:30:12, 23.55s/it] 11%|█         | 325/3000 [2:01:40<17:37:55, 23.73s/it]                                                       {'loss': 0.0068, 'grad_norm': 0.3981776833534241, 'learning_rate': 4.919974424005652e-06, 'epoch': 10.83}
+ 11%|█         | 325/3000 [2:01:40<17:37:55, 23.73s/it] 11%|█         | 326/3000 [2:02:05<17:43:20, 23.86s/it] 11%|█         | 327/3000 [2:02:28<17:34:44, 23.68s/it] 11%|█         | 328/3000 [2:02:52<17:42:19, 23.85s/it] 11%|█         | 329/3000 [2:03:16<17:38:36, 23.78s/it] 11%|█         | 330/3000 [2:03:38<17:17:18, 23.31s/it]                                                       {'loss': 0.002, 'grad_norm': 0.19513408839702606, 'learning_rate': 4.916552125781529e-06, 'epoch': 11.0}
+ 11%|█         | 330/3000 [2:03:38<17:17:18, 23.31s/it] 11%|█         | 331/3000 [2:04:05<18:09:29, 24.49s/it]--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>B</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>B</answer>'
+--------------------------
+ 11%|█         | 332/3000 [2:04:30<18:06:59, 24.45s/it] 11%|█         | 333/3000 [2:04:54<18:05:54, 24.43s/it] 11%|█         | 334/3000 [2:05:18<17:56:48, 24.23s/it] 11%|█         | 335/3000 [2:05:41<17:39:43, 23.86s/it]                                                       {'loss': 0.0063, 'grad_norm': 0.011465305462479591, 'learning_rate': 4.913059415199307e-06, 'epoch': 11.17}
+ 11%|█         | 335/3000 [2:05:41<17:39:43, 23.86s/it]--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>D</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>D</answer>'
+--------------------------
+ 11%|█         | 336/3000 [2:06:05<17:39:19, 23.86s/it] 11%|█         | 337/3000 [2:06:28<17:29:07, 23.64s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+ 11%|█▏        | 338/3000 [2:06:51<17:29:28, 23.65s/it]--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+ 11%|█▏        | 339/3000 [2:07:15<17:31:52, 23.72s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 339] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>D</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>D</answer>[0m
+===========================================================================================================
+
+ 11%|█▏        | 340/3000 [2:07:39<17:27:24, 23.63s/it]                                                       {'loss': 0.0012, 'grad_norm': 0.18261390924453735, 'learning_rate': 4.909496394027945e-06, 'epoch': 11.33}
+ 11%|█▏        | 340/3000 [2:07:39<17:27:24, 23.63s/it] 11%|█▏        | 341/3000 [2:08:03<17:33:23, 23.77s/it] 11%|█▏        | 342/3000 [2:08:25<17:18:20, 23.44s/it]--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+ 11%|█▏        | 343/3000 [2:08:50<17:29:37, 23.70s/it] 11%|█▏        | 344/3000 [2:09:13<17:23:00, 23.56s/it] 12%|█▏        | 345/3000 [2:09:37<17:26:16, 23.64s/it]                                                       {'loss': 0.0029, 'grad_norm': 0.7569641470909119, 'learning_rate': 4.905863166085076e-06, 'epoch': 11.5}
+ 12%|█▏        | 345/3000 [2:09:37<17:26:16, 23.64s/it] 12%|█▏        | 346/3000 [2:10:01<17:30:15, 23.74s/it] 12%|█▏        | 347/3000 [2:10:25<17:40:45, 23.99s/it] 12%|█▏        | 348/3000 [2:10:49<17:32:25, 23.81s/it] 12%|█▏        | 349/3000 [2:11:12<17:30:44, 23.78s/it] 12%|█▏        | 350/3000 [2:11:36<17:25:29, 23.67s/it]                                                       {'loss': 0.0033, 'grad_norm': 0.12871238589286804, 'learning_rate': 4.9021598372339845e-06, 'epoch': 11.67}
+ 12%|█▏        | 350/3000 [2:11:36<17:25:29, 23.67s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+(tensor(5.6454e-06, device='cuda:0'),)(tensor(0.0566, device='cuda:1'),)
+
+(tensor(5.6075e-05, device='cuda:3'),)
+(tensor(4.6948e-06, device='cuda:2'),)
+
+  0%|          | 0/8 [00:00<?, ?it/s][A(tensor(0.0496, device='cuda:0'),)
+(tensor(2.1831e-05, device='cuda:1'),)
+(tensor(1.2042e-05, device='cuda:3'),)
+(tensor(5.4886e-05, device='cuda:2'),)
+
+ 25%|██▌       | 2/8 [00:04<00:13,  2.29s/it][A(tensor(0.0836, device='cuda:2'),)(tensor(0.0129, device='cuda:1'),)(tensor(1.6465e-05, device='cuda:0'),)
+
+
+(tensor(8.4973e-06, device='cuda:3'),)
+
+ 38%|███▊      | 3/8 [00:08<00:15,  3.01s/it][A(tensor(8.0074e-06, device='cuda:1'),)
+(tensor(0.0037, device='cuda:2'),)
+(tensor(1.5275e-05, device='cuda:0'),)
+(tensor(6.5981e-06, device='cuda:3'),)
+
+ 50%|█████     | 4/8 [00:12<00:13,  3.29s/it][A(tensor(0.0129, device='cuda:0'),)
+(tensor(7.6316e-05, device='cuda:3'),)
+(tensor(0.0002, device='cuda:1'),)
+(tensor(0.0022, device='cuda:2'),)
+
+ 62%|██████▎   | 5/8 [00:16<00:10,  3.51s/it][A(tensor(9.0869e-06, device='cuda:1'),)
+(tensor(5.6653e-06, device='cuda:2'),)
+(tensor(5.7080e-06, device='cuda:3'),)
+(tensor(0.0008, device='cuda:0'),)
+
+ 75%|███████▌  | 6/8 [00:20<00:07,  3.66s/it][A--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+(tensor(4.1883e-05, device='cuda:0'),)
+(tensor(0.0084, device='cuda:2'),)
+(tensor(0.0022, device='cuda:1'),)
+(tensor(1.9238e-05, device='cuda:3'),)
+
+ 88%|████████▊ | 7/8 [00:23<00:03,  3.68s/it][A(tensor(5.2146e-05, device='cuda:1'),)
+(tensor(0.0566, device='cuda:2'),)
+(tensor(2.8768e-05, device='cuda:0'),)
+(tensor(1.5520e-05, device='cuda:3'),)
+
+100%|██████████| 8/8 [00:26<00:00,  3.39s/it][A                                                       
+                                             [A{'eval_loss': 0.00791297759860754, 'eval_runtime': 33.1826, 'eval_samples_per_second': 7.112, 'eval_steps_per_second': 0.241, 'epoch': 11.67}
+ 12%|█▏        | 350/3000 [2:12:09<17:25:29, 23.67s/it]
+100%|██████████| 8/8 [00:26<00:00,  3.39s/it][A
+                                             [A 12%|█▏        | 351/3000 [2:12:35<25:15:09, 34.32s/it] 12%|█▏        | 352/3000 [2:13:01<23:19:31, 31.71s/it] 12%|█▏        | 353/3000 [2:13:22<21:04:09, 28.65s/it] 12%|█▏        | 354/3000 [2:13:42<19:10:02, 26.08s/it] 12%|█▏        | 355/3000 [2:14:04<18:12:40, 24.79s/it]                                                       {'loss': 0.0008, 'grad_norm': 0.13897641003131866, 'learning_rate': 4.8983865153805235e-06, 'epoch': 11.83}
+ 12%|█▏        | 355/3000 [2:14:04<18:12:40, 24.79s/it] 12%|█▏        | 356/3000 [2:14:26<17:31:57, 23.87s/it] 12%|█▏        | 357/3000 [2:14:46<16:45:32, 22.83s/it] 12%|█▏        | 358/3000 [2:15:07<16:13:10, 22.10s/it] 12%|█▏        | 359/3000 [2:15:26<15:38:44, 21.33s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 359] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>D</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>B</answer>[0m
+===========================================================================================================
+
+ 12%|█▏        | 360/3000 [2:15:45<15:11:06, 20.71s/it]                                                       {'loss': 0.0011, 'grad_norm': 0.4250905513763428, 'learning_rate': 4.894543310469968e-06, 'epoch': 12.0}
+ 12%|█▏        | 360/3000 [2:15:45<15:11:06, 20.71s/it] 12%|█▏        | 361/3000 [2:16:09<15:46:42, 21.52s/it] 12%|█▏        | 362/3000 [2:16:29<15:30:18, 21.16s/it] 12%|█▏        | 363/3000 [2:16:50<15:23:05, 21.00s/it] 12%|█▏        | 364/3000 [2:17:09<15:04:49, 20.60s/it] 12%|█▏        | 365/3000 [2:17:29<14:53:02, 20.33s/it]                                                       {'loss': 0.0019, 'grad_norm': 0.0025746391620486975, 'learning_rate': 4.890630334483814e-06, 'epoch': 12.17}
+ 12%|█▏        | 365/3000 [2:17:29<14:53:02, 20.33s/it] 12%|█▏        | 366/3000 [2:17:49<14:47:25, 20.21s/it] 12%|█▏        | 367/3000 [2:18:09<14:40:08, 20.06s/it] 12%|█▏        | 368/3000 [2:18:29<14:43:24, 20.14s/it] 12%|█▏        | 369/3000 [2:18:50<14:47:17, 20.23s/it] 12%|█▏        | 370/3000 [2:19:09<14:39:02, 20.05s/it]                                                       {'loss': 0.0026, 'grad_norm': 0.014622341841459274, 'learning_rate': 4.886647701436513e-06, 'epoch': 12.33}
+ 12%|█▏        | 370/3000 [2:19:09<14:39:02, 20.05s/it] 12%|█▏        | 371/3000 [2:19:30<14:47:43, 20.26s/it] 12%|█▏        | 372/3000 [2:19:50<14:46:19, 20.24s/it]--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>D</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>D</answer>'
+--------------------------
+ 12%|█▏        | 373/3000 [2:20:10<14:36:18, 20.01s/it] 12%|█▏        | 374/3000 [2:20:30<14:39:35, 20.10s/it]--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+ 12%|█▎        | 375/3000 [2:20:50<14:34:11, 19.98s/it]                                                       {'loss': 0.001, 'grad_norm': 0.0065267086029052734, 'learning_rate': 4.8825955273721524e-06, 'epoch': 12.5}
+ 12%|█▎        | 375/3000 [2:20:50<14:34:11, 19.98s/it] 13%|█▎        | 376/3000 [2:21:09<14:31:03, 19.92s/it]--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+ 13%|█▎        | 377/3000 [2:21:30<14:35:04, 20.02s/it] 13%|█▎        | 378/3000 [2:21:49<14:31:03, 19.93s/it] 13%|█▎        | 379/3000 [2:22:10<14:37:46, 20.09s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 379] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>D</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>D</answer>[0m
+===========================================================================================================
+
+ 13%|█▎        | 380/3000 [2:22:30<14:40:46, 20.17s/it]                                                       {'loss': 0.0013, 'grad_norm': 0.00040027659269981086, 'learning_rate': 4.8784739303610716e-06, 'epoch': 12.67}
+ 13%|█▎        | 380/3000 [2:22:30<14:40:46, 20.17s/it] 13%|█▎        | 381/3000 [2:22:50<14:31:40, 19.97s/it] 13%|█▎        | 382/3000 [2:23:10<14:38:00, 20.12s/it] 13%|█▎        | 383/3000 [2:23:30<14:33:52, 20.04s/it] 13%|█▎        | 384/3000 [2:23:49<14:24:08, 19.82s/it]--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>B</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>B</answer>'
+--------------------------
+ 13%|█▎        | 385/3000 [2:24:10<14:29:36, 19.95s/it]                                                       {'loss': 0.0049, 'grad_norm': 0.0006627801340073347, 'learning_rate': 4.874283030496424e-06, 'epoch': 12.83}
+ 13%|█▎        | 385/3000 [2:24:10<14:29:36, 19.95s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+ 13%|█▎        | 386/3000 [2:24:29<14:28:45, 19.94s/it] 13%|█▎        | 387/3000 [2:24:49<14:28:54, 19.95s/it] 13%|█▎        | 388/3000 [2:25:10<14:31:18, 20.01s/it] 13%|█▎        | 389/3000 [2:25:29<14:26:36, 19.91s/it] 13%|█▎        | 390/3000 [2:25:48<14:16:18, 19.69s/it]                                                       {'loss': 0.0038, 'grad_norm': 0.24151729047298431, 'learning_rate': 4.870022949890676e-06, 'epoch': 13.0}
+ 13%|█▎        | 390/3000 [2:25:48<14:16:18, 19.69s/it]--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>D</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>D</answer>'
+--------------------------
+ 13%|█▎        | 391/3000 [2:26:12<15:07:45, 20.88s/it] 13%|█▎        | 392/3000 [2:26:32<14:55:56, 20.61s/it] 13%|█▎        | 393/3000 [2:26:52<14:51:03, 20.51s/it] 13%|█▎        | 394/3000 [2:27:12<14:42:58, 20.33s/it] 13%|█▎        | 395/3000 [2:27:32<14:36:32, 20.19s/it]                                                       {'loss': 0.0024, 'grad_norm': 0.0037188497371971607, 'learning_rate': 4.865693812672052e-06, 'epoch': 13.17}
+ 13%|█▎        | 395/3000 [2:27:32<14:36:32, 20.19s/it] 13%|█▎        | 396/3000 [2:27:52<14:31:51, 20.09s/it]--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>B</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>B</answer>'
+--------------------------
+ 13%|█▎        | 397/3000 [2:28:12<14:25:32, 19.95s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+ 13%|█▎        | 398/3000 [2:28:32<14:30:11, 20.07s/it]--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+ 13%|█▎        | 399/3000 [2:28:52<14:32:21, 20.12s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 399] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>A</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>A</answer>[0m
+===========================================================================================================
+
+ 13%|█▎        | 400/3000 [2:29:12<14:28:08, 20.03s/it]                                                       {'loss': 0.0013, 'grad_norm': 0.19597303867340088, 'learning_rate': 4.861295744980914e-06, 'epoch': 13.33}
+ 13%|█▎        | 400/3000 [2:29:12<14:28:08, 20.03s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+(tensor(4.2835e-06, device='cuda:0'),)
+(tensor(0.0704, device='cuda:1'),)
+(tensor(3.9428e-06, device='cuda:2'),)
+(tensor(8.8695e-06, device='cuda:3'),)
+
+  0%|          | 0/8 [00:00<?, ?it/s][A(tensor(2.6040e-05, device='cuda:1'),)
+(tensor(0.0563, device='cuda:0'),)
+(tensor(6.3228e-06, device='cuda:3'),)
+(tensor(8.6159e-06, device='cuda:2'),)
+
+ 25%|██▌       | 2/8 [00:04<00:13,  2.23s/it][A(tensor(0.0187, device='cuda:1'),)
+(tensor(0.1215, device='cuda:2'),)
+(tensor(7.6109e-06, device='cuda:0'),)
+(tensor(9.3123e-06, device='cuda:3'),)
+
+ 38%|███▊      | 3/8 [00:08<00:14,  2.95s/it][A(tensor(4.1484e-06, device='cuda:1'),)
+(tensor(0.0020, device='cuda:2'),)
+(tensor(7.9153e-06, device='cuda:0'),)
+(tensor(3.6468e-06, device='cuda:3'),)
+
+ 50%|█████     | 4/8 [00:12<00:12,  3.23s/it][A(tensor(1.9431e-05, device='cuda:3'),)
+(tensor(0.0067, device='cuda:0'),)
+(tensor(0.0003, device='cuda:1'),)
+(tensor(0.0003, device='cuda:2'),)
+
+ 62%|██████▎   | 5/8 [00:16<00:10,  3.46s/it][A(tensor(6.3964e-06, device='cuda:1'),)
+(tensor(4.6034e-06, device='cuda:2'),)
+(tensor(4.6074e-06, device='cuda:3'),)
+(tensor(4.3650e-05, device='cuda:0'),)
+
+ 75%|███████▌  | 6/8 [00:20<00:07,  3.65s/it][A--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+(tensor(0.0045, device='cuda:2'),)
+(tensor(0.0003, device='cuda:1'),)
+(tensor(1.5544e-05, device='cuda:3'),)
+(tensor(2.0788e-05, device='cuda:0'),)
+
+ 88%|████████▊ | 7/8 [00:23<00:03,  3.65s/it][A(tensor(1.6894e-05, device='cuda:1'),)
+(tensor(0.0704, device='cuda:2'),)
+(tensor(1.2104e-05, device='cuda:3'),)
+(tensor(2.0238e-05, device='cuda:0'),)
+
+100%|██████████| 8/8 [00:26<00:00,  3.36s/it][A                                                       
+                                             [A{'eval_loss': 0.00952586904168129, 'eval_runtime': 32.5745, 'eval_samples_per_second': 7.245, 'eval_steps_per_second': 0.246, 'epoch': 13.33}
+ 13%|█▎        | 400/3000 [2:29:45<14:28:08, 20.03s/it]
+100%|██████████| 8/8 [00:26<00:00,  3.36s/it][A
+                                             [A2025-10-14 05:46:22,800 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+2025-10-14 05:46:22,801 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+2025-10-14 05:46:22,833 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+ 13%|█▎        | 401/3000 [2:30:56<32:32:57, 45.09s/it] 13%|█▎        | 402/3000 [2:31:17<27:30:48, 38.13s/it] 13%|█▎        | 403/3000 [2:31:40<24:03:02, 33.34s/it] 13%|█▎        | 404/3000 [2:32:00<21:09:02, 29.33s/it] 14%|█▎        | 405/3000 [2:32:20<19:06:18, 26.50s/it]                                                       {'loss': 0.0016, 'grad_norm': 0.22343753278255463, 'learning_rate': 4.856828874966086e-06, 'epoch': 13.5}
+ 14%|█▎        | 405/3000 [2:32:20<19:06:18, 26.50s/it] 14%|█▎        | 406/3000 [2:32:40<17:43:18, 24.59s/it] 14%|█▎        | 407/3000 [2:32:59<16:40:08, 23.14s/it] 14%|█▎        | 408/3000 [2:33:20<16:06:11, 22.37s/it] 14%|█▎        | 409/3000 [2:33:40<15:39:12, 21.75s/it] 14%|█▎        | 410/3000 [2:34:00<15:08:23, 21.04s/it]                                                       {'loss': 0.0008, 'grad_norm': 0.0011320017511025071, 'learning_rate': 4.852293332781125e-06, 'epoch': 13.67}
+ 14%|█▎        | 410/3000 [2:34:00<15:08:23, 21.04s/it] 14%|█▎        | 411/3000 [2:34:20<15:01:30, 20.89s/it] 14%|█▎        | 412/3000 [2:34:40<14:48:57, 20.61s/it] 14%|█▍        | 413/3000 [2:35:00<14:37:58, 20.36s/it] 14%|█▍        | 414/3000 [2:35:20<14:32:00, 20.23s/it] 14%|█▍        | 415/3000 [2:35:40<14:27:50, 20.14s/it]                                                       {'loss': 0.0025, 'grad_norm': 0.2162618339061737, 'learning_rate': 4.8476892505805224e-06, 'epoch': 13.83}
+ 14%|█▍        | 415/3000 [2:35:40<14:27:50, 20.14s/it]--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+ 14%|█▍        | 416/3000 [2:36:00<14:30:29, 20.21s/it] 14%|█▍        | 417/3000 [2:36:21<14:33:18, 20.29s/it] 14%|█▍        | 418/3000 [2:36:40<14:24:42, 20.09s/it] 14%|█▍        | 419/3000 [2:37:01<14:27:39, 20.17s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 419] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>A</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>A</answer>[0m
+===========================================================================================================
+
+ 14%|█▍        | 420/3000 [2:37:19<14:10:14, 19.77s/it]                                                       {'loss': 0.0014, 'grad_norm': 0.006065746769309044, 'learning_rate': 4.84301676251586e-06, 'epoch': 14.0}
+ 14%|█▍        | 420/3000 [2:37:19<14:10:14, 19.77s/it] 14%|█▍        | 421/3000 [2:37:42<14:51:08, 20.73s/it] 14%|█▍        | 422/3000 [2:38:03<14:53:51, 20.80s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+ 14%|█▍        | 423/3000 [2:38:23<14:39:18, 20.47s/it] 14%|█▍        | 424/3000 [2:38:43<14:37:01, 20.43s/it] 14%|█▍        | 425/3000 [2:39:04<14:38:56, 20.48s/it]                                                       {'loss': 0.0009, 'grad_norm': 0.13708652555942535, 'learning_rate': 4.838276004731892e-06, 'epoch': 14.17}
+ 14%|█▍        | 425/3000 [2:39:04<14:38:56, 20.48s/it] 14%|█▍        | 426/3000 [2:39:24<14:27:52, 20.23s/it] 14%|█▍        | 427/3000 [2:39:44<14:29:53, 20.29s/it] 14%|█▍        | 428/3000 [2:40:04<14:26:12, 20.21s/it]--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+ 14%|█▍        | 429/3000 [2:40:24<14:18:50, 20.04s/it] 14%|█▍        | 430/3000 [2:40:44<14:23:50, 20.17s/it]                                                       {'loss': 0.0007, 'grad_norm': 0.0004984393599443138, 'learning_rate': 4.83346711536259e-06, 'epoch': 14.33}
+ 14%|█▍        | 430/3000 [2:40:44<14:23:50, 20.17s/it]--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>B</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>B</answer>'
+--------------------------
+ 14%|█▍        | 431/3000 [2:41:04<14:21:41, 20.12s/it] 14%|█▍        | 432/3000 [2:41:24<14:20:52, 20.11s/it] 14%|█▍        | 433/3000 [2:41:45<14:24:06, 20.20s/it] 14%|█▍        | 434/3000 [2:42:05<14:20:12, 20.11s/it] 14%|█▍        | 435/3000 [2:42:25<14:22:22, 20.17s/it]                                                       {'loss': 0.0026, 'grad_norm': 0.2087547481060028, 'learning_rate': 4.828590234527107e-06, 'epoch': 14.5}
+ 14%|█▍        | 435/3000 [2:42:25<14:22:22, 20.17s/it] 15%|█▍        | 436/3000 [2:42:45<14:23:59, 20.22s/it]--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+ 15%|█▍        | 437/3000 [2:43:05<14:16:47, 20.06s/it] 15%|█▍        | 438/3000 [2:43:25<14:18:57, 20.12s/it] 15%|█▍        | 439/3000 [2:43:45<14:17:10, 20.08s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 439] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 1 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 2 Label: [92mThe final answer is <answer>D</answer>[0m
+  - Sample 3 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 4 Label: [92mThe final answer is <answer>B</answer>[0m
+  - Sample 5 Label: [92mThe final answer is <answer>A</answer>[0m
+  - Sample 6 Label: [92mThe final answer is <answer>C</answer>[0m
+  - Sample 7 Label: [92mThe final answer is <answer>D</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+  - Sample 0 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 1 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 2 Pred: [93mThe final answer is <answer>D</answer>[0m
+  - Sample 3 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 4 Pred: [93mThe final answer is <answer>B</answer>[0m
+  - Sample 5 Pred: [93mThe final answer is <answer>A</answer>[0m
+  - Sample 6 Pred: [93mThe final answer is <answer>C</answer>[0m
+  - Sample 7 Pred: [93mThe final answer is <answer>D</answer>[0m
+===========================================================================================================
+
+ 15%|█▍        | 440/3000 [2:44:05<14:13:49, 20.01s/it]                                                       {'loss': 0.0018, 'grad_norm': 0.11643657833337784, 'learning_rate': 4.823645504325699e-06, 'epoch': 14.67}
+ 15%|█▍        | 440/3000 [2:44:05<14:13:49, 20.01s/it] 15%|█▍        | 441/3000 [2:44:25<14:12:53, 20.00s/it] 15%|█▍        | 442/3000 [2:44:45<14:14:45, 20.05s/it]--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>D</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>D</answer>'
+--------------------------
+ 15%|█▍        | 443/3000 [2:45:06<14:19:06, 20.16s/it] 15%|█▍        | 444/3000 [2:45:26<14:26:45, 20.35s/it] 15%|█▍        | 445/3000 [2:45:46<14:22:15, 20.25s/it]                                                       {'loss': 0.0011, 'grad_norm': 0.00041807940579019487, 'learning_rate': 4.818633068835589e-06, 'epoch': 14.83}
+ 15%|█▍        | 445/3000 [2:45:46<14:22:15, 20.25s/it] 15%|█▍        | 446/3000 [2:46:07<14:19:46, 20.20s/it] 15%|█▍        | 447/3000 [2:46:26<14:16:14, 20.12s/it] 15%|█▍        | 448/3000 [2:46:46<14:07:41, 19.93s/it] 15%|█▍        | 449/3000 [2:47:07<14:16:23, 20.14s/it] 15%|█▌        | 450/3000 [2:47:26<14:00:39, 19.78s/it]                                                       {'loss': 0.001, 'grad_norm': 0.00030250436975620687, 'learning_rate': 4.813553074106761e-06, 'epoch': 15.0}
+ 15%|█▌        | 450/3000 [2:47:26<14:00:39, 19.78s/it]--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+(tensor(1.3779e-06, device='cuda:0'),)
+(tensor(1.6262e-06, device='cuda:2'),)
+(tensor(0.0782, device='cuda:1'),)
+(tensor(4.8128e-06, device='cuda:3'),)
+
+  0%|          | 0/8 [00:00<?, ?it/s][A(tensor(0.0662, device='cuda:0'),)
+(tensor(8.3834e-06, device='cuda:1'),)
+(tensor(2.8987e-06, device='cuda:3'),)
+(tensor(3.7301e-06, device='cuda:2'),)
+
+ 25%|██▌       | 2/8 [00:04<00:13,  2.22s/it][A(tensor(3.1539e-06, device='cuda:0'),)
+(tensor(0.0168, device='cuda:1'),)
+(tensor(0.1313, device='cuda:2'),)
+(tensor(7.0746e-06, device='cuda:3'),)
+
+ 38%|███▊      | 3/8 [00:08<00:14,  2.94s/it][A(tensor(1.8428e-06, device='cuda:1'),)
+(tensor(0.0008, device='cuda:2'),)
+(tensor(3.7789e-06, device='cuda:0'),)
+(tensor(1.4742e-06, device='cuda:3'),)
+
+ 50%|█████     | 4/8 [00:12<00:12,  3.19s/it][A(tensor(0.0002, device='cuda:1'),)
+(tensor(0.0043, device='cuda:0'),)
+(tensor(1.2255e-05, device='cuda:3'),)
+(tensor(9.9982e-05, device='cuda:2'),)
+
+ 62%|██████▎   | 5/8 [00:15<00:10,  3.44s/it][A(tensor(2.2481e-06, device='cuda:1'),)
+(tensor(2.0216e-06, device='cuda:2'),)
+(tensor(1.4504e-06, device='cuda:3'),)
+(tensor(1.9830e-05, device='cuda:0'),)
+
+ 75%|███████▌  | 6/8 [00:19<00:07,  3.62s/it][A--- [Sample 4 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>C</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>C</answer>'
+--------------------------
+--- [Sample 0 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 1 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 2 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+--- [Sample 3 Verification] ---
+Ground Truth Answer: 'The final answer is <answer>A</answer></s>'
+Decoded Label for Loss: 'The final answer is <answer>A</answer>'
+--------------------------
+(tensor(6.6718e-06, device='cuda:0'),)
+(tensor(0.0024, device='cuda:2'),)
+(tensor(0.0003, device='cuda:1'),)
+(tensor(5.6481e-06, device='cuda:3'),)
+
+ 88%|████████▊ | 7/8 [00:23<00:03,  3.64s/it][A(tensor(1.1653e-05, device='cuda:1'),)
+(tensor(7.1874e-06, device='cuda:0'),)
+(tensor(0.0782, device='cuda:2'),)
+(tensor(4.1681e-06, device='cuda:3'),)
+
+100%|██████████| 8/8 [00:26<00:00,  3.35s/it][A                                                       
+                                             [A{'eval_loss': 0.010193408466875553, 'eval_runtime': 32.4237, 'eval_samples_per_second': 7.279, 'eval_steps_per_second': 0.247, 'epoch': 15.0}
+ 15%|█▌        | 450/3000 [2:47:58<14:00:39, 19.78s/it]
+100%|██████████| 8/8 [00:26<00:00,  3.35s/it][A
+                                             [A2025-10-14 06:05:14,326 - INFO - 
+
+✅ [Success] Training completed successfully!
+2025-10-14 06:05:14,326 - INFO - Saving final model...
+2025-10-14 06:05:14,326 - INFO - 
+
+✅ [Success] Training completed successfully!
+2025-10-14 06:05:14,326 - INFO - Saving final model...
+2025-10-14 06:05:14,326 - INFO - 
+
+✅ [Success] Training completed successfully!
+2025-10-14 06:05:14,327 - INFO - Saving final model...
+                                                       {'train_runtime': 10128.8943, 'train_samples_per_second': 9.32, 'train_steps_per_second': 0.296, 'train_loss': 0.02725731607526541, 'epoch': 15.0}
+ 15%|█▌        | 450/3000 [2:48:46<14:00:39, 19.78s/it] 15%|█▌        | 450/3000 [2:48:46<15:56:23, 22.50s/it]
+2025-10-14 06:05:14,328 - INFO - 
+
+✅ [Success] Training completed successfully!
+2025-10-14 06:05:14,328 - INFO - Saving final model...
+2025-10-14 06:05:24,094 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+2025-10-14 06:05:24,095 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+2025-10-14 06:05:24,126 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+2025-10-14 06:05:25,487 - INFO - Final model and processor saved to /data1/oujingfeng/project/twgi/checkpoints/orthus-7b-sft-think-v4
+2025-10-14 06:05:25,490 - INFO - Final model and processor saved to /data1/oujingfeng/project/twgi/checkpoints/orthus-7b-sft-think-v4
+2025-10-14 06:05:25,557 - INFO - Final model and processor saved to /data1/oujingfeng/project/twgi/checkpoints/orthus-7b-sft-think-v4
+2025-10-14 06:05:40,775 - INFO - Final model and processor saved to /data1/oujingfeng/project/twgi/checkpoints/orthus-7b-sft-think-v4
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33m/data1/oujingfeng/project/twgi/checkpoints/orthus-7b-sft-think-v4[0m at: [34m[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20251014_031626-2ikq2s81/logs[0m

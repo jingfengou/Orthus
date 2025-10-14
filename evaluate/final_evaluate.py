@@ -17,6 +17,48 @@ def extract_final_answer(text):
     if matches:
         return matches[-1].upper()
     return None
+# --- 新增函式：用於載入標準答案 ---
+def load_ground_truth(source_path):
+    """
+    從指定的路徑載入標準答案。
+    - 如果路徑是資料夾，則讀取內部的 Parquet 檔案。
+    - 如果路徑是 .jsonl 檔案，則直接讀取該檔案。
+    """
+    ground_truth_map = {}
+    
+    # 檢查路徑是資料夾還是檔案
+    if os.path.isdir(source_path):
+        print(f"Source is a directory. Looking for Parquet file inside...")
+        parquet_file_path = os.path.join(source_path, "test-00000-of-00001.parquet")
+        if not os.path.exists(parquet_file_path):
+            raise FileNotFoundError(f"Parquet file not found at: {parquet_file_path}")
+        
+        dataset = load_dataset("parquet", data_files={'test': parquet_file_path})['test']
+        
+        for item in dataset:
+            unique_id = f"{item['Category']}-{item['Task']}-{item['Level']}-{item['Image_id']}"
+            ground_truth_map[unique_id] = {
+                "answer": item['Answer'],
+                "category": item['Category'],
+                "task": item['Task']
+            }
+
+    elif os.path.isfile(source_path) and source_path.endswith('.jsonl'):
+        print(f"Source is a JSONL file. Reading directly...")
+        with open(source_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                item = json.loads(line)
+                unique_id = f"{item['Category']}-{item['Task']}-{item['Level']}-{item['Image_id']}"
+                ground_truth_map[unique_id] = {
+                    "answer": item['Answer'],
+                    "category": item['Category'],
+                    "task": item['Task']
+                }
+    else:
+        raise ValueError(f"Invalid path or file type for --benchmark_dir: {source_path}. "
+                         "Please provide a directory containing the benchmark or a .jsonl file.")
+    
+    return ground_truth_map
 
 def main():
     parser = argparse.ArgumentParser(description="Optimized evaluation for Orthus on Spatial-Visualization-Benchmark.")
@@ -25,22 +67,14 @@ def main():
     parser.add_argument("--output_results_file", type=str, default=None, help="Optional: Path to save the detailed results in JSON format.")
     args = parser.parse_args()
 
-    # 1. 加载标准答案和元数据
-    parquet_file_path = os.path.join(args.benchmark_dir, "test-00000-of-00001.parquet")
-    if not os.path.exists(parquet_file_path):
-        raise FileNotFoundError(f"Parquet file not found at: {parquet_file_path}")
-        
-    ground_truth_dataset = load_dataset("parquet", data_files={'test': parquet_file_path})['test']
-    
-    ground_truth = {}
-    for item in ground_truth_dataset:
-        unique_id = f"{item['Category']}-{item['Task']}-{item['Level']}-{item['Image_id']}"
-        ground_truth[unique_id] = {
-            "answer": item['Answer'],
-            "category": item['Category'],
-            "task": item['Task']
-        }
-    print(f"Loaded {len(ground_truth)} ground truth entries with metadata.")
+    # 1. 加載標準答案和元數據 (使用新函式)
+    try:
+        ground_truth = load_ground_truth(args.benchmark_dir)
+        print(f"Loaded {len(ground_truth)} ground truth entries with metadata.")
+    except (FileNotFoundError, ValueError) as e:
+        print(f"Error: {e}")
+        return
+
 
     # 2. 加载并解析模型的预测结果
     predictions = {}

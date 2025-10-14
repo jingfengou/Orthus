@@ -3,7 +3,7 @@ import os
 import sys
 import argparse
 import logging
-from transformers import Trainer, TrainingArguments
+from transformers import Trainer, TrainingArguments, EarlyStoppingCallback
 from datasets import load_dataset
 from typing import Dict, Any
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
@@ -70,6 +70,10 @@ def main():
     parser.add_argument("--report_to", type=str, default="tensorboard", help="The integration to report results to (e.g., 'wandb', 'tensorboard').")
     parser.add_argument("--generation_log_file", type=str, default=None, help="Path to save the generated outputs for debugging.")
     # parser.add_argument("--enable_generation_log", action='store_true', help="Enable logging of generation outputs during training for debugging.")
+    # 新增：早停参数
+    parser.add_argument("--early_stopping_patience", type=int, default=None, help="Enable early stopping with a given patience. E.g., 5.")
+
+    
     args = parser.parse_args()
 
     # # --- 1. 加载模型和处理器 ---
@@ -175,6 +179,11 @@ def main():
         report_to=args.report_to,
         remove_unused_columns=False,
         label_names=["labels"], # 确保 Trainer 知道哪个是标签
+        # 新增：早停配置
+        # early_stopping_patience=args.early_stopping_patience,
+        load_best_model_at_end=True if args.early_stopping_patience else False,
+        metric_for_best_model="eval_loss",
+        greater_is_better=False,
     )
 
     # --- 自定义数据整理器 (Data Collator) ---
@@ -190,6 +199,12 @@ def main():
 
     # --- 4. 初始化自定义 Trainer ---
     logger.info("\n--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---")
+    callbacks_to_use = []
+    if args.early_stopping_patience:
+        early_stopping_callback = EarlyStoppingCallback(
+            early_stopping_patience=args.early_stopping_patience
+        )
+        callbacks_to_use.append(early_stopping_callback)
     trainer = InterleaveSFTTrainer(
         model=model,
         args=training_args,
@@ -199,6 +214,7 @@ def main():
         processor=processor,
         enable_generation_log=(args.generation_log_file is not None),
         generation_log_file=args.generation_log_file,
+        callbacks=callbacks_to_use, # <-- 在這裡傳入 callback
     )
 
     # --- 5. 启动训练 ---

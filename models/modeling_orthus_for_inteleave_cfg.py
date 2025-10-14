@@ -2378,7 +2378,26 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
             diff_loss = F.mse_loss(model_pred.float(), target.float(), reduction="mean")
 
 
-            return logits, diff_loss  
+            # ==================== 新增代码：计算预测的干净特征 ====================
+            # 这是从v-prediction恢复x0（干净图像）的公式
+            alphas_cumprod = self.train_scheduler.alphas_cumprod.to(latents.device)
+            sqrt_alpha_prod = alphas_cumprod[timesteps].sqrt()
+            sqrt_one_minus_alpha_prod = (1 - alphas_cumprod[timesteps]).sqrt()
+            
+            # 调整形状以进行广播
+            sqrt_alpha_prod = sqrt_alpha_prod.view(-1, 1)
+            sqrt_one_minus_alpha_prod = sqrt_one_minus_alpha_prod.view(-1, 1)
+            
+            predicted_clean_latents = (noisy_latents * sqrt_alpha_prod - model_pred * sqrt_one_minus_alpha_prod)
+            
+            # 将预测出的特征和真实特征都反归一化，以便解码
+            predicted_clean_latents = predicted_clean_latents / 0.1
+            latents_unnormalized = latents / 0.1
+            # ======================== 新增代码结束 ========================
+
+            # 【重要修改】返回额外的值用于可视化
+            return logits, diff_loss, predicted_clean_latents, latents_unnormalized
+
 
 
         elif mode == 'discrete': # discrete output
@@ -2518,7 +2537,17 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
             `torch.Tensor` of shape `(batch, num_channels, 512, 512)`:
         """
 
-        emb_dim = self.model.vqmodel.quantize.embedding.weight.shape[-1]
+        # ==================== 核心修改在這裡 ====================
+        # 原來的代碼:
+        # emb_dim = self.model.vqmodel.quantize.embedding.weight.shape[-1]
+        
+        # 修正後的代碼：直接從輸入張量的形狀推斷 emb_dim
+        if image_latents.dim() != 2 or image_latents.shape[0] != 1024:
+             raise ValueError(f"Expected image_latents to have shape [1024, emb_dim], but got {image_latents.shape}")
+        
+        # emb_dim = image_latents.shape[-1]
+        # =========================================================
+        # print("emb_dim",emb_dim)
         image_embeds = image_latents.view((1, *self.model.vqmodel.quantize.quant_state_dims, emb_dim))
         image_embeds = image_embeds.permute(0, 3, 1, 2).contiguous()
 

@@ -1,135 +1,0 @@
-Some kwargs in processor config are unused and will not have any effect: image_token, image_seq_length. 
-Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:01<00:02,  1.31s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:03<00:01,  1.76s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:04<00:00,  1.64s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:04<00:00,  1.63s/it]
-Processing chunk_ah:   0%|          | 0/144 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:   1%|          | 1/144 [00:01<02:32,  1.06s/it]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:   1%|▏         | 2/144 [00:01<01:28,  1.60it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:   2%|▏         | 3/144 [00:01<01:09,  2.03it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:   3%|▎         | 4/144 [00:02<00:57,  2.43it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:   3%|▎         | 5/144 [00:02<00:50,  2.77it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:   4%|▍         | 6/144 [00:02<00:45,  3.01it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:   5%|▍         | 7/144 [00:02<00:43,  3.17it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:   6%|▌         | 8/144 [00:03<00:42,  3.21it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:   6%|▋         | 9/144 [00:03<00:42,  3.18it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:   7%|▋         | 10/144 [00:03<00:41,  3.23it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:   8%|▊         | 11/144 [00:04<00:40,  3.32it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:   8%|▊         | 12/144 [00:04<00:41,  3.22it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:   9%|▉         | 13/144 [00:04<00:40,  3.23it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  10%|▉         | 14/144 [00:05<00:41,  3.11it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  10%|█         | 15/144 [00:05<00:40,  3.16it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  11%|█         | 16/144 [00:05<00:39,  3.22it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  12%|█▏        | 17/144 [00:05<00:39,  3.19it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  12%|█▎        | 18/144 [00:06<00:39,  3.16it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  13%|█▎        | 19/144 [00:06<00:39,  3.17it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  14%|█▍        | 20/144 [00:06<00:38,  3.20it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  15%|█▍        | 21/144 [00:07<00:38,  3.17it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  15%|█▌        | 22/144 [00:07<00:38,  3.15it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  16%|█▌        | 23/144 [00:07<00:38,  3.17it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  17%|█▋        | 24/144 [00:08<00:38,  3.12it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  17%|█▋        | 25/144 [00:08<00:37,  3.21it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  18%|█▊        | 26/144 [00:08<00:36,  3.28it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  19%|█▉        | 27/144 [00:09<00:36,  3.25it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  19%|█▉        | 28/144 [00:09<00:35,  3.31it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  20%|██        | 29/144 [00:09<00:35,  3.27it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  21%|██        | 30/144 [00:09<00:34,  3.28it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  22%|██▏       | 31/144 [00:10<00:34,  3.31it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  22%|██▏       | 32/144 [00:10<00:33,  3.34it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  23%|██▎       | 33/144 [00:10<00:32,  3.37it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  24%|██▎       | 34/144 [00:11<00:32,  3.37it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  24%|██▍       | 35/144 [00:11<00:32,  3.32it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  25%|██▌       | 36/144 [00:11<00:32,  3.32it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  26%|██▌       | 37/144 [00:12<00:32,  3.31it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  26%|██▋       | 38/144 [00:12<00:32,  3.26it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  27%|██▋       | 39/144 [00:12<00:31,  3.34it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  28%|██▊       | 40/144 [00:12<00:30,  3.36it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  28%|██▊       | 41/144 [00:13<00:30,  3.38it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  29%|██▉       | 42/144 [00:13<00:29,  3.44it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  30%|██▉       | 43/144 [00:13<00:29,  3.45it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  31%|███       | 44/144 [00:14<00:28,  3.49it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  31%|███▏      | 45/144 [00:14<00:29,  3.31it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  32%|███▏      | 46/144 [00:14<00:30,  3.26it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  33%|███▎      | 47/144 [00:15<00:30,  3.23it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  33%|███▎      | 48/144 [00:15<00:30,  3.13it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  34%|███▍      | 49/144 [00:15<00:30,  3.15it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  35%|███▍      | 50/144 [00:16<00:29,  3.18it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  35%|███▌      | 51/144 [00:16<00:28,  3.23it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  36%|███▌      | 52/144 [00:16<00:28,  3.23it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  37%|███▋      | 53/144 [00:16<00:27,  3.27it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  38%|███▊      | 54/144 [00:17<00:27,  3.28it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  38%|███▊      | 55/144 [00:17<00:27,  3.25it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  39%|███▉      | 56/144 [00:17<00:29,  3.03it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  40%|███▉      | 57/144 [00:18<00:28,  3.10it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  40%|████      | 58/144 [00:18<00:27,  3.09it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  41%|████      | 59/144 [00:18<00:27,  3.08it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  42%|████▏     | 60/144 [00:19<00:29,  2.89it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  42%|████▏     | 61/144 [00:19<00:28,  2.89it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  43%|████▎     | 62/144 [00:19<00:27,  2.94it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  44%|████▍     | 63/144 [00:20<00:27,  2.98it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  44%|████▍     | 64/144 [00:20<00:26,  3.05it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  45%|████▌     | 65/144 [00:21<00:30,  2.58it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  46%|████▌     | 66/144 [00:21<00:34,  2.28it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  47%|████▋     | 67/144 [00:22<00:36,  2.13it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  47%|████▋     | 68/144 [00:22<00:38,  1.98it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  48%|████▊     | 69/144 [00:23<00:38,  1.94it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  49%|████▊     | 70/144 [00:23<00:38,  1.93it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  49%|████▉     | 71/144 [00:24<00:38,  1.92it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  50%|█████     | 72/144 [00:24<00:37,  1.90it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  51%|█████     | 73/144 [00:25<00:37,  1.89it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  51%|█████▏    | 74/144 [00:25<00:36,  1.93it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  52%|█████▏    | 75/144 [00:26<00:35,  1.92it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  53%|█████▎    | 76/144 [00:27<00:34,  1.95it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  53%|█████▎    | 77/144 [00:27<00:34,  1.95it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  54%|█████▍    | 78/144 [00:28<00:33,  1.98it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  55%|█████▍    | 79/144 [00:28<00:32,  1.97it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  56%|█████▌    | 80/144 [00:29<00:32,  1.98it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  56%|█████▋    | 81/144 [00:29<00:31,  1.98it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  57%|█████▋    | 82/144 [00:30<00:31,  1.97it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  58%|█████▊    | 83/144 [00:30<00:30,  2.01it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  58%|█████▊    | 84/144 [00:31<00:30,  2.00it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  59%|█████▉    | 85/144 [00:31<00:30,  1.94it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  60%|█████▉    | 86/144 [00:32<00:30,  1.89it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  60%|██████    | 87/144 [00:32<00:29,  1.94it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  61%|██████    | 88/144 [00:33<00:28,  1.99it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  62%|██████▏   | 89/144 [00:33<00:27,  1.98it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  62%|██████▎   | 90/144 [00:34<00:28,  1.93it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  63%|██████▎   | 91/144 [00:34<00:26,  1.99it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  64%|██████▍   | 92/144 [00:35<00:27,  1.90it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  65%|██████▍   | 93/144 [00:35<00:26,  1.90it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  65%|██████▌   | 94/144 [00:36<00:25,  1.97it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  66%|██████▌   | 95/144 [00:36<00:25,  1.95it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  67%|██████▋   | 96/144 [00:37<00:23,  2.02it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  67%|██████▋   | 97/144 [00:37<00:22,  2.06it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  68%|██████▊   | 98/144 [00:38<00:23,  1.97it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  69%|██████▉   | 99/144 [00:38<00:23,  1.94it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  69%|██████▉   | 100/144 [00:39<00:22,  1.95it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  70%|███████   | 101/144 [00:39<00:22,  1.91it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  71%|███████   | 102/144 [00:40<00:21,  1.93it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  72%|███████▏  | 103/144 [00:40<00:21,  1.91it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  72%|███████▏  | 104/144 [00:41<00:21,  1.89it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  73%|███████▎  | 105/144 [00:41<00:20,  1.87it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  74%|███████▎  | 106/144 [00:42<00:20,  1.81it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  74%|███████▍  | 107/144 [00:43<00:20,  1.85it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  75%|███████▌  | 108/144 [00:43<00:19,  1.86it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  76%|███████▌  | 109/144 [00:44<00:18,  1.87it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  76%|███████▋  | 110/144 [00:44<00:18,  1.89it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  77%|███████▋  | 111/144 [00:45<00:17,  1.87it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  78%|███████▊  | 112/144 [00:45<00:17,  1.83it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  78%|███████▊  | 113/144 [00:46<00:16,  1.85it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  79%|███████▉  | 114/144 [00:46<00:16,  1.84it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  80%|███████▉  | 115/144 [00:47<00:15,  1.84it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  81%|████████  | 116/144 [00:47<00:15,  1.86it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  81%|████████▏ | 117/144 [00:48<00:14,  1.87it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  82%|████████▏ | 118/144 [00:48<00:14,  1.81it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  83%|████████▎ | 119/144 [00:49<00:12,  1.94it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  83%|████████▎ | 120/144 [00:49<00:11,  2.00it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  84%|████████▍ | 121/144 [00:50<00:11,  2.00it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  85%|████████▍ | 122/144 [00:50<00:11,  1.98it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  85%|████████▌ | 123/144 [00:51<00:10,  2.02it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  86%|████████▌ | 124/144 [00:51<00:10,  1.97it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  87%|████████▋ | 125/144 [00:52<00:09,  1.92it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  88%|████████▊ | 126/144 [00:52<00:09,  1.88it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  88%|████████▊ | 127/144 [00:53<00:09,  1.89it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  89%|████████▉ | 128/144 [00:54<00:08,  1.88it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  90%|████████▉ | 129/144 [00:54<00:08,  1.85it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  90%|█████████ | 130/144 [00:55<00:07,  1.92it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  91%|█████████ | 131/144 [00:55<00:06,  2.01it/s]Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Processing chunk_ah:  92%|█████████▏| 132/144 [00:55<00:05,  2.10it/s]

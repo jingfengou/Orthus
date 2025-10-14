@@ -73,12 +73,16 @@ class InterleaveSFTDataset(Dataset):
         prompt_text = instruction + f"<image>\n\nQuestion: {question}\n{choices_text}\n\nAnswer: "
         
         # 根据您的要求，label是纯文本，我们教模型先输出解释，再输出答案
-        part_before_answer = f"<think>{explanation_text}</think> The final answer is <answer>"
-        answer_text = answer
-        part_after_answer = f"</answer></s>"
+        # part_before_answer = f"<think>{explanation_text}</think> The final answer is <answer>"
+        # answer_text = answer
+        # part_after_answer = f"</answer></s>"
         
-        full_text = prompt_text + part_before_answer + answer_text + part_after_answer
-
+        # full_text = prompt_text + part_before_answer + answer_text + part_after_answer
+        part_before_answer = f"<think>{explanation_text}</think>"
+        answer_text = f"The final answer is <answer>{answer}</answer></s>"
+        # part_after_answer = f"</answer></s>"
+        
+        full_text = prompt_text + part_before_answer + answer_text
 
         # --- 3. 预处理 & Tokenize ---
         # 【修改点 2】: 在调用 processor 时传入 self.vqmodel
@@ -101,46 +105,46 @@ class InterleaveSFTDataset(Dataset):
             # 处理特殊情况，如果processor没有返回latents，则创建一个空的
             model_inputs["target_image_latents"] = torch.zeros((1, 1024, 256))
         # # print(f"Target image latents shape: {model_inputs['target_image_latents'].shape}")
-        # # --- 4. 【核心修改】创建健壮的文本 Labels ---
-        # labels = model_inputs['input_ids'].clone()
-        # # print(f"Original labels: {len(labels[0])}")
-        # # a. 获取 answer 的真实长度 (不含特殊token)
-        # target_len_no_special = len(self.processor.tokenizer(target_text2, add_special_tokens=False).input_ids)
+        # --- 4. 【核心修改】创建健壮的文本 Labels ---
+        labels = model_inputs['input_ids'].clone()
+        # print(f"Original labels: {len(labels[0])}")
+        # a. 获取 answer 的真实长度 (不含特殊token)
+        target_len_no_special = len(self.processor.tokenizer(answer_text, add_special_tokens=False).input_ids)
 
-        # # d. 执行屏蔽
-        # #    labels[0, :mask_len] 正是屏蔽了从0开始到prompt结束的所有部分
-        # #    对于左填充来说，这部分恰好就是 [PAD, PAD, ..., PROMPT]
-        # labels[0, :-(target_len_no_special+1)] = -100
+        # d. 执行屏蔽
+        #    labels[0, :mask_len] 正是屏蔽了从0开始到prompt结束的所有部分
+        #    对于左填充来说，这部分恰好就是 [PAD, PAD, ..., PROMPT]
+        labels[0, :-(target_len_no_special+1)] = -100
 
-        # # print(f"Masked labels: {labels}")
-        # model_inputs["labels"] = labels
+        # print(f"Masked labels: {labels}")
+        model_inputs["labels"] = labels
         # ==================== 实现【只为 {answer} 计算 Loss】的正确逻辑 ====================
         # ==================== 【修正方案】使用從後往前的子序列搜索 ====================
         
-        labels = torch.full_like(model_inputs['input_ids'], -100)
+        # labels = torch.full_like(model_inputs['input_ids'], -100)
 
-        answer_text = item.get('Answer', '')
-        answer_tokens = self.processor.tokenizer(answer_text, add_special_tokens=False).input_ids
+        # answer_text = item.get('Answer', '')
+        # answer_tokens = self.processor.tokenizer(answer_text, add_special_tokens=False).input_ids
 
-        full_input_ids_list = model_inputs['input_ids'][0].tolist()
+        # full_input_ids_list = model_inputs['input_ids'][0].tolist()
         
-        found = False
-        # 【核心修改】使用 reversed() 從後往前搜索，確保找到的是最後一個匹配項
-        for i in reversed(range(len(full_input_ids_list) - len(answer_tokens) + 1)):
-            if full_input_ids_list[i : i + len(answer_tokens)] == answer_tokens:
-                answer_start_pos = i
-                answer_end_pos = i + len(answer_tokens)
+        # found = False
+        # # 【核心修改】使用 reversed() 從後往前搜索，確保找到的是最後一個匹配項
+        # for i in reversed(range(len(full_input_ids_list) - len(answer_tokens) + 1)):
+        #     if full_input_ids_list[i : i + len(answer_tokens)] == answer_tokens:
+        #         answer_start_pos = i
+        #         answer_end_pos = i + len(answer_tokens)
                 
-                labels[0, answer_start_pos:answer_end_pos] = model_inputs['input_ids'][0, answer_start_pos:answer_end_pos]
-                found = True
-                break
+        #         labels[0, answer_start_pos:answer_end_pos] = model_inputs['input_ids'][0, answer_start_pos:answer_end_pos]
+        #         found = True
+        #         break
 
-        if not found and idx < 5:
-             print(f"--- [Sample {idx} WARNING] ---")
-             print(f"Could not find answer subsequence '{answer_text}' (tokens: {answer_tokens}) in the input.")
-             print("--------------------------")
+        # if not found and idx < 5:
+        #      print(f"--- [Sample {idx} WARNING] ---")
+        #      print(f"Could not find answer subsequence '{answer_text}' (tokens: {answer_tokens}) in the input.")
+        #      print("--------------------------")
 
-        model_inputs["labels"] = labels
+        # model_inputs["labels"] = labels
         # ========================================================================
 
         # ========================================================================
@@ -279,7 +283,7 @@ class InterleaveSFTTrainer(Trainer):
 
         loss_fct = CrossEntropyLoss()
         loss = loss_fct(shift_logits.view(-1, self.model.config.vocab_size), shift_labels.view(-1))
-        model_outputs_for_return = loss
+        model_outputs_for_return = (loss,)
         # loss_fct = CrossEntropyLoss()
         # loss = loss_fct(logits.view(-1, self.model.config.vocab_size), labels.view(-1))
         # print(loss)

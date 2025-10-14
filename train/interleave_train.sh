@@ -22,12 +22,12 @@
 #     # --generation_log_file "/data1/oujingfeng/project/twgi/checkpoints/orthus-7b-sft-v4/generation_log.jsonl"
 
 #!/bin/bash
-
+export CUDA_VISIBLE_DEVICES=4,5,6,7
 # 默认设置（用于多GPU正式训练）
-LAUNCH_CMD="accelerate launch --num_processes 8"
+LAUNCH_CMD="accelerate launch --num_processes 4"
 BATCH_SIZE=1
-# REPORT_TO="none"     # <--- 关闭 wandb
-REPORT_TO="wandb"
+REPORT_TO="none"     # <--- 关闭 wandb
+# REPORT_TO="wandb"
 EPOCHS=100
 GRADIENT_CHECKPOINTING_FLAG="--gradient_checkpointing"
 DEBUG_MODE_FLAG=""
@@ -52,7 +52,7 @@ $LAUNCH_CMD train_interleave_orthus.py \
     --train_file "/data1/oujingfeng/project/twgi/datasets/mydatasets/metadata.json" \
     --eval_file "/data1/oujingfeng/project/twgi/datasets/mydatasets/metadata.json" \
     --image_folder "/data1/oujingfeng/project/twgi/datasets/mydatasets" \
-    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-think-v4" \
+    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-think-v5" \
     --num_train_epochs $EPOCHS \
     --per_device_train_batch_size $BATCH_SIZE \
     --per_device_eval_batch_size $BATCH_SIZE \
@@ -66,4 +66,5 @@ $LAUNCH_CMD train_interleave_orthus.py \
     --report_to $REPORT_TO \
     $GRADIENT_CHECKPOINTING_FLAG \
     $DEBUG_MODE_FLAG \
+    --early_stopping_patience 5 # <-- 在这里激活早停，耐心值为5
     # --generation_log_file "/data1/oujingfeng/project/twgi/checkpoints/orthus-7b-sft-v4/generation_log.jsonl"

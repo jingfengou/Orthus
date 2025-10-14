@@ -9,6 +9,10 @@ from transformers import Trainer, TrainingArguments
 from torch.nn import CrossEntropyLoss
 import traceback
 import numpy as np
+# ==================== 新增的 imports ====================
+import torchvision
+# ========================================================
+
 root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 # 2. 将项目根目录临时添加到Python解释器的“模块搜索路径”列表中
@@ -251,6 +255,17 @@ class InterleaveSFTTrainer(Trainer):
         self.generation_log_file = generation_log_file
         self.enable_generation_log = enable_generation_log
 
+        # ==================== 新增代码：创建调试图片目录 ====================
+        self.debug_image_dir = "debug_images"
+        if self.is_world_process_zero():
+            os.makedirs(self.debug_image_dir, exist_ok=True)
+        # =================================================================
+        self.debug_output_dir = "debug_outputs"
+        if self.is_world_process_zero():
+            os.makedirs(self.debug_output_dir, exist_ok=True)
+
+
+
         # 如果开启日志，在训练开始前清空旧文件
         if self.enable_generation_log and self.is_world_process_zero():
             with open(self.generation_log_file, "w") as f:
@@ -289,24 +304,36 @@ class InterleaveSFTTrainer(Trainer):
 
 
         # --- 模型前向传播 ---
+
         # if model.training:
-            # outputs_tuple = model(**inputs, target_image_latents=target_image_latents, train_mode='interleave')
-            # logits, diff_loss = outputs_tuple
-        # 【新增修改 2】: 将 target_start_idx 传递给 model
+        #     outputs_tuple = model(
+        #         **inputs, 
+        #         # target_image_latents=target_image_latents, 
+        #         # target_start_idx=target_start_idx, # <--- 在这里传入
+        #         train_mode='interleave'
+        #     )
+        #     logits, diff_loss = outputs_tuple
+        # # model_outputs_for_return = outputs_tuple
+        # else:
+        #     outputs = model(**inputs, mode='discrete')
+        #     logits = outputs.logits.float()
+        #     diff_loss = torch.tensor(0.0)  # 评估时没有 diff_loss
+        # --- 模型前向传播 ---
         if model.training:
+            # 【重要修改】接收模型返回的4个值
             outputs_tuple = model(
-                **inputs, 
-                # target_image_latents=target_image_latents, 
-                # target_start_idx=target_start_idx, # <--- 在这里传入
+                **inputs,
+                # target_image_latents=target_image_latents,
+                # target_start_idx=target_start_idx,
                 train_mode='interleave'
             )
-            logits, diff_loss = outputs_tuple
-        # model_outputs_for_return = outputs_tuple
+            logits, diff_loss, pred_latents, true_latents = outputs_tuple
         else:
             outputs = model(**inputs, mode='discrete')
             logits = outputs.logits.float()
-            diff_loss = torch.tensor(0.0)  # 评估时没有 diff_loss
-
+            diff_loss = torch.tensor(0.0)
+            # 在评估模式下不清空这些变量，以防后续代码出错
+            pred_latents, true_latents = None, None
         # --- 计算损失 ---
         shift_logits = logits[:, :-1, :].contiguous()  # 去掉最后一个位置
         shift_labels = labels[:, 1:].contiguous()      # 去掉第一个位置
@@ -397,6 +424,36 @@ class InterleaveSFTTrainer(Trainer):
         # ==================== 调试代码块 (结束) ====================
 
         # 确保返回值格式正确，以兼容Trainer的日志记录等功能
+        # ==================== 核心修改：保存latents到文件 ====================
+        if should_debug:
+            try:
+                print(f"\n[DEBUGGING] Saving latents at step {self.state.global_step}...")
+
+                # # 1. 提取第一个样本的第一张图的特征
+                # pred_image_features = pred_latents[0, :1024, :]
+                # true_image_features = true_latents[0, :1024, :]
+                
+                # 2. 准备保存路径
+                save_path = os.path.join(self.debug_output_dir, f"step_{self.state.global_step}_latents.pt")
+                
+                # 3. 将预测和真实的latents保存在一个字典中
+                #    使用 .detach().cpu() 是一个好习惯，可以避免占用GPU显存并断开计算图
+                latents_to_save = {
+                    'predicted': pred_latents.detach().cpu(),
+                    'target': true_latents.detach().cpu()
+                }
+                
+                # 4. 保存文件
+                torch.save(latents_to_save, save_path)
+                
+                print(f"  - Latents saved successfully to: {save_path}")
+
+            except Exception as e:
+                print(f"\033[91mError during saving latents at step {self.state.global_step}: {e}\033[0m")
+                traceback.print_exc()
+        # ====================================================================
+
+
         return (loss, model_outputs_for_return) if return_outputs else loss
 
 # # --- 3. 主训练逻辑 (与之前的sft_orthus.py基本相同) ---
