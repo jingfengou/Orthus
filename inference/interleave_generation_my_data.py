@@ -21,16 +21,16 @@ import torch.nn.functional as F
 import json
 from PIL import Image
 
-ckpt_path = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-think-v5"
+ckpt_path = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-think-v013"
 processor = OrthusProcessor.from_pretrained(ckpt_path)
 model = OrthusForConditionalGeneration.from_pretrained(
     ckpt_path,
     device_map="auto",
     torch_dtype=torch.bfloat16,
-    attn_implementation='eager',
+    attn_implementation='flash_attention_2',
 )
 
-exp_dir = os.path.join(root_path, "results/mydatasets/sftv5")
+exp_dir = os.path.join(root_path, "results/mydatasets/sftv0131")
 os.makedirs(exp_dir, exist_ok=True)
 
 set_seed(50)
@@ -58,7 +58,7 @@ interleave_input_ids_uncon = interleave_inputs_uncon['input_ids'].to(model.devic
 
 kwargs_con = {
     "input_ids": interleave_input_ids_con,
-    "cfg_scale": 3.0,
+    "cfg_scale": 1.0,    # 忽略uncon的影响
     "interleave_output_format": True,
     "max_new_tokens": 4096,
     "do_sample": True,
@@ -67,7 +67,7 @@ kwargs_con = {
 }
 kwargs_uncon = {
     "input_ids": interleave_input_ids_uncon,
-    "cfg_scale": 1.0,
+    "cfg_scale": 1.0,  # 冗余参数 没有被使用
     "attention_mask": interleave_inputs_uncon['attention_mask'].to(model.device),
     "use_cache": True,
 }

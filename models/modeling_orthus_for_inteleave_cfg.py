@@ -1629,8 +1629,80 @@ class OrthusModel(ChameleonPreTrainedModel):
             image_mask = input_ids==8711
             IMAGE_PLACEHOLDER_LENGTH = 1024
             IMAGE_TOKEN_ID = 8711
-            
-            for id in range(bsz):                    
+
+            is_generation_phase = use_cache and input_ids.shape[1] == 1
+            # print(f'ksq: is_generation_phase={is_generation_phase}, input_ids.shape={input_ids.shape}, image_latents.shape={image_latents.shape if image_latents is not None else None}')
+            if not is_generation_phase:
+                for id in range(bsz):
+                    # 找到 Prompt 中所有的 <image> 佔位符
+                    all_image_indices = (input_ids[id] == IMAGE_TOKEN_ID).nonzero(as_tuple=True)[0]
+
+                    # 確保 image_latents 有 num_images 維度
+                    current_batch_image_latents = image_latents[id].unsqueeze(0) if len(image_latents.shape) == 4 else image_latents[id]
+
+                    # 遍歷 Prompt 中提供的每一張輸入圖片
+                    for img_idx in range(current_batch_image_latents.shape[0]):
+                        # 1. 取得當前輸入圖片的特徵
+                        current_image_latents_ = current_batch_image_latents[img_idx].view(-1, self.vqmodel.quantize.embedding_dim).to(self.codebook_in.weight.dtype)
+
+                        # 2. 將圖像特徵投影到文本語義空間，得到 1024 個向量
+                        distances = (
+                            torch.sum(current_image_latents_**2, dim=1, keepdim=True) + \
+                            torch.sum(self.codebook_in.weight**2, dim=1) - \
+                            torch.tensor(2, dtype=current_image_latents_.dtype, device=current_image_latents_.device) * torch.einsum("bd,dn->bn", current_image_latents_, self.codebook_in.weight.transpose(0, 1))
+                        )
+                        weighted_indices = F.softmax(-distances, dim=-1)
+                        current_image_embeds = torch.matmul(weighted_indices.to(self.embed_tokens.weight.dtype), self.embed_tokens.weight[4:8196])
+
+                        # 3. 找到這張圖片對應的 1024 個佔位符位置
+                        start_idx = img_idx * IMAGE_PLACEHOLDER_LENGTH
+                        end_idx = start_idx + IMAGE_PLACEHOLDER_LENGTH
+                        current_image_indices = all_image_indices[start_idx:end_idx]
+
+                        # 4. 檢查維度匹配
+                        if current_image_embeds.shape[0] != len(current_image_indices):
+                            raise ValueError(f"Prompt Processing Error: Mismatch between image embeds ({current_image_embeds.shape[0]}) and placeholders ({len(current_image_indices)}).")
+
+                        # 5. 執行一對一的完整特徵注入
+                        inputs_embeds[id, current_image_indices] = current_image_embeds.to(inputs_embeds.dtype)
+
+                # ======================================================================
+                #  【階段二：下筆/自回歸生成模式】
+                #  在 generate 迴圈中，每生成一個新 token 就執行一次。
+                # ======================================================================
+            else: # is_generation_phase is True
+                for id in range(bsz):
+                    # 在這個階段，input_ids 的長度為 1。我們只需判斷這個 token 是不是 <image>
+                    is_image_token_now = (input_ids[id][0] == IMAGE_TOKEN_ID)
+
+                    # 只有當前 token 是 <image> 佔位符時，才需要進行特徵注入
+                    if is_image_token_now:
+                        # 1. `image_latents` 此時是歷史記錄，包含了輸入圖 + 所有已生成的圖像塊特徵
+                        #    我們只關心最後一個，因為它代表了最近的視覺上下文
+                        # print(f'ksq: {image_latents.shape}')    
+                        if image_latents is not None and image_latents.shape[1] > 0:
+                            # 取得歷史記錄中的最後一個圖像特徵 (可能是輸入圖，也可能是上一步生成的圖像塊)
+                            last_image_latent = image_latents[id, -1].view(-1, self.vqmodel.quantize.embedding_dim).to(self.codebook_in.weight.dtype)
+
+                            # 2. 為這個單一的歷史特徵計算其在文本空間的投影
+                            #    注意：這裡仍然會計算出 1024 個 embeds，這本身可能不是最優設計，但我們先修復迴圈問題
+                            distances = (
+                                torch.sum(last_image_latent**2, dim=1, keepdim=True) + \
+                                torch.sum(self.codebook_in.weight**2, dim=1) - \
+                                torch.tensor(2, dtype=last_image_latent.dtype, device=last_image_latent.device) * torch.einsum("bd,dn->bn", last_image_latent, self.codebook_in.weight.transpose(0, 1))
+                            )
+                            weighted_indices = F.softmax(-distances, dim=-1)
+                            historical_image_embeds = torch.matmul(weighted_indices.to(self.embed_tokens.weight.dtype), self.embed_tokens.weight[4:8196])
+                            # print(f'ksq: {historical_image_embeds.shape}')  # (1024, hidden_size)
+                            # 3. 從這 1024 個向量中，選擇一個有代表性的 (例如最後一個) 作為當前佔位符的嵌入
+                            representative_embed = historical_image_embeds[-1, :]
+                            
+                            # 4. 找到當前這個單一 <image> token 的位置並注入
+                            #    因為 input_ids 長度為 1，所以 image_mask 就是 [True] 或 [False]
+                            current_image_index = (input_ids[id] == IMAGE_TOKEN_ID).nonzero(as_tuple=True)[0]
+                            inputs_embeds[id, current_image_index] = representative_embed.to(inputs_embeds.dtype)
+
+            # for id in range(bsz):                    
                                 # --- 【在此处插入诊断代码】 ---
                 # # ==================== 诊断代码开始 ====================
                 # if target_start_idx is not None:
@@ -1684,44 +1756,49 @@ class OrthusModel(ChameleonPreTrainedModel):
                 #     # 将 target 部分的所有 image token 标记为 False，这样就不会被计入
                 #     image_mask[id, current_target_start_idx:] = False
                 # print(f'ksq: {image_latents.shape}, {image_mask.shape}')
-                all_image_indices = (input_ids[id] == IMAGE_TOKEN_ID).nonzero(as_tuple=True)[0]
-                if  len(image_latents.shape) == 4: # (bsz, 32, 32, 256)
-                    image_latents = image_latents.unsqueeze(1)  # (bsz, 1, 32, 32, 256)
+
+
+
+
+
+                # all_image_indices = (input_ids[id] == IMAGE_TOKEN_ID).nonzero(as_tuple=True)[0]
+                # if  len(image_latents.shape) == 4: # (bsz, 32, 32, 256)
+                #     image_latents = image_latents.unsqueeze(1)  # (bsz, 1, 32, 32, 256)
+                ## print(f'ksq: {image_latents.shape}')
+                # for img_idx in range(image_latents.shape[1]):
+                #     current_image_latents_ = image_latents[id, img_idx].view(-1, self.vqmodel.quantize.embedding_dim).to(self.codebook_in.weight.dtype)
+                #     distances = (
+                #     torch.sum(current_image_latents_**2, dim=1, keepdim=True) + \
+                #     torch.sum(self.codebook_in.weight**2, dim=1) - \
+                #     torch.tensor(2, dtype=current_image_latents_.dtype, device=current_image_latents_.device) * torch.einsum("bd,dn->bn", current_image_latents_, self.codebook_in.weight.transpose(0, 1))
+                # )
+                #     weighted_indices = F.softmax(-distances, dim=-1)
+                #     # Calculate the embeddings for the image tokens
+                #     current_image_embeds = torch.matmul(weighted_indices.to(self.embed_tokens.weight.dtype), self.embed_tokens.weight[4:8196])
+                #     start_idx = img_idx * IMAGE_PLACEHOLDER_LENGTH
+                #     end_idx = start_idx + IMAGE_PLACEHOLDER_LENGTH
+                #     current_image_indices = all_image_indices[start_idx:end_idx]
+                #     is_generation_phase = use_cache and input_ids.shape[1] == 1
                     
-                for img_idx in range(image_latents.shape[1]):
-                    current_image_latents_ = image_latents[id, img_idx].view(-1, self.vqmodel.quantize.embedding_dim).to(self.codebook_in.weight.dtype)
-                    distances = (
-                    torch.sum(current_image_latents_**2, dim=1, keepdim=True) + \
-                    torch.sum(self.codebook_in.weight**2, dim=1) - \
-                    torch.tensor(2, dtype=current_image_latents_.dtype, device=current_image_latents_.device) * torch.einsum("bd,dn->bn", current_image_latents_, self.codebook_in.weight.transpose(0, 1))
-                )
-                    weighted_indices = F.softmax(-distances, dim=-1)
-                    # Calculate the embeddings for the image tokens
-                    current_image_embeds = torch.matmul(weighted_indices.to(self.embed_tokens.weight.dtype), self.embed_tokens.weight[4:8196])
-                    start_idx = img_idx * IMAGE_PLACEHOLDER_LENGTH
-                    end_idx = start_idx + IMAGE_PLACEHOLDER_LENGTH
-                    current_image_indices = all_image_indices[start_idx:end_idx]
-                    is_generation_phase = use_cache and input_ids.shape[1] == 1
-                    
-                    if is_generation_phase:
-                        # --- 生成模式 (一次只處理一個 token) ---
-                        # 如果當前的單一 token 是圖片占位符，這個 if 會成立
-                        if len(current_image_indices) == 1:
-                            # 原始邏輯是取最後一個 embedding，我們在此復現
-                            # 從 [1024, 4096] 中取出最後一個 [4096]
-                            single_image_embed = current_image_embeds[-1, :]
+                #     if is_generation_phase:
+                #         # --- 生成模式 (一次只處理一個 token) ---
+                #         # 如果當前的單一 token 是圖片占位符，這個 if 會成立
+                #         if len(current_image_indices) == 1:
+                #             # 原始邏輯是取最後一個 embedding，我們在此復現
+                #             # 從 [1024, 4096] 中取出最後一個 [4096]
+                #             single_image_embed = current_image_embeds[-1, :]
                             
-                            # 替換 inputs_embeds 中的那一個位置
-                            inputs_embeds[id, current_image_indices] = single_image_embed.to(inputs_embeds.dtype)
-                    else:
-                        # --- 訓練或完整提示詞處理模式 ---
-                        # 這是標準情況，進行一對一的完整替換
-                        if current_image_embeds.shape[0] != len(current_image_indices):
-                            print(current_image_embeds.shape)
-                            print(f"Error: Embedding count {current_image_embeds.shape[0]} does not match placeholder count {len(current_image_indices)} for batch item {id}, image index {img_idx}.")
-                            raise ValueError("Embedding count mismatch.")
+                #             # 替換 inputs_embeds 中的那一個位置
+                #             inputs_embeds[id, current_image_indices] = single_image_embed.to(inputs_embeds.dtype)
+                #     else:
+                #         # --- 訓練或完整提示詞處理模式 ---
+                #         # 這是標準情況，進行一對一的完整替換
+                #         if current_image_embeds.shape[0] != len(current_image_indices):
+                #             print(current_image_embeds.shape)
+                #             print(f"Error: Embedding count {current_image_embeds.shape[0]} does not match placeholder count {len(current_image_indices)} for batch item {id}, image index {img_idx}.")
+                #             raise ValueError("Embedding count mismatch.")
                         
-                        inputs_embeds[id, current_image_indices] = current_image_embeds.to(inputs_embeds.dtype)
+                #         inputs_embeds[id, current_image_indices] = current_image_embeds.to(inputs_embeds.dtype)
 
 
 
@@ -2326,7 +2403,7 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
             # print("target_image_latents",target_image_latents.shape)
             target_image_latents = target_image_latents.view(input_ids.shape[0], -1, 1024, 256)
             # print("target_image_latents",target_image_latents.shape)
-            bsz, num_images, seq_len, _  = target_image_latents.shape   # [bsz, num_images, 1024, 256]
+            bsz, num_images, seq_len, _  = target_image_latents.shape   # [bsz, num _images, 1024, 256]
             
             # Initialize storage for image latents
             z = []
@@ -2350,11 +2427,21 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
                 z.append(images_in_batch)
             # print('z1', len(z))
             z = torch.stack(z, dim=0)  # (bsz, num_images, 1024, hidden_size)
-            # print('z2', z.shape)
-            # repeat with diffusion_batch_mul
-            latents = target_image_latents.reshape(bsz, num_images * seq_len, -1).repeat(1, self.diffusion_batch_mul, 1)
-            # print('latents', latents.shape)
-            z = z.reshape(bsz, num_images * seq_len, -1).repeat(1, self.diffusion_batch_mul, 1)
+            # # print('z2', z.shape)
+            # # repeat with diffusion_batch_mul
+            # latents = target_image_latents.reshape(bsz, num_images * seq_len, -1).repeat(1, self.diffusion_batch_mul, 1)
+            # # print('latents', latents.shape)
+            # z = z.reshape(bsz, num_images * seq_len, -1).repeat(1, self.diffusion_batch_mul, 1)
+
+            flat_bsz = bsz * num_images * seq_len
+            
+            latents = target_image_latents.reshape(flat_bsz, -1).repeat(self.diffusion_batch_mul, 1)
+            z = z.reshape(flat_bsz, -1).repeat(self.diffusion_batch_mul, 1)
+            if self.training:
+                # 以10%的概率丢弃条件
+                mask = torch.rand(z.shape[0], 1, device=z.device) > 0.2
+                z = z * mask.to(z.dtype)
+            # 现在 z.shape[0] 的大小是 flat_bsz * diffusion_batch_mul，timesteps的维度就正确了
             # print('z3', z.shape)
             # normalization
             latents= latents * 0.1
@@ -2372,8 +2459,15 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
             # print('noisy_latents', noisy_latents.shape)
             target = self.train_scheduler.get_velocity(latents, noise, timesteps)
             # print('target', target.shape)
+            # 只有在训练时才启用 checkpointing
+            # from torch.utils.checkpoint import checkpoint
+            # if self.training:
+            #     # 确保 mlp_head 的 forward 方法支持 PyTorch 的 checkpointing
+            #     # 这通常需要 mlp_head 内部不使用会破坏计算图的特殊操作
+            #     model_pred = checkpoint(self.mlp_head, noisy_latents, timesteps, z, use_reentrant=False)
+            # else:
+                # model_pred = self.mlp_head(noisy_latents, timesteps, z)
             model_pred = self.mlp_head(noisy_latents, timesteps, z)
-
 
             diff_loss = F.mse_loss(model_pred.float(), target.float(), reduction="mean")
 
@@ -2539,7 +2633,7 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
 
         # ==================== 核心修改在這裡 ====================
         # 原來的代碼:
-        # emb_dim = self.model.vqmodel.quantize.embedding.weight.shape[-1]
+        emb_dim = self.model.vqmodel.quantize.embedding.weight.shape[-1]
         
         # 修正後的代碼：直接從輸入張量的形狀推斷 emb_dim
         if image_latents.dim() != 2 or image_latents.shape[0] != 1024:

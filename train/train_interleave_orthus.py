@@ -54,6 +54,10 @@ def main():
     parser.add_argument("--per_device_eval_batch_size", type=int, default=4, help="Batch size per GPU for evaluation.")
     # parser.add_argument("--gradient_accumulation_steps", type=int, default=4, help="Number of steps to accumulate gradients before updating.")
     parser.add_argument("--learning_rate", type=float, default=2e-5, help="Initial learning rate.")
+    # 【新增代码】: 添加 alpha 和 beta 参数
+    parser.add_argument("--alpha", type=float, default=1.0, help="Weight for the text loss component.")
+    parser.add_argument("--beta", type=float, default=100.0, help="Weight for the diffusion loss component.")
+
     parser.add_argument("--weight_decay", type=float, default=0.01, help="Weight decay for regularization.")
     parser.add_argument("--warmup_ratio", type=float, default=0.03, help="Ratio of total steps for learning rate warmup.")
     parser.add_argument("--lr_scheduler_type", type=str, default="cosine", help="Learning rate scheduler type (e.g., 'linear', 'cosine').")
@@ -215,6 +219,9 @@ def main():
         enable_generation_log=(args.generation_log_file is not None),
         generation_log_file=args.generation_log_file,
         callbacks=callbacks_to_use, # <-- 在這裡傳入 callback
+        # 【新增代码】: 传递 alpha 和 beta
+        alpha=args.alpha,
+        beta=args.beta,
     )
 
     # --- 5. 启动训练 ---

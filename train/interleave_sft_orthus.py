@@ -113,6 +113,7 @@ class InterleaveSFTDataset(Dataset):
         # --- 4. 拆分 image_latents ---
         # image_latents: [num_images, 32, 32, 256]
         image_latents = model_inputs["image_latents"]
+        print(f"image_latents.shape: {image_latents.shape}")
         input_image_latents = image_latents[0:1]  # 问题图片
         target_image_latents = image_latents[1:]  # 步骤图片
 
@@ -138,7 +139,7 @@ class InterleaveSFTDataset(Dataset):
             boi_token_id = self.processor.tokenizer.boi_token_id
         except AttributeError:
             boi_token_id = 8197 
-            print(f"Warning: processor.tokenizer.boi_token_id not found. Using default ID: {boi_token_id}")
+            # print(f"Warning: processor.tokenizer.boi_token_id not found. Using default ID: {boi_token_id}")
         image_token_len = 1024
         labels = model_inputs['input_ids'].clone()
         prompt_len = len(self.processor.tokenizer(prompt_text, add_special_tokens=False).input_ids)
@@ -248,7 +249,7 @@ class InterleaveSFTTrainer(Trainer):
     自定义Trainer，增加了在每一步训练中打印标签和生成输出的调试功能。
     """
     # 【修改1】: 修改 __init__ 方法以接收并保存 processor
-    def __init__(self, *args, processor=None, generation_log_file=None, enable_generation_log=False, **kwargs):
+    def __init__(self, *args, processor=None, generation_log_file=None, enable_generation_log=False, alpha=1.0, beta=100.0, **kwargs):
         super().__init__(*args, **kwargs)
         # 将 processor 保存为类的属性，以便在 compute_loss 中使用
         self.processor = processor
@@ -264,7 +265,9 @@ class InterleaveSFTTrainer(Trainer):
         if self.is_world_process_zero():
             os.makedirs(self.debug_output_dir, exist_ok=True)
 
-
+        # 【新增代码】: 保存 alpha 和 beta 权重
+        self.alpha = alpha
+        self.beta = beta
 
         # 如果开启日志，在训练开始前清空旧文件
         if self.enable_generation_log and self.is_world_process_zero():
@@ -285,7 +288,7 @@ class InterleaveSFTTrainer(Trainer):
         # 只在训练和评估时打印，不在 generate 时打印
         # model.training 是训练状态， not model.training 是评估状态
         should_debug = (self.is_world_process_zero() and
-                        (self.state.global_step + 1) % 20 == 0 and
+                        (self.state.global_step + 1) % 50 == 0 and
                         (model.training or not self.is_in_train))
         
         if should_debug:
@@ -341,10 +344,10 @@ class InterleaveSFTTrainer(Trainer):
         loss_fct = CrossEntropyLoss()
         text_loss = loss_fct(shift_logits.view(-1, self.model.config.vocab_size), shift_labels.view(-1))
 
-        # --- 融合 diff_loss ---
-        alpha = 1.0  # 文本损失权重
-        beta = 100.0   # diff_loss 权重（可根据实验调整）
-        loss = alpha * text_loss + beta * diff_loss
+        # --- 【修改3】融合 diff_loss，使用 self.alpha 和 self.beta ---
+        # alpha = 1.0  # <--- 删除这一行
+        # beta = 1000.0   # <--- 删除这一行
+        loss = self.alpha * text_loss + self.beta * diff_loss
 
         model_outputs_for_return = (text_loss, diff_loss)
         # loss_fct = CrossEntropyLoss()
