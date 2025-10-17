@@ -31,7 +31,7 @@ model = OrthusForConditionalGeneration.from_pretrained(
     attn_implementation='flash_attention_2',
 )
 
-exp_dir = os.path.join(root_path, "results/mydatasets/sftv010base1")
+exp_dir = os.path.join(root_path, "results/mydatasets/sftv010ana3")
 os.makedirs(exp_dir, exist_ok=True)
 
 set_seed(50)
@@ -62,7 +62,7 @@ interleave_input_ids_uncon = interleave_inputs_uncon['input_ids'].to(model.devic
 STRATEGY = 'burst_and_gap'
 
 # 2. 策略對應的參數
-SPACED_INTERVAL_STEP = 10  # 對於 'spaced_interval'：每隔 10 個內容 patch 干預一次
+SPACED_INTERVAL_STEP = 5  # 對於 'spaced_interval'：每隔 10 個內容 patch 干預一次
 BURST_LENGTH = 5         # 對於 'burst_and_gap'：連續干預 5 個 patch
 GAP_LENGTH = 15          # 對於 'burst_and_gap'：然後跳過 15 個 patch
 # ==========================================================
@@ -121,8 +121,8 @@ kwargs_con = {
     "do_sample": True,
     "attention_mask": interleave_inputs_con['attention_mask'].to(model.device),
     "use_cache": True,
-    # "intervention_indices":intervention_indices,
-    # "target_latents_for_intervention":target_latents_for_intervention,
+    "intervention_indices":intervention_indices,
+    "target_latents_for_intervention":target_latents_for_intervention,
 }
 kwargs_uncon = {
     "input_ids": interleave_input_ids_uncon,
