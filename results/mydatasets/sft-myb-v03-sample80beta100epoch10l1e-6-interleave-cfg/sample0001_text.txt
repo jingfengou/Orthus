@@ -1,0 +1,2 @@
+sample0001
+[<think>First, rotate this cube stack along the Y axis by 90 degrees. Let's generate an image to visualize the state of the object after rotation:: [<think>First, rotate this cube stack along the Y axis by 90 degrees. Let's visualize the current state:s.

@@ -1,0 +1,286 @@
+nohup: ignoring input
+./interleave_train.sh: 36: [: unexpected operator
+>>> Running in Multi-GPU TRAINING mode <<<
+W1021 17:24:09.630000 3062165 site-packages/torch/distributed/run.py:774] 
+W1021 17:24:09.630000 3062165 site-packages/torch/distributed/run.py:774] *****************************************
+W1021 17:24:09.630000 3062165 site-packages/torch/distributed/run.py:774] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W1021 17:24:09.630000 3062165 site-packages/torch/distributed/run.py:774] *****************************************
+2025-10-21 17:24:14,766 - INFO - Setting random seed to 42
+2025-10-21 17:24:15,018 - INFO - Setting random seed to 42
+2025-10-21 17:24:15,106 - INFO - Setting random seed to 42
+2025-10-21 17:24:15,172 - INFO - Setting random seed to 42
+2025-10-21 17:24:15,311 - INFO - Setting random seed to 42
+2025-10-21 17:24:15,337 - INFO - Setting random seed to 42
+2025-10-21 17:24:15,402 - INFO - Setting random seed to 42
+2025-10-21 17:24:15,423 - INFO - Setting random seed to 42
+Some kwargs in processor config are unused and will not have any effect: image_token, image_seq_length. 
+Some kwargs in processor config are unused and will not have any effect: image_token, image_seq_length. 
+Some kwargs in processor config are unused and will not have any effect: image_token, image_seq_length. 
+Some kwargs in processor config are unused and will not have any effect: image_token, image_seq_length. 
+Some kwargs in processor config are unused and will not have any effect: image_token, image_seq_length. 
+Some kwargs in processor config are unused and will not have any effect: image_token, image_seq_length. 
+Some kwargs in processor config are unused and will not have any effect: image_seq_length, image_token. 
+2025-10-21 17:24:19,634 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Some kwargs in processor config are unused and will not have any effect: image_seq_length, image_token. 
+2025-10-21 17:24:19,865 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+2025-10-21 17:24:20,031 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]2025-10-21 17:24:20,854 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+2025-10-21 17:24:20,910 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]2025-10-21 17:24:21,421 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+2025-10-21 17:24:21,626 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:08,  1.72s/it]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:08,  1.70s/it]2025-10-21 17:24:21,891 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:08,  1.73s/it]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:08,  1.80s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:02<00:10,  2.07s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:07,  1.75s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:06,  1.71s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:09,  1.87s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:06,  1.74s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:02<00:11,  2.27s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:07,  1.77s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:02<00:11,  2.39s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:07,  1.95s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.75s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.70s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:07,  1.81s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.73s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:04<00:08,  2.04s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.73s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:04<00:08,  2.08s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.86s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.74s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:07<00:03,  1.81s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:07<00:03,  1.89s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:06<00:03,  1.73s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.92s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:06<00:03,  1.70s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:06<00:05,  1.95s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:07<00:03,  1.81s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:06<00:03,  1.71s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:01,  1.74s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:01,  1.79s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:01,  1.69s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:01,  1.69s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:07<00:03,  1.86s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:07<00:03,  1.88s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:09<00:01,  1.77s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.65s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.70s/it]
+Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.68s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.74s/it]
+Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.62s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.67s/it]
+Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:01,  1.70s/it]2025-10-21 17:24:30,756 - INFO - Base model loaded in bfloat16.
+2025-10-21 17:24:30,758 - INFO - Model and processor loaded successfully.
+2025-10-21 17:24:30,758 - INFO - 
+--- [Step 2/5] Initializing full datasets... ---
+2025-10-21 17:24:30,848 - INFO - Base model loaded in bfloat16.
+2025-10-21 17:24:30,850 - INFO - Model and processor loaded successfully.
+2025-10-21 17:24:30,850 - INFO - 
+--- [Step 2/5] Initializing full datasets... ---
+2025-10-21 17:24:30,896 - INFO - Base model loaded in bfloat16.
+2025-10-21 17:24:30,898 - INFO - Model and processor loaded successfully.
+2025-10-21 17:24:30,898 - INFO - 
+--- [Step 2/5] Initializing full datasets... ---
+Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.61s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.67s/it]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 1 examples [00:00, 164.42 examples/s]
+2025-10-21 17:24:31,540 - INFO - Base model loaded in bfloat16.
+2025-10-21 17:24:31,542 - INFO - Model and processor loaded successfully.
+2025-10-21 17:24:31,542 - INFO - 
+--- [Step 2/5] Initializing full datasets... ---
+Loading checkpoint shards:  83%|████████▎ | 5/6 [00:09<00:01,  1.81s/it]2025-10-21 17:24:31,778 - INFO - Full train dataset size: 1
+2025-10-21 17:24:31,779 - INFO - Full eval dataset size: 1
+Initialized dataset with 1 examples.
+Initialized dataset with 1 examples.
+--- Setting model attributes for distortion_weight and return_analysis ---
+2025-10-21 17:24:31,779 - INFO - Custom SFT datasets created.
+2025-10-21 17:24:31,779 - INFO - 
+--- [Step 3/5] Configuring Training Arguments... ---
+/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/training_args.py:1559: FutureWarning: `evaluation_strategy` is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.62s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.68s/it]
+2025-10-21 17:24:31,848 - INFO - Full train dataset size: 1
+2025-10-21 17:24:31,849 - INFO - Full eval dataset size: 1
+Initialized dataset with 1 examples.
+Initialized dataset with 1 examples.
+--- Setting model attributes for distortion_weight and return_analysis ---
+2025-10-21 17:24:31,849 - INFO - Custom SFT datasets created.
+2025-10-21 17:24:31,849 - INFO - 
+--- [Step 3/5] Configuring Training Arguments... ---
+/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/training_args.py:1559: FutureWarning: `evaluation_strategy` is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.70s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.78s/it]
+Loading checkpoint shards:  83%|████████▎ | 5/6 [00:09<00:01,  1.82s/it]2025-10-21 17:24:31,930 - INFO - Full train dataset size: 1
+2025-10-21 17:24:31,930 - INFO - Full eval dataset size: 1
+Initialized dataset with 1 examples.
+Initialized dataset with 1 examples.
+--- Setting model attributes for distortion_weight and return_analysis ---
+2025-10-21 17:24:31,931 - INFO - Custom SFT datasets created.
+2025-10-21 17:24:31,931 - INFO - 
+--- [Step 3/5] Configuring Training Arguments... ---
+/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/training_args.py:1559: FutureWarning: `evaluation_strategy` is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+2025-10-21 17:24:32,463 - INFO - Base model loaded in bfloat16.
+2025-10-21 17:24:32,465 - INFO - Model and processor loaded successfully.
+2025-10-21 17:24:32,465 - INFO - 
+--- [Step 2/5] Initializing full datasets... ---
+2025-10-21 17:24:32,482 - INFO - Base model loaded in bfloat16.
+2025-10-21 17:24:32,484 - INFO - Model and processor loaded successfully.
+2025-10-21 17:24:32,484 - INFO - 
+--- [Step 2/5] Initializing full datasets... ---
+2025-10-21 17:24:32,567 - INFO - Full train dataset size: 1
+2025-10-21 17:24:32,567 - INFO - Full eval dataset size: 1
+Initialized dataset with 1 examples.
+Initialized dataset with 1 examples.
+--- Setting model attributes for distortion_weight and return_analysis ---
+2025-10-21 17:24:32,568 - INFO - Custom SFT datasets created.
+2025-10-21 17:24:32,568 - INFO - 
+--- [Step 3/5] Configuring Training Arguments... ---
+/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/training_args.py:1559: FutureWarning: `evaluation_strategy` is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.71s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.82s/it]
+Loading checkpoint shards: 100%|██████████| 6/6 [00:11<00:00,  1.71s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:11<00:00,  1.84s/it]
+2025-10-21 17:24:33,510 - INFO - Base model loaded in bfloat16.
+2025-10-21 17:24:33,512 - INFO - Model and processor loaded successfully.
+2025-10-21 17:24:33,512 - INFO - 
+--- [Step 2/5] Initializing full datasets... ---
+2025-10-21 17:24:33,731 - INFO - Full train dataset size: 1
+2025-10-21 17:24:33,732 - INFO - Full eval dataset size: 1
+Initialized dataset with 1 examples.
+Initialized dataset with 1 examples.
+--- Setting model attributes for distortion_weight and return_analysis ---
+2025-10-21 17:24:33,732 - INFO - Custom SFT datasets created.
+2025-10-21 17:24:33,732 - INFO - 
+--- [Step 3/5] Configuring Training Arguments... ---
+/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/training_args.py:1559: FutureWarning: `evaluation_strategy` is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+2025-10-21 17:24:33,796 - INFO - Full train dataset size: 1
+2025-10-21 17:24:33,797 - INFO - Full eval dataset size: 1
+Initialized dataset with 1 examples.
+Initialized dataset with 1 examples.
+--- Setting model attributes for distortion_weight and return_analysis ---
+2025-10-21 17:24:33,797 - INFO - Custom SFT datasets created.
+2025-10-21 17:24:33,797 - INFO - 
+--- [Step 3/5] Configuring Training Arguments... ---
+/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/training_args.py:1559: FutureWarning: `evaluation_strategy` is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+2025-10-21 17:24:33,872 - INFO - Base model loaded in bfloat16.
+2025-10-21 17:24:33,873 - INFO - Model and processor loaded successfully.
+2025-10-21 17:24:33,874 - INFO - 
+--- [Step 2/5] Initializing full datasets... ---
+2025-10-21 17:24:35,061 - INFO - Full train dataset size: 1
+2025-10-21 17:24:35,061 - INFO - Full eval dataset size: 1
+Initialized dataset with 1 examples.
+Initialized dataset with 1 examples.
+--- Setting model attributes for distortion_weight and return_analysis ---
+2025-10-21 17:24:35,061 - INFO - Custom SFT datasets created.
+2025-10-21 17:24:35,061 - INFO - 
+--- [Step 3/5] Configuring Training Arguments... ---
+/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/training_args.py:1559: FutureWarning: `evaluation_strategy` is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+2025-10-21 17:24:35,173 - INFO - Full train dataset size: 1
+2025-10-21 17:24:35,173 - INFO - Full eval dataset size: 1
+Initialized dataset with 1 examples.
+Initialized dataset with 1 examples.
+--- Setting model attributes for distortion_weight and return_analysis ---
+2025-10-21 17:24:35,174 - INFO - Custom SFT datasets created.
+2025-10-21 17:24:35,174 - INFO - 
+--- [Step 3/5] Configuring Training Arguments... ---
+/data1/oujingfeng/project/twgi/Orthus/transformers/src/transformers/training_args.py:1559: FutureWarning: `evaluation_strategy` is deprecated and will be removed in version 4.46 of 🤗 Transformers. Use `eval_strategy` instead
+  warnings.warn(
+2025-10-21 17:24:37,680 - INFO - 
+--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---
+2025-10-21 17:24:37,687 - INFO - 
+--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---
+2025-10-21 17:24:37,691 - INFO - 
+--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---
+2025-10-21 17:24:37,692 - INFO - 
+--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---
+2025-10-21 17:24:37,694 - INFO - 
+--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---
+2025-10-21 17:24:37,706 - INFO - 
+--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---
+2025-10-21 17:24:37,712 - INFO - 
+--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---
+2025-10-21 17:24:37,721 - INFO - 
+--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---
+2025-10-21 17:24:38,278 - INFO - 
+--- [Step 5/5] Starting the formal training run... ---
+2025-10-21 17:24:38,286 - INFO - 
+--- [Step 5/5] Starting the formal training run... ---
+2025-10-21 17:24:38,304 - INFO - 
+--- [Step 5/5] Starting the formal training run... ---
+2025-10-21 17:24:38,309 - INFO - 
+--- [Step 5/5] Starting the formal training run... ---
+2025-10-21 17:24:38,410 - INFO - 
+--- [Step 5/5] Starting the formal training run... ---
+2025-10-21 17:24:38,566 - INFO - 
+--- [Step 5/5] Starting the formal training run... ---
+2025-10-21 17:24:38,578 - INFO - 
+--- [Step 5/5] Starting the formal training run... ---
+2025-10-21 17:24:38,613 - INFO - 
+--- [Step 5/5] Starting the formal training run... ---
+[rank4]:W1021 17:24:42.388000 3062426 site-packages/torch/utils/cpp_extension.py:2425] TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[rank4]:W1021 17:24:42.388000 3062426 site-packages/torch/utils/cpp_extension.py:2425] If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'] to specific architectures.
+[rank7]:W1021 17:24:42.443000 3062429 site-packages/torch/utils/cpp_extension.py:2425] TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[rank7]:W1021 17:24:42.443000 3062429 site-packages/torch/utils/cpp_extension.py:2425] If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'] to specific architectures.
+[rank5]:W1021 17:24:42.584000 3062427 site-packages/torch/utils/cpp_extension.py:2425] TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[rank5]:W1021 17:24:42.584000 3062427 site-packages/torch/utils/cpp_extension.py:2425] If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'] to specific architectures.
+[rank3]:W1021 17:24:42.628000 3062425 site-packages/torch/utils/cpp_extension.py:2425] TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[rank3]:W1021 17:24:42.628000 3062425 site-packages/torch/utils/cpp_extension.py:2425] If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'] to specific architectures.
+[rank0]:W1021 17:24:42.687000 3062422 site-packages/torch/utils/cpp_extension.py:2425] TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[rank0]:W1021 17:24:42.687000 3062422 site-packages/torch/utils/cpp_extension.py:2425] If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'] to specific architectures.
+[rank1]:W1021 17:24:42.723000 3062423 site-packages/torch/utils/cpp_extension.py:2425] TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[rank1]:W1021 17:24:42.723000 3062423 site-packages/torch/utils/cpp_extension.py:2425] If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'] to specific architectures.
+Parameter Offload - Persistent parameters statistics: param_count = 428, numel = 1098371
+wandb: WARNING The `run_name` is currently set to the same value as `TrainingArguments.output_dir`. If this was not intended, please specify a different run name by setting the `TrainingArguments.run_name` parameter.
+wandb: Currently logged in as: xjy110156 (xjy110156-) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: creating run
+wandb: Tracking run with wandb version 0.22.0
+wandb: Run data is saved locally in /data1/oujingfeng/project/twgi/Orthus/train/wandb/run-20251021_172502-2prcjwqy
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-think-base-sample1b100ep500l1e-6-weight-f
+wandb: ⭐️ View project at https://wandb.ai/xjy110156-/huggingface
+wandb: 🚀 View run at https://wandb.ai/xjy110156-/huggingface/runs/2prcjwqy
+wandb: WARNING Serializing object of type dict that is 1922480 bytes
+  0%|          | 0/500 [00:00<?, ?it/s]2025-10-21 17:25:05,378 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+2025-10-21 17:25:05,378 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+2025-10-21 17:25:05,378 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+2025-10-21 17:25:05,378 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+2025-10-21 17:25:05,378 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+2025-10-21 17:25:05,378 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+2025-10-21 17:25:05,378 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+2025-10-21 17:25:05,378 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+distortion_weights is Not Useddistortion_weights is Not Used
+Inserted analysis is False
+
+Inserted analysis is False
+distortion_weights is Not Used
+distortion_weights is Not UsedInserted analysis is False
+
+Inserted analysis is False
+distortion_weights is Not Useddistortion_weights is Not Useddistortion_weights is Not Used
+Inserted analysis is False
+
+Inserted analysis is False
+distortion_weights is Not Used
+
+Inserted analysis is False
+Inserted analysis is False
+  0%|          | 1/500 [00:23<3:16:47, 23.66s/it]  0%|          | 2/500 [00:42<2:51:27, 20.66s/it]  1%|          | 3/500 [01:01<2:44:23, 19.85s/it]  1%|          | 4/500 [01:19<2:38:56, 19.23s/it]  1%|          | 5/500 [01:37<2:35:31, 18.85s/it]                                                 {'loss': 17.0555, 'grad_norm': 92.53929901123047, 'learning_rate': 3.333333333333333e-07, 'epoch': 5.0}
+  1%|          | 5/500 [01:37<2:35:31, 18.85s/it]  1%|          | 6/500 [01:55<2:32:36, 18.54s/it]  1%|▏         | 7/500 [02:13<2:30:20, 18.30s/it]  2%|▏         | 8/500 [02:31<2:29:31, 18.24s/it]  2%|▏         | 9/500 [02:49<2:28:52, 18.19s/it]  2%|▏         | 10/500 [03:07<2:27:44, 18.09s/it]                                                  {'loss': 16.9234, 'grad_norm': 85.98112487792969, 'learning_rate': 6.666666666666666e-07, 'epoch': 10.0}
+  2%|▏         | 10/500 [03:07<2:27:44, 18.09s/it]  2%|▏         | 11/500 [03:25<2:27:25, 18.09s/it]  2%|▏         | 12/500 [03:43<2:27:18, 18.11s/it]  3%|▎         | 13/500 [04:01<2:26:18, 18.02s/it]  3%|▎         | 14/500 [04:19<2:25:56, 18.02s/it]  3%|▎         | 15/500 [04:37<2:26:13, 18.09s/it]                                                  {'loss': 15.9925, 'grad_norm': 75.47706604003906, 'learning_rate': 1e-06, 'epoch': 15.0}
+  3%|▎         | 15/500 [04:37<2:26:13, 18.09s/it]  3%|▎         | 16/500 [04:55<2:25:17, 18.01s/it]  3%|▎         | 17/500 [05:13<2:24:45, 17.98s/it]  4%|▎         | 18/500 [05:31<2:24:48, 18.03s/it]  4%|▍         | 19/500 [05:49<2:23:55, 17.95s/it]  4%|▍         | 20/500 [06:07<2:23:30, 17.94s/it]                                                  {'loss': 13.7318, 'grad_norm': 74.84786987304688, 'learning_rate': 9.997377845227574e-07, 'epoch': 20.0}
+  4%|▍         | 20/500 [06:07<2:23:30, 17.94s/it]  4%|▍         | 21/500 [06:25<2:23:34, 17.98s/it]  4%|▍         | 22/500 [06:43<2:23:24, 18.00s/it]  5%|▍         | 23/500 [07:01<2:24:17, 18.15s/it]  5%|▍         | 24/500 [07:20<2:24:20, 18.19s/it]  5%|▌         | 25/500 [07:38<2:23:10, 18.09s/it]                                                  {'loss': 11.0988, 'grad_norm': 106.57611846923828, 'learning_rate': 9.989514131188558e-07, 'epoch': 25.0}
+  5%|▌         | 25/500 [07:38<2:23:10, 18.09s/it]  5%|▌         | 26/500 [07:55<2:22:36, 18.05s/it]  5%|▌         | 27/500 [08:14<2:22:18, 18.05s/it]  6%|▌         | 28/500 [08:32<2:21:57, 18.05s/it]  6%|▌         | 29/500 [08:50<2:21:53, 18.07s/it]  6%|▌         | 30/500 [09:08<2:21:33, 18.07s/it]                                                  {'loss': 6.6007, 'grad_norm': 80.76102447509766, 'learning_rate': 9.97641710583307e-07, 'epoch': 30.0}
+  6%|▌         | 30/500 [09:08<2:21:33, 18.07s/it]  6%|▌         | 31/500 [09:26<2:21:22, 18.09s/it]  6%|▋         | 32/500 [09:44<2:21:01, 18.08s/it]  7%|▋         | 33/500 [10:02<2:21:01, 18.12s/it]  7%|▋         | 34/500 [10:20<2:20:51, 18.14s/it]  7%|▋         | 35/500 [10:38<2:20:17, 18.10s/it]                                                  {'loss': 3.2676, 'grad_norm': 45.3018684387207, 'learning_rate': 9.958100506132126e-07, 'epoch': 35.0}
+  7%|▋         | 35/500 [10:38<2:20:17, 18.10s/it]  7%|▋         | 36/500 [10:56<2:19:38, 18.06s/it]  7%|▋         | 37/500 [11:14<2:19:20, 18.06s/it]  8%|▊         | 38/500 [11:32<2:18:47, 18.03s/it]  8%|▊         | 39/500 [11:50<2:18:23, 18.01s/it]  8%|▊         | 40/500 [12:08<2:18:17, 18.04s/it]                                                  {'loss': 1.0544, 'grad_norm': 14.153524398803711, 'learning_rate': 9.934583543669453e-07, 'epoch': 40.0}
+  8%|▊         | 40/500 [12:08<2:18:17, 18.04s/it]  8%|▊         | 41/500 [12:26<2:17:40, 18.00s/it]  8%|▊         | 42/500 [12:44<2:17:20, 17.99s/it]  9%|▊         | 43/500 [13:02<2:17:08, 18.01s/it]  9%|▉         | 44/500 [13:21<2:18:21, 18.20s/it]  9%|▉         | 45/500 [13:39<2:17:31, 18.14s/it]                                                  {'loss': 0.3483, 'grad_norm': 1.12357497215271, 'learning_rate': 9.905890884491194e-07, 'epoch': 45.0}
+  9%|▉         | 45/500 [13:39<2:17:31, 18.14s/it]  9%|▉         | 46/500 [13:57<2:17:29, 18.17s/it]  9%|▉         | 47/500 [14:15<2:16:31, 18.08s/it] 10%|▉         | 48/500 [14:33<2:16:10, 18.08s/it] 10%|▉         | 49/500 [14:51<2:16:03, 18.10s/it]
+======================================== [DEBUGGING AT GLOBAL STEP: 49] (TRAIN) ========================================
+
+--- [1. Ground Truth Labels] ---
+  - Sample 0 Label: [92m <think>Let's establish a 3D coordinate system where the X-axis is left-right, Y-axis is front-back, and Z-axis is up-down.
+**Initial State**: The object's coordinates are given as `[(-2,0,0), (-1,0,0), (0,0,0), (0,1,0), (0,0,1)]`.Visually, this is a 3-cube arm on the negative X-axis, with one cube extending forward (+Y) and one stacked on top (+Z) at the origin.
+**Step 1: Rotate along the X-axis by 180 degrees.**After the first rotation, the object's new state is described by the coordinates `[(-2,0,0), (-1,0,0), (0,0,0), (0,-1,0), (0,0,-1)]`.To guide image generation, create an object with a 3-cube arm on the negative X-axis, with one cube extending backward (-Y) and one pointing downward (-Z) from the origin.**Step 2: Rotate the current object along the Y-axis by 180 degrees.**After the second rotation, the object reaches its final state, which corresponds to option A.To guide the image generation for the final state, **create the object shown in option A with the following structure**: a 3-cube arm lies horizontally on the X-axis. From one end of this arm, another cube is stacked on top. From that top cube, a final cube extends backward.**Comparison and Final Answer**: The final described shape is a horizontal T-like structure with a stacked component, which we are to identify.* A: Correct. This option perfectly matches the final described structure and is the target result.* B: Incorrect. This option's main arm is on the Y-axis (front-back), not the X-axis.* C: Incorrect. This is a simple stack, lacking the horizontal arm. * D: Incorrect. Although this shape is also horizontal, its branching structure (from a single cube) is different from the sequential branching in option A. Therefore, the final answer is A.</think><answer>A</answer>[0m
+  - Sample 1 Label: [92m <think>Let's establish a 3D coordinate system where the X-axis is left-right, Y-axis is front-back, and Z-axis is up-down.
+**Initial State**: The object's coordinates are given as `[(-2,0,0), (-1,0,0), (0,0,0), (0,1,0), (0,0,1)]`.Visually, this is a 3-cube arm on the negative X-axis, with one cube extending forward (+Y) and one stacked on top (+Z) at the origin.
+**Step 1: Rotate along the X-axis by 180 degrees.**After the first rotation, the object's new state is described by the coordinates `[(-2,0,0), (-1,0,0), (0,0,0), (0,-1,0), (0,0,-1)]`.To guide image generation, create an object with a 3-cube arm on the negative X-axis, with one cube extending backward (-Y) and one pointing downward (-Z) from the origin.**Step 2: Rotate the current object along the Y-axis by 180 degrees.**After the second rotation, the object reaches its final state, which corresponds to option A.To guide the image generation for the final state, **create the object shown in option A with the following structure**: a 3-cube arm lies horizontally on the X-axis. From one end of this arm, another cube is stacked on top. From that top cube, a final cube extends backward.**Comparison and Final Answer**: The final described shape is a horizontal T-like structure with a stacked component, which we are to identify.* A: Correct. This option perfectly matches the final described structure and is the target result.* B: Incorrect. This option's main arm is on the Y-axis (front-back), not the X-axis.* C: Incorrect. This is a simple stack, lacking the horizontal arm. * D: Incorrect. Although this shape is also horizontal, its branching structure (from a single cube) is different from the sequential branching in option A. Therefore, the final answer is A.</think><answer>A</answer>[0m
+  - Sample 2 Label: [92m <think>Let's establish a 3D coordinate system where the X-axis is left-right, Y-axis is front-back, and Z-axis is up-down.
+**Initial State**: The object's coordinates are given as `[(-2,0,0), (-1,0,0), (0,0,0), (0,1,0), (0,0,1)]`.Visually, this is a 3-cube arm on the negative X-axis, with one cube extending forward (+Y) and one stacked on top (+Z) at the origin.
+**Step 1: Rotate along the X-axis by 180 degrees.**After the first rotation, the object's new state is described by the coordinates `[(-2,0,0), (-1,0,0), (0,0,0), (0,-1,0), (0,0,-1)]`.To guide image generation, create an object with a 3-cube arm on the negative X-axis, with one cube extending backward (-Y) and one pointing downward (-Z) from the origin.**Step 2: Rotate the current object along the Y-axis by 180 degrees.**After the second rotation, the object reaches its final state, which corresponds to option A.To guide the image generation for the final state, **create the object shown in option A with the following structure**: a 3-cube arm lies horizontally on the X-axis. From one end of this arm, another cube is stacked on top. From that top cube, a final cube extends backward.**Comparison and Final Answer**: The final described shape is a horizontal T-like structure with a stacked component, which we are to identify.* A: Correct. This option perfectly matches the final described structure and is the target result.* B: Incorrect. This option's main arm is on the Y-axis (front-back), not the X-axis.* C: Incorrect. This is a simple stack, lacking the horizontal arm. * D: Incorrect. Although this shape is also horizontal, its branching structure (from a single cube) is different from the sequential branching in option A. Therefore, the final answer is A.</think><answer>A</answer>[0m
+  - Sample 3 Label: [92m <think>Let's establish a 3D coordinate system where the X-axis is left-right, Y-axis is front-back, and Z-axis is up-down.
+**Initial State**: The object's coordinates are given as `[(-2,0,0), (-1,0,0), (0,0,0), (0,1,0), (0,0,1)]`.Visually, this is a 3-cube arm on the negative X-axis, with one cube extending forward (+Y) and one stacked on top (+Z) at the origin.
+**Step 1: Rotate along the X-axis by 180 degrees.**After the first rotation, the object's new state is described by the coordinates `[(-2,0,0), (-1,0,0), (0,0,0), (0,-1,0), (0,0,-1)]`.To guide image generation, create an object with a 3-cube arm on the negative X-axis, with one cube extending backward (-Y) and one pointing downward (-Z) from the origin.**Step 2: Rotate the current object along the Y-axis by 180 degrees.**After the second rotation, the object reaches its final state, which corresponds to option A.To guide the image generation for the final state, **create the object shown in option A with the following structure**: a 3-cube arm lies horizontally on the X-axis. From one end of this arm, another cube is stacked on top. From that top cube, a final cube extends backward.**Comparison and Final Answer**: The final described shape is a horizontal T-like structure with a stacked component, which we are to identify.* A: Correct. This option perfectly matches the final described structure and is the target result.* B: Incorrect. This option's main arm is on the Y-axis (front-back), not the X-axis.* C: Incorrect. This is a simple stack, lacking the horizontal arm. * D: Incorrect. Although this shape is also horizontal, its branching structure (from a single cube) is different from the sequential branching in option A. Therefore, the final answer is A.</think><answer>A</answer>[0m
+
+--- [2. Model Prediction from Logits] ---
+[DEBUG] text_loss: 0.0017 | diff_loss: 0.0024 | total_loss: 0.2414
+  - Sample 0 Pred: [93m <think>Let's establish a 3D coordinate system where the X-axis is left-right, Y-axis is front-back, and Z-axis is up-down.
+**Initial State**: The object's coordinates are given as `[(-2,0,0), (-1,0,0), (0,0,0), (0,1,0), (0,0,1)]`.Visually, this is a 3-cube arm on the negative X-axis, with one cube extending forward (+Y) and one stacked on top (+Z) at the origin.
+**Step 1: Rotate along the X-axis by 180 degrees.**After the first rotation, the object's new state is described by the coordinates `[(-2,0,0), (-1,0,0), (0,0,0), (0,-1,0), (0,0,-1)]`.To guide image generation, create an object with a 3-cube arm on the negative X-axis, with one cube extending backward (-Y) and one pointing downward (-Z) from the origin.**Step 2: Rotate the current object along the Y-axis by 180 degrees.**After the second rotation, the object reaches its final state, which corresponds to option A.To guide the image generation for the final state, **create the object shown in option A with the following structure**: a 3-cube arm lies horizontally on the X-axis. From one end of this arm, another cube is stacked on top. From that top cube, a final cube extends backward.**Comparison and Final Answer**: The final described shape is a horizontal T-like structure with a stacked component, which we are to identify.* A: Correct. This option perfectly matches the final described structure and is the target result.* B: Incorrect. This option's main arm is on the Y-axis (front-back), not the X-axis.* C: Incorrect. This is a simple stack, lacking the horizontal arm. * D: Incorrect. Although this shape is also horizontal, its branching structure (from a single cube) is different from the sequential branching in option A. Therefore, the final answer is A.</think><answer>A</answer>[0m
+  - Sample 1 Pred: [93m <think>Let's establish a 3D coordinate system where the X-axis is left-right, Y-axis is front-back, and Z-axis is up-down.
+**Initial State**: The object's coordinates are given as `[(-2,0,0), (-1,0,0), (0,0,0), (0,1,0), (0,0,1)]`.Visually, this is a 3-cube arm on the negative X-axis, with one cube extending forward (+Y) and one stacked on top (+Z) at the origin.
+**Step 1: Rotate along the X-axis by 180 degrees.**After the first rotation, the object's new state is described by the coordinates `[(-2,0,0), (-1,0,0), (0,0,0), (0,-1,0), (0,0,-1)]`.To guide image generation, create an object with a 3-cube arm on the negative X-axis, with one cube extending backward (-Y) and one pointing downward (-Z) from the origin.**Step 2: Rotate the current object along the Y-axis by 180 degrees.**After the second rotation, the object reaches its final state, which corresponds to option A.To guide the image generation for the final state, **create the object shown in option A with the following structure**: a 3-cube arm lies horizontally on the X-axis. From one end of this arm, another cube is stacked on top. From that top cube, a final cube extends backward.**Comparison and Final Answer**: The final described shape is a horizontal T-like structure with a stacked component, which we are to identify.* A: Correct. This option perfectly matches the final described structure and is the target result.* B: Incorrect. This option's main arm is on the Y-axis (front-back), not the X-axis.* C: Incorrect. This is a simple stack, lacking the horizontal arm. * D: Incorrect. Although this shape is also horizontal, its branching structure (from a single cube) is different from the sequential branching in option A. Therefore, the final answer is A.</think><answer>A</answer>[0m
+  - Sample 2 Pred: [93m <think>Let's establish a 3D coordinate system where the X-axis is left-right, Y-axis is front-back, and Z-axis is up-down.
+**Initial State**: The object's coordinates are given as `[(-2,0,0), (-1,0,0), (0,0,0), (0,1,0), (0,0,1)]`.Visually, this is a 3-cube arm on the negative X-axis, with one cube extending forward (+Y) and one stacked on top (+Z) at the origin.
+**Step 1: Rotate along the X-axis by 180 degrees.**After the first rotation, the object's new state is described by the coordinates `[(-2,0,0), (-1,0,0), (0,0,0), (0,-1,0), (0,0,-1)]`.To guide image generation, create an object with a 3-cube arm on the negative X-axis, with one cube extending backward (-Y) and one pointing downward (-Z) from the origin.**Step 2: Rotate the current object along the Y-axis by 180 degrees.**After the second rotation, the object reaches its final state, which corresponds to option A.To guide the image generation for the final state, **create the object shown in option A with the following structure**: a 3-cube arm lies horizontally on the X-axis. From one end of this arm, another cube is stacked on top. From that top cube, a final cube extends backward.**Comparison and Final Answer**: The final described shape is a horizontal T-like structure with a stacked component, which we are to identify.* A: Correct. This option perfectly matches the final described structure and is the target result.* B: Incorrect. This option's main arm is on the Y-axis (front-back), not the X-axis.* C: Incorrect. This is a simple stack, lacking the horizontal arm. * D: Incorrect. Although this shape is also horizontal, its branching structure (from a single cube) is different from the sequential branching in option A. Therefore, the final answer is A.</think><answer>A</answer>[0m
+  - Sample 3 Pred: [93m <think>Let's establish a 3D coordinate system where the X-axis is left-right, Y-axis is front-back, and Z-axis is up-down.
+**Initial State**: The object's coordinates are given as `[(-2,0,0), (-1,0,0), (0,0,0), (0,1,0), (0,0,1)]`.Visually, this is a 3-cube arm on the negative X-axis, with one cube extending forward (+Y) and one stacked on top (+Z) at the origin.
+**Step 1: Rotate along the X-axis by 180 degrees.**After the first rotation, the object's new state is described by the coordinates `[(-2,0,0), (-1,0,0), (0,0,0), (0,-1,0), (0,0,-1)]`.To guide image generation, create an object with a 3-cube arm on the negative X-axis, with one cube extending backward (-Y) and one pointing downward (-Z) from the origin.**Step 2: Rotate the current object along the Y-axis by 180 degrees.**After the second rotation, the object reaches its final state, which corresponds to option A.To guide the image generation for the final state, **create the object shown in option A with the following structure**: a 3-cube arm lies horizontally on the X-axis. From one end of this arm, another cube is stacked on top. From that top cube, a final cube extends backward.**Comparison and Final Answer**: The final described shape is a horizontal T-like structure with a stacked component, which we are to identify.* A: Correct. This option perfectly matches the final described structure and is the target result.* B: Incorrect. This option's main arm is on the Y-axis (front-back), not the X-axis.* C: Incorrect. This is a simple stack, lacking the horizontal arm. * D: Incorrect. Although this shape is also horizontal, its branching structure (from a single cube) is different from the sequential branching in option A. Therefore, the final answer is A.</think><answer>A</answer>[0m
+===========================================================================================================
+
+ 10%|█         | 50/500 [15:09<2:15:40, 18.09s/it]                                                  {'loss': 0.2632, 'grad_norm': 0.9655005931854248, 'learning_rate': 9.872052623234631e-07, 'epoch': 50.0}
+ 10%|█         | 50/500 [15:09<2:15:40, 18.09s/it] 10%|█         | 51/500 [15:28<2:15:36, 18.12s/it] 10%|█         | 52/500 [15:46<2:15:11, 18.11s/it] 11%|█         | 53/500 [16:04<2:15:03, 18.13s/it] 11%|█         | 54/500 [16:22<2:14:41, 18.12s/it] 11%|█         | 55/500 [16:40<2:14:18, 18.11s/it]                                                  {'loss': 0.2461, 'grad_norm': 0.4980100393295288, 'learning_rate': 9.833104251563055e-07, 'epoch': 55.0}
+ 11%|█         | 55/500 [16:40<2:14:18, 18.11s/it] 11%|█         | 56/500 [16:58<2:14:25, 18.17s/it] 11%|█▏        | 57/500 [17:16<2:14:01, 18.15s/it] 12%|█▏        | 58/500 [17:34<2:13:30, 18.12s/it] 12%|█▏        | 59/500 [17:53<2:13:21, 18.14s/it] 12%|█▏        | 60/500 [18:11<2:12:47, 18.11s/it]                                                  {'loss': 0.2519, 'grad_norm': 0.44740697741508484, 'learning_rate': 9.789086620939935e-07, 'epoch': 60.0}
+ 12%|█▏        | 60/500 [18:11<2:12:47, 18.11s/it] 12%|█▏        | 61/500 [18:29<2:12:04, 18.05s/it] 12%|█▏        | 62/500 [18:47<2:11:48, 18.05s/it] 13%|█▎        | 63/500 [19:05<2:11:13, 18.02s/it] 13%|█▎        | 64/500 [19:23<2:10:59, 18.03s/it] 13%|█▎        | 65/500 [19:41<2:10:54, 18.06s/it]                                                  {'loss': 0.2401, 'grad_norm': 0.8665934801101685, 'learning_rate': 9.740045899781352e-07, 'epoch': 65.0}
+ 13%|█▎        | 65/500 [19:41<2:10:54, 18.06s/it] 13%|█▎        | 66/500 [19:59<2:10:20, 18.02s/it] 13%|█▎        | 67/500 [20:17<2:10:13, 18.05s/it] 14%|█▎        | 68/500 [20:35<2:10:00, 18.06s/it] 14%|█▍        | 69/500 [20:53<2:09:30, 18.03s/it]

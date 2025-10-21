@@ -1,0 +1,3 @@
+sample0004
+A thought bubble is seen here: 
+[<think>First, rotate this cube stack along the X axis by 90 degrees. Let's generate an image to visualize the state of the object after rotation:Masquerade

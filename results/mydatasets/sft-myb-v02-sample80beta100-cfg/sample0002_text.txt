@@ -1,0 +1,2 @@
+sample0002
+<think>First, rotate this cube stack counterclockwise along the Y axis by 90 degrees. Let's generate an image to visualize the state of the object after rotation:Image blurred background with young person in focus.

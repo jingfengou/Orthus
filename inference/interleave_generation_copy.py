@@ -22,6 +22,7 @@ import json
 from PIL import Image
 
 ckpt_path = "SJTU-Deng-Lab/Orthus-7B-base"
+
 processor = OrthusProcessor.from_pretrained(ckpt_path)
 model = OrthusForConditionalGeneration.from_pretrained(
     ckpt_path,

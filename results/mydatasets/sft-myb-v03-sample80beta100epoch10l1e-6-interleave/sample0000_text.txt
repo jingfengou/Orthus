@@ -1,0 +1,5 @@
+sample0000
+This is the process:
+
+```
+<think>First, rotate this cube stack clockwise along the X axis by 270 degrees. Let's generate an image to visualize the state of the object after rotation:white background, a bird flying right above the plane.

@@ -21,7 +21,7 @@ import torch.nn.functional as F
 import json
 from PIL import Image
 
-ckpt_path = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-think-v010"
+ckpt_path = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-think-v01ep20"
 processor = OrthusProcessor.from_pretrained(ckpt_path)
 
 model = OrthusForConditionalGeneration.from_pretrained(
@@ -31,10 +31,10 @@ model = OrthusForConditionalGeneration.from_pretrained(
     attn_implementation='flash_attention_2',
 )
 
-exp_dir = os.path.join(root_path, "results/mydatasets/sftv010base1")
+exp_dir = os.path.join(root_path, "results/mydatasets/sftv01ep20")
 os.makedirs(exp_dir, exist_ok=True)
 
-set_seed(50)
+set_seed(42)
 
 instruction = (
 "You should first provide a reasoning process, then provide a single option(A, B, C or D) as the final answer. "

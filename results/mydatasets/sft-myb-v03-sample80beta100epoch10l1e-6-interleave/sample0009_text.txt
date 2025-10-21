@@ -1,0 +1,14 @@
+sample0009
+Here's a detailed description of the rotation steps:
+
+1. Let's generate an image to visualize the state of the object after rotation:
+
+```const image = rotation.rotateRightStackClockwiseZ(90DegreesLeft;
+```
+
+After performing these rotations, the object's position should be as follows:
+
+```const finalImage = rotation.rotateLeftStackClockwiseZ90DegreesRight;
+```
+
+This image will help you visualize the current state of the object after performing all rotation steps correctly. Please note that these steps are hypothetical and only visualization purposes. In reality, you can always perform rotations step-by-step using rotation functions like ` rotateMatrix ` to transform 3D objects.

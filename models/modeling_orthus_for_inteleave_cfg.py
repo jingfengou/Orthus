@@ -2259,6 +2259,15 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
         return_dict: Optional[bool] = None,
         cache_position: Optional[torch.LongTensor] = None,
         model_inputs_uncon: Optional[Dict[str, torch.Tensor]] = None,
+        distortion_info:Optional[list] = None,
+        current_epoch: Optional[float] = None,  # <--- 在這裡接收
+        # 【↓↓↓ 1. 在这里添加新的参数来接收数据 ↓↓↓】
+        distortion_indices: Optional[torch.Tensor] = None,
+        distortion_weights: Optional[torch.Tensor] = None,
+        distortion_lens: Optional[torch.Tensor] = None,
+        num_target_images: Optional[torch.Tensor] = None,
+        return_analysis: Optional[bool] = None,
+        # 【↑↑↑ 1. 新参数结束 ↑↑↑】
     ) -> Union[Tuple, CausalLMOutputWithPast]:
         r"""
         Args:
@@ -2437,10 +2446,10 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
             
             latents = target_image_latents.reshape(flat_bsz, -1).repeat(self.diffusion_batch_mul, 1)
             z = z.reshape(flat_bsz, -1).repeat(self.diffusion_batch_mul, 1)
-            if self.training:
-                # 以10%的概率丢弃条件
-                mask = torch.rand(z.shape[0], 1, device=z.device) > 0.2
-                z = z * mask.to(z.dtype)
+            # if self.training:
+            #     # 以10%的概率丢弃条件
+            #     mask = torch.rand(z.shape[0], 1, device=z.device) > 0.2
+            #     z = z * mask.to(z.dtype)
             # 现在 z.shape[0] 的大小是 flat_bsz * diffusion_batch_mul，timesteps的维度就正确了
             # print('z3', z.shape)
             # normalization
@@ -2467,32 +2476,104 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
             #     model_pred = checkpoint(self.mlp_head, noisy_latents, timesteps, z, use_reentrant=False)
             # else:
                 # model_pred = self.mlp_head(noisy_latents, timesteps, z)
-            model_pred = self.mlp_head(noisy_latents, timesteps, z)
+            # print('z', z.shape)
 
-            diff_loss = F.mse_loss(model_pred.float(), target.float(), reduction="mean")
+            model_pred = self.mlp_head(noisy_latents, timesteps, z)
+            # print('model_pred', model_pred.shape)
+
+            # 【核心修改】: 根據動態權重計算加權的 diff_loss
+            # ==========================================================
+            # 1. 計算每個 patch 的 loss，形狀為 [N]
+            per_patch_loss = F.mse_loss(model_pred.float(), target.float(), reduction="none").mean(dim=1)
+            
+            # 【↓↓↓ 2. 用下面的新逻辑替换掉你原来的加权 loss 计算部分 ↓↓↓】
+
+            # 2. 判斷是否需要加權
+            # 使用传入的参数或模型属性来决定是否使用失真权重
+            use_distortion_weight = getattr(self, 'distortion_weight', False)
+            if use_distortion_weight == True:
+                # 獲取維度資訊
+                # bsz 是从 distortion_indices 的形状推断出来的
+                if current_epoch == 0:
+                    print("distortion_weights is Used")
+                bsz, num_images_padded, seq_len, _ = target_image_latents.shape
+                
+                # 初始化一个与 target_image_latents 形状匹配的权重张量（除了最后一个维度）
+                base_weights = torch.ones(bsz, num_images_padded, seq_len, device=per_patch_loss.device, dtype=per_patch_loss.dtype)
+                
+                # 遍歷批次中的每个样本
+                for i in range(bsz):
+                    # 只遍历该样本实际包含的图片数量
+                    actual_num_images = num_target_images[i].item()
+                    for j in range(actual_num_images):
+                        # 获取这张图片的权重和有效索引长度
+                        dynamic_weight = distortion_weights[i, j]
+                        original_len = distortion_lens[i, j].item()
+                        
+                        if original_len > 0:
+                            # 获取有效索引
+                            indices = distortion_indices[i, j, :original_len]
+                            
+                            # 在 base_weights 的正确位置填入动态权重
+                            # base_weights[i, j] 是一个长度为 1024 的一维张量
+
+                            base_weights[i, j, indices] = dynamic_weight.to(base_weights.dtype)
+
+                # 将 base_weights 展平以匹配 per_patch_loss 的形状
+                # (bsz, num_images_padded, seq_len) -> (bsz * num_images_padded * seq_len)
+                base_weights = base_weights.view(-1)
+                # torch.set_printoptions(profile="full")
+                # print("base_weights:", base_weights, base_weights.shape)
+                # 根据 diffusion_batch_mul 擴展權重張量
+                final_weights = base_weights.repeat(self.diffusion_batch_mul)
+
+                # 3. 計算加權平均 loss
+                diff_loss = (per_patch_loss * final_weights).mean()
+
+            else:
+                # 如果没有权重信息传入，则执行原始的平均 loss
+                diff_loss = per_patch_loss.mean()
+                if current_epoch == 0:
+                    print("distortion_weights is Not Used")
+            # 【↑↑↑ 2. 新逻辑结束 ↑↑↑】
+            
+            # # 4. 計算加權平均 loss
+            # diff_loss = (per_patch_loss * weights).mean()
+            # ==========================================================
+
+
+
+            # diff_loss = F.mse_loss(model_pred.float(), target.float(), reduction="mean")
 
 
             # ==================== 新增代码：计算预测的干净特征 ====================
             # 这是从v-prediction恢复x0（干净图像）的公式
-            alphas_cumprod = self.train_scheduler.alphas_cumprod.to(latents.device)
-            sqrt_alpha_prod = alphas_cumprod[timesteps].sqrt()
-            sqrt_one_minus_alpha_prod = (1 - alphas_cumprod[timesteps]).sqrt()
-            
-            # 调整形状以进行广播
-            sqrt_alpha_prod = sqrt_alpha_prod.view(-1, 1)
-            sqrt_one_minus_alpha_prod = sqrt_one_minus_alpha_prod.view(-1, 1)
-            
-            predicted_clean_latents = (noisy_latents * sqrt_alpha_prod - model_pred * sqrt_one_minus_alpha_prod)
-            
-            # 将预测出的特征和真实特征都反归一化，以便解码
-            predicted_clean_latents = predicted_clean_latents / 0.1
-            latents_unnormalized = latents / 0.1
-            # ======================== 新增代码结束 ========================
-
-            # 【重要修改】返回额外的值用于可视化
-            return logits, diff_loss, predicted_clean_latents, latents_unnormalized
+            # 使用传入的参数或模型属性来决定是否返回分析
+            use_return_analysis = getattr(self, 'return_analysis', False)
+            if use_return_analysis == True:
 
 
+                alphas_cumprod = self.train_scheduler.alphas_cumprod.to(latents.device)
+                sqrt_alpha_prod = alphas_cumprod[timesteps].sqrt()
+                sqrt_one_minus_alpha_prod = (1 - alphas_cumprod[timesteps]).sqrt()
+                
+                # 调整形状以进行广播
+                sqrt_alpha_prod = sqrt_alpha_prod.view(-1, 1)
+                sqrt_one_minus_alpha_prod = sqrt_one_minus_alpha_prod.view(-1, 1)
+                
+                predicted_clean_latents = (noisy_latents * sqrt_alpha_prod - model_pred * sqrt_one_minus_alpha_prod)
+                
+                # 将预测出的特征和真实特征都反归一化，以便解码
+                predicted_clean_latents = predicted_clean_latents / 0.1
+                latents_unnormalized = latents / 0.1
+                # ======================== 新增代码结束 ========================
+
+                # 【重要修改】返回额外的值用于可视化
+                return logits, diff_loss, predicted_clean_latents, latents_unnormalized
+            else:
+                if current_epoch == 0:
+                    print("Inserted analysis is False")
+                return logits, diff_loss
 
         elif mode == 'discrete': # discrete output
             

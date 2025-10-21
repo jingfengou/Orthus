@@ -2,12 +2,27 @@ import torch
 import os
 import sys
 import argparse
+import random
+import numpy as np
 import logging
 from transformers import Trainer, TrainingArguments, EarlyStoppingCallback
 from datasets import load_dataset
 from typing import Dict, Any
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from transformers import BitsAndBytesConfig # 用于QLoRA
+
+def str2bool(v):
+    """
+    将字符串转换为布尔值，正确处理 'True' 和 'False' 字符串
+    """
+    if isinstance(v, bool):
+        return v
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
 # --- 引用项目中的核心类 ---
 # 确保此脚本与 sft_orthus.py 在同一个文件夹下，或项目根目录已添加到 PYTHONPATH
 try:
@@ -32,7 +47,10 @@ except ImportError:
 # 设置日志记录
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
+# import numpy.core.multiarray
 
+# # 将 NumPy 的 reconstruct 函数添加到 PyTorch 的安全全局列表中
+# torch.serialization.add_safe_globals([numpy.core.multiarray._reconstruct])
 def main():
     """
     主训练函数，负责解析参数、加载数据和模型、启动训练流程。
@@ -76,10 +94,29 @@ def main():
     # parser.add_argument("--enable_generation_log", action='store_true', help="Enable logging of generation outputs during training for debugging.")
     # 新增：早停参数
     parser.add_argument("--early_stopping_patience", type=int, default=None, help="Enable early stopping with a given patience. E.g., 5.")
-
     
+    # --- 随机种子参数 ---
+    parser.add_argument("--seed", type=int, default=42, help="Random seed for training reproducibility.")
+
+
+    parser.add_argument("--distortion_weight", type=str2bool, default=False, help="Use distortion weight or not.")
+    
+    parser.add_argument("--return_analysis", type=str2bool, default=False, help="return image latent for analysis.")
+
     args = parser.parse_args()
 
+
+
+    # set random seed
+    def set_seed(seed: int):
+        random.seed(seed)
+        np.random.seed(seed)
+        torch.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = False
+        logger.info(f"Setting random seed to {seed}")
+    set_seed(args.seed)
     # # --- 1. 加载模型和处理器 ---
     # logger.info("--- [Step 1/5] Loading processor and model... ---")
     # processor = OrthusProcessor.from_pretrained(args.ckpt_path)
@@ -129,11 +166,35 @@ def main():
         model.enable_input_require_grads() 
 
     logger.info("Model and processor loaded successfully.")
+    # # ==================== 在这里插入检查代码 ====================
+    # print("\n" + "="*50)
+    # print("             Model Trainable Status Check             ")
+    # print("="*50)
 
+    # total_params = 0
+    # trainable_params = 0
+
+    # for name, param in model.named_parameters():
+    #     total_params += param.numel()
+    #     if param.requires_grad:
+    #         trainable_params += param.numel()
+    #         # 为了避免刷屏，可以选择只打印可训练的参数
+    #         print(f"[Trainable]: {name} | Size: {param.numel()} | Grad: {param.requires_grad}")
+    #     else:
+    #         print(f"[Frozen]:    {name} | Size: {param.numel()} | Grad: {param.requires_grad}")
+
+    # print("\n" + "-"*50)
+    # print(f"Total Parameters:         {total_params / 1_000_000:.2f} M")
+    # print(f"Trainable Parameters:     {trainable_params / 1_000_000:.2f} M")
+    # print(f"Trainable Percentage:     {100 * trainable_params / total_params:.2f}%")
+    # print("="*50 + "\n")
+    # ==========================================================
     # --- 2. 加载并初始化完整数据集 ---
     logger.info("\n--- [Step 2/5] Initializing full datasets... ---")
     train_dataset_raw = load_dataset("json", data_files=args.train_file, split="train")
     eval_dataset_raw = load_dataset("json", data_files=args.eval_file, split="train")
+    # train_dataset_raw = train_dataset_raw.select(range(80))
+    # eval_dataset_raw = eval_dataset_raw.select(range(80,90))
     # --- 【新增代码】: 如果是调试模式，则截取一小部分数据 ---
     if args.debug_mode:
         # --- 主要修改这里 ---
@@ -149,15 +210,28 @@ def main():
         image_base_dir=args.image_folder,
         processor=processor,
         # vqmodel=model.model.model.vqmodel    # lora
-        vqmodel=model.model.vqmodel
+        vqmodel=model.model.vqmodel,
+        distortion_weight=args.distortion_weight,
+        return_analysis=args.return_analysis,
     )
     eval_dataset = InterleaveSFTDataset(
         dataset=eval_dataset_raw,
         image_base_dir=args.image_folder,
         processor=processor,
         # vqmodel=model.model.model.vqmodel    # lora
-        vqmodel=model.model.vqmodel
+        vqmodel=model.model.vqmodel,
+        distortion_weight=args.distortion_weight,
+        return_analysis=args.return_analysis,
     )
+    
+    # 将 distortion_weight 和 return_analysis 设置为模型的属性
+    print("--- Setting model attributes for distortion_weight and return_analysis ---")
+    # print(f"Setting model.distortion_weight to {args.distortion_weight}")
+    # print(f"Setting model.return_analysis to {args.return_analysis}")
+    model.distortion_weight = args.distortion_weight
+    model.return_analysis = args.return_analysis
+    # print(f"Model distortion_weight set to: {model.distortion_weight}")
+    # print(f"Model return_analysis set to: {model.return_analysis}")
     logger.info("Custom SFT datasets created.")
 
     # --- 3. 定义训练参数 ---

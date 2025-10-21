@@ -1,0 +1,2 @@
+sample0000
+<think>First, rotate this cube clockwise along the X axis by 270 degrees. Let's generate an image to visualize the state of the object after rotation: tomatoes with green stems still.

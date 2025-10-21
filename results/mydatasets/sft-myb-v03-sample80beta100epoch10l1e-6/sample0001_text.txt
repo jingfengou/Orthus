@@ -1,0 +1,4 @@
+sample0001
+Computing a cube counterclockwise along the Y axis by 90 degrees. Then, computing a cube stack along the Y axis by 180 degrees. Which option shows the correct final result?
+
+A) A

@@ -3934,6 +3934,13 @@ class GenerationMixin:
 
         cfg_flag=False
 
+
+        intervention_indices_list = model_kwargs.pop("intervention_indices", None) # -> [[...], [...]]
+        target_latents_list = model_kwargs.pop("target_latents_for_intervention", None) # -> [tensor, tensor]
+        # 【新增】: 狀態追蹤變數
+        current_image_index = -1 # 尚未開始生成任何圖像
+        is_new_image_generation = False # 標記是否剛進入一個新的圖像生成階段
+
         while self._has_unfinished_sequences(this_peer_finished, synced_gpus, device=input_ids.device, cur_len=cur_len, max_length=max_length):
             # prepare model inputs
             model_inputs = self.prepare_inputs_for_generation(input_ids, **model_kwargs)
@@ -3997,6 +4004,11 @@ class GenerationMixin:
                     mode = 'continuous'
                     #unconditon branch begin , init vaule for cfg_generation
                     cfg_flag=True
+
+                    # 【新增】: 檢測到 <boi>，準備進入下一個圖像的生成
+                    is_new_image_generation = True
+
+
                     input_id_uncon = copy.deepcopy(input_ids_list[1])
                     model_kwargs_uncon = copy.deepcopy(model_kwargs_list[1])
                     #补上boi 和interleave分支对齐
@@ -4006,8 +4018,46 @@ class GenerationMixin:
 
 
             elif mode == 'continuous':
+
+                # 【新增】: 如果是新圖像的開始，更新索引
+                if is_new_image_generation:
+                    current_image_index += 1
+                    print(f"\n--- Starting Generation for Image #{current_image_index} ---")
+                    is_new_image_generation = False # 重置標記
+
+ 
+
                 next_image_latents = outputs.next_image_latents
-                collect_image_latents.append(next_image_latents)
+                # collect_image_latents.append(next_image_latents)
+                # 【修改2】: 使用新的索引邏輯進行干預
+                # ==========================================================
+                # 計算在當前圖像內的 patch 索引 (0-1023)
+                patch_index_within_image = sum_image_latents_generated % 1024
+
+                # 預設為不干預
+                should_intervene = False
+                
+                # 檢查是否需要干預
+                if (intervention_indices_list is not None 
+                    and target_latents_list is not None
+                    and 0 <= current_image_index < len(intervention_indices_list)):
+                    
+                    current_intervention_indices = intervention_indices_list[current_image_index]
+                    if patch_index_within_image in current_intervention_indices:
+                        should_intervene = True
+
+                if should_intervene:
+                    print(f">>> [INTERVENTION img={current_image_index}] Injecting GT latent at patch #{patch_index_within_image}! <<<")
+                    # 從對應的 target latents 張量中取出正確的 patch
+                    current_target_latents = target_latents_list[current_image_index].view(1024, -1)
+                    correct_latent = current_target_latents[patch_index_within_image].unsqueeze(0)
+                    collect_image_latents.append(correct_latent)
+                else:
+                    collect_image_latents.append(next_image_latents)
+                # ==========================================================
+
+
+
                 sum_image_latents_generated +=1
                 # we use <image>(token_id: 8711) to represent image_token, bsz=2 for cfg_generation
                 next_tokens = torch.tensor([8711]).to(input_ids.device)

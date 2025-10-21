@@ -1,0 +1,8 @@
+sample0003
+Sure! Let's perform the rotations in order:
+
+1. Rotate along Z axis:
+🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵
+2. Rotate along Y axis clockwise:
+🔴🔵🔵🔵🔵🔵🔵🔵🔵🔵🔵
+Final answer: D) D

@@ -25,10 +25,10 @@
 # export CUDA_VISIBLE_DEVICES=4,5,6,7
 # 默认设置（用于多GPU正式训练）
 LAUNCH_CMD="accelerate launch --num_processes 8"
-BATCH_SIZE=1
+BATCH_SIZE=4
 # REPORT_TO="none"     # <--- 关闭 wandb
 REPORT_TO="wandb"
-EPOCHS=20
+EPOCHS=500
 GRADIENT_CHECKPOINTING_FLAG="--gradient_checkpointing"
 DEBUG_MODE_FLAG=""
 
@@ -48,11 +48,11 @@ fi
 
 # 使用变量执行命令，保持代码整洁
 $LAUNCH_CMD train_interleave_orthus.py \
-    --ckpt_path "SJTU-Deng-Lab/Orthus-7B-instruct" \
+    --ckpt_path "SJTU-Deng-Lab/Orthus-7B-base" \
     --train_file "/data1/oujingfeng/project/twgi/datasets/mydatasets/metadata.json" \
     --eval_file "/data1/oujingfeng/project/twgi/datasets/mydatasets/metadata.json" \
     --image_folder "/data1/oujingfeng/project/twgi/datasets/mydatasets" \
-    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-think-v01ep20" \
+    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-think-base-sample1b100ep500l1e-6-weight-f" \
     --num_train_epochs $EPOCHS \
     --per_device_train_batch_size $BATCH_SIZE \
     --per_device_eval_batch_size $BATCH_SIZE \
@@ -68,5 +68,7 @@ $LAUNCH_CMD train_interleave_orthus.py \
     $DEBUG_MODE_FLAG \
     --early_stopping_patience 5 \
     --alpha 1.0 \
-    --beta 1000.0
+    --beta 100.0 \
+    --distortion_weight False \
+    --return_analysis False \
     # --generation_log_file "/data1/oujingfeng/project/twgi/checkpoints/orthus-7b-sft-v4/generation_log.jsonl"

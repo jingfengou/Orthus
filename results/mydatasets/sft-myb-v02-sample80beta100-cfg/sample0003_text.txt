@@ -1,0 +1,2 @@
+sample0003
+<think>First, rotate this cube counterclockwise along the Z axis by 90 degrees. Let's generate an image to visualize the state of the object after rotation:Speaker onBirds flying along the beach.
