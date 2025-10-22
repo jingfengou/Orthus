@@ -1,0 +1,2 @@
+sample0001
+This is the 'Initial State'. To achieve this state, rotate the object along the X-axis by 10, Y-axis by 0, and Z-axis by -2.

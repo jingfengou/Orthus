@@ -28,7 +28,7 @@ LAUNCH_CMD="accelerate launch --num_processes 8"
 BATCH_SIZE=4
 # REPORT_TO="none"     # <--- 关闭 wandb
 REPORT_TO="wandb"
-EPOCHS=500
+EPOCHS=5
 GRADIENT_CHECKPOINTING_FLAG="--gradient_checkpointing"
 DEBUG_MODE_FLAG=""
 
@@ -47,20 +47,20 @@ else
 fi
 
 # 使用变量执行命令，保持代码整洁
-$LAUNCH_CMD train_interleave_orthus.py \
+$LAUNCH_CMD train_interleave_orthus_george.py \
     --ckpt_path "SJTU-Deng-Lab/Orthus-7B-base" \
-    --train_file "/data1/oujingfeng/project/twgi/datasets/mydatasets/metadata.json" \
-    --eval_file "/data1/oujingfeng/project/twgi/datasets/mydatasets/metadata.json" \
-    --image_folder "/data1/oujingfeng/project/twgi/datasets/mydatasets" \
-    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-think-base-sample1b100ep500l1e-5-weight-f" \
+    --train_file "/data1/oujingfeng/project/twgi/datasets/StoryStream_dataset/George/processed_train.jsonl" \
+    --eval_file "/data1/oujingfeng/project/twgi/datasets/StoryStream_dataset/George/processed_train.jsonl" \
+    --image_folder "/data1/oujingfeng/project/twgi/datasets/StoryStream_dataset/George" \
+    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/george/orthus-7b-sft-base-georgel1e-5-weight-f" \
     --num_train_epochs $EPOCHS \
     --per_device_train_batch_size $BATCH_SIZE \
     --per_device_eval_batch_size $BATCH_SIZE \
     --learning_rate 1e-5 \
     --warmup_ratio 0.03 \
     --logging_steps 5 \
-    --eval_steps 200 \
-    --save_steps 200 \
+    --eval_steps 500 \
+    --save_steps 500 \
     --save_total_limit 3 \
     --bf16 \
     --report_to $REPORT_TO \

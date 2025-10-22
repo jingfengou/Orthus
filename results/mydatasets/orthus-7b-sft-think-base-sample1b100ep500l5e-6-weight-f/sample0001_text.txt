@@ -1,0 +1,2 @@
+sample0001
+**Please provide a image to go with the answer**.**Image: **Please provide a image to go with the answer**.****Final result:** The object's final described shape is a 7-cube arm on the X-axis.**Comparison and final answer:** The final described shape is a 7-cube arm on the X-axis. To guide image generation, create an object with a 7-cube arm on the X-axis.**Comparison and final answer:** The final described shape is a 7-cube arm on the X-axis. To guide the image generation, **create the object shown in the final described shape** with a 7-cube arm on the X-axis.

@@ -21,7 +21,7 @@ import torch.nn.functional as F
 import json
 from PIL import Image
 
-ckpt_path = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-think-v01ep20"
+ckpt_path = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-think-base-sample1b100ep500l5e-6-weight-f"
 processor = OrthusProcessor.from_pretrained(ckpt_path)
 
 model = OrthusForConditionalGeneration.from_pretrained(
@@ -31,7 +31,7 @@ model = OrthusForConditionalGeneration.from_pretrained(
     attn_implementation='flash_attention_2',
 )
 
-exp_dir = os.path.join(root_path, "results/mydatasets/sftv01ep20")
+exp_dir = os.path.join(root_path, "results/mydatasets/orthus-7b-sft-think-base-sample1b100ep500l5e-6-weight-f")
 os.makedirs(exp_dir, exist_ok=True)
 
 set_seed(42)
@@ -42,9 +42,8 @@ instruction = (
 "respectively, i.e., <think>reasoning process</think>, <answer>answer</answer>.\n"
 )
 
-question = "First, rotate this cube stack along the X axis by 270 degrees. Then, rotate it along the Z axis by 270 degrees. Which option shows the correct final result?"
-choices_text = "\nA: This option uses incorrect rotation angles.\nB: Correct: this is the result after performing all rotation steps correctly.\nC: This option rotates along wrong axes.\nD: This option performs the rotations in wrong order."
-prompt_text = instruction + f"<image>\n\nQuestion: {question}\n{choices_text}\n\nAnswer: "
+question = "First, rotate this cube stack along the X axis by 180 degrees. Then, rotate this cube stack along the Y axis by 180 degrees. Which option shows the correct final result?"
+prompt_text = instruction + f"<image>\n\nQuestion: {question}\nAnswer: "
 image_path = "/data1/oujingfeng/project/twgi/datasets/mydatasets/sample_0001/combined.png"
 images = Image.open(image_path).convert("RGB")
 

@@ -26,7 +26,7 @@ def str2bool(v):
 # --- 引用项目中的核心类 ---
 # 确保此脚本与 sft_orthus.py 在同一个文件夹下，或项目根目录已添加到 PYTHONPATH
 try:
-    from interleave_sft_orthus import InterleaveSFTDataset, InterleaveSFTTrainer
+    from interleave_sft_orthus_george import InterleaveSFTGeorgeDataset, InterleaveSFTTrainer
     from models.processing_orthus import OrthusProcessor
     from models.modeling_orthus_for_inteleave_cfg import OrthusForConditionalGeneration
 except ImportError:
@@ -37,7 +37,7 @@ except ImportError:
         sys.path.insert(0, root_path)
     print(f"Added '{root_path}' to path.")
     try:
-        from interleave_sft_orthus import InterleaveSFTDataset, InterleaveSFTTrainer
+        from interleave_sft_orthus_george import InterleaveSFTGeorgeDataset, InterleaveSFTTrainer
         from models.processing_orthus import OrthusProcessor
         from models.modeling_orthus_for_inteleave_cfg import OrthusForConditionalGeneration
     except ImportError as e:
@@ -140,6 +140,8 @@ def main():
     )
     logger.info("Base model loaded in bfloat16.")
     
+
+    # --- [START] NEW CODE TO FREEZE PARAMETERS ---
     print("==================================================")
     print("Freezing the vision autoencoder (model.vqmodel)...")
     total_params = 0
@@ -159,6 +161,7 @@ def main():
     print(f"Frozen parameters: {total_params - trainable_params}")
     print(f"Trainable ratio: {100 * trainable_params / total_params:.2f}%")
     print("==================================================")
+# --- [END] NEW CODE TO FREEZE PARAMETERS ---
     # # 2. 定义LoRA配置 (这部分与QLoRA版本完全相同)
     # lora_config = LoraConfig(
     #     r=16,
@@ -210,10 +213,19 @@ def main():
     # ==========================================================
     # --- 2. 加载并初始化完整数据集 ---
     logger.info("\n--- [Step 2/5] Initializing full datasets... ---")
-    train_dataset_raw = load_dataset("json", data_files=args.train_file, split="train")
-    eval_dataset_raw = load_dataset("json", data_files=args.eval_file, split="train")
-    # train_dataset_raw = train_dataset_raw.select(range(80))
-    # eval_dataset_raw = eval_dataset_raw.select(range(80,90))
+    # 首先加载完整的数据集
+    dataset_raw = load_dataset("json", data_files=args.train_file, split="train")
+
+    # 获取数据集的总长度
+    num_samples = len(dataset_raw)
+
+    # 计算80%和90%位置的索引
+    train_split_index = int(num_samples * 0.8)
+    eval_split_index = int(num_samples * 0.9)
+
+    # 使用计算出的索引来切分数据集
+    train_dataset_raw = dataset_raw.select(range(train_split_index))
+    eval_dataset_raw = dataset_raw.select(range(train_split_index, eval_split_index))
     # --- 【新增代码】: 如果是调试模式，则截取一小部分数据 ---
     if args.debug_mode:
         # --- 主要修改这里 ---
@@ -224,7 +236,7 @@ def main():
     logger.info(f"Full train dataset size: {len(train_dataset_raw)}")
     logger.info(f"Full eval dataset size: {len(eval_dataset_raw)}")
     
-    train_dataset = InterleaveSFTDataset(
+    train_dataset = InterleaveSFTGeorgeDataset(
         dataset=train_dataset_raw,
         image_base_dir=args.image_folder,
         processor=processor,
@@ -233,7 +245,7 @@ def main():
         distortion_weight=args.distortion_weight,
         return_analysis=args.return_analysis,
     )
-    eval_dataset = InterleaveSFTDataset(
+    eval_dataset = InterleaveSFTGeorgeDataset(
         dataset=eval_dataset_raw,
         image_base_dir=args.image_folder,
         processor=processor,
