@@ -27,7 +27,7 @@ model = OrthusForConditionalGeneration.from_pretrained(
     ckpt_path,
     device_map="auto",
     torch_dtype=torch.bfloat16,
-    attn_implementation='eager',
+    attn_implementation='flash_attention_2',
 )
 
 exp_dir = os.path.join(root_path, "results/interleave_generation_cfg")

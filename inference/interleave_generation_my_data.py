@@ -21,7 +21,7 @@ import torch.nn.functional as F
 import json
 from PIL import Image
 
-ckpt_path = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-think-base-sample1b100ep500l5e-6-weight-f"
+ckpt_path = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample1b100ep100l1e-5-weight-T"
 processor = OrthusProcessor.from_pretrained(ckpt_path)
 
 model = OrthusForConditionalGeneration.from_pretrained(
@@ -31,7 +31,7 @@ model = OrthusForConditionalGeneration.from_pretrained(
     attn_implementation='flash_attention_2',
 )
 
-exp_dir = os.path.join(root_path, "results/mydatasets/orthus-7b-sft-think-base-sample1b100ep500l5e-6-weight-f")
+exp_dir = os.path.join(root_path, "results/mydatasets/orthus-7b-sft-base-sample1b100ep100l1e-5-weight-T-modified-CFG")
 os.makedirs(exp_dir, exist_ok=True)
 
 set_seed(42)
@@ -43,7 +43,7 @@ instruction = (
 )
 
 question = "First, rotate this cube stack along the X axis by 180 degrees. Then, rotate this cube stack along the Y axis by 180 degrees. Which option shows the correct final result?"
-prompt_text = instruction + f"<image>\n\nQuestion: {question}\nAnswer: "
+prompt_text = instruction + f"<image>\n\nQuestion: {question}\nA) The shape labeled 'A' in the question image\nB) The shape labeled 'B' in the question image\nC) The shape labeled 'C' in the question image\nD) The shape labeled 'D' in the question image\nAnswer: "
 image_path = "/data1/oujingfeng/project/twgi/datasets/mydatasets/sample_0001/combined.png"
 images = Image.open(image_path).convert("RGB")
 
@@ -114,7 +114,8 @@ for step in steps_to_load:
 
 kwargs_con = {
     "input_ids": interleave_input_ids_con,
-    "cfg_scale": 1.0,    # 忽略uncon的影响
+    # "cfg_scale": 3.0,    
+    "cfg_scale": None,    # 忽略uncon的影响
     "interleave_output_format": True,
     "max_new_tokens": 4096,
     "do_sample": True,
@@ -131,11 +132,14 @@ kwargs_uncon = {
 }
 
 
+# outputs = model.generate(
+#     multimodal_generation_mode_list=["interleaved-text-image","image-only"],
+#     kwargs_list=[kwargs_con, kwargs_uncon],
+# )
 outputs = model.generate(
-    multimodal_generation_mode_list=["interleaved-text-image","image-only"],
-    kwargs_list=[kwargs_con, kwargs_uncon],
+    multimodal_generation_mode_list=["interleaved-text-image"],
+    kwargs_list=[kwargs_con],
 )
-
 text_tokens = []
 all_image_embeds_wo_quant = []
 

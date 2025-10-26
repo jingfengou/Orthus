@@ -1,0 +1,2 @@
+sample0000
+This option only performs partial rotations, missing some steps. To get the full rotation, use extra rotations beyond the required steps.

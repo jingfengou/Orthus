@@ -212,8 +212,8 @@ def main():
     logger.info("\n--- [Step 2/5] Initializing full datasets... ---")
     train_dataset_raw = load_dataset("json", data_files=args.train_file, split="train")
     eval_dataset_raw = load_dataset("json", data_files=args.eval_file, split="train")
-    # train_dataset_raw = train_dataset_raw.select(range(80))
-    # eval_dataset_raw = eval_dataset_raw.select(range(80,90))
+    train_dataset_raw = train_dataset_raw.select(range(80))
+    eval_dataset_raw = eval_dataset_raw.select(range(80,90))
     # --- 【新增代码】: 如果是调试模式，则截取一小部分数据 ---
     if args.debug_mode:
         # --- 主要修改这里 ---

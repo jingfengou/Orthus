@@ -3896,6 +3896,23 @@ class GenerationMixin:
         model_kwargs_list: List[Dict[str, Any]],
     ) -> Union[GenerateNonBeamOutput, torch.LongTensor]:
         
+
+        # --- START OF MODIFICATION ---
+        
+        # 1. 定义一个清晰的标志，判断是否启用 CFG 模式
+        #    只有当输入列表的长度大于1时，我们才认为需要进行 CFG
+        use_cfg = len(input_ids_list) > 1
+
+        # 准备 con 分支 (总是存在)
+        input_ids = input_ids_list[0]
+        model_kwargs = model_kwargs_list[0]
+        
+        # 仅在需要时准备 uncon 分支
+        if use_cfg:
+            input_id_uncon = copy.deepcopy(input_ids_list[1])
+            model_kwargs_uncon = copy.deepcopy(model_kwargs_list[1])
+        # --- END OF MODIFICATION ---
+
         # init values
         max_length = generation_config_list[0].max_length
         this_peer_finished = False
@@ -3928,8 +3945,7 @@ class GenerationMixin:
         generate_eoi = False
         sum_image_latents_generated = 0
 
-        input_ids=input_ids_list[0]
-        model_kwargs=model_kwargs_list[0]
+
         do_sample=do_sample_list[0]
 
         cfg_flag=False
@@ -3945,7 +3961,7 @@ class GenerationMixin:
             # prepare model inputs
             model_inputs = self.prepare_inputs_for_generation(input_ids, **model_kwargs)
 
-            if cfg_flag:
+            if use_cfg and cfg_flag:
                 model_inputs_uncon = self.prepare_inputs_for_generation(input_id_uncon, **model_kwargs_uncon)
                 # forward pass to get next token(mode: discrete) or next image latents(mode: continuous)
                 if len(collect_image_latents) == 0:
@@ -3970,6 +3986,41 @@ class GenerationMixin:
                     outputs = self(**model_inputs, image_latents=image_latents, return_dict=True, mode=mode, \
                         logits_processor=logits_processor_list[0], logits_warper=logits_warper_list[0], diff_pos_id=sum_image_latents_generated%1024, \
                                 cfg_scale=model_kwargs['cfg_scale'])
+            # # --- START OF MODIFICATION ---
+            # # 检查 uncon 部分是否存在
+            # use_cfg = len(input_ids_list) > 1 and cfg_flag
+
+            # if use_cfg:
+            #     # CFG Path: 准备 uncon 输入并一起传递
+            #     input_id_uncon = input_ids_list[1]
+            #     model_kwargs_uncon = model_kwargs_list[1]
+            #     model_inputs_uncon = self.prepare_inputs_for_generation(input_id_uncon, **model_kwargs_uncon)
+            # else:
+            #     # Non-CFG Path: 将 uncon 输入设置为空
+            #     model_inputs_uncon = None
+            
+            # # 统一的 forward 调用
+            # forward_kwargs = {
+            #     "return_dict": True,
+            #     "mode": mode,
+            #     "cfg_scale": model_kwargs['cfg_scale'],
+            #     "logits_processor": logits_processor_list[0],
+            #     "logits_warper": logits_warper_list[0],
+            #     "diff_pos_id": sum_image_latents_generated % 1024,
+            #     "model_inputs_uncon": model_inputs_uncon
+            # }
+            # if len(collect_image_latents) > 0:
+            #     forward_kwargs["image_latents"] = torch.stack(collect_image_latents, dim=1)
+
+            # outputs_tuple = self(**model_inputs, **forward_kwargs)
+
+            # # 根据返回结果解包
+            # if use_cfg:
+            #     outputs, outputs_uncon = outputs_tuple
+            # else:
+            #     outputs = outputs_tuple
+            # # --- END OF MODIFICATION ---
+
             
             if synced_gpus and this_peer_finished:
                 continue  # don't waste resources running the code we don't need
@@ -4008,13 +4059,14 @@ class GenerationMixin:
                     # 【新增】: 檢測到 <boi>，準備進入下一個圖像的生成
                     is_new_image_generation = True
 
-
-                    input_id_uncon = copy.deepcopy(input_ids_list[1])
-                    model_kwargs_uncon = copy.deepcopy(model_kwargs_list[1])
-                    #补上boi 和interleave分支对齐
-                    model_inputs_uncon = self.prepare_inputs_for_generation(input_id_uncon, **model_kwargs_uncon)
-                    outputs_uncon = self(**model_inputs_uncon, return_dict=True, mode="discrete", cfg_scale=model_kwargs['cfg_scale'], \
-                        logits_processor=logits_processor_list[1], logits_warper=logits_warper_list[1], diff_pos_id=sum_image_latents_generated%1024)
+                    if use_cfg and cfg_flag:
+                    # if cfg_flag:
+                        input_id_uncon = copy.deepcopy(input_ids_list[1])
+                        model_kwargs_uncon = copy.deepcopy(model_kwargs_list[1])
+                        #补上boi 和interleave分支对齐
+                        model_inputs_uncon = self.prepare_inputs_for_generation(input_id_uncon, **model_kwargs_uncon)
+                        outputs_uncon = self(**model_inputs_uncon, return_dict=True, mode="discrete", cfg_scale=model_kwargs['cfg_scale'], \
+                            logits_processor=logits_processor_list[1], logits_warper=logits_warper_list[1], diff_pos_id=sum_image_latents_generated%1024)
 
 
             elif mode == 'continuous':
@@ -4113,8 +4165,10 @@ class GenerationMixin:
                 is_encoder_decoder=self.config.is_encoder_decoder,
             )
 
-            if cfg_flag:
+            if use_cfg and cfg_flag:
+            # if cfg_flag:
                 input_id_uncon = torch.cat([input_id_uncon, next_tokens[:, None]], dim=-1)
+
                 model_kwargs_uncon = self._update_model_kwargs_for_generation(
                     outputs_uncon,
                     model_kwargs_uncon,

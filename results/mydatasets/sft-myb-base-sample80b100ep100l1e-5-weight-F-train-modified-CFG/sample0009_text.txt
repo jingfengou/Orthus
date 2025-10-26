@@ -1,0 +1,2 @@
+sample0009
+لقد تتم الدرجة للمفكر والتعبير في <think>First, rotate this cube stack clockwise along the X axis by 270 degrees. Let's generate an image to visualize the state of the object after rotation:Then, rotate this cube stack along the X axis by 180 degrees. Let's visualize the current state:Comparing kilometro<think>X axis rotations can be summarized by this way:

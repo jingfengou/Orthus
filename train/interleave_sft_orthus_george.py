@@ -82,7 +82,7 @@ class InterleaveSFTGeorgeDataset(Dataset):
                 return self.__getitem__(random.randint(0, len(self) - 1))
 
         # --- 2. 构建模型的输入 (prompt) 和期望的输出 (label) ---
-        prompt_text = "Please continue this story:" + DEFAULT_IMAGE_TOKEN + item['prompt_text']
+        prompt_text = item['prompt_text'] + DEFAULT_IMAGE_TOKEN + "Please continue this story:"
         
         label_text = (
             item['label_text_1'] + DEFAULT_IMAGE_TOKEN + 

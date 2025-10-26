@@ -48,11 +48,11 @@ fi
 
 # 使用变量执行命令，保持代码整洁
 $LAUNCH_CMD train_interleave_orthus_george.py \
-    --ckpt_path "SJTU-Deng-Lab/Orthus-7B-base" \
+    --ckpt_path "SJTU-Deng-Lab/Orthus-7B-instruct" \
     --train_file "/data1/oujingfeng/project/twgi/datasets/StoryStream_dataset/George/processed_train.jsonl" \
     --eval_file "/data1/oujingfeng/project/twgi/datasets/StoryStream_dataset/George/processed_train.jsonl" \
     --image_folder "/data1/oujingfeng/project/twgi/datasets/StoryStream_dataset/George" \
-    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/george/orthus-7b-sft-base-georgel1e-5-weight-f" \
+    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/george/orthus-7b-sft-instruct-georgel1e-5-weight-f" \
     --num_train_epochs $EPOCHS \
     --per_device_train_batch_size $BATCH_SIZE \
     --per_device_eval_batch_size $BATCH_SIZE \

@@ -49,10 +49,10 @@ fi
 # 使用变量执行命令，保持代码整洁
 $LAUNCH_CMD train_interleave_orthus.py \
     --ckpt_path "SJTU-Deng-Lab/Orthus-7B-base" \
-    --train_file "/data1/oujingfeng/project/twgi/datasets/mydatasets/metadata.json" \
-    --eval_file "/data1/oujingfeng/project/twgi/datasets/mydatasets/metadata.json" \
+    --train_file "/data1/oujingfeng/project/twgi/datasets/mydatasets/modified_data.json" \
+    --eval_file "/data1/oujingfeng/project/twgi/datasets/mydatasets/modified_data.json" \
     --image_folder "/data1/oujingfeng/project/twgi/datasets/mydatasets" \
-    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-think-base-sample1b100ep500l1e-5-weight-f" \
+    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample80b100ep500l1e-5-weight-F" \
     --num_train_epochs $EPOCHS \
     --per_device_train_batch_size $BATCH_SIZE \
     --per_device_eval_batch_size $BATCH_SIZE \

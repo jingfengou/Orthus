@@ -22,7 +22,7 @@ import torch.nn.functional as F
 import json
 from PIL import Image
 
-ckpt_path = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-think-base-sample80b100ep500l1e-6-weight-f"
+ckpt_path = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample80b100ep500l1e-5-weight-F"
 processor = OrthusProcessor.from_pretrained(ckpt_path)
 
 model = OrthusForConditionalGeneration.from_pretrained(
@@ -32,7 +32,7 @@ model = OrthusForConditionalGeneration.from_pretrained(
     attn_implementation='flash_attention_2',
 )
 
-exp_dir = os.path.join(root_path, "results/mydatasets/sft-myb-base-sample80b100ep500l1e-6-weight-f-test")
+exp_dir = os.path.join(root_path, "results/mydatasets/sft-myb-base-sample80b100ep500l1e-5-weight-F-train-modified-test")
 os.makedirs(exp_dir, exist_ok=True)
 
 set_seed(42)
@@ -42,7 +42,7 @@ set_seed(42)
 # Replace with your actual dataset path
 dataset_path = "/data1/oujingfeng/project/twgi/datasets/mydatasets"  # Update this path as needed
 dataset = load_dataset("json", data_files=f"{dataset_path}/modified_data.json", split="train")
-dataset = dataset.select(range(90,100))  # Select samples 90 to 99 for testing
+dataset = dataset.select(range(10))  # Select samples 90 to 99 for testing
 # Define the instruction template
 instruction = (
 "You should first provide a reasoning process, then provide a single option(A, B, C or D) as the final answer. "
@@ -140,7 +140,8 @@ for idx, item in enumerate(dataset):
     
     kwargs_con = {
         "input_ids": interleave_input_ids_con,
-        "cfg_scale": 3.0,    # 忽略uncon的影响
+        # "cfg_scale": 3.0,    # 忽略uncon的影响
+        "cfg_scale": None,    # 忽略uncon的影响
         "interleave_output_format": True,
         "max_new_tokens": 4096,
         "do_sample": True,
@@ -157,11 +158,14 @@ for idx, item in enumerate(dataset):
     }
     
     
+    # outputs = model.generate(
+    #     multimodal_generation_mode_list=["interleaved-text-image","image-only"],
+    #     kwargs_list=[kwargs_con, kwargs_uncon],
+    # )
     outputs = model.generate(
-        multimodal_generation_mode_list=["interleaved-text-image","image-only"],
-        kwargs_list=[kwargs_con, kwargs_uncon],
+        multimodal_generation_mode_list=["interleaved-text-image"],
+        kwargs_list=[kwargs_con],
     )
-    
     text_tokens = []
     all_image_embeds_wo_quant = []
     

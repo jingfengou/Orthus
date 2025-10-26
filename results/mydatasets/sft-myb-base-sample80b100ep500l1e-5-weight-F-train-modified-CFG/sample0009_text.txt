@@ -1,0 +1,2 @@
+sample0009
+A: This option performs extra rotations beyond the required steps. B: This option rotates along wrong axes. C: this is the result after performing all rotation steps correctly. D: This option performs the rotations in wrong order.

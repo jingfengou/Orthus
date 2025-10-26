@@ -27,6 +27,7 @@ from torch.nn import CrossEntropyLoss
 from transformers.activations import ACT2FN
 from transformers.cache_utils import Cache, StaticCache
 from transformers.generation.configuration_utils import GenerationConfig
+
 from transformers.generation.logits_process import (
     AllowOnlyTokensAtRelativeOffsetLogitsProcessor,
     AllowOnlyTokensInRelativeWindowLogitsProcessor,
@@ -54,6 +55,9 @@ from transformers.modeling_outputs import (
     CausalLMOutputWithPast,
 )
 from .configuration_chameleon import ChameleonConfig, ChameleonVQVAEConfig
+
+
+
 
 if is_flash_attn_2_available():
     from flash_attn.bert_padding import index_first_axis, pad_input, unpad_input  # noqa
@@ -1983,8 +1987,8 @@ from tqdm import tqdm
 import numpy as np
 import torch.nn.functional as F
 import torch
-
-class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
+from transformers.generation.utils import GenerationMixin # 确保导入 GenerationMixin
+class OrthusForConditionalGeneration(ChameleonPreTrainedModel, GenerationMixin):
     _tied_weights_keys = ["lm_head.weight"]
 
     def __init__(self, config: ChameleonConfig, diffloss_w=1536, diffloss_d=3, num_res_blocks=3, diffusion_batch_mul=8):
@@ -2052,7 +2056,46 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
 
     def get_decoder(self):
         return self.model
+    # ==========================================================
+    # ## 🚀 START OF REQUIRED MODIFICATION ##
+    # ==========================================================
+    def get_encoder(self):
+        """
+        Returns the model's main transformer body, which is required by `GenerationMixin`
+        for decoder-only architectures.
+        """
+        return self.model
+    # ==========================================================
+    # ## 🔚 END OF REQUIRED MODIFICATION ##
+    # ==========================================================
+    def _validate_model_class(self):
+        """
+        Validates the model class for generation. This method is required by the GenerationMixin.
+        
+        It ensures that the model has the necessary attributes and methods for text generation,
+        particularly for encoder-decoder architectures.
+        """
+        # # 1. 检查是否存在 get_encoder 方法
+        # if not hasattr(self, "get_encoder"):
+        #     raise ValueError(
+        #         "OrthusForConditionalGeneration must have a `get_encoder` method for generation."
+        #     )
+            
+        # # 2. 检查 main_input_name 是否在 config 中定义
+        # if self.config.main_input_name is None:
+        #      # 如果你的模型总是以 'input_ids' 作为主要输入，可以硬编码
+        #      # 或者从模型的 config 中动态获取
+        #     self.config.main_input_name = "input_ids" # 或者 "pixel_values" 等, 取决于你的设计
 
+        # # 3. （可选）检查是否为 encoder-decoder 结构
+        # if not self.config.is_encoder_decoder:
+        #     import warnings
+        #     warnings.warn(
+        #         "OrthusForConditionalGeneration seems not to be configured as an encoder-decoder model. "
+        #         "Ensure this is intended for the generation logic you are using.",
+        #         UserWarning
+        #         )
+        pass
     def _prepare_generation_config(
         self,
         generation_config: Optional[GenerationConfig] = None,
@@ -2581,30 +2624,146 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
             next_image_latents = None
             
         elif mode == 'continuous': # continuous output
-            assert hidden_states_uncon is not None
-            hidden_state_mix = torch.cat([hidden_states, hidden_states_uncon], dim=0)
-            bsz = hidden_state_mix.shape[0]
-            z = hidden_state_mix[:, -1, :]
-            z = z.reshape(bsz*1, -1)
-            self.sample_scheduler.set_timesteps(100)
-            assert bsz==2
-            if diff_pos_id%100==0:
-                print(f'diff_pos_id: {diff_pos_id}')
-            # //2 is for cfg_generation, 0:1 is z_cond, 1:2 is z_uncond
-            pred_latents = torch.randn((z.shape[0]//2, 256), device=z.device)
-            pred_latents *= self.sample_scheduler.init_noise_sigma
+            # assert hidden_states_uncon is not None
+            # print("hidden_states.shape",hidden_states.shape)
+            # print("hidden_states_uncon.shape",hidden_states_uncon.shape)
+            # hidden_state_mix = torch.cat([hidden_states, hidden_states_uncon], dim=0)
+            # bsz = hidden_state_mix.shape[0]
+            # z = hidden_state_mix[:, -1, :]
+            # z = z.reshape(bsz*1, -1)
+            # self.sample_scheduler.set_timesteps(100)
+            # assert bsz==2
+            # if diff_pos_id%100==0:
+            #     print(f'diff_pos_id: {diff_pos_id}')
+            # # //2 is for cfg_generation, 0:1 is z_cond, 1:2 is z_uncond
+            # pred_latents = torch.randn((z.shape[0]//2, 256), device=z.device)
+            # pred_latents *= self.sample_scheduler.init_noise_sigma
 
-            for t in self.sample_scheduler.timesteps:
-                pred_latents = self.sample_scheduler.scale_model_input(pred_latents, t)
-                with torch.no_grad(), torch.cuda.amp.autocast():
-                    t_sample = torch.as_tensor([t], device=z.device)
-                    noise_preds = self.mlp_head(pred_latents, t_sample.repeat(z.shape[0]), z)
-                    noise_pred = noise_preds[:z.shape[0] // 2]
-                    noise_pred_uncond = noise_preds[z.shape[0] // 2:]
-                    noise_pred = noise_pred_uncond + cfg_scale * (noise_pred - noise_pred_uncond)
-                    pred_latents = self.sample_scheduler.step(noise_pred, t, pred_latents).prev_sample
-            #pred_latents = pred_latents.repeat(2, 1)          
+            # for t in self.sample_scheduler.timesteps:
+            #     pred_latents = self.sample_scheduler.scale_model_input(pred_latents, t)
+            #     with torch.no_grad(), torch.cuda.amp.autocast():
+            #         t_sample = torch.as_tensor([t], device=z.device)
+            #         noise_preds = self.mlp_head(pred_latents, t_sample.repeat(z.shape[0]), z)
+            #         noise_pred = noise_preds[:z.shape[0] // 2]
+            #         noise_pred_uncond = noise_preds[z.shape[0] // 2:]
+            #         noise_pred = noise_pred_uncond + cfg_scale * (noise_pred - noise_pred_uncond)
+            #         pred_latents = self.sample_scheduler.step(noise_pred, t, pred_latents).prev_sample
+            # #pred_latents = pred_latents.repeat(2, 1)          
+            # next_image_latents = pred_latents / 0.1
+            
+            # # --- START OF MODIFICATION ---
+            # if model_inputs_uncon is not None:
+            #     # CFG Path: 逻辑与原来保持一致
+            #     # outputs_uncon = self.model(
+            #     #     # ... (这里的代码是为了获取 hidden_states_uncon，您的代码中已有)
+            #     #     **model_inputs_uncon,
+            #     # )
+            #     # hidden_states_uncon = outputs_uncon[0]
+
+            #     # hidden_states_uncon_last_token = hidden_states_uncon[:, -1:, :]
+            #     print("hidden_states.shape",hidden_states.shape)
+            #     print("hidden_states_uncon.shape",hidden_states_uncon.shape)
+            #     hidden_state_mix = torch.cat([hidden_states, hidden_states_uncon], dim=0)
+            #     bsz = hidden_state_mix.shape[0]
+            #     z = hidden_state_mix[:, -1, :].reshape(bsz, -1)
+                
+            #     self.sample_scheduler.set_timesteps(100)
+            #     pred_latents = torch.randn((z.shape[0]//2, 256), device=z.device)
+            #     pred_latents *= self.sample_scheduler.init_noise_sigma
+
+            #     for t in self.sample_scheduler.timesteps:
+            #         pred_latents_double = torch.cat([pred_latents, pred_latents], dim=0)
+            #         pred_latents_double = self.sample_scheduler.scale_model_input(pred_latents_double, t)
+            #         with torch.no_grad(), torch.cuda.amp.autocast():
+            #             t_sample = torch.as_tensor([t], device=z.device).repeat(z.shape[0])
+            #             noise_preds = self.mlp_head(pred_latents_double, t_sample, z)
+                        
+            #             noise_pred_uncond, noise_pred_cond = noise_preds.chunk(2)
+            #             noise_pred = noise_pred_uncond + cfg_scale * (noise_pred_cond - noise_pred_uncond)
+                        
+            #             pred_latents = self.sample_scheduler.step(noise_pred, t, pred_latents).prev_sample
+            
+            # else:
+            #     # Non-CFG Path: 只有条件输入
+            #     bsz = hidden_states.shape[0]
+            #     z = hidden_states[:, -1, :].reshape(bsz, -1)
+
+            #     self.sample_scheduler.set_timesteps(100)
+            #     pred_latents = torch.randn((z.shape[0], 256), device=z.device)
+            #     pred_latents *= self.sample_scheduler.init_noise_sigma
+
+            #     for t in self.sample_scheduler.timesteps:
+            #         pred_latents = self.sample_scheduler.scale_model_input(pred_latents, t)
+            #         with torch.no_grad(), torch.cuda.amp.autocast():
+            #             t_sample = torch.as_tensor([t], device=z.device).repeat(z.shape[0])
+            #             noise_pred = self.mlp_head(pred_latents, t_sample, z)
+            #             pred_latents = self.sample_scheduler.step(noise_pred, t, pred_latents).prev_sample
+            
+            # next_image_latents = pred_latents / 0.1
+            # # --- END OF MODIFICATION ---
+
+
+            # 此时，传入的 hidden_states 和 hidden_states_uncon 都应该是已经被
+            # _sample_orthus_cfg 循环中的 prepare_inputs_for_generation 处理过的，
+            # 它们的序列长度都应该是 1。
+
+            if model_inputs_uncon is not None:
+                # CFG Path
+                outputs_uncon = self.model(**model_inputs_uncon, return_dict=return_dict)
+                hidden_states_uncon = outputs_uncon[0]
+
+                # --- START OF MODIFICATION ---
+                # 确保两个隐状态的序列长度都为1，然后进行拼接
+                # print("hidden_states.shape",hidden_states.shape)
+                # print("hidden_states_uncon.shape",hidden_states_uncon.shape)
+                hidden_state_mix = torch.cat([hidden_states, hidden_states_uncon], dim=0)
+                bsz = hidden_state_mix.shape[0] # bsz 现在是 2 (con + uncon)
+                
+                # 从拼接后的张量中提取最后一个时间步的特征
+                # 因为序列长度已经是1，所以 [:, -1, :] 和 [:, 0, :] 效果一样
+                z = hidden_state_mix[:, -1, :] # z 的形状是 [2, 4096]
+                
+                self.sample_scheduler.set_timesteps(100)
+                # 为有条件的部分生成随机噪声，形状为 [1, 256]
+                pred_latents = torch.randn((1, 256), device=z.device)
+                pred_latents *= self.sample_scheduler.init_noise_sigma
+
+                for t in self.sample_scheduler.timesteps:
+                    # 将噪声复制一份，分别用于 con 和 uncon
+                    pred_latents_double = torch.cat([pred_latents, pred_latents], dim=0)
+                    pred_latents_double = self.sample_scheduler.scale_model_input(pred_latents_double, t)
+                    
+                    with torch.no_grad(), torch.cuda.amp.autocast():
+                        t_sample = torch.as_tensor([t], device=z.device).repeat(bsz)
+                        noise_preds = self.mlp_head(pred_latents_double, t_sample, z)
+                        
+                        # 将预测的噪声分离为有条件和无条件两部分
+                        noise_pred_cond, noise_pred_uncond = noise_preds.chunk(2)
+                        
+                        # 应用CFG公式
+                        noise_pred = noise_pred_uncond + cfg_scale * (noise_pred_cond - noise_pred_uncond)
+                        
+                        # 执行扩散步骤
+                        pred_latents = self.sample_scheduler.step(noise_pred, t, pred_latents).prev_sample
+            
+            else:
+                # Non-CFG Path
+                bsz = hidden_states.shape[0]
+                z = hidden_states[:, -1, :] # z 的形状是 [1, 4096]
+
+                self.sample_scheduler.set_timesteps(100)
+                pred_latents = torch.randn((bsz, 256), device=z.device)
+                pred_latents *= self.sample_scheduler.init_noise_sigma
+
+                for t in self.sample_scheduler.timesteps:
+                    pred_latents = self.sample_scheduler.scale_model_input(pred_latents, t)
+                    with torch.no_grad(), torch.cuda.amp.autocast():
+                        t_sample = torch.as_tensor([t], device=z.device).repeat(bsz)
+                        noise_pred = self.mlp_head(pred_latents, t_sample, z)
+                        pred_latents = self.sample_scheduler.step(noise_pred, t, pred_latents).prev_sample
+            
             next_image_latents = pred_latents / 0.1
+            # --- END OF MODIFICATION ---
         else:
             raise ValueError(
                 "Unknown multimodal generation mode."

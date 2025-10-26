@@ -1,0 +1,2 @@
+sample0001
+<think>First, rotate this cube stack counterclockwise along the X by 90 degrees. Let's generate an image to visualize the state of the object after rotation: Fountain in the park with people sitting on the steps in front of it.

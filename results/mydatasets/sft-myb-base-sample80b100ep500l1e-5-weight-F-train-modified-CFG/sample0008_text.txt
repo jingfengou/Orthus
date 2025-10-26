@@ -1,0 +1,2 @@
+sample0008
+The option with the highest rotation angles at each stage is option A. this is the result after performing all rotation steps correctly. Let's generate an image to visualize the state of the object after rotation:Then, rotate this cube stack counterclockwise along the X axis by 90 degrees. Let's visualize the current state:Abstract image with rotation in different axes.صفحهPurple axis:    Yellow axis:<Orange axis:    Green axis:    Blue axis:    Gray axis: This image is missing one cube from the stack.
