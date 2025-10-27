@@ -26,17 +26,14 @@ from torch.nn import CrossEntropyLoss
 
 from transformers.activations import ACT2FN
 from transformers.cache_utils import Cache, StaticCache
-from transformers.generation.configuration_utils import GenerationConfig
-
+from transformers.generation.configuration_utils import GenerationConfig, GenerationMode
 from transformers.generation.logits_process import (
-    AllowOnlyTokensAtRelativeOffsetLogitsProcessor,
-    AllowOnlyTokensInRelativeWindowLogitsProcessor,
     LogitsProcessorList,
     SuppressTokensAtBeginLogitsProcessor,
-    SuppressTokensInIndexRangeLogitsProcessor,
     SuppressTokensLogitsProcessor,
 )
-from transformers.generation.utils import GenerateOutput
+from transformers.generation.stopping_criteria import StoppingCriteriaList
+from transformers.generation.utils import GenerateOutput, GenerationMixin
 from transformers.modeling_attn_mask_utils import AttentionMaskConverter
 from transformers.modeling_flash_attention_utils import _flash_attention_forward
 from transformers.modeling_utils import PreTrainedModel
@@ -50,11 +47,15 @@ from transformers.utils import (
     logging,
     replace_return_docstrings,
 )
-from transformers.modeling_outputs import (
-    BaseModelOutputWithPast,
-    CausalLMOutputWithPast,
-)
+from transformers.modeling_outputs import BaseModelOutputWithPast, CausalLMOutputWithPast
 from .configuration_chameleon import ChameleonConfig, ChameleonVQVAEConfig
+from models.orthus_generation_mixin import OrthusGenerationMixin
+from models.orthus_logits_processors import (
+    AllowOnlyTokensAtRelativeOffsetLogitsProcessor,
+    AllowOnlyTokensInRelativeWindowLogitsProcessor,
+    SuppressTokensInIndexRangeLogitsProcessor,
+)
+from models.orthus_outputs import OrthusCausalLMOutputWithPast
 
 
 
@@ -1988,7 +1989,7 @@ import numpy as np
 import torch.nn.functional as F
 import torch
 from transformers.generation.utils import GenerationMixin # 确保导入 GenerationMixin
-class OrthusForConditionalGeneration(ChameleonPreTrainedModel, GenerationMixin):
+class OrthusForConditionalGeneration(OrthusGenerationMixin, ChameleonPreTrainedModel, GenerationMixin):
     _tied_weights_keys = ["lm_head.weight"]
 
     def __init__(self, config: ChameleonConfig, diffloss_w=1536, diffloss_d=3, num_res_blocks=3, diffusion_batch_mul=8):
@@ -2127,38 +2128,65 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel, GenerationMixin):
     @torch.no_grad()
     def generate(
         self,
-        generate_wo_quant=True,
+        generate_wo_quant: bool = True,
         inputs: Optional[torch.Tensor] = None,
         generation_config: Optional[GenerationConfig] = None,
-        logits_processor: Optional[LogitsProcessorList] = None,
+        logits_processor: Optional[Union[LogitsProcessorList, List[LogitsProcessorList]]] = None,
         multimodal_generation_mode_list: Optional[
             List[Literal["text-only", "image-only", "interleaved-text-image", "unrestricted"]]
         ] = None,
         kwargs_list: Optional[List[Dict[str, Any]]] = None,
-    ) -> Union[GenerateOutput, torch.LongTensor]:
-        
-        generation_config_list=[]
-        logits_processor_list=[]
-        kwargs_list_new=[]
+    ) -> Union[GenerateOutput, torch.LongTensor, List[torch.Tensor]]:
+        if not kwargs_list or multimodal_generation_mode_list is None:
+            raise ValueError("`kwargs_list` 与 `multimodal_generation_mode_list` 均不能为空。")
+        if len(multimodal_generation_mode_list) != len(kwargs_list):
+            raise ValueError("`multimodal_generation_mode_list` 与 `kwargs_list` 长度不一致。")
 
-        logits_processor_copy = [logits_processor,logits_processor]
-        for (multimodal_generation_mode,kwargs,logits_processor) in zip(multimodal_generation_mode_list,kwargs_list,logits_processor_copy):
+        branch_count = len(kwargs_list)
+        if logits_processor is None:
+            logits_processor_entries = [None] * branch_count
+        elif isinstance(logits_processor, list):
+            if len(logits_processor) != branch_count:
+                raise ValueError("当传入 logits_processor 列表时，其长度需与 kwargs_list 对应。")
+            logits_processor_entries = logits_processor
+        else:
+            logits_processor_entries = [logits_processor for _ in range(branch_count)]
 
-            print("multimodal_generation_mode",multimodal_generation_mode)
-            generation_config, model_kwargs = self._prepare_generation_config(
-                generation_config, multimodal_generation_mode, **kwargs
+        input_ids_list: List[torch.LongTensor] = []
+        image_latents_list: List[Optional[torch.Tensor]] = []
+        generation_config_list_res: List[GenerationConfig] = []
+        prepared_logits_processor_list: List[LogitsProcessorList] = []
+        stopping_criteria_list: List[StoppingCriteriaList] = []
+        logits_warper_list: List[Optional[LogitsProcessorList]] = []
+        model_kwargs_list: List[Dict[str, Any]] = []
+        synced_gpus_list: List[bool] = []
+        streamer_list: List[Optional[BaseStreamer]] = []
+
+        for multimodal_generation_mode, branch_kwargs, base_processor in zip(
+            multimodal_generation_mode_list, kwargs_list, logits_processor_entries
+        ):
+            print("multimodal_generation_mode", multimodal_generation_mode)
+            branch_generation_config, model_kwargs = self._prepare_generation_config(
+                generation_config, multimodal_generation_mode, **branch_kwargs
             )
             inputs_tensor, model_input_name, model_kwargs = self._prepare_model_inputs(
-                inputs, generation_config.bos_token_id, model_kwargs
+                inputs, branch_generation_config.bos_token_id, model_kwargs
             )
             input_ids = inputs_tensor if model_input_name == "input_ids" else model_kwargs.pop("input_ids")
+            attention_mask_present = model_kwargs.get("attention_mask") is not None
+            self._prepare_special_tokens(
+                branch_generation_config, attention_mask_present, device=input_ids.device
+            )
 
-            # Prepare `max_length` depending on other stopping criteria.
+            generation_mode = branch_generation_config.get_generation_mode(assistant_model=None)
+            if generation_mode not in (GenerationMode.SAMPLE, GenerationMode.GREEDY_SEARCH):
+                raise ValueError("当前仅支持采样或贪心生成模式。")
+
             input_ids_length = input_ids.shape[-1]
-            has_default_max_length = kwargs.get("max_length") is None and generation_config.max_length is not None
-            has_default_min_length = kwargs.get("min_length") is None and generation_config.min_length is not None
-            generation_config = self._prepare_generated_length(
-                generation_config=generation_config,
+            has_default_max_length = branch_kwargs.get("max_length") is None and branch_generation_config.max_length is not None
+            has_default_min_length = branch_kwargs.get("min_length") is None and branch_generation_config.min_length is not None
+            branch_generation_config = self._prepare_generated_length(
+                generation_config=branch_generation_config,
                 has_default_max_length=has_default_max_length,
                 has_default_min_length=has_default_min_length,
                 model_input_name=model_input_name,
@@ -2166,10 +2194,40 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel, GenerationMixin):
                 input_ids_length=input_ids_length,
             )
 
-            if logits_processor is None:
-                logits_processor = LogitsProcessorList()
-            if generation_config.multimodal_generation_mode == "text-only":
-                logits_processor.append(
+            if self._supports_logits_to_keep() and "logits_to_keep" not in model_kwargs:
+                model_kwargs["logits_to_keep"] = 1
+
+            self._validate_generated_length(branch_generation_config, input_ids_length, has_default_max_length)
+
+            max_cache_length = branch_generation_config.max_length - 1
+            if (
+                inputs_tensor.shape[1] != input_ids_length
+                and model_input_name == "inputs_embeds"
+                and not self.config.is_encoder_decoder
+            ):
+                max_cache_length += inputs_tensor.shape[1]
+
+            model_kwargs["use_cache"] = branch_generation_config.use_cache
+            batch_size = inputs_tensor.shape[0]
+            self._prepare_cache_for_generation(
+                branch_generation_config, model_kwargs, generation_mode, batch_size, max_cache_length
+            )
+
+            expand_size = max(branch_generation_config.num_beams, branch_generation_config.num_return_sequences)
+            input_ids, model_kwargs = self._expand_inputs_for_generation(
+                input_ids=input_ids,
+                expand_size=expand_size,
+                is_encoder_decoder=self.config.is_encoder_decoder,
+                **model_kwargs,
+            )
+
+            if base_processor is None:
+                branch_processor = LogitsProcessorList()
+            else:
+                branch_processor = LogitsProcessorList(list(base_processor))
+
+            if branch_generation_config.multimodal_generation_mode == "text-only":
+                branch_processor.append(
                     SuppressTokensLogitsProcessor(
                         suppress_tokens=self.vocabulary_mapping.image_token_ids
                         + [
@@ -2179,8 +2237,8 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel, GenerationMixin):
                         device=self.device,
                     )
                 )
-            elif generation_config.multimodal_generation_mode == "image-only":
-                inferred_max_new_tokens = generation_config.max_length - input_ids_length
+            elif branch_generation_config.multimodal_generation_mode == "image-only":
+                inferred_max_new_tokens = branch_generation_config.max_length - input_ids_length
                 if inferred_max_new_tokens < self.model.image_seq_length + 2:
                     warnings.warn(
                         f"The VQVAE decoder expects to receive {self.model.image_seq_length} image tokens to generate an image."
@@ -2196,7 +2254,7 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel, GenerationMixin):
                     self.vocabulary_mapping.eoi_token_id,
                 ]
                 suppress_tokens = [token_id for token_id in range(self.vocab_size) if token_id not in allowed_tokens]
-                logits_processor.extend(
+                branch_processor.extend(
                     [
                         AllowOnlyTokensAtRelativeOffsetLogitsProcessor(
                             trigger_token_id=self.vocabulary_mapping.boi_token_id,
@@ -2212,16 +2270,12 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel, GenerationMixin):
                             exclusive=True,
                             device=self.device,
                         ),
-                        # Don't start generating an image if there aren't enough space for the
-                        # rest of the image tokens.
                         SuppressTokensInIndexRangeLogitsProcessor(
                             suppress_tokens=[self.vocabulary_mapping.boi_token_id],
-                            start_index=generation_config.max_length - self.model.image_seq_length - 1,
+                            start_index=branch_generation_config.max_length - self.model.image_seq_length - 1,
                             device=self.device,
                         ),
-                        # Allow only image tokens
                         SuppressTokensLogitsProcessor(suppress_tokens=suppress_tokens, device=self.device),
-                        # Force image generation
                         SuppressTokensAtBeginLogitsProcessor(
                             begin_suppress_tokens=[self.config.eos_token_id],
                             begin_index=input_ids_length,
@@ -2229,8 +2283,8 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel, GenerationMixin):
                         ),
                     ]
                 )
-            elif generation_config.multimodal_generation_mode == "interleaved-text-image":
-                logits_processor.extend(
+            elif branch_generation_config.multimodal_generation_mode == "interleaved-text-image":
+                branch_processor.extend(
                     [
                         AllowOnlyTokensAtRelativeOffsetLogitsProcessor(
                             trigger_token_id=self.vocabulary_mapping.boi_token_id,
@@ -2246,31 +2300,64 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel, GenerationMixin):
                             exclusive=True,
                             device=self.device,
                         ),
-                        # Don't start generating an image if there aren't enough space for the
-                        # rest of the image tokens.
                         SuppressTokensInIndexRangeLogitsProcessor(
                             suppress_tokens=[self.vocabulary_mapping.boi_token_id],
-                            start_index=generation_config.max_length - self.model.image_seq_length - 1,
+                            start_index=branch_generation_config.max_length - self.model.image_seq_length - 1,
                             device=self.device,
                         ),
                     ]
                 )
-            elif generation_config.multimodal_generation_mode == "unrestricted":
+            elif branch_generation_config.multimodal_generation_mode == "unrestricted":
                 pass
             else:
                 raise ValueError(
-                    f"Unknown multimodal generation mode: {generation_config.multimodal_generation_mode}. Please choose one of 'unrestricted', 'text-only', 'image-only', or 'interleaved-text-image'."
+                    f"Unknown multimodal generation mode: {branch_generation_config.multimodal_generation_mode}. "
+                    "Please choose one of 'unrestricted', 'text-only', 'image-only', or 'interleaved-text-image'."
                 )
-            generation_config_list.append(generation_config)
-            logits_processor_list.append(logits_processor)
-            kwargs_list_new.append(kwargs)
 
-        return super().generate_cfg(
-            inputs=inputs,
-            generate_wo_quant=True,
-            generation_config_list=generation_config_list,
-            logits_processor_list=logits_processor_list,
-            kwargs_list=kwargs_list_new,
+            prepared_logits_processor = self._get_logits_processor(
+                generation_config=branch_generation_config,
+                input_ids_seq_length=input_ids_length,
+                encoder_input_ids=inputs_tensor,
+                prefix_allowed_tokens_fn=None,
+                logits_processor=branch_processor,
+                device=inputs_tensor.device,
+                model_kwargs=model_kwargs,
+                negative_prompt_ids=None,
+                negative_prompt_attention_mask=None,
+            )
+            prepared_stopping_criteria = self._get_stopping_criteria(
+                generation_config=branch_generation_config,
+                stopping_criteria=StoppingCriteriaList(),
+                tokenizer=None,
+            )
+            logits_warper = None
+
+            image_latents = model_kwargs.pop("image_latents", None)
+
+            input_ids_list.append(input_ids)
+            image_latents_list.append(image_latents)
+            generation_config_list_res.append(branch_generation_config)
+            prepared_logits_processor_list.append(prepared_logits_processor)
+            stopping_criteria_list.append(prepared_stopping_criteria)
+            logits_warper_list.append(logits_warper)
+            model_kwargs_list.append(model_kwargs)
+            synced_gpus_list.append(False)
+            streamer_list.append(None)
+
+        if not generate_wo_quant:
+            raise NotImplementedError("当前仅支持 `generate_wo_quant=True` 的CFG生成流程。")
+
+        return self._sample_orthus_cfg(
+            input_ids_list=input_ids_list,
+            image_latents_list=image_latents_list,
+            logits_processor_list=prepared_logits_processor_list,
+            stopping_criteria_list=stopping_criteria_list,
+            generation_config_list=generation_config_list_res,
+            synced_gpus_list=synced_gpus_list,
+            streamer_list=streamer_list,
+            logits_warper_list=logits_warper_list,
+            model_kwargs_list=model_kwargs_list,
         )
 
     @add_start_docstrings_to_model_forward(CHAMELEON_INPUTS_DOCSTRING)
@@ -2771,7 +2858,7 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel, GenerationMixin):
 
         loss = None
         if model_inputs_uncon is None:
-            return CausalLMOutputWithPast(
+            return OrthusCausalLMOutputWithPast(
                 loss=loss,
                 logits=logits,
                 next_image_latents=next_image_latents,
@@ -2780,14 +2867,14 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel, GenerationMixin):
                 attentions=outputs.attentions,
             )
         else:
-            return CausalLMOutputWithPast(
+            return OrthusCausalLMOutputWithPast(
                 loss=loss,
                 logits=logits,
                 next_image_latents=next_image_latents,
                 past_key_values=outputs.past_key_values,
                 hidden_states=outputs.hidden_states,
                 attentions=outputs.attentions,
-            ), CausalLMOutputWithPast(
+            ), OrthusCausalLMOutputWithPast(
                 loss=loss,
                 logits=logits_uncon,
                 next_image_latents=next_image_latents,
@@ -2871,21 +2958,51 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel, GenerationMixin):
             `torch.Tensor` of shape `(batch, num_channels, 512, 512)`:
         """
 
-        # ==================== 核心修改在這裡 ====================
-        # 原來的代碼:
         emb_dim = self.model.vqmodel.quantize.embedding.weight.shape[-1]
-        
-        # 修正後的代碼：直接從輸入張量的形狀推斷 emb_dim
+
         if image_latents.dim() != 2 or image_latents.shape[0] != 1024:
-             raise ValueError(f"Expected image_latents to have shape [1024, emb_dim], but got {image_latents.shape}")
-        
-        # emb_dim = image_latents.shape[-1]
-        # =========================================================
-        # print("emb_dim",emb_dim)
+            raise ValueError(f"Expected image_latents to have shape [1024, emb_dim], but got {image_latents.shape}")
+
         image_embeds = image_latents.view((1, *self.model.vqmodel.quantize.quant_state_dims, emb_dim))
         image_embeds = image_embeds.permute(0, 3, 1, 2).contiguous()
 
-        hidden_states = self.model.vqmodel.post_quant_conv(image_embeds.to(self.model.vqmodel.post_quant_conv.weight.dtype))
+        hidden_states = self.model.vqmodel.post_quant_conv(
+            image_embeds.to(self.model.vqmodel.post_quant_conv.weight.dtype)
+        )
         pixel_values = self.model.vqmodel.decoder(hidden_states)
 
         return pixel_values
+
+    def decode_image_latents_processed(
+        self,
+        image_latents: torch.Tensor,
+        image_processor: Optional[Any] = None,
+    ) -> torch.Tensor:
+        """
+        Decode image latents and postprocess them to uint8 pixel values. Falls back to the latest
+        ``ChameleonImageProcessor.postprocess`` behaviour when the installed transformers wheel
+        does not expose it yet.
+        """
+        pixel_values = self.decode_image_latents(image_latents).detach()
+
+        if image_processor is not None and hasattr(image_processor, "postprocess"):
+            return image_processor.postprocess(pixel_values)
+
+        processed = pixel_values.to(torch.float32)
+
+        image_mean = getattr(image_processor, "image_mean", [1.0, 1.0, 1.0]) if image_processor else [1.0, 1.0, 1.0]
+        image_std = getattr(image_processor, "image_std", [1.0, 1.0, 1.0]) if image_processor else [1.0, 1.0, 1.0]
+        rescale_factor = getattr(image_processor, "rescale_factor", 0.0078) if image_processor else 0.0078
+        do_normalize = getattr(image_processor, "do_normalize", True) if image_processor else True
+        do_rescale = getattr(image_processor, "do_rescale", True) if image_processor else True
+
+        if do_normalize:
+            mean = torch.tensor(image_mean, device=processed.device, dtype=processed.dtype).view(1, -1, 1, 1)
+            std = torch.tensor(image_std, device=processed.device, dtype=processed.dtype).view(1, -1, 1, 1)
+            processed = processed * std + mean
+
+        if do_rescale and rescale_factor != 0:
+            processed = processed * (1.0 / rescale_factor)
+
+        processed = processed.clamp(0, 255).to(torch.uint8)
+        return processed

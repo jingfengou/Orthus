@@ -15,12 +15,15 @@ def set_seed(seed: int):
     torch.backends.cudnn.benchmark = False
 
 root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-sys.path.append(root_path)
+if root_path not in sys.path:
+    sys.path.insert(0, root_path)
 from models.processing_orthus import OrthusProcessor
 from models.modeling_orthus_for_inteleave_cfg import OrthusForConditionalGeneration
-import torch.nn.functional as F
 import json
 from PIL import Image
+from torchvision.transforms.functional import to_pil_image
+
+
 
 ckpt_path = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample80b100ep500l1e-5-weight-F"
 processor = OrthusProcessor.from_pretrained(ckpt_path)
@@ -42,7 +45,7 @@ set_seed(42)
 # Replace with your actual dataset path
 dataset_path = "/data1/oujingfeng/project/twgi/datasets/mydatasets"  # Update this path as needed
 dataset = load_dataset("json", data_files=f"{dataset_path}/modified_data.json", split="train")
-dataset = dataset.select(range(10))  # Select samples 90 to 99 for testing
+dataset = dataset.select(range(1))  # Reduce sample count for quick smoke test
 # Define the instruction template
 instruction = (
 "You should first provide a reasoning process, then provide a single option(A, B, C or D) as the final answer. "
@@ -180,19 +183,15 @@ for idx, item in enumerate(dataset):
         # decode image one by one
         num_images = len(all_image_embeds_wo_quant) // 1024
         for id in range(num_images):
-            image_embeds_wo_quant = torch.cat(all_image_embeds_wo_quant[id * 1024:(id + 1) * 1024], dim=0).to(model.device)
-    
-            emb_dim = model.model.vqmodel.quantize.embedding.weight.shape[-1]
-            image_embeds_wo_quant = image_embeds_wo_quant.view((1, *model.model.vqmodel.quantize.quant_state_dims, emb_dim))
-            image_embeds_wo_quant = image_embeds_wo_quant.permute(0, 3, 1, 2).contiguous()
-    
-            hidden_states = model.model.vqmodel.post_quant_conv(image_embeds_wo_quant.to(model.model.vqmodel.post_quant_conv.weight.dtype))
-            pixel_values_wo_quant = model.model.vqmodel.decoder(hidden_states)
-            images_wo_quant = processor.postprocess_pixel_values(pixel_values_wo_quant)
-    
-            from torchvision.transforms.functional import to_pil_image
-            images_wo_quant = [to_pil_image(img.detach().cpu()) for img in images_wo_quant]
-            images_wo_quant[0].save(os.path.join(exp_dir, f'./sample{idx:04d}_img{id+1}_cfg3.jpg'))
+            image_latents = torch.cat(
+                all_image_embeds_wo_quant[id * 1024 : (id + 1) * 1024], dim=0
+            ).to(model.device)
+            pixel_values_uint8 = model.decode_image_latents_processed(
+                image_latents, processor.image_processor
+            )
+
+            images_wo_quant = [to_pil_image(img.cpu()) for img in pixel_values_uint8]
+            images_wo_quant[0].save(os.path.join(exp_dir, f"./sample{idx:04d}_img{id+1}_cfg3.jpg"))
     
         # decode generated text
         text_tokens = torch.cat(text_tokens, dim=0).to(model.device)

@@ -29,14 +29,11 @@ from transformers.activations import ACT2FN
 from transformers.cache_utils import Cache, StaticCache
 from transformers.generation.configuration_utils import GenerationConfig
 from transformers.generation.logits_process import (
-    AllowOnlyTokensAtRelativeOffsetLogitsProcessor,
-    AllowOnlyTokensInRelativeWindowLogitsProcessor,
     LogitsProcessorList,
     SuppressTokensAtBeginLogitsProcessor,
-    SuppressTokensInIndexRangeLogitsProcessor,
     SuppressTokensLogitsProcessor,
 )
-from transformers.generation.utils import GenerateOutput
+from transformers.generation.utils import GenerateOutput, GenerationMixin
 from transformers.modeling_attn_mask_utils import AttentionMaskConverter
 from transformers.modeling_flash_attention_utils import _flash_attention_forward
 from transformers.modeling_utils import PreTrainedModel
@@ -55,6 +52,13 @@ from transformers.modeling_outputs import (
     CausalLMOutputWithPast,
 )
 from .configuration_chameleon import ChameleonConfig, ChameleonVQVAEConfig
+from models.orthus_generation_mixin import OrthusGenerationMixin
+from models.orthus_logits_processors import (
+    AllowOnlyTokensAtRelativeOffsetLogitsProcessor,
+    AllowOnlyTokensInRelativeWindowLogitsProcessor,
+    SuppressTokensInIndexRangeLogitsProcessor,
+)
+from models.orthus_outputs import OrthusCausalLMOutputWithPast
 
 
 if is_flash_attn_2_available():
@@ -1849,7 +1853,7 @@ import numpy as np
 import torch.nn.functional as F
 import torch
 
-class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
+class OrthusForConditionalGeneration(OrthusGenerationMixin, ChameleonPreTrainedModel):
     _tied_weights_keys = ["lm_head.weight"]
 
     def __init__(self, config: ChameleonConfig, diffloss_w=1536, diffloss_d=3, num_res_blocks=3, diffusion_batch_mul=8):
@@ -2084,11 +2088,52 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
         print("not none")
         print("generation_config",generation_config)
         print("finish")
+        generate_wo_quant = kwargs.pop("generate_wo_quant", generate_wo_quant)
+
+        def _orthus_decoding(
+            model,
+            input_ids,
+            *,
+            logits_processor,
+            stopping_criteria,
+            generation_config,
+            synced_gpus,
+            streamer=None,
+            logits_warper=None,
+            **model_kwargs,
+        ):
+            image_latents = model_kwargs.pop("image_latents", None)
+            if generate_wo_quant:
+                return model._sample_orthus(
+                    input_ids=input_ids,
+                    image_latents=image_latents,
+                    logits_processor=logits_processor,
+                    stopping_criteria=stopping_criteria,
+                    generation_config=generation_config,
+                    synced_gpus=synced_gpus,
+                    streamer=streamer,
+                    logits_warper=logits_warper,
+                    **model_kwargs,
+                )
+            if image_latents is not None:
+                model_kwargs["image_latents"] = image_latents
+            return GenerationMixin._sample(
+                model,
+                input_ids=input_ids,
+                logits_processor=logits_processor,
+                stopping_criteria=stopping_criteria,
+                generation_config=generation_config,
+                synced_gpus=synced_gpus,
+                streamer=streamer,
+                logits_warper=logits_warper,
+                **model_kwargs,
+            )
+
         return super().generate(
             inputs=inputs,
-            generate_wo_quant=True,
             generation_config=generation_config,
             logits_processor=logits_processor,
+            custom_generate=_orthus_decoding,
             **kwargs,
         )
 
@@ -2300,7 +2345,7 @@ class OrthusForConditionalGeneration(ChameleonPreTrainedModel):
             )
 
         loss = None
-        return CausalLMOutputWithPast(
+        return OrthusCausalLMOutputWithPast(
             loss=loss,
             logits=logits,
             next_image_latents=next_image_latents,

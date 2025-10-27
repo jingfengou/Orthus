@@ -28,7 +28,7 @@ LAUNCH_CMD="accelerate launch --num_processes 8"
 BATCH_SIZE=4
 # REPORT_TO="none"     # <--- 关闭 wandb
 REPORT_TO="wandb"
-EPOCHS=500
+EPOCHS=100
 GRADIENT_CHECKPOINTING_FLAG="--gradient_checkpointing"
 DEBUG_MODE_FLAG=""
 
@@ -52,7 +52,7 @@ $LAUNCH_CMD train_interleave_orthus.py \
     --train_file "/data1/oujingfeng/project/twgi/datasets/mydatasets/modified_data.json" \
     --eval_file "/data1/oujingfeng/project/twgi/datasets/mydatasets/modified_data.json" \
     --image_folder "/data1/oujingfeng/project/twgi/datasets/mydatasets" \
-    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample80b100ep500l1e-5-weight-F" \
+    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample80b100ep100l1e-5-weight-T" \
     --num_train_epochs $EPOCHS \
     --per_device_train_batch_size $BATCH_SIZE \
     --per_device_eval_batch_size $BATCH_SIZE \
@@ -69,6 +69,6 @@ $LAUNCH_CMD train_interleave_orthus.py \
     --early_stopping_patience 5 \
     --alpha 1.0 \
     --beta 100.0 \
-    --distortion_weight False \
+    --distortion_weight True \
     --return_analysis False \
     # --generation_log_file "/data1/oujingfeng/project/twgi/checkpoints/orthus-7b-sft-v4/generation_log.jsonl"
