@@ -1,45 +1,37 @@
 nohup: ignoring input
 ./interleave_train.sh: 36: [: unexpected operator
 >>> Running in Multi-GPU TRAINING mode <<<
-W1027 07:17:20.246000 3710282 site-packages/torch/distributed/run.py:774] 
-W1027 07:17:20.246000 3710282 site-packages/torch/distributed/run.py:774] *****************************************
-W1027 07:17:20.246000 3710282 site-packages/torch/distributed/run.py:774] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
-W1027 07:17:20.246000 3710282 site-packages/torch/distributed/run.py:774] *****************************************
-2025-10-27 07:17:25,638 - INFO - Setting random seed to 42
-2025-10-27 07:17:25,740 - INFO - Setting random seed to 42
-2025-10-27 07:17:25,779 - INFO - Setting random seed to 42
-2025-10-27 07:17:25,784 - INFO - Setting random seed to 42
-2025-10-27 07:17:25,929 - INFO - Setting random seed to 42
-2025-10-27 07:17:26,078 - INFO - Setting random seed to 42
-2025-10-27 07:17:26,402 - INFO - Setting random seed to 42
-2025-10-27 07:17:26,406 - INFO - Setting random seed to 42
+W1027 08:55:04.860000 3764859 site-packages/torch/distributed/run.py:774] 
+W1027 08:55:04.860000 3764859 site-packages/torch/distributed/run.py:774] *****************************************
+W1027 08:55:04.860000 3764859 site-packages/torch/distributed/run.py:774] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W1027 08:55:04.860000 3764859 site-packages/torch/distributed/run.py:774] *****************************************
+2025-10-27 08:55:11,572 - INFO - Setting random seed to 42
+2025-10-27 08:55:11,575 - INFO - Setting random seed to 42
+2025-10-27 08:55:11,675 - INFO - Setting random seed to 42
+2025-10-27 08:55:11,807 - INFO - Setting random seed to 42
+2025-10-27 08:55:11,843 - INFO - Setting random seed to 42
+2025-10-27 08:55:11,946 - INFO - Setting random seed to 42
+2025-10-27 08:55:12,491 - INFO - Setting random seed to 42
+2025-10-27 08:55:12,705 - INFO - Setting random seed to 42
 `torch_dtype` is deprecated! Use `dtype` instead!
 `torch_dtype` is deprecated! Use `dtype` instead!
 `torch_dtype` is deprecated! Use `dtype` instead!
 `torch_dtype` is deprecated! Use `dtype` instead!
-2025-10-27 07:17:32,411 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
 `torch_dtype` is deprecated! Use `dtype` instead!
-2025-10-27 07:17:32,703 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
-2025-10-27 07:17:32,725 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
-`torch_dtype` is deprecated! Use `dtype` instead!
-Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]2025-10-27 07:17:32,997 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+2025-10-27 08:55:18,028 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+2025-10-27 08:55:18,326 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+2025-10-27 08:55:18,338 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+2025-10-27 08:55:18,417 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
 Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]`torch_dtype` is deprecated! Use `dtype` instead!
-2025-10-27 07:17:33,227 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
-Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]`torch_dtype` is deprecated! Use `dtype` instead!
-Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]2025-10-27 07:17:33,732 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
-Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]2025-10-27 07:17:33,870 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
-2025-10-27 07:17:34,043 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
-Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:08,  1.66s/it]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:08,  1.66s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:08,  1.65s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:02<00:10,  2.02s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:08,  1.79s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:06,  1.69s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:08,  1.75s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:02<00:10,  2.01s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:02<00:10,  2.02s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:06,  1.65s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:07,  1.82s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:07,  1.81s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:06,  1.73s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:06,  1.72s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:07,  1.81s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.80s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:07,  1.83s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:04<00:04,  1.63s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.74s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.72s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.68s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.71s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.72s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:06<00:03,  1.62s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:06<00:03,  1.68s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:06<00:03,  1.65s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.96s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:07<00:03,  1.95s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:06<00:03,  1.64s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:06<00:03,  1.67s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:06<00:03,  1.66s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:01,  1.64s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:01,  1.67s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:01,  1.63s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:09<00:01,  1.85s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:07<00:03,  1.90s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:01,  1.63s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:01,  1.63s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:01,  1.63s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:09<00:01,  1.90s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.94s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.83s/it]
-Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  2.00s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.82s/it]
-Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.59s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:11<00:00,  2.02s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:11<00:00,  2.02s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.66s/it]
-Loading checkpoint shards: 100%|██████████| 6/6 [00:11<00:00,  1.86s/it]
-Loading checkpoint shards: 100%|██████████| 6/6 [00:11<00:00,  1.92s/it]
-Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.54s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.64s/it]
-Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.85s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.76s/it]
-2025-10-27 07:17:44,854 - INFO - Base model loaded in bfloat16.
-==================================================
-Freezing the vision autoencoder (model.vqmodel)...
-2025-10-27 07:17:44,855 - INFO - Base model loaded in bfloat16.
+2025-10-27 08:55:18,729 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]2025-10-27 08:55:19,387 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:08,  1.66s/it]2025-10-27 08:55:20,333 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:08,  1.63s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:08,  1.77s/it]2025-10-27 08:55:20,727 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:09,  1.96s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:02<00:10,  2.02s/it]Loading checkpoint shards:   0%|          | 0/6 [00:00<?, ?it/s]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:08,  1.70s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:06,  1.63s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:06,  1.62s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:06,  1.75s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:07,  1.76s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:01<00:09,  1.88s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:07,  1.81s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:04<00:04,  1.63s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:06,  1.67s/it]Loading checkpoint shards:  17%|█▋        | 1/6 [00:02<00:10,  2.01s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:04<00:04,  1.62s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.72s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.68s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:07,  1.84s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.72s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:06<00:03,  1.62s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:04<00:04,  1.64s/it]Loading checkpoint shards:  33%|███▎      | 2/6 [00:03<00:07,  1.81s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:06<00:03,  1.61s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:06<00:03,  1.70s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:06<00:03,  1.64s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:06<00:03,  1.67s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.79s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:06<00:03,  1.62s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:01,  1.62s/it]Loading checkpoint shards:  50%|█████     | 3/6 [00:05<00:05,  1.73s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:01,  1.61s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:01,  1.69s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:01,  1.63s/it]Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:01,  1.65s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:07<00:03,  1.75s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.57s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.60s/it]
+Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:01,  1.61s/it]Loading checkpoint shards:  67%|██████▋   | 4/6 [00:06<00:03,  1.68s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.56s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.59s/it]
+2025-10-27 08:55:28,781 - INFO - Base model loaded in bfloat16.
 ==================================================
 Freezing the vision autoencoder (model.vqmodel)...
 Freezing complete.
@@ -48,19 +40,12 @@ Trainable parameters: 7065744128
 Frozen parameters: 68718467
 Trainable ratio: 99.04%
 ==================================================
-Freezing complete.
-Total parameters: 7134462595
-Trainable parameters: 7065744128
-Frozen parameters: 68718467
-Trainable ratio: 99.04%
-==================================================
-2025-10-27 07:17:44,859 - INFO - Model and processor loaded successfully.
-2025-10-27 07:17:44,859 - INFO - 
+2025-10-27 08:55:28,786 - INFO - Model and processor loaded successfully.
+2025-10-27 08:55:28,786 - INFO - 
 --- [Step 2/5] Initializing full datasets... ---
-2025-10-27 07:17:44,860 - INFO - Model and processor loaded successfully.
-2025-10-27 07:17:44,860 - INFO - 
---- [Step 2/5] Initializing full datasets... ---
-2025-10-27 07:17:44,890 - INFO - Base model loaded in bfloat16.
+Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.60s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.65s/it]
+Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.64s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.68s/it]
+2025-10-27 08:55:29,044 - INFO - Base model loaded in bfloat16.
 ==================================================
 Freezing the vision autoencoder (model.vqmodel)...
 Freezing complete.
@@ -69,10 +54,12 @@ Trainable parameters: 7065744128
 Frozen parameters: 68718467
 Trainable ratio: 99.04%
 ==================================================
-2025-10-27 07:17:44,896 - INFO - Model and processor loaded successfully.
-2025-10-27 07:17:44,896 - INFO - 
+2025-10-27 08:55:29,049 - INFO - Model and processor loaded successfully.
+2025-10-27 08:55:29,049 - INFO - 
 --- [Step 2/5] Initializing full datasets... ---
-2025-10-27 07:17:44,903 - INFO - Base model loaded in bfloat16.
+Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.56s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.65s/it]
+Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:01,  1.70s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.53s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.58s/it]
+2025-10-27 08:55:29,573 - INFO - Base model loaded in bfloat16.
 ==================================================
 Freezing the vision autoencoder (model.vqmodel)...
 Freezing complete.
@@ -81,10 +68,10 @@ Trainable parameters: 7065744128
 Frozen parameters: 68718467
 Trainable ratio: 99.04%
 ==================================================
-2025-10-27 07:17:44,908 - INFO - Model and processor loaded successfully.
-2025-10-27 07:17:44,908 - INFO - 
+2025-10-27 08:55:29,577 - INFO - Model and processor loaded successfully.
+2025-10-27 08:55:29,577 - INFO - 
 --- [Step 2/5] Initializing full datasets... ---
-2025-10-27 07:17:45,089 - INFO - Base model loaded in bfloat16.
+2025-10-27 08:55:29,667 - INFO - Base model loaded in bfloat16.
 ==================================================
 Freezing the vision autoencoder (model.vqmodel)...
 Freezing complete.
@@ -93,10 +80,10 @@ Trainable parameters: 7065744128
 Frozen parameters: 68718467
 Trainable ratio: 99.04%
 ==================================================
-2025-10-27 07:17:45,093 - INFO - Model and processor loaded successfully.
-2025-10-27 07:17:45,093 - INFO - 
+2025-10-27 08:55:29,671 - INFO - Model and processor loaded successfully.
+2025-10-27 08:55:29,671 - INFO - 
 --- [Step 2/5] Initializing full datasets... ---
-2025-10-27 07:17:45,171 - INFO - Base model loaded in bfloat16.
+2025-10-27 08:55:29,735 - INFO - Base model loaded in bfloat16.
 ==================================================
 Freezing the vision autoencoder (model.vqmodel)...
 Freezing complete.
@@ -105,128 +92,18 @@ Trainable parameters: 7065744128
 Frozen parameters: 68718467
 Trainable ratio: 99.04%
 ==================================================
-2025-10-27 07:17:45,176 - INFO - Model and processor loaded successfully.
-2025-10-27 07:17:45,176 - INFO - 
+2025-10-27 08:55:29,740 - INFO - Model and processor loaded successfully.
+2025-10-27 08:55:29,740 - INFO - 
 --- [Step 2/5] Initializing full datasets... ---
-2025-10-27 07:17:45,206 - INFO - Base model loaded in bfloat16.
-==================================================
-Freezing the vision autoencoder (model.vqmodel)...
-Freezing complete.
-Total parameters: 7134462595
-Trainable parameters: 7065744128
-Frozen parameters: 68718467
-Trainable ratio: 99.04%
-==================================================
-2025-10-27 07:17:45,210 - INFO - Model and processor loaded successfully.
-2025-10-27 07:17:45,210 - INFO - 
---- [Step 2/5] Initializing full datasets... ---
-Loading checkpoint shards: 100%|██████████| 6/6 [00:11<00:00,  1.81s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:11<00:00,  1.84s/it]
-2025-10-27 07:17:45,935 - INFO - Full train dataset size: 80
-2025-10-27 07:17:45,939 - INFO - Full eval dataset size: 10
+Loading checkpoint shards:  83%|████████▎ | 5/6 [00:08<00:01,  1.61s/it]2025-10-27 08:55:29,833 - INFO - Full train dataset size: 80
+2025-10-27 08:55:29,833 - INFO - Full eval dataset size: 10
 Initialized dataset with 80 examples.
 Initialized dataset with 10 examples.
 --- Setting model attributes for distortion_weight and return_analysis ---
-2025-10-27 07:17:45,939 - INFO - Custom SFT datasets created.
-2025-10-27 07:17:45,940 - INFO - 
+2025-10-27 08:55:29,833 - INFO - Custom SFT datasets created.
+2025-10-27 08:55:29,833 - INFO - 
 --- [Step 3/5] Configuring Training Arguments... ---
-Traceback (most recent call last):
-  File "/data1/oujingfeng/project/twgi/Orthus/train/train_interleave_orthus.py", line 339, in <module>
-    main()
-  File "/data1/oujingfeng/project/twgi/Orthus/train/train_interleave_orthus.py", line 258, in main
-    training_args = TrainingArguments(
-                    ^^^^^^^^^^^^^^^^^^
-TypeError: TrainingArguments.__init__() got an unexpected keyword argument 'evaluation_strategy'
-2025-10-27 07:17:45,965 - INFO - Full train dataset size: 80
-2025-10-27 07:17:45,965 - INFO - Full eval dataset size: 10
-Initialized dataset with 80 examples.
-Initialized dataset with 10 examples.
---- Setting model attributes for distortion_weight and return_analysis ---
-2025-10-27 07:17:45,966 - INFO - Custom SFT datasets created.
-2025-10-27 07:17:45,966 - INFO - 
---- [Step 3/5] Configuring Training Arguments... ---
-Traceback (most recent call last):
-  File "/data1/oujingfeng/project/twgi/Orthus/train/train_interleave_orthus.py", line 339, in <module>
-    main()
-2025-10-27 07:17:45,967 - INFO - Full train dataset size: 80
-  File "/data1/oujingfeng/project/twgi/Orthus/train/train_interleave_orthus.py", line 258, in main
-2025-10-27 07:17:45,967 - INFO - Full eval dataset size: 10
-Initialized dataset with 80 examples.
-Initialized dataset with 10 examples.
---- Setting model attributes for distortion_weight and return_analysis ---
-2025-10-27 07:17:45,968 - INFO - Custom SFT datasets created.
-    training_args = TrainingArguments(
- 2025-10-27 07:17:45,968 - INFO - 
---- [Step 3/5] Configuring Training Arguments... ---
-                   ^^^^^^^^^^^^^^^^^^
-TypeError: TrainingArguments.__init__() got an unexpected keyword argument 'evaluation_strategy'
-Traceback (most recent call last):
-  File "/data1/oujingfeng/project/twgi/Orthus/train/train_interleave_orthus.py", line 339, in <module>
-    main()
-  File "/data1/oujingfeng/project/twgi/Orthus/train/train_interleave_orthus.py", line 258, in main
-    training_args = TrainingArguments(
-                    ^^^^^^^^^^^^^^^^^^
-TypeError: TrainingArguments.__init__() got an unexpected keyword argument 'evaluation_strategy'
-2025-10-27 07:17:45,972 - INFO - Full train dataset size: 80
-2025-10-27 07:17:45,972 - INFO - Full eval dataset size: 10
-Initialized dataset with 80 examples.
-Initialized dataset with 10 examples.
---- Setting model attributes for distortion_weight and return_analysis ---
-2025-10-27 07:17:45,972 - INFO - Custom SFT datasets created.
-2025-10-27 07:17:45,972 - INFO - 
---- [Step 3/5] Configuring Training Arguments... ---
-Traceback (most recent call last):
-  File "/data1/oujingfeng/project/twgi/Orthus/train/train_interleave_orthus.py", line 339, in <module>
-    main()
-  File "/data1/oujingfeng/project/twgi/Orthus/train/train_interleave_orthus.py", line 258, in main
-    training_args = TrainingArguments(
-                    ^^^^^^^^^^^^^^^^^^
-TypeError: TrainingArguments.__init__() got an unexpected keyword argument 'evaluation_strategy'
-2025-10-27 07:17:46,165 - INFO - Full train dataset size: 80
-2025-10-27 07:17:46,165 - INFO - Full eval dataset size: 10
-Initialized dataset with 80 examples.
-Initialized dataset with 10 examples.
---- Setting model attributes for distortion_weight and return_analysis ---
-2025-10-27 07:17:46,165 - INFO - Custom SFT datasets created.
-2025-10-27 07:17:46,165 - INFO - 
---- [Step 3/5] Configuring Training Arguments... ---
-Traceback (most recent call last):
-  File "/data1/oujingfeng/project/twgi/Orthus/train/train_interleave_orthus.py", line 339, in <module>
-    main()
-  File "/data1/oujingfeng/project/twgi/Orthus/train/train_interleave_orthus.py", line 258, in main
-    training_args = TrainingArguments(
-                    ^^^^^^^^^^^^^^^^^^
-TypeError: TrainingArguments.__init__() got an unexpected keyword argument 'evaluation_strategy'
-2025-10-27 07:17:46,261 - INFO - Full train dataset size: 80
-2025-10-27 07:17:46,261 - INFO - Full eval dataset size: 10
-Initialized dataset with 80 examples.
-Initialized dataset with 10 examples.
---- Setting model attributes for distortion_weight and return_analysis ---
-2025-10-27 07:17:46,261 - INFO - Custom SFT datasets created.
-2025-10-27 07:17:46,262 - INFO - 
---- [Step 3/5] Configuring Training Arguments... ---
-Traceback (most recent call last):
-  File "/data1/oujingfeng/project/twgi/Orthus/train/train_interleave_orthus.py", line 339, in <module>
-    main()
-  File "/data1/oujingfeng/project/twgi/Orthus/train/train_interleave_orthus.py", line 258, in main
-    training_args = TrainingArguments(
-                    ^^^^^^^^^^^^^^^^^^
-TypeError: TrainingArguments.__init__() got an unexpected keyword argument 'evaluation_strategy'
-2025-10-27 07:17:46,304 - INFO - Full train dataset size: 80
-2025-10-27 07:17:46,304 - INFO - Full eval dataset size: 10
-Initialized dataset with 80 examples.
-Initialized dataset with 10 examples.
---- Setting model attributes for distortion_weight and return_analysis ---
-2025-10-27 07:17:46,305 - INFO - Custom SFT datasets created.
-2025-10-27 07:17:46,305 - INFO - 
---- [Step 3/5] Configuring Training Arguments... ---
-Traceback (most recent call last):
-  File "/data1/oujingfeng/project/twgi/Orthus/train/train_interleave_orthus.py", line 339, in <module>
-    main()
-  File "/data1/oujingfeng/project/twgi/Orthus/train/train_interleave_orthus.py", line 258, in main
-    training_args = TrainingArguments(
-                    ^^^^^^^^^^^^^^^^^^
-TypeError: TrainingArguments.__init__() got an unexpected keyword argument 'evaluation_strategy'
-2025-10-27 07:17:47,058 - INFO - Base model loaded in bfloat16.
+2025-10-27 08:55:30,103 - INFO - Base model loaded in bfloat16.
 ==================================================
 Freezing the vision autoencoder (model.vqmodel)...
 Freezing complete.
@@ -235,52 +112,219 @@ Trainable parameters: 7065744128
 Frozen parameters: 68718467
 Trainable ratio: 99.04%
 ==================================================
-2025-10-27 07:17:47,063 - INFO - Model and processor loaded successfully.
-2025-10-27 07:17:47,063 - INFO - 
+2025-10-27 08:55:30,108 - INFO - Model and processor loaded successfully.
+2025-10-27 08:55:30,108 - INFO - 
 --- [Step 2/5] Initializing full datasets... ---
-W1027 07:17:47.735000 3710282 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 3710555 closing signal SIGTERM
-W1027 07:17:47.736000 3710282 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 3710557 closing signal SIGTERM
-W1027 07:17:47.736000 3710282 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 3710559 closing signal SIGTERM
-W1027 07:17:47.737000 3710282 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 3710560 closing signal SIGTERM
-W1027 07:17:47.737000 3710282 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 3710561 closing signal SIGTERM
-W1027 07:17:47.737000 3710282 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 3710562 closing signal SIGTERM
-E1027 07:17:48.454000 3710282 site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 1 (pid: 3710556) of binary: /data1/conda/envs/orthus/bin/python3.11
-Traceback (most recent call last):
-  File "/data1/conda/envs/orthus/bin/accelerate", line 7, in <module>
-    sys.exit(main())
-             ^^^^^^
-  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
-    args.func(args)
-  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1220, in launch_command
-    deepspeed_launcher(args)
-  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/accelerate/commands/launch.py", line 906, in deepspeed_launcher
-    distrib_run.run(args)
-  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/run.py", line 892, in run
-    elastic_launch(
-  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 143, in __call__
-    return launch_agent(self._config, self._entrypoint, list(args))
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 277, in launch_agent
-    raise ChildFailedError(
-torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
-============================================================
-train_interleave_orthus.py FAILED
-------------------------------------------------------------
-Failures:
-[1]:
-  time      : 2025-10-27_07:17:47
-  host      : server
-  rank      : 3 (local_rank: 3)
-  exitcode  : 1 (pid: 3710558)
-  error_file: <N/A>
-  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
-------------------------------------------------------------
-Root Cause (first observed failure):
-[0]:
-  time      : 2025-10-27_07:17:47
-  host      : server
-  rank      : 1 (local_rank: 1)
-  exitcode  : 1 (pid: 3710556)
-  error_file: <N/A>
-  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
-============================================================
+2025-10-27 08:55:30,114 - INFO - Full train dataset size: 80
+2025-10-27 08:55:30,115 - INFO - Full eval dataset size: 10
+Initialized dataset with 80 examples.
+Initialized dataset with 10 examples.
+--- Setting model attributes for distortion_weight and return_analysis ---
+2025-10-27 08:55:30,115 - INFO - Custom SFT datasets created.
+2025-10-27 08:55:30,115 - INFO - 
+--- [Step 3/5] Configuring Training Arguments... ---
+2025-10-27 08:55:30,617 - INFO - Full train dataset size: 80
+2025-10-27 08:55:30,617 - INFO - Full eval dataset size: 10
+Initialized dataset with 80 examples.
+Initialized dataset with 10 examples.
+--- Setting model attributes for distortion_weight and return_analysis ---
+2025-10-27 08:55:30,617 - INFO - Custom SFT datasets created.
+2025-10-27 08:55:30,617 - INFO - 
+--- [Step 3/5] Configuring Training Arguments... ---
+2025-10-27 08:55:30,759 - INFO - Full train dataset size: 80
+2025-10-27 08:55:30,759 - INFO - Full eval dataset size: 10
+Initialized dataset with 80 examples.
+Initialized dataset with 10 examples.
+--- Setting model attributes for distortion_weight and return_analysis ---
+2025-10-27 08:55:30,760 - INFO - Custom SFT datasets created.
+2025-10-27 08:55:30,760 - INFO - 
+--- [Step 3/5] Configuring Training Arguments... ---
+Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.61s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:10<00:00,  1.70s/it]
+Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.51s/it]Loading checkpoint shards: 100%|██████████| 6/6 [00:09<00:00,  1.62s/it]
+2025-10-27 08:55:31,122 - INFO - Full train dataset size: 80
+2025-10-27 08:55:31,122 - INFO - Full eval dataset size: 10
+Initialized dataset with 80 examples.
+Initialized dataset with 10 examples.
+--- Setting model attributes for distortion_weight and return_analysis ---
+2025-10-27 08:55:31,123 - INFO - Custom SFT datasets created.
+2025-10-27 08:55:31,123 - INFO - 
+--- [Step 3/5] Configuring Training Arguments... ---
+2025-10-27 08:55:31,368 - INFO - Full train dataset size: 80
+2025-10-27 08:55:31,368 - INFO - Full eval dataset size: 10
+Initialized dataset with 80 examples.
+Initialized dataset with 10 examples.
+--- Setting model attributes for distortion_weight and return_analysis ---
+2025-10-27 08:55:31,369 - INFO - Custom SFT datasets created.
+2025-10-27 08:55:31,369 - INFO - 
+--- [Step 3/5] Configuring Training Arguments... ---
+2025-10-27 08:55:31,561 - INFO - Base model loaded in bfloat16.
+==================================================
+Freezing the vision autoencoder (model.vqmodel)...
+Freezing complete.
+Total parameters: 7134462595
+Trainable parameters: 7065744128
+Frozen parameters: 68718467
+Trainable ratio: 99.04%
+==================================================
+2025-10-27 08:55:31,566 - INFO - Model and processor loaded successfully.
+2025-10-27 08:55:31,566 - INFO - 
+--- [Step 2/5] Initializing full datasets... ---
+2025-10-27 08:55:31,796 - INFO - Base model loaded in bfloat16.
+==================================================
+Freezing the vision autoencoder (model.vqmodel)...
+Freezing complete.
+Total parameters: 7134462595
+Trainable parameters: 7065744128
+Frozen parameters: 68718467
+Trainable ratio: 99.04%
+==================================================
+2025-10-27 08:55:31,800 - INFO - Model and processor loaded successfully.
+2025-10-27 08:55:31,800 - INFO - 
+--- [Step 2/5] Initializing full datasets... ---
+2025-10-27 08:55:32,617 - INFO - Full train dataset size: 80
+2025-10-27 08:55:32,617 - INFO - Full eval dataset size: 10
+Initialized dataset with 80 examples.
+Initialized dataset with 10 examples.
+--- Setting model attributes for distortion_weight and return_analysis ---
+2025-10-27 08:55:32,617 - INFO - Custom SFT datasets created.
+2025-10-27 08:55:32,618 - INFO - 
+--- [Step 3/5] Configuring Training Arguments... ---
+2025-10-27 08:55:33,066 - INFO - Full train dataset size: 80
+2025-10-27 08:55:33,067 - INFO - Full eval dataset size: 10
+Initialized dataset with 80 examples.
+Initialized dataset with 10 examples.
+--- Setting model attributes for distortion_weight and return_analysis ---
+2025-10-27 08:55:33,067 - INFO - Custom SFT datasets created.
+2025-10-27 08:55:33,067 - INFO - 
+--- [Step 3/5] Configuring Training Arguments... ---
+2025-10-27 08:55:35,747 - INFO - 
+--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---
+2025-10-27 08:55:35,751 - INFO - 
+--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---
+2025-10-27 08:55:35,752 - INFO - 
+--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---
+2025-10-27 08:55:35,769 - INFO - 
+--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---
+2025-10-27 08:55:35,779 - INFO - 
+--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---
+2025-10-27 08:55:35,797 - INFO - 
+--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---
+2025-10-27 08:55:35,799 - INFO - 
+--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---
+2025-10-27 08:55:35,823 - INFO - 
+--- [Step 4/5] Initializing the custom InterleaveSFTTrainer... ---
+2025-10-27 08:55:36,390 - INFO - 
+--- [Step 5/5] Starting the formal training run... ---
+2025-10-27 08:55:36,400 - INFO - 
+--- [Step 5/5] Starting the formal training run... ---
+2025-10-27 08:55:36,454 - INFO - 
+--- [Step 5/5] Starting the formal training run... ---
+2025-10-27 08:55:36,711 - INFO - 
+--- [Step 5/5] Starting the formal training run... ---
+2025-10-27 08:55:36,712 - INFO - 
+--- [Step 5/5] Starting the formal training run... ---
+2025-10-27 08:55:36,745 - INFO - 
+--- [Step 5/5] Starting the formal training run... ---
+2025-10-27 08:55:36,761 - INFO - 
+--- [Step 5/5] Starting the formal training run... ---
+2025-10-27 08:55:36,784 - INFO - 
+--- [Step 5/5] Starting the formal training run... ---
+[rank5]:W1027 08:55:40.347000 3765126 site-packages/torch/utils/cpp_extension.py:2425] TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[rank5]:W1027 08:55:40.347000 3765126 site-packages/torch/utils/cpp_extension.py:2425] If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'] to specific architectures.
+[rank2]:W1027 08:55:40.457000 3765123 site-packages/torch/utils/cpp_extension.py:2425] TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[rank2]:W1027 08:55:40.457000 3765123 site-packages/torch/utils/cpp_extension.py:2425] If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'] to specific architectures.
+[rank4]:W1027 08:55:40.481000 3765125 site-packages/torch/utils/cpp_extension.py:2425] TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[rank4]:W1027 08:55:40.481000 3765125 site-packages/torch/utils/cpp_extension.py:2425] If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'] to specific architectures.
+[rank3]:W1027 08:55:40.799000 3765124 site-packages/torch/utils/cpp_extension.py:2425] TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[rank3]:W1027 08:55:40.799000 3765124 site-packages/torch/utils/cpp_extension.py:2425] If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'] to specific architectures.
+[rank1]:W1027 08:55:40.909000 3765122 site-packages/torch/utils/cpp_extension.py:2425] TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[rank1]:W1027 08:55:40.909000 3765122 site-packages/torch/utils/cpp_extension.py:2425] If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'] to specific architectures.
+[rank7]:W1027 08:55:40.939000 3765128 site-packages/torch/utils/cpp_extension.py:2425] TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[rank7]:W1027 08:55:40.939000 3765128 site-packages/torch/utils/cpp_extension.py:2425] If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'] to specific architectures.
+[rank0]:W1027 08:55:40.958000 3765121 site-packages/torch/utils/cpp_extension.py:2425] TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[rank0]:W1027 08:55:40.958000 3765121 site-packages/torch/utils/cpp_extension.py:2425] If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'] to specific architectures.
+Parameter Offload - Persistent parameters statistics: param_count = 428, numel = 1098371
+wandb: Currently logged in as: xjy110156 (xjy110156-) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: creating run
+wandb: Tracking run with wandb version 0.22.0
+wandb: Run data is saved locally in /data1/oujingfeng/project/twgi/Orthus/train/wandb/run-20251027_085601-ij7v21bt
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run fast-sea-145
+wandb: ⭐️ View project at https://wandb.ai/xjy110156-/huggingface
+wandb: 🚀 View run at https://wandb.ai/xjy110156-/huggingface/runs/ij7v21bt
+wandb: WARNING Serializing object of type dict that is 1922480 bytes
+  0%|          | 0/3 [00:00<?, ?it/s]2025-10-27 08:56:05,022 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+2025-10-27 08:56:05,022 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+2025-10-27 08:56:05,022 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+2025-10-27 08:56:05,022 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+2025-10-27 08:56:05,022 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+2025-10-27 08:56:05,022 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+2025-10-27 08:56:05,022 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+2025-10-27 08:56:05,022 - WARNING - `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+distortion_weights is Useddistortion_weights is Used
+
+distortion_weights is Useddistortion_weights is Used
+distortion_weights is Used
+
+distortion_weights is Used
+distortion_weights is Useddistortion_weights is Used
+
+Inserted analysis is False
+Inserted analysis is False
+Inserted analysis is False
+Inserted analysis is False
+Inserted analysis is False
+Inserted analysis is False
+Inserted analysis is False
+Inserted analysis is False
+ 33%|███▎      | 1/3 [00:25<00:50, 25.38s/it] 67%|██████▋   | 2/3 [00:45<00:22, 22.06s/it]100%|██████████| 3/3 [01:04<00:00, 20.65s/it]2025-10-27 08:57:17,248 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+2025-10-27 08:57:17,248 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+2025-10-27 08:57:17,285 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+2025-10-27 08:57:43,534 - INFO - 
+
+✅ [Success] Training completed successfully!
+2025-10-27 08:57:43,534 - INFO - 
+
+✅ [Success] Training completed successfully!
+2025-10-27 08:57:43,534 - INFO - 
+
+✅ [Success] Training completed successfully!
+2025-10-27 08:57:43,534 - INFO - 
+
+✅ [Success] Training completed successfully!
+2025-10-27 08:57:43,534 - INFO - 
+
+✅ [Success] Training completed successfully!
+2025-10-27 08:57:43,534 - INFO - Saving final model...
+2025-10-27 08:57:43,534 - INFO - Saving final model...
+2025-10-27 08:57:43,534 - INFO - Saving final model...
+2025-10-27 08:57:43,534 - INFO - Saving final model...
+2025-10-27 08:57:43,534 - INFO - Saving final model...
+2025-10-27 08:57:43,534 - INFO - 
+
+✅ [Success] Training completed successfully!
+                                             2025-10-27 08:57:43,534 - INFO - Saving final model...
+{'train_runtime': 102.7865, 'train_samples_per_second': 0.778, 'train_steps_per_second': 0.029, 'train_loss': 17.599511464436848, 'epoch': 1.0}2025-10-27 08:57:43,534 - INFO - 
+
+✅ [Success] Training completed successfully!
+
+2025-10-27 08:57:43,535 - INFO - Saving final model...
+100%|██████████| 3/3 [01:40<00:00, 20.65s/it]100%|██████████| 3/3 [01:40<00:00, 33.61s/it]
+2025-10-27 08:57:43,536 - INFO - 
+
+✅ [Success] Training completed successfully!
+2025-10-27 08:57:43,536 - INFO - Saving final model...
+2025-10-27 08:57:57,205 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+2025-10-27 08:57:57,205 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+2025-10-27 08:57:57,239 - INFO - vq_config is None. initializing the ChameleonVQConfig with default values.
+2025-10-27 08:57:58,975 - INFO - Final model and processor saved to /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample80b100test
+2025-10-27 08:57:58,979 - INFO - Final model and processor saved to /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample80b100test
+2025-10-27 08:57:58,990 - INFO - Final model and processor saved to /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample80b100test
+2025-10-27 08:57:59,010 - INFO - Final model and processor saved to /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample80b100test
+2025-10-27 08:57:59,041 - INFO - Final model and processor saved to /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample80b100test
+2025-10-27 08:57:59,046 - INFO - Final model and processor saved to /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample80b100test
+2025-10-27 08:57:59,083 - INFO - Final model and processor saved to /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample80b100test
+2025-10-27 08:58:17,696 - INFO - Final model and processor saved to /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample80b100test
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33mfast-sea-145[0m at: [34m[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20251027_085601-ij7v21bt/logs[0m

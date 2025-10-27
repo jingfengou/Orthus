@@ -82,7 +82,8 @@ def main():
 
     # --- 训练控制参数 ---
     parser.add_argument("--logging_steps", type=int, default=10, help="Log every N steps.")
-    parser.add_argument("--evaluation_strategy", type=str, default="steps", choices=["steps", "epoch"], help="Evaluation strategy.")
+    parser.add_argument("--eval_strategy", type=str, default="steps", choices=["steps", "epoch"], help="Evaluation strategy.")
+    parser.add_argument("--evaluation_strategy", type=str, dest="eval_strategy", help=argparse.SUPPRESS)
     parser.add_argument("--eval_steps", type=int, default=200, help="Evaluate every N steps (if evaluation_strategy is 'steps').")
     parser.add_argument("--save_strategy", type=str, default="steps", choices=["steps", "epoch"], help="Checkpoint saving strategy.")
     parser.add_argument("--save_steps", type=int, default=200, help="Save a checkpoint every N steps.")
@@ -266,7 +267,7 @@ def main():
         warmup_ratio=args.warmup_ratio,
         lr_scheduler_type=args.lr_scheduler_type,
         logging_steps=args.logging_steps,
-        evaluation_strategy=args.evaluation_strategy,
+        eval_strategy=args.eval_strategy,
         eval_steps=args.eval_steps,
         save_strategy=args.save_strategy,
         save_steps=args.save_steps,
