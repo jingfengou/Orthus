@@ -1,0 +1,11 @@
+2025-10-28 03:36:27,645 INFO    MainThread:298741 [wandb_setup.py:_flush():81] Current SDK version is 0.22.0
+2025-10-28 03:36:27,645 INFO    MainThread:298741 [wandb_setup.py:_flush():81] Configure stats pid to 298741
+2025-10-28 03:36:27,645 INFO    MainThread:298741 [wandb_setup.py:_flush():81] Loading settings from /home/server/.config/wandb/settings
+2025-10-28 03:36:27,645 INFO    MainThread:298741 [wandb_setup.py:_flush():81] Loading settings from /data1/oujingfeng/project/twgi/Orthus/train/grpo/wandb/settings
+2025-10-28 03:36:27,645 INFO    MainThread:298741 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2025-10-28 03:36:27,646 INFO    MainThread:298741 [wandb_init.py:setup_run_log_directory():686] Logging user logs to /data1/oujingfeng/project/twgi/Orthus/train/grpo/wandb/run-20251028_033627-extl19zu/logs/debug.log
+2025-10-28 03:36:27,646 INFO    MainThread:298741 [wandb_init.py:setup_run_log_directory():687] Logging internal logs to /data1/oujingfeng/project/twgi/Orthus/train/grpo/wandb/run-20251028_033627-extl19zu/logs/debug-internal.log
+2025-10-28 03:36:27,646 INFO    MainThread:298741 [wandb_init.py:init():813] calling init triggers
+2025-10-28 03:36:27,646 INFO    MainThread:298741 [wandb_init.py:init():818] wandb.init called with sweep_config: {}
+config: {'_wandb': {}}
+2025-10-28 03:36:27,646 INFO    MainThread:298741 [wandb_init.py:init():861] starting backend

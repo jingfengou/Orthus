@@ -1,0 +1,421 @@
+[INFO] Launch command: accelerate launch --config_file /data1/oujingfeng/project/twgi/Orthus/accelerate_config_single.yaml --num_processes 1 /data1/oujingfeng/project/twgi/Orthus/train/grpo/grpo_orthus.py --model_name_or_path /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample80b100ep500l1e-5-weight-F --output_dir /data1/oujingfeng/project/twgi/checkpoints/grpo/orthus-7b-grpo-geneval-v1-debug --run_name orthus-7b-grpo-geneval-v1-debug --dataset_name /data1/oujingfeng/project/twgi/datasets/mydatasets/modified_data.json --gradient_checkpointing True --use_cpu True --max_prompt_length 256 --max_completion_length 256 --per_device_train_batch_size 1 --gradient_accumulation_steps 1 --learning_rate 1e-6 --max_steps 2 --logging_steps 1 --save_steps 500 --temperature 1.0 --num_generations 2 --generation_batch_size 2 --beta 0.0 --optim adamw_torch --reward_funcs answer_correctness format --reward_smooth True --kl_reweight True --update_ref False --entropy_reward True
+/data1/conda/envs/orthus/lib/python3.11/site-packages/joblib/_multiprocessing_helpers.py:44: UserWarning: [Errno 13] Permission denied.  joblib will operate in serial mode
+  warnings.warn("%s.  joblib will operate in serial mode" % (e,))
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/cuda/__init__.py:182: UserWarning: CUDA initialization: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 304: OS call failed or operation not supported on this OS (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+/data1/conda/envs/orthus/lib/python3.11/site-packages/joblib/_multiprocessing_helpers.py:44: UserWarning: [Errno 13] Permission denied.  joblib will operate in serial mode
+  warnings.warn("%s.  joblib will operate in serial mode" % (e,))
+`torch_dtype` is deprecated! Use `dtype` instead!
+Random seed set to 42
+--- [Step 1/3] Loading dataset... ---
+Dataset '/data1/oujingfeng/project/twgi/datasets/mydatasets/modified_data.json' loaded successfully with 100 samples.
+Dataset formatted.
+Enabled reward functions: ['answer_correctness', 'format']
+--- [Step 2/3] Initializing OrthusGRPOTrainer... ---
+--- OrthusGRPOTrainer Initializing ---
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 24.70it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 24.66it/s]
+Freezing non-trainable parts of the model...
+  - Froze policy model parameter: model.vqmodel.encoder.conv_in.weight
+  - Froze policy model parameter: model.vqmodel.encoder.conv_in.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.0.block.0.norm1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.0.block.0.norm1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.0.block.0.conv1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.0.block.0.conv1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.0.block.0.norm2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.0.block.0.norm2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.0.block.0.conv2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.0.block.0.conv2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.0.block.1.norm1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.0.block.1.norm1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.0.block.1.conv1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.0.block.1.conv1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.0.block.1.norm2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.0.block.1.norm2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.0.block.1.conv2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.0.block.1.conv2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.0.downsample.conv.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.0.downsample.conv.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.1.block.0.norm1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.1.block.0.norm1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.1.block.0.conv1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.1.block.0.conv1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.1.block.0.norm2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.1.block.0.norm2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.1.block.0.conv2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.1.block.0.conv2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.1.block.1.norm1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.1.block.1.norm1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.1.block.1.conv1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.1.block.1.conv1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.1.block.1.norm2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.1.block.1.norm2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.1.block.1.conv2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.1.block.1.conv2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.1.downsample.conv.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.1.downsample.conv.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.2.block.0.norm1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.2.block.0.norm1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.2.block.0.conv1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.2.block.0.conv1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.2.block.0.norm2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.2.block.0.norm2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.2.block.0.conv2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.2.block.0.conv2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.2.block.0.nin_shortcut.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.2.block.0.nin_shortcut.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.2.block.1.norm1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.2.block.1.norm1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.2.block.1.conv1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.2.block.1.conv1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.2.block.1.norm2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.2.block.1.norm2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.2.block.1.conv2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.2.block.1.conv2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.2.downsample.conv.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.2.downsample.conv.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.3.block.0.norm1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.3.block.0.norm1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.3.block.0.conv1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.3.block.0.conv1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.3.block.0.norm2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.3.block.0.norm2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.3.block.0.conv2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.3.block.0.conv2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.3.block.1.norm1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.3.block.1.norm1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.3.block.1.conv1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.3.block.1.conv1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.3.block.1.norm2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.3.block.1.norm2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.3.block.1.conv2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.3.block.1.conv2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.3.downsample.conv.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.3.downsample.conv.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.4.block.0.norm1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.4.block.0.norm1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.4.block.0.conv1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.4.block.0.conv1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.4.block.0.norm2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.4.block.0.norm2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.4.block.0.conv2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.4.block.0.conv2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.4.block.0.nin_shortcut.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.4.block.0.nin_shortcut.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.4.block.1.norm1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.4.block.1.norm1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.4.block.1.conv1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.4.block.1.conv1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.4.block.1.norm2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.4.block.1.norm2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.down.4.block.1.conv2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.down.4.block.1.conv2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.mid.block_1.norm1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.mid.block_1.norm1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.mid.block_1.conv1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.mid.block_1.conv1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.mid.block_1.norm2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.mid.block_1.norm2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.mid.block_1.conv2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.mid.block_1.conv2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.mid.attn_1.norm.weight
+  - Froze policy model parameter: model.vqmodel.encoder.mid.attn_1.norm.bias
+  - Froze policy model parameter: model.vqmodel.encoder.mid.attn_1.q.weight
+  - Froze policy model parameter: model.vqmodel.encoder.mid.attn_1.q.bias
+  - Froze policy model parameter: model.vqmodel.encoder.mid.attn_1.k.weight
+  - Froze policy model parameter: model.vqmodel.encoder.mid.attn_1.k.bias
+  - Froze policy model parameter: model.vqmodel.encoder.mid.attn_1.v.weight
+  - Froze policy model parameter: model.vqmodel.encoder.mid.attn_1.v.bias
+  - Froze policy model parameter: model.vqmodel.encoder.mid.attn_1.proj_out.weight
+  - Froze policy model parameter: model.vqmodel.encoder.mid.attn_1.proj_out.bias
+  - Froze policy model parameter: model.vqmodel.encoder.mid.block_2.norm1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.mid.block_2.norm1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.mid.block_2.conv1.weight
+  - Froze policy model parameter: model.vqmodel.encoder.mid.block_2.conv1.bias
+  - Froze policy model parameter: model.vqmodel.encoder.mid.block_2.norm2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.mid.block_2.norm2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.mid.block_2.conv2.weight
+  - Froze policy model parameter: model.vqmodel.encoder.mid.block_2.conv2.bias
+  - Froze policy model parameter: model.vqmodel.encoder.norm_out.weight
+  - Froze policy model parameter: model.vqmodel.encoder.norm_out.bias
+  - Froze policy model parameter: model.vqmodel.encoder.conv_out.weight
+  - Froze policy model parameter: model.vqmodel.encoder.conv_out.bias
+  - Froze policy model parameter: model.vqmodel.decoder.conv_in.weight
+  - Froze policy model parameter: model.vqmodel.decoder.conv_in.bias
+  - Froze policy model parameter: model.vqmodel.decoder.mid.block_1.norm1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.mid.block_1.norm1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.mid.block_1.conv1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.mid.block_1.conv1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.mid.block_1.norm2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.mid.block_1.norm2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.mid.block_1.conv2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.mid.block_1.conv2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.mid.attn_1.norm.weight
+  - Froze policy model parameter: model.vqmodel.decoder.mid.attn_1.norm.bias
+  - Froze policy model parameter: model.vqmodel.decoder.mid.attn_1.q.weight
+  - Froze policy model parameter: model.vqmodel.decoder.mid.attn_1.q.bias
+  - Froze policy model parameter: model.vqmodel.decoder.mid.attn_1.k.weight
+  - Froze policy model parameter: model.vqmodel.decoder.mid.attn_1.k.bias
+  - Froze policy model parameter: model.vqmodel.decoder.mid.attn_1.v.weight
+  - Froze policy model parameter: model.vqmodel.decoder.mid.attn_1.v.bias
+  - Froze policy model parameter: model.vqmodel.decoder.mid.attn_1.proj_out.weight
+  - Froze policy model parameter: model.vqmodel.decoder.mid.attn_1.proj_out.bias
+  - Froze policy model parameter: model.vqmodel.decoder.mid.block_2.norm1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.mid.block_2.norm1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.mid.block_2.conv1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.mid.block_2.conv1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.mid.block_2.norm2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.mid.block_2.norm2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.mid.block_2.conv2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.mid.block_2.conv2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.0.norm1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.0.norm1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.0.conv1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.0.conv1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.0.norm2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.0.norm2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.0.conv2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.0.conv2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.1.norm1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.1.norm1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.1.conv1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.1.conv1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.1.norm2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.1.norm2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.1.conv2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.1.conv2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.2.norm1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.2.norm1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.2.conv1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.2.conv1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.2.norm2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.2.norm2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.2.conv2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.0.block.2.conv2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.0.norm1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.0.norm1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.0.conv1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.0.conv1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.0.norm2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.0.norm2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.0.conv2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.0.conv2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.0.nin_shortcut.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.0.nin_shortcut.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.1.norm1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.1.norm1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.1.conv1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.1.conv1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.1.norm2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.1.norm2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.1.conv2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.1.conv2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.2.norm1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.2.norm1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.2.conv1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.2.conv1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.2.norm2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.2.norm2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.2.conv2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.block.2.conv2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.upsample.conv.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.1.upsample.conv.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.0.norm1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.0.norm1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.0.conv1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.0.conv1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.0.norm2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.0.norm2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.0.conv2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.0.conv2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.1.norm1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.1.norm1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.1.conv1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.1.conv1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.1.norm2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.1.norm2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.1.conv2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.1.conv2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.2.norm1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.2.norm1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.2.conv1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.2.conv1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.2.norm2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.2.norm2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.2.conv2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.block.2.conv2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.upsample.conv.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.2.upsample.conv.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.0.norm1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.0.norm1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.0.conv1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.0.conv1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.0.norm2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.0.norm2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.0.conv2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.0.conv2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.0.nin_shortcut.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.0.nin_shortcut.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.1.norm1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.1.norm1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.1.conv1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.1.conv1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.1.norm2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.1.norm2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.1.conv2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.1.conv2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.2.norm1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.2.norm1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.2.conv1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.2.conv1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.2.norm2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.2.norm2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.2.conv2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.block.2.conv2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.upsample.conv.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.3.upsample.conv.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.0.norm1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.0.norm1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.0.conv1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.0.conv1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.0.norm2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.0.norm2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.0.conv2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.0.conv2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.1.norm1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.1.norm1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.1.conv1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.1.conv1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.1.norm2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.1.norm2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.1.conv2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.1.conv2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.2.norm1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.2.norm1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.2.conv1.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.2.conv1.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.2.norm2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.2.norm2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.2.conv2.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.block.2.conv2.bias
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.upsample.conv.weight
+  - Froze policy model parameter: model.vqmodel.decoder.up.4.upsample.conv.bias
+  - Froze policy model parameter: model.vqmodel.decoder.norm_out.weight
+  - Froze policy model parameter: model.vqmodel.decoder.norm_out.bias
+  - Froze policy model parameter: model.vqmodel.decoder.conv_out.weight
+  - Froze policy model parameter: model.vqmodel.decoder.conv_out.bias
+  - Froze policy model parameter: model.vqmodel.quantize.embedding.weight
+  - Froze policy model parameter: model.vqmodel.quant_conv.weight
+  - Froze policy model parameter: model.vqmodel.quant_conv.bias
+  - Froze policy model parameter: model.vqmodel.post_quant_conv.weight
+  - Froze policy model parameter: model.vqmodel.post_quant_conv.bias
+  - Froze policy model parameter: mlp_head.time_embed.mlp.0.weight
+  - Froze policy model parameter: mlp_head.time_embed.mlp.0.bias
+  - Froze policy model parameter: mlp_head.time_embed.mlp.2.weight
+  - Froze policy model parameter: mlp_head.time_embed.mlp.2.bias
+  - Froze policy model parameter: mlp_head.cond_embed.weight
+  - Froze policy model parameter: mlp_head.cond_embed.bias
+  - Froze policy model parameter: mlp_head.input_proj.weight
+  - Froze policy model parameter: mlp_head.input_proj.bias
+  - Froze policy model parameter: mlp_head.res_blocks.0.in_ln.weight
+  - Froze policy model parameter: mlp_head.res_blocks.0.in_ln.bias
+  - Froze policy model parameter: mlp_head.res_blocks.0.mlp.0.weight
+  - Froze policy model parameter: mlp_head.res_blocks.0.mlp.0.bias
+  - Froze policy model parameter: mlp_head.res_blocks.0.mlp.2.weight
+  - Froze policy model parameter: mlp_head.res_blocks.0.mlp.2.bias
+  - Froze policy model parameter: mlp_head.res_blocks.0.adaLN_modulation.1.weight
+  - Froze policy model parameter: mlp_head.res_blocks.0.adaLN_modulation.1.bias
+  - Froze policy model parameter: mlp_head.res_blocks.1.in_ln.weight
+  - Froze policy model parameter: mlp_head.res_blocks.1.in_ln.bias
+  - Froze policy model parameter: mlp_head.res_blocks.1.mlp.0.weight
+  - Froze policy model parameter: mlp_head.res_blocks.1.mlp.0.bias
+  - Froze policy model parameter: mlp_head.res_blocks.1.mlp.2.weight
+  - Froze policy model parameter: mlp_head.res_blocks.1.mlp.2.bias
+  - Froze policy model parameter: mlp_head.res_blocks.1.adaLN_modulation.1.weight
+  - Froze policy model parameter: mlp_head.res_blocks.1.adaLN_modulation.1.bias
+  - Froze policy model parameter: mlp_head.res_blocks.2.in_ln.weight
+  - Froze policy model parameter: mlp_head.res_blocks.2.in_ln.bias
+  - Froze policy model parameter: mlp_head.res_blocks.2.mlp.0.weight
+  - Froze policy model parameter: mlp_head.res_blocks.2.mlp.0.bias
+  - Froze policy model parameter: mlp_head.res_blocks.2.mlp.2.weight
+  - Froze policy model parameter: mlp_head.res_blocks.2.mlp.2.bias
+  - Froze policy model parameter: mlp_head.res_blocks.2.adaLN_modulation.1.weight
+  - Froze policy model parameter: mlp_head.res_blocks.2.adaLN_modulation.1.bias
+  - Froze policy model parameter: mlp_head.final_layer.linear.weight
+  - Froze policy model parameter: mlp_head.final_layer.linear.bias
+  - Froze policy model parameter: mlp_head.final_layer.adaLN_modulation.1.weight
+  - Froze policy model parameter: mlp_head.final_layer.adaLN_modulation.1.bias
+Model parts frozen.
+[2025-10-28 03:35:45,428] [WARNING] [real_accelerator.py:209:get_accelerator] Setting accelerator to CPU. If you have GPU or other accelerator, we were unable to detect it.
+wandb: Network error (ConnectionError), entering retry loop.
+wandb: W&B API key is configured. Use `wandb login --relogin` to force relogin
+wandb: Network error (ConnectionError), entering retry loop.
+2025/10/28 03:35:57 ERROR main: failed to get logger path error="error opening log file: open /home/server/.cache/wandb/logs/core-debug-20251028_033557.log: permission denied"
+2025/10/28 03:35:57 WARN server/listeners: couldn't open Unix socket in os.TempDir() error="server/listeners: failed to open Unix socket on \"/tmp/wandb-298386-298515-1173032071/socket\": listen unix /tmp/wandb-298386-298515-1173032071/socket: setsockopt: operation not permitted"
+2025/10/28 03:35:57 ERROR main: Serve() returned error error="server/listeners: failed to open Unix socket on \"/tmp/wandb-298386-298515-3798520951/socket\": listen unix /tmp/wandb-298386-298515-3798520951/socket: setsockopt: operation not permitted\nserver/listeners: failed to listen on localhost: listen tcp 127.0.0.1:0: socket: operation not permitted"
+Loaded 2 reward functions: ['answer_correctness_reward', 'format_reward']
+Trainer initialized.
+--- [Step 3/3] Starting GRPO training... ---
+Traceback (most recent call last):
+  File "/data1/oujingfeng/project/twgi/Orthus/train/grpo/grpo_orthus.py", line 168, in <module>
+    main(script_args, training_args, model_args)
+  File "/data1/oujingfeng/project/twgi/Orthus/train/grpo/grpo_orthus.py", line 155, in main
+    trainer.train(resume_from_checkpoint=checkpoint_to_resume)
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/transformers/trainer.py", line 2325, in train
+    return inner_training_loop(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/transformers/trainer.py", line 2573, in _inner_training_loop
+    self.control = self.callback_handler.on_train_begin(args, self.state, self.control)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/transformers/trainer_callback.py", line 506, in on_train_begin
+    return self.call_event("on_train_begin", args, state, control)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/transformers/trainer_callback.py", line 556, in call_event
+    result = getattr(callback, event)(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/transformers/integrations/integration_utils.py", line 966, in on_train_begin
+    self.setup(args, state, model, **kwargs)
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/transformers/integrations/integration_utils.py", line 893, in setup
+    self._wandb.init(
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/wandb/sdk/wandb_init.py", line 1581, in init
+    wandb._sentry.reraise(e)
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/wandb/analytics/sentry.py", line 162, in reraise
+    raise exc.with_traceback(sys.exc_info()[2])
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/wandb/sdk/wandb_init.py", line 1562, in init
+    run = wi.init(run_settings, run_config, run_printer)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/wandb/sdk/wandb_init.py", line 863, in init
+    service = self._wl.ensure_service()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/wandb/sdk/wandb_setup.py", line 401, in ensure_service
+    self._connection = service_connection.connect_to_service(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/wandb/sdk/lib/service/service_connection.py", line 38, in connect_to_service
+    return _start_and_connect_service(asyncer, settings)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/wandb/sdk/lib/service/service_connection.py", line 51, in _start_and_connect_service
+    proc = service_process.start(settings)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/wandb/sdk/lib/service/service_process.py", line 35, in start
+    _sentry.reraise(e)
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/wandb/analytics/sentry.py", line 162, in reraise
+    raise exc.with_traceback(sys.exc_info()[2])
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/wandb/sdk/lib/service/service_process.py", line 33, in start
+    return _launch_server(settings)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/wandb/sdk/lib/service/service_process.py", line 105, in _launch_server
+    token = service_port_file.poll_for_token(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/wandb/sdk/lib/service/service_port_file.py", line 49, in poll_for_token
+    raise ServicePollForTokenError(
+wandb.sdk.lib.service.service_port_file.ServicePollForTokenError: wandb-core exited with code 1
+Traceback (most recent call last):
+  File "/data1/conda/envs/orthus/bin/accelerate", line 7, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1235, in launch_command
+    simple_launcher(args)
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/accelerate/commands/launch.py", line 823, in simple_launcher
+    raise subprocess.CalledProcessError(returncode=process.returncode, cmd=cmd)
+subprocess.CalledProcessError: Command '['/data1/conda/envs/orthus/bin/python3.11', '/data1/oujingfeng/project/twgi/Orthus/train/grpo/grpo_orthus.py', '--model_name_or_path', '/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample80b100ep500l1e-5-weight-F', '--output_dir', '/data1/oujingfeng/project/twgi/checkpoints/grpo/orthus-7b-grpo-geneval-v1-debug', '--run_name', 'orthus-7b-grpo-geneval-v1-debug', '--dataset_name', '/data1/oujingfeng/project/twgi/datasets/mydatasets/modified_data.json', '--gradient_checkpointing', 'True', '--use_cpu', 'True', '--max_prompt_length', '256', '--max_completion_length', '256', '--per_device_train_batch_size', '1', '--gradient_accumulation_steps', '1', '--learning_rate', '1e-6', '--max_steps', '2', '--logging_steps', '1', '--save_steps', '500', '--temperature', '1.0', '--num_generations', '2', '--generation_batch_size', '2', '--beta', '0.0', '--optim', 'adamw_torch', '--reward_funcs', 'answer_correctness', 'format', '--reward_smooth', 'True', '--kl_reweight', 'True', '--update_ref', 'False', '--entropy_reward', 'True']' returned non-zero exit status 1.

@@ -1,0 +1,82 @@
+wandb: WARNING Serializing object of type dict that is 1922480 bytes
+  0%|          | 0/20 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+multimodal_generation_mode text-only
+The input hidden states seems to be silently casted in float32, this might be related to the fact you have upcasted embedding or layer norm layers in float32. We will cast back the input in torch.bfloat16.
+multimodal_generation_mode text-only
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+Traceback (most recent call last):
+  File "/data1/oujingfeng/project/twgi/Orthus/train/grpo/grpo_orthus.py", line 168, in <module>
+    main(script_args, training_args, model_args)
+  File "/data1/oujingfeng/project/twgi/Orthus/train/grpo/grpo_orthus.py", line 155, in main
+    trainer.train(resume_from_checkpoint=checkpoint_to_resume)
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/transformers/trainer.py", line 2325, in train
+    return inner_training_loop(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/transformers/trainer.py", line 2674, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/transformers/trainer.py", line 4020, in training_step
+    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/Orthus/train/grpo/grpo_trainer_orthus.py", line 198, in compute_loss
+    log_probs_policy_full = self.get_text_per_token_logps(model, padded_full, attention_mask)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/Orthus/train/grpo/grpo_trainer_orthus.py", line 275, in get_text_per_token_logps
+    outputs = model(
+              ^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/accelerate/utils/operations.py", line 818, in forward
+    return model_forward(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/accelerate/utils/operations.py", line 806, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/Orthus/models/modeling_orthus_for_inteleave_cfg.py", line 2855, in forward
+    raise ValueError(
+ValueError: Unknown multimodal generation mode.
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/data1/oujingfeng/project/twgi/Orthus/train/grpo/grpo_orthus.py", line 168, in <module>
+[rank0]:     main(script_args, training_args, model_args)
+[rank0]:   File "/data1/oujingfeng/project/twgi/Orthus/train/grpo/grpo_orthus.py", line 155, in main
+[rank0]:     trainer.train(resume_from_checkpoint=checkpoint_to_resume)
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/transformers/trainer.py", line 2325, in train
+[rank0]:     return inner_training_loop(
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/transformers/trainer.py", line 2674, in _inner_training_loop
+[rank0]:     tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+[rank0]:                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/transformers/trainer.py", line 4020, in training_step
+[rank0]:     loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/oujingfeng/project/twgi/Orthus/train/grpo/grpo_trainer_orthus.py", line 198, in compute_loss
+[rank0]:     log_probs_policy_full = self.get_text_per_token_logps(model, padded_full, attention_mask)
+[rank0]:                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/oujingfeng/project/twgi/Orthus/train/grpo/grpo_trainer_orthus.py", line 275, in get_text_per_token_logps
+[rank0]:     outputs = model(
+[rank0]:               ^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/accelerate/utils/operations.py", line 818, in forward
+[rank0]:     return model_forward(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/accelerate/utils/operations.py", line 806, in __call__
+[rank0]:     return convert_to_fp32(self.model_forward(*args, **kwargs))
+[rank0]:                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/amp/autocast_mode.py", line 44, in decorate_autocast
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data1/oujingfeng/project/twgi/Orthus/models/modeling_orthus_for_inteleave_cfg.py", line 2855, in forward
+[rank0]:     raise ValueError(
+[rank0]: ValueError: Unknown multimodal generation mode.

@@ -1,0 +1,58 @@
+wandb: WARNING Serializing object of type dict that is 1922480 bytes
+  0%|          | 0/2 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+[GRPO DEBUG] compute_loss start | batch_size=1 num_generations=2
+[GRPO DEBUG] generate call 1/2
+multimodal_generation_mode text-only
+[GRPO DEBUG] generate call 2/2
+multimodal_generation_mode text-only
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+[GRPO DEBUG] generation finished | total_samples=2 elapsed=170.43s
+[GRPO DEBUG] logprobs input shapes | padded=(2, 1326) attention=(2, 1326)
+[GRPO DEBUG] reward stats | mean=0.0000 std=0.0000
+[GRPO DEBUG] loss ready | denom=235.00 mask_nonzero=235 policy_shape=(2, 142)
+  0%|          | 0/2 [03:45<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.2799395297436004, 'epoch': 0}
+[GRPO DEBUG] compute_loss start | batch_size=1 num_generations=2
+[GRPO DEBUG] generate call 1/2
+multimodal_generation_mode text-only
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+[GRPO DEBUG] generate call 2/2
+multimodal_generation_mode text-only
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+[GRPO DEBUG] generation finished | total_samples=2 elapsed=106.40s
+[GRPO DEBUG] logprobs input shapes | padded=(2, 1309) attention=(2, 1309)
+[GRPO DEBUG] reward stats | mean=0.0000 std=0.0000
+[GRPO DEBUG] loss ready | denom=126.00 mask_nonzero=126 policy_shape=(2, 125)
+ 50%|█████     | 1/2 [10:15<10:15, 615.38s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.3641490028018043, 'epoch': 0}
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 1e-06, 'epoch': 0.02}
+[GRPO DEBUG] compute_loss start | batch_size=1 num_generations=2
+[GRPO DEBUG] generate call 1/2
+multimodal_generation_mode text-only
+[GRPO DEBUG] generate call 2/2
+multimodal_generation_mode text-only
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+[GRPO DEBUG] generation finished | total_samples=2 elapsed=194.33s
+[GRPO DEBUG] logprobs input shapes | padded=(2, 1280) attention=(2, 1280)
+[GRPO DEBUG] reward stats | mean=0.0000 std=0.0000
+[GRPO DEBUG] loss ready | denom=191.00 mask_nonzero=191 policy_shape=(2, 100)
+ 50%|█████     | 1/2 [14:06<10:15, 615.38s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.16576162807604405, 'epoch': 0.02}
+[GRPO DEBUG] compute_loss start | batch_size=1 num_generations=2
+[GRPO DEBUG] generate call 1/2
+multimodal_generation_mode text-only
+[GRPO DEBUG] generate call 2/2
+multimodal_generation_mode text-only
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+[GRPO DEBUG] generation finished | total_samples=2 elapsed=170.84s
+[GRPO DEBUG] logprobs input shapes | padded=(2, 1275) attention=(2, 1275)
+[GRPO DEBUG] reward stats | mean=0.0000 std=0.0000
+[GRPO DEBUG] loss ready | denom=186.00 mask_nonzero=186 policy_shape=(2, 95)
+100%|██████████| 2/2 [20:58<00:00, 631.76s/it] stage3_gather_16bit_weights_on_model_save=false. Saving the full checkpoint instead, use zero_to_fp32.py to recover weights
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.16424499019499747, 'epoch': 0.02}
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 5e-07, 'epoch': 0.04}
+100%|██████████| 2/2 [23:31<00:00, 705.77s/it]
+{'train_runtime': 1413.9305, 'train_samples_per_second': 0.003, 'train_steps_per_second': 0.001, 'train_loss': 0.0, 'epoch': 0.04}
+--- Training finished. Saving final model... ---
+ stage3_gather_16bit_weights_on_model_save=false. Saving the full checkpoint instead, use zero_to_fp32.py to recover weights
+Final model and processor saved to /data1/oujingfeng/project/twgi/checkpoints/grpo/orthus-7b-grpo-geneval-v1-debug

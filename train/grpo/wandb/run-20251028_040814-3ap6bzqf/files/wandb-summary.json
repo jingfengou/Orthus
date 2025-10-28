@@ -1,0 +1,1 @@
+{"train/learning_rate":9.95e-07,"train/policy/advantage_mean":0,"train/loss/pg_loss":0,"train/reward/mean":0,"train/global_step":11,"train/loss/kl_div":-0.291831502512497,"_timestamp":1.7616250253216157e+09,"_runtime":543,"train/loss":0,"train/policy/advantage_std":0,"_step":33,"train/grad_norm":0,"_wandb":{"runtime":543},"train/reward/std":0,"train/epoch":1.6153846153846154}

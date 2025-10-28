@@ -1,0 +1,60 @@
+wandb: WARNING Serializing object of type dict that is 1922480 bytes
+  0%|          | 0/2 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+[GRPO DEBUG] compute_loss start | batch_size=1 num_generations=2
+[GRPO DEBUG] generate call 1/2
+multimodal_generation_mode text-only
+[GRPO DEBUG] generate call 2/2
+multimodal_generation_mode text-only
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+[GRPO DEBUG] generation finished | total_samples=2 elapsed=4.51s
+[GRPO DEBUG] decoded completion[0] => This option performs extra rotations beyond the required steps. Answer: A This option uses incorrect rotation angles. Answer: B This option only performs partial rotations, missing some steps. Answer:
+[GRPO DEBUG] logprobs input shapes | padded=(2, 1285) attention=(2, 1285)
+[GRPO DEBUG] reward stats | mean=0.0000 std=0.0000
+[GRPO DEBUG] loss ready | denom=102.00 mask_nonzero=102 policy_shape=(2, 101)
+  0%|          | 0/2 [00:04<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.3997468013389438, 'epoch': 0}
+[GRPO DEBUG] compute_loss start | batch_size=1 num_generations=2
+[GRPO DEBUG] generate call 1/2
+multimodal_generation_mode text-only
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+[GRPO DEBUG] generate call 2/2
+multimodal_generation_mode text-only
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+[GRPO DEBUG] generation finished | total_samples=2 elapsed=3.93s
+[GRPO DEBUG] decoded completion[0] => Clockwise along the Z axis: This option performs extra rotations beyond the required steps. It uses incorrect rotation angles. This option is missing one cube from the stack. This option only performs
+[GRPO DEBUG] logprobs input shapes | padded=(2, 1242) attention=(2, 1242)
+[GRPO DEBUG] reward stats | mean=0.0000 std=0.0000
+[GRPO DEBUG] loss ready | denom=104.00 mask_nonzero=104 policy_shape=(2, 58)
+ 50%|█████     | 1/2 [00:25<00:24, 24.85s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.6773131443903997, 'epoch': 0}
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 1e-06, 'epoch': 0.15}
+[GRPO DEBUG] compute_loss start | batch_size=1 num_generations=2
+[GRPO DEBUG] generate call 1/2
+multimodal_generation_mode text-only
+[GRPO DEBUG] generate call 2/2
+multimodal_generation_mode text-only
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+[GRPO DEBUG] generation finished | total_samples=2 elapsed=4.23s
+[GRPO DEBUG] decoded completion[0] => لساعدي the cube stack clockwise along the Z axis by 270 degrees. Let's generate an image to visualize the state of the object after rotation:
+[GRPO DEBUG] logprobs input shapes | padded=(2, 1257) attention=(2, 1257)
+[GRPO DEBUG] reward stats | mean=0.0000 std=0.0000
+[GRPO DEBUG] loss ready | denom=110.00 mask_nonzero=110 policy_shape=(2, 73)
+ 50%|█████     | 1/2 [00:29<00:24, 24.85s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.4135645779696378, 'epoch': 0.15}
+[GRPO DEBUG] compute_loss start | batch_size=1 num_generations=2
+[GRPO DEBUG] generate call 1/2
+multimodal_generation_mode text-only
+[GRPO DEBUG] generate call 2/2
+multimodal_generation_mode text-only
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+[GRPO DEBUG] generation finished | total_samples=2 elapsed=6.96s
+[GRPO DEBUG] decoded completion[0] => A: This option performs extra rotations beyond the required steps. B: This option rotates along wrong axes. C: this is the result after performing all rotation steps correctly. D: This option performs
+[GRPO DEBUG] logprobs input shapes | padded=(2, 1282) attention=(2, 1282)
+[GRPO DEBUG] reward stats | mean=0.0000 std=0.0000
+[GRPO DEBUG] loss ready | denom=193.00 mask_nonzero=193 policy_shape=(2, 100)
+100%|██████████| 2/2 [01:42<00:00, 51.01s/it]
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.16066989997507994, 'epoch': 0.15}
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 5e-07, 'epoch': 0.31}
+{'train_runtime': 107.8697, 'train_samples_per_second': 0.297, 'train_steps_per_second': 0.019, 'train_loss': 0.0, 'epoch': 0.31}
+--- Training finished. Saving final model... ---
+Final model and processor saved to /data1/oujingfeng/project/twgi/checkpoints/grpo/orthus-7b-grpo-geneval-v1

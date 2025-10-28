@@ -548,6 +548,9 @@ class ChameleonFlashAttention2(ChameleonAttention):
             key_states = key_states.to(target_dtype)
             value_states = value_states.to(target_dtype)
 
+        if attention_mask is not None and attention_mask.dtype != query_states.dtype:
+            attention_mask = attention_mask.to(query_states.dtype)
+
         attn_output = _flash_attention_forward(
             query_states,
             key_states,
@@ -639,6 +642,9 @@ class ChameleonSdpaAttention(ChameleonAttention):
             query_states = query_states.contiguous()
             key_states = key_states.contiguous()
             value_states = value_states.contiguous()
+
+        if causal_mask is not None and causal_mask.dtype != query_states.dtype:
+            causal_mask = causal_mask.to(query_states.dtype)
 
         # We dispatch to SDPA's Flash Attention or Efficient kernels via this `is_causal` if statement instead of an inline conditional assignment
         # in SDPA to support both torch.compile's dynamic shapes and full graph options. An inline conditional prevents dynamic shapes from compiling.
@@ -1477,6 +1483,8 @@ class OrthusModel(ChameleonPreTrainedModel):
         self.vqmodel = ChameleonVQVAE(config.vq_config)
         self.gradient_checkpointing = False
 
+        self._prepare_vqmodel()
+
         # add new traning parameter for C_in & initialize as pre-trained codebook
         self.codebook_in = nn.Embedding(self.vqmodel.quantize.num_embeddings, self.vqmodel.quantize.embedding_dim)
 
@@ -1492,6 +1500,28 @@ class OrthusModel(ChameleonPreTrainedModel):
 
     def set_input_embeddings(self, value):
         self.embed_tokens = value
+
+    def _prepare_vqmodel(self):
+        """
+        Keep the VQ-VAE branch lightweight: freeze parameters, switch to eval and
+        downcast when possible to reduce VRAM usage.
+        """
+        self.vqmodel.eval()
+        self.vqmodel.requires_grad_(False)
+
+        target_dtype = getattr(self.config, "vq_dtype", None)
+        if target_dtype is None:
+            target_dtype = getattr(self.config, "torch_dtype", None)
+
+        if isinstance(target_dtype, str):
+            target_dtype = getattr(torch, target_dtype, None)
+
+        if target_dtype is not None:
+            try:
+                self.vqmodel.to(dtype=target_dtype)
+            except Exception:
+                # Fall back to original dtype if the downcast is unsupported.
+                pass
 
     def convert_img2bpe_tokens(self, img_batch: torch.LongTensor) -> torch.LongTensor:
         """
@@ -2069,6 +2099,21 @@ class OrthusForConditionalGeneration(OrthusGenerationMixin, ChameleonPreTrainedM
     # ==========================================================
     # ## 🔚 END OF REQUIRED MODIFICATION ##
     # ==========================================================
+
+    def gradient_checkpointing_enable(self, gradient_checkpointing_kwargs=None):
+        """
+        Enable gradient checkpointing while defaulting to the non-reentrant path.
+        """
+        if gradient_checkpointing_kwargs is None:
+            gradient_checkpointing_kwargs = {"use_reentrant": False}
+
+        super().gradient_checkpointing_enable(gradient_checkpointing_kwargs)
+
+    def gradient_checkpointing_disable(self):
+        """
+        Disable gradient checkpointing for both the wrapper and the wrapped decoder.
+        """
+        super().gradient_checkpointing_disable()
     def _validate_model_class(self):
         """
         Validates the model class for generation. This method is required by the GenerationMixin.

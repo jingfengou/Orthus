@@ -1,18 +1,22 @@
 import os
 import random
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Optional
+
 import numpy as np
 import torch
 from datasets import load_dataset
 from transformers.trainer_utils import get_last_checkpoint
-from trl import ModelConfig, ScriptArguments, TrlParser
+from trl import ModelConfig, ScriptArguments, TrlParser, get_peft_config
 
-# 导入我们刚刚创建的函数
 from custom_rewards import answer_correctness_reward, format_reward
-
-# 导入我们即将创建的自定义 Trainer
-from grpo_trainer_orthus import OrthusGRPOTrainer, GRPOConfig, Geneval_score
+from grpo_trainer_orthus import (
+    GRPOConfig,
+    Geneval_score,
+    OrthusGRPOTrainer,
+    reward_funcs_registry as trainer_reward_registry,
+)
 
 # ------------------------------------------------------------------
 #  这个 GRPOConfig 继承自 TRL 的配置，并增加了 Orthus 特有的参数
@@ -34,6 +38,10 @@ class OrthusGRPOConfig(GRPOConfig):
     kl_reweight: bool = field(default=False, metadata={"help": "是否使用基于图像相似度的 KL 散度重加权。"})
     update_ref: bool = field(default=False, metadata={"help": "是否在训练中途更新参考模型。"})
     entropy_reward: bool = field(default=False, metadata={"help": "是否加入熵奖励项。"})
+    image_latent_cache_size: int = field(
+        default=256,
+        metadata={"help": "图像 latent 的 LRU 缓存大小（0 表示禁用）。"},
+    )
 
 @dataclass
 class GRPOScriptArguments(ScriptArguments):
@@ -43,6 +51,10 @@ class GRPOScriptArguments(ScriptArguments):
     reward_funcs: list[str] = field(
         default_factory=lambda: ["geneval"],
         metadata={"help": "要使用的奖励函数列表，例如: 'geneval', 'hps' 等。"},
+    )
+    image_base_dir: str = field(
+        default="/data1/oujingfeng/project/twgi/datasets/mydatasets",
+        metadata={"help": "图像根目录，用于加载题目图片。"},
     )
 
 def set_seed(seed: int):
@@ -57,10 +69,11 @@ def set_seed(seed: int):
 
 
 reward_funcs_registry = {
-    # "geneval": Geneval_score,
+    "geneval": Geneval_score,
     "answer_correctness": answer_correctness_reward,
     "format": format_reward,
 }
+reward_funcs_registry.update(trainer_reward_registry)
 
 def main(script_args, training_args, model_args):
     set_seed(training_args.seed)
@@ -68,7 +81,8 @@ def main(script_args, training_args, model_args):
     # 1. 加载数据集
     print("--- [Step 1/3] Loading dataset... ---")
     dataset = load_dataset("json", data_files=script_args.dataset_name)
-    print(f"Dataset '{script_args.dataset_name}' loaded successfully with {len(dataset['train'])} samples.")
+    train_len = len(dataset.get(script_args.dataset_train_split, []))
+    print(f"Dataset '{script_args.dataset_name}' loaded successfully with {train_len} samples.")
 
     # 2. 数据集预处理/格式化
     #    这个函数将原始数据格式化为模型需要的对话格式
@@ -80,19 +94,22 @@ def main(script_args, training_args, model_args):
         )
         question = example.get('Question', '')
         choices_text = "\n".join([f"{chr(65+i)}) {choice}" for i, choice in enumerate(example.get('Choices', []))])
-        
+
         # 核心 Prompt 结构，与 SFT 和推理时保持一致
         prompt_text = instruction + f"<image>\n\nQuestion: {question}\n{choices_text}\n\nAnswer: "
-        
+        image_rel = Path(example.get('Task', '')) / example.get('Image_id', '') / example.get('Combined_image', '')
+        image_base = Path(script_args.image_base_dir).expanduser()
+        image_path = (image_base / image_rel).resolve()
+
         return {
             "prompt": prompt_text,  # Trainer 将使用这个字段
-            "image_path": os.path.join(example.get('Task', ''), example.get('Image_id', ''), example.get('Combined_image', '')), # 相对路径
-            "metadata": example, # Geneval 等奖励函数需要原始元数据
+            "image_path": str(image_path),
+            "metadata": dict(example),  # Geneval 等奖励函数需要原始元数据
         }
 
     dataset = dataset.map(
         format_dataset,
-        num_proc=script_args.dataset_num_proc,
+        num_proc=getattr(script_args, 'dataset_num_proc', 1),
     )
     print("Dataset formatted.")
 

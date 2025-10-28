@@ -1,0 +1,6 @@
+{"time":"2025-10-27T17:23:05.663959404Z","level":"INFO","msg":"stream: starting","core version":"0.22.0"}
+{"time":"2025-10-27T17:23:06.427783752Z","level":"INFO","msg":"stream: created new stream","id":"izg6gici"}
+{"time":"2025-10-27T17:23:06.427892254Z","level":"INFO","msg":"stream: started","id":"izg6gici"}
+{"time":"2025-10-27T17:23:06.427925032Z","level":"INFO","msg":"handler: started","stream_id":"izg6gici"}
+{"time":"2025-10-27T17:23:06.427915159Z","level":"INFO","msg":"writer: started","stream_id":"izg6gici"}
+{"time":"2025-10-27T17:23:06.427988458Z","level":"INFO","msg":"sender: started","stream_id":"izg6gici"}

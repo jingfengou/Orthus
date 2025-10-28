@@ -1,0 +1,14 @@
+wandb: WARNING Serializing object of type dict that is 1922480 bytes
+  0%|          | 0/2 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+multimodal_generation_mode text-only
+multimodal_generation_mode text-only
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  0%|          | 0/2 [41:46<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.47166378758534666, 'epoch': 0}
+ 50%|█████     | 1/2 [1:19:02<1:19:02, 4742.67s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 1e-06, 'epoch': 0.01}
+multimodal_generation_mode text-only
+multimodal_generation_mode text-only
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+ 50%|█████     | 1/2 [1:55:26<1:19:02, 4742.67s/it]
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.23337232034037433, 'epoch': 0.01}

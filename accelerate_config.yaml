@@ -1,6 +1,5 @@
 compute_environment: LOCAL_MACHINE
-deepspeed_config: {}
-distributed_type: MULTI_GPU
+distributed_type: DEEPSPEED
 downcast_bf16: 'no'
 gpu_ids: all
 machine_rank: 0
@@ -14,3 +13,8 @@ tpu_env: []
 tpu_use_cluster: false
 tpu_use_sudo: false
 use_cpu: false
+deepspeed_config:
+  zero_stage: 3
+  offload_optimizer_device: none
+  offload_param_device: none
+  gradient_accumulation_steps: 1

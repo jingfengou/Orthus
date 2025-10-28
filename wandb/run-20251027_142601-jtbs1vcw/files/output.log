@@ -1,0 +1,15 @@
+wandb: WARNING Serializing object of type dict that is 1922480 bytes
+  0%|          | 0/2000 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+[GRPO DEBUG] compute_loss start | batch_size=1 num_generations=2
+[GRPO DEBUG] generate call 1/2
+multimodal_generation_mode text-only
+[GRPO DEBUG] generate call 2/2
+multimodal_generation_mode text-only
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+[GRPO DEBUG] generation finished | total_samples=2 elapsed=180.48s
+[GRPO DEBUG] decoded completion[0] => This option performs extra rotations beyond the required steps. Answer: A This option uses incorrect rotation angles. Answer: B This option only performs partial rotations, missing some steps. Answer:
+[GRPO DEBUG] logprobs input shapes | padded=(2, 1285) attention=(2, 1285)
+[GRPO DEBUG] reward stats | mean=0.0000 std=0.0000
+[GRPO DEBUG] loss ready | denom=102.00 mask_nonzero=102 policy_shape=(2, 101)
+  0%|          | 0/2000 [03:02<?, ?it/s]
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.3997468013389438, 'epoch': 0}

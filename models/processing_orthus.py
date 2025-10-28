@@ -16,6 +16,7 @@
 Processor class for Orthus.
 """
 
+from collections import OrderedDict
 from typing import List, Optional, Union
 
 from transformers.feature_extraction_utils import BatchFeature
@@ -57,6 +58,9 @@ class OrthusProcessor(ProcessorMixin):
         self.image_token = image_token
         self.image_start_token = "<racm3:break>"  # fixed tokens for start and end, so can hardcode
         self.image_end_token = "<eoss>"
+        self._latents_cache: Optional[OrderedDict[str, "torch.Tensor"]] = None
+        self._latents_cache_max_size: int = 0
+        self._latents_cache_dtype = torch.float16 if is_torch_available() else None
         super().__init__(image_processor, tokenizer)
 
     def __call__(
@@ -68,7 +72,8 @@ class OrthusProcessor(ProcessorMixin):
         max_length: int = None,
         return_tensors: Optional[Union[str, TensorType]] = TensorType.PYTORCH,
         return_for_text_completion: bool = False,
-        vqmodel: Optional[any] = None, 
+        vqmodel: Optional[any] = None,
+        image_cache_key: Optional[str] = None,
     ) -> BatchFeature:
         """
         Main method to prepare for the model one or several sequences(s) and image(s). This method forwards the `text`
@@ -140,13 +145,69 @@ class OrthusProcessor(ProcessorMixin):
         if images is not None:
             pixel_values = self.image_processor(images, return_tensors=return_tensors)["pixel_values"]
             data["pixel_values"] = pixel_values
-            pixel_values = pixel_values.to(vqmodel.quantize.embedding.weight.dtype)
-            with torch.no_grad():
-                image_latents = vqmodel.encode_wo_quant(pixel_values.to(vqmodel.quantize.embedding.weight.device))
-                image_latents = image_latents.permute(0, 2, 3, 1).contiguous() #[bsz, 32, 32, 256]
-            data["image_latents"] = image_latents.cpu()
+
+            cached_latents = None
+            if image_cache_key is not None:
+                cached_latents = self._get_cached_latents(image_cache_key)
+
+            if cached_latents is not None:
+                image_latents = cached_latents
+                if vqmodel is not None:
+                    target_dtype = vqmodel.quantize.embedding.weight.dtype
+                    if image_latents.dtype != target_dtype:
+                        image_latents = image_latents.to(dtype=target_dtype)
+            else:
+                if vqmodel is None:
+                    raise ValueError("`vqmodel` must be provided when encoding images.")
+
+                target_device = vqmodel.quantize.embedding.weight.device
+                target_dtype = vqmodel.quantize.embedding.weight.dtype
+                with torch.no_grad():
+                    converted = pixel_values.to(device=target_device, dtype=target_dtype, non_blocking=True)
+                    image_latents = vqmodel.encode_wo_quant(converted)
+                    image_latents = image_latents.permute(0, 2, 3, 1).contiguous()  # [bsz, 32, 32, 256]
+                image_latents = image_latents.cpu()
+
+                if image_cache_key is not None:
+                    self._store_latents_in_cache(image_cache_key, image_latents)
+
+            data["image_latents"] = image_latents
 
         return BatchFeature(data=data, tensor_type=return_tensors)
+
+    def enable_latents_cache(self, max_size: int = 256):
+        """
+        Enable (or disable) an LRU cache for image latents to reuse encodings
+        across repeated prompts.
+        """
+        if max_size > 0:
+            self._latents_cache = OrderedDict()
+            self._latents_cache_max_size = max_size
+        else:
+            self._latents_cache = None
+            self._latents_cache_max_size = 0
+
+    def _get_cached_latents(self, key: str) -> Optional["torch.Tensor"]:
+        if self._latents_cache is None or key not in self._latents_cache:
+            return None
+
+        latents = self._latents_cache[key]
+        self._latents_cache.move_to_end(key)
+        return latents.clone()
+
+    def _store_latents_in_cache(self, key: str, latents: "torch.Tensor"):
+        if self._latents_cache is None:
+            return
+
+        cache_value = latents
+        if self._latents_cache_dtype is not None:
+            cache_value = latents.to(dtype=self._latents_cache_dtype)
+
+        self._latents_cache[key] = cache_value
+        self._latents_cache.move_to_end(key)
+
+        if len(self._latents_cache) > self._latents_cache_max_size:
+            self._latents_cache.popitem(last=False)
 
     # Copied from transformers.models.clip.processing_clip.CLIPProcessor.batch_decode with CLIP->Llama
     def batch_decode(self, *args, **kwargs):

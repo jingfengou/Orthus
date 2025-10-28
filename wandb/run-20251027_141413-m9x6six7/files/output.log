@@ -1,0 +1,43 @@
+wandb: WARNING Serializing object of type dict that is 1922480 bytes
+  0%|          | 0/2 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+[GRPO DEBUG] compute_loss start | batch_size=1 num_generations=2
+[GRPO DEBUG] generate call 1/2
+multimodal_generation_mode text-only
+The input hidden states seems to be silently casted in float32, this might be related to the fact you have upcasted embedding or layer norm layers in float32. We will cast back the input in torch.bfloat16.
+[GRPO DEBUG] generate call 2/2
+multimodal_generation_mode text-only
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+[GRPO DEBUG] generation finished | total_samples=2 elapsed=9.32s
+[GRPO DEBUG] logprobs input shapes | padded=(2, 1312) attention=(2, 1312)
+[GRPO DEBUG] reward stats | mean=0.0000 std=0.0000
+[GRPO DEBUG] loss ready | denom=233.00 mask_nonzero=233 policy_shape=(2, 128)
+  0%|          | 0/2 [00:09<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.09462453162721299, 'epoch': 0}
+Traceback (most recent call last):
+  File "/data1/oujingfeng/project/twgi/Orthus/train/grpo/grpo_orthus.py", line 168, in <module>
+    main(script_args, training_args, model_args)
+  File "/data1/oujingfeng/project/twgi/Orthus/train/grpo/grpo_orthus.py", line 155, in main
+    trainer.train(resume_from_checkpoint=checkpoint_to_resume)
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/transformers/trainer.py", line 2325, in train
+    return inner_training_loop(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/transformers/trainer.py", line 2740, in _inner_training_loop
+    self.optimizer.step()
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/accelerate/optimizer.py", line 179, in step
+    self.optimizer.step(closure)
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/optim/lr_scheduler.py", line 133, in wrapper
+    return func.__get__(opt, opt.__class__)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/optim/optimizer.py", line 516, in wrapper
+    out = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/optim/optimizer.py", line 81, in _use_grad
+    ret = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/optim/adam.py", line 237, in step
+    has_complex = self._init_group(
+                  ^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/optim/adam.py", line 181, in _init_group
+    state["exp_avg_sq"] = torch.zeros_like(
+                          ^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 86.00 MiB. GPU 0 has a total capacity of 47.41 GiB of which 22.94 MiB is free. Process 3112564 has 260.00 MiB memory in use. Including non-PyTorch memory, this process has 47.12 GiB memory in use. Of the allocated memory 45.05 GiB is allocated by PyTorch, and 1.75 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

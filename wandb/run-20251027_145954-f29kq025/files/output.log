@@ -1,0 +1,35 @@
+wandb: WARNING Serializing object of type dict that is 1922480 bytes
+  0%|          | 0/2 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+[GRPO DEBUG] compute_loss start | batch_size=1 num_generations=2
+[GRPO DEBUG] generate call 1/2
+multimodal_generation_mode text-only
+The input hidden states seems to be silently casted in float32, this might be related to the fact you have upcasted embedding or layer norm layers in float32. We will cast back the input in torch.bfloat16.
+[GRPO DEBUG] generate call 2/2
+multimodal_generation_mode text-only
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+[GRPO DEBUG] generation finished | total_samples=2 elapsed=10.35s
+[GRPO DEBUG] decoded completion[0] => This option only performs partial rotations, missing some steps. A: this is the result after performing all rotation steps correctly. B: This option performs extra rotations beyond the required steps.
+[GRPO DEBUG] logprobs input shapes | padded=(2, 1312) attention=(2, 1312)
+[GRPO DEBUG] reward stats | mean=0.0000 std=0.0000
+[GRPO DEBUG] loss ready | denom=233.00 mask_nonzero=233 policy_shape=(2, 128)
+  0%|          | 0/2 [00:10<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.09462453162721299, 'epoch': 0}
+ 50%|█████     | 1/2 [00:18<00:18, 18.71s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 1e-06, 'epoch': 0.01}
+[GRPO DEBUG] compute_loss start | batch_size=1 num_generations=2
+[GRPO DEBUG] generate call 1/2
+multimodal_generation_mode text-only
+[GRPO DEBUG] generate call 2/2
+multimodal_generation_mode text-only
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+[GRPO DEBUG] generation finished | total_samples=2 elapsed=8.44s
+[GRPO DEBUG] decoded completion[0] => Sure, let's visualize the state of the object after performing all rotation steps:\n\n1. Z axis rotation: This option performs extra rotations beyond the required steps. It uses incorrect rotation angle
+[GRPO DEBUG] logprobs input shapes | padded=(2, 1312) attention=(2, 1312)
+[GRPO DEBUG] reward stats | mean=0.0000 std=0.0000
+[GRPO DEBUG] loss ready | denom=222.00 mask_nonzero=222 policy_shape=(2, 128)
+100%|██████████| 2/2 [01:06<00:00, 33.25s/it]
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.1588986027348149, 'epoch': 0.01}
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 5e-07, 'epoch': 0.02}
+{'train_runtime': 70.4761, 'train_samples_per_second': 0.028, 'train_steps_per_second': 0.028, 'train_loss': 0.0, 'epoch': 0.02}
+--- Training finished. Saving final model... ---
+Final model and processor saved to /data1/oujingfeng/project/twgi/checkpoints/grpo/orthus-7b-grpo-geneval-v1
