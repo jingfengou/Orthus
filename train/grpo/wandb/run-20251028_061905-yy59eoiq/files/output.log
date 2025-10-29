@@ -1,0 +1,13 @@
+wandb: WARNING Serializing object of type dict that is 1922480 bytes
+  0%|          | 0/2000 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+multimodal_generation_mode interleaved-text-image
+/data1/oujingfeng/project/twgi/Orthus/models/modeling_orthus_for_inteleave_cfg.py:2892: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  0%|          | 0/2000 [03:37<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.3271027180685926, 'epoch': 0}
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.

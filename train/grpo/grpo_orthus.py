@@ -42,6 +42,10 @@ class OrthusGRPOConfig(GRPOConfig):
         default=256,
         metadata={"help": "图像 latent 的 LRU 缓存大小（0 表示禁用）。"},
     )
+    interleave_generation: bool = field(
+        default=False,
+        metadata={"help": "是否使用文本-图像交替生成（仅对文本部分计算奖励和损失）。"},
+    )
 
 @dataclass
 class GRPOScriptArguments(ScriptArguments):

@@ -357,4 +357,18 @@ Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
                                        0%|          | 0/2 [41:46<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed
  50%|█████     | 1/2 [1:19:02<1:19:02, 4742.67s/it]                                                    50%|█████     | 1/2 [1:19:02<1:19:02, 4742.67s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
 Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
-                                                    50%|█████     | 1/2 [1:55:26<1:19:02, 4742.67s/it]
+                                                    50%|█████     | 1/2 [1:55:26<1:19:02, 4742.67s/it]100%|██████████| 2/2 [2:31:06<00:00, 4496.04s/it]                                                   100%|██████████| 2/2 [2:31:06<00:00, 4496.04s/it]                                                 100%|██████████| 2/2 [2:31:42<00:00, 4496.04s/it]100%|██████████| 2/2 [2:31:42<00:00, 4551.44s/it]
+multimodal_generation_mode text-only
+multimodal_generation_mode text-only
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.47166378758534666, 'epoch': 0}
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 1e-06, 'epoch': 0.01}
+multimodal_generation_mode text-only
+multimodal_generation_mode text-only
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.23337232034037433, 'epoch': 0.01}
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 5e-07, 'epoch': 0.02}
+{'train_runtime': 9105.6979, 'train_samples_per_second': 0.0, 'train_steps_per_second': 0.0, 'train_loss': 0.0, 'epoch': 0.02}
+--- Training finished. Saving final model... ---
+Final model and processor saved to /data1/oujingfeng/project/twgi/checkpoints/grpo/orthus-7b-grpo-geneval-v1-debug
+[1;34mwandb[0m: 
+[1;34mwandb[0m: 🚀 View run [33morthus-7b-grpo-geneval-v1-debug[0m at: [34m[0m
+[1;34mwandb[0m: Find logs at: [1;35mwandb/run-20251028_034041-bep5sun6/logs[0m

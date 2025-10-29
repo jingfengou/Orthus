@@ -121,6 +121,15 @@ class OrthusGRPOTrainer(Trainer):
         if self.processor is not None:
             self.processor.padding_side = "left"
 
+        vocab_mapping = getattr(getattr(self.model, "model", None), "vocabulary_mapping", None)
+        if vocab_mapping is not None:
+            self._image_token_blocklist = set(
+                list(vocab_mapping.image_token_ids)
+                + [vocab_mapping.boi_token_id, vocab_mapping.eoi_token_id]
+            )
+        else:
+            self._image_token_blocklist = set()
+
         self.completion_log_path: Optional[Path] = None
         if self.is_world_process_zero():
             log_dir_override = (
@@ -174,6 +183,8 @@ class OrthusGRPOTrainer(Trainer):
         prompt_lengths: List[int] = []
         completion_lengths: List[int] = []
         logged_prompt_metadata: List[Dict[str, Any]] = []
+        use_interleaved = getattr(self.args, "interleave_generation", False)
+        image_seq_len = getattr(getattr(self.model, "model", None), "image_seq_length", 0) or 0
 
         unwrap_model = self.accelerator.unwrap_model(model)
         original_mode = model.training
@@ -196,12 +207,16 @@ class OrthusGRPOTrainer(Trainer):
                 prompt_len = prompt_ids.size(0)
                 prompt_meta = self._prepare_prompt_metadata(str(image_path), prompt_ids)
 
+                max_new_tokens = self.args.max_completion_length
+                if use_interleaved and image_seq_len:
+                    max_new_tokens += image_seq_len
+
                 generation_kwargs = {
                     "input_ids": proc_inputs["input_ids"],
                     "attention_mask": proc_inputs.get("attention_mask"),
                     "image_latents": proc_inputs.get("image_latents"),
-                    "interleave_output_format": False,
-                    "max_new_tokens": self.args.max_completion_length,
+                    "interleave_output_format": use_interleaved,
+                    "max_new_tokens": max_new_tokens,
                     "do_sample": True,
                     "temperature": self.args.temperature,
                     "use_cache": True,
@@ -209,13 +224,17 @@ class OrthusGRPOTrainer(Trainer):
 
                 for gen_idx in range(self.num_generations):
                     self._log_debug(f"generate call {gen_idx + 1}/{self.num_generations}")
-                    outputs = unwrap_model.generate(
-                        multimodal_generation_mode_list=["text-only"],
-                        kwargs_list=[generation_kwargs],
-                    )
-                    sequence = self._extract_generated_sequence(outputs).to(device)
+                    gen_kwargs = dict(generation_kwargs)
+                    if use_interleaved:
+                        completion_ids = self._generate_interleaved_tokens(unwrap_model, gen_kwargs)
+                    else:
+                        outputs = unwrap_model.generate(
+                            multimodal_generation_mode_list=["text-only"],
+                            kwargs_list=[gen_kwargs],
+                        )
+                        sequence = self._extract_generated_sequence(outputs).to(device)
+                        completion_ids = sequence[prompt_len:].clone()
 
-                    completion_ids = sequence[prompt_len:].clone()
                     completion_ids = self._trim_after_eos(completion_ids, eos_token_id, pad_token_id)
 
                     full_sequence = torch.cat([prompt_ids, completion_ids], dim=0)
@@ -223,7 +242,10 @@ class OrthusGRPOTrainer(Trainer):
                     prompt_lengths.append(prompt_len)
                     completion_lengths.append(completion_ids.size(0))
 
-                    logged_prompt_metadata.append(dict(prompt_meta))
+                    meta_entry = dict(prompt_meta)
+                    meta_entry["generation_index"] = gen_idx
+                    meta_entry["completion_tokens"] = int(completion_ids.size(0))
+                    logged_prompt_metadata.append(meta_entry)
                     generated_texts.append(
                         self.processor.tokenizer.decode(completion_ids, skip_special_tokens=True)
                     )
@@ -344,6 +366,37 @@ class OrthusGRPOTrainer(Trainer):
             return loss, {"rewards": rewards_tensor}
         return loss
 
+    def _generate_interleaved_tokens(self, unwrap_model, generation_kwargs: Dict[str, Any]) -> torch.Tensor:
+        outputs = unwrap_model.generate(
+            multimodal_generation_mode_list=["interleaved-text-image"],
+            kwargs_list=[generation_kwargs],
+        )
+
+        filtered_tokens: List[int] = []
+        block_tokens = getattr(self, "_image_token_blocklist", set())
+        for element in outputs:
+            if not isinstance(element, torch.Tensor):
+                continue
+            if element.dtype.is_floating_point:
+                continue
+
+            if element.dim() == 0:
+                candidate_tokens = [int(element.item())]
+            elif element.dim() == 1:
+                candidate_tokens = [int(tok) for tok in element.tolist()]
+            else:
+                # Image latents or higher-rank tensors are ignored.
+                continue
+
+            for tok in candidate_tokens:
+                if tok not in block_tokens:
+                    filtered_tokens.append(tok)
+
+        if not filtered_tokens:
+            return torch.empty(0, dtype=torch.long, device=self.accelerator.device)
+
+        return torch.tensor(filtered_tokens, dtype=torch.long, device=self.accelerator.device)
+
     def _prepare_prompt_metadata(self, image_path: str, prompt_ids: torch.Tensor) -> Dict[str, Any]:
         max_prompt_len = getattr(self.args, "max_prompt_length", None)
         prompt_len = prompt_ids.size(0)
@@ -371,11 +424,14 @@ class OrthusGRPOTrainer(Trainer):
             fp.write(f"\n--- Step {step} @ {timestamp} ---\n")
             for idx, (prompt_info, text) in enumerate(zip(prompt_metadata, generated_texts)):
                 sanitized = text.replace("\r", "").strip()
+                gen_idx = prompt_info.get("generation_index")
                 fp.write(
                     f"[{idx}] prompt(image={prompt_info['image']}, tokens={prompt_info['token_count']}"
                     f"{' truncated' if prompt_info['truncated'] else ''}):\n{prompt_info['prompt']}\n"
                 )
-                fp.write(f"    completion:\n{sanitized}\n")
+                fp.write(
+                    f"    completion(gen={gen_idx}, tokens={prompt_info.get('completion_tokens', 0)}):\n{sanitized}\n"
+                )
 
     def get_text_per_token_logps(self, model, input_ids, attention_mask):
         outputs = model(

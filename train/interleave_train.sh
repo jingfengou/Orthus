@@ -24,11 +24,11 @@
 #!/bin/bash
 # export CUDA_VISIBLE_DEVICES=4,5,6,7
 # 默认设置（用于多GPU正式训练）
-LAUNCH_CMD="accelerate launch --num_processes 8 --gradient_accumulation_steps 1"
+LAUNCH_CMD="accelerate launch --num_processes 7 --gradient_accumulation_steps 1"
 BATCH_SIZE=4
 # REPORT_TO="none"     # <--- 关闭 wandb
 REPORT_TO="wandb"
-EPOCHS=1
+EPOCHS=100
 GRADIENT_CHECKPOINTING_FLAG="--gradient_checkpointing"
 DEBUG_MODE_FLAG=""
 
@@ -49,10 +49,10 @@ fi
 # 使用变量执行命令，保持代码整洁
 $LAUNCH_CMD train_interleave_orthus.py \
     --ckpt_path "SJTU-Deng-Lab/Orthus-7B-base" \
-    --train_file "/data1/oujingfeng/project/twgi/datasets/mydatasets/modified_data.json" \
-    --eval_file "/data1/oujingfeng/project/twgi/datasets/mydatasets/modified_data.json" \
-    --image_folder "/data1/oujingfeng/project/twgi/datasets/mydatasets" \
-    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample80b100test" \
+    --train_file "/data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data.json" \
+    --eval_file "/data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data.json" \
+    --image_folder "/data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data" \
+    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100weight-F" \
     --num_train_epochs $EPOCHS \
     --per_device_train_batch_size $BATCH_SIZE \
     --per_device_eval_batch_size $BATCH_SIZE \
@@ -60,8 +60,8 @@ $LAUNCH_CMD train_interleave_orthus.py \
     --warmup_ratio 0.03 \
     --logging_steps 5 \
     --eval_steps 200 \
-    --save_steps 200 \
-    --save_total_limit 3 \
+    --save_steps 2000 \
+    --save_total_limit 7 \
     --bf16 \
     --report_to $REPORT_TO \
     $GRADIENT_CHECKPOINTING_FLAG \
@@ -69,6 +69,6 @@ $LAUNCH_CMD train_interleave_orthus.py \
     --early_stopping_patience 5 \
     --alpha 1.0 \
     --beta 100.0 \
-    --distortion_weight True \
+    --distortion_weight False \
     --return_analysis False \
     # --generation_log_file "/data1/oujingfeng/project/twgi/checkpoints/orthus-7b-sft-v4/generation_log.jsonl"

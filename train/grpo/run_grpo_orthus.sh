@@ -31,6 +31,7 @@ MAX_COMPLETION_LENGTH="${MAX_COMPLETION_LENGTH:-256}"
 BETA="${BETA:-0}"
 USE_CPU_FLAG="${USE_CPU_FLAG:-False}"
 OPTIMIZER_NAME="${OPTIMIZER_NAME:-adamw_torch}"
+INTERLEAVE_GENERATION="${INTERLEAVE_GENERATION:-False}"
 LOG_DIR="${LOG_DIR:-${SCRIPT_DIR}/logs}"
 mkdir -p "${LOG_DIR}"
 TIMESTAMP="$(date +%Y%m%d_%H%M%S)"
@@ -134,6 +135,7 @@ ACC_CMD=(accelerate launch --config_file "${DEEPSPEED_CONFIG_PATH}" --num_proces
   --generation_batch_size "${GENERATION_BATCH_SIZE}" \
   --beta "${BETA}" \
   --optim "${OPTIMIZER_NAME}" \
+  --interleave_generation "${INTERLEAVE_GENERATION}" \
   \
   --reward_funcs "answer_correctness" "format" \
   --reward_smooth True \

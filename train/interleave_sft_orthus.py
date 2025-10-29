@@ -68,7 +68,7 @@ class InterleaveSFTDataset(Dataset):
 
         # 问题图片
         # question_image_path = os.path.join(self.image_base_dir, category, task, level, item.get('Combined_image', ''))
-        question_image_path = os.path.join(self.image_base_dir, task, image_id, item.get('Combined_image', ''))
+        question_image_path = os.path.join(self.image_base_dir, task, level, image_id, item.get('Combined_image', ''))
         try:
             question_image = Image.open(question_image_path).convert("RGB")
         except FileNotFoundError:
@@ -79,7 +79,7 @@ class InterleaveSFTDataset(Dataset):
         step_images = []
         for step in item.get('Rotation_steps', []):
             # step_image_path = os.path.join(self.image_base_dir, category, task, level, step.get('image', ''))
-            step_image_path = os.path.join(self.image_base_dir, task, image_id, step.get('image', ''))
+            step_image_path = os.path.join(self.image_base_dir, task, level, image_id, step.get('image', ''))
             try:
                 img = Image.open(step_image_path).convert("RGB")
             except FileNotFoundError:

@@ -25,7 +25,7 @@ from torchvision.transforms.functional import to_pil_image
 
 
 
-ckpt_path = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample80b100ep500l1e-5-weight-F"
+ckpt_path = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e10weight-F"
 processor = OrthusProcessor.from_pretrained(ckpt_path)
 
 model = OrthusForConditionalGeneration.from_pretrained(
@@ -35,7 +35,7 @@ model = OrthusForConditionalGeneration.from_pretrained(
     attn_implementation='flash_attention_2',
 )
 
-exp_dir = os.path.join(root_path, "results/mydatasets/sft-myb-base-sample80b100ep500l1e-5-weight-F-train-modified-test")
+exp_dir = os.path.join(root_path, "results/mydatasets/sft-myb-base-sample4000b100ep10l1e-5-weight-F-train-NCFG")
 os.makedirs(exp_dir, exist_ok=True)
 
 set_seed(42)
@@ -43,9 +43,9 @@ set_seed(42)
 # Load dataset - you need to specify the correct dataset path here
 # This example assumes the dataset is in JSON format
 # Replace with your actual dataset path
-dataset_path = "/data1/oujingfeng/project/twgi/datasets/mydatasets"  # Update this path as needed
-dataset = load_dataset("json", data_files=f"{dataset_path}/modified_data.json", split="train")
-dataset = dataset.select(range(1))  # Reduce sample count for quick smoke test
+dataset_path = "/data1/oujingfeng/project/twgi/datasets/mydatasets/dataset"  # Update this path as needed
+dataset = load_dataset("json", data_files=f"{dataset_path}/data.json", split="train")
+dataset = dataset.select(range(10))  # Reduce sample count for quick smoke test
 # Define the instruction template
 instruction = (
 "You should first provide a reasoning process, then provide a single option(A, B, C or D) as the final answer. "
@@ -69,7 +69,7 @@ for idx, item in enumerate(dataset):
     
     # Load the image
     image_path = item.get('image_path', '') or item.get('image', '')  # Adjust field name as needed
-    question_image_path = os.path.join(dataset_path, item.get('Task', ''), item.get('Image_id', ''), item.get('Combined_image', ''))
+    question_image_path = os.path.join(dataset_path, "data", item.get('Task', ''), item.get('Level', ''),item.get('Image_id', ''), item.get('Combined_image', ''))
     try:
         question_image = Image.open(question_image_path).convert("RGB")
     except FileNotFoundError:

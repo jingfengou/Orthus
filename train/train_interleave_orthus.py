@@ -213,8 +213,16 @@ def main():
     logger.info("\n--- [Step 2/5] Initializing full datasets... ---")
     train_dataset_raw = load_dataset("json", data_files=args.train_file, split="train")
     eval_dataset_raw = load_dataset("json", data_files=args.eval_file, split="train")
-    train_dataset_raw = train_dataset_raw.select(range(80))
-    eval_dataset_raw = eval_dataset_raw.select(range(80,90))
+    # 2. 获取数据集总样本数
+    num_samples = len(train_dataset_raw)
+    # 3. 计算 80% 和 90% 的分割点索引
+    train_end_index = int(num_samples * 0.8)
+    eval_end_index = int(num_samples * 0.9)
+    # 前 80% 作为训练集
+    train_dataset_raw = train_dataset_raw.select(range(train_end_index))
+
+    # 80% 到 90% 的部分作为验证集
+    eval_dataset_raw = eval_dataset_raw.select(range(train_end_index, eval_end_index))
     # --- 【新增代码】: 如果是调试模式，则截取一小部分数据 ---
     if args.debug_mode:
         # --- 主要修改这里 ---
