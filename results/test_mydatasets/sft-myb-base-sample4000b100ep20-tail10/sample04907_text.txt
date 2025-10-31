@@ -1,0 +1,5 @@
+sample04907
+Image_id: sample_4908
+Question: Determine the final position after 270-degree clockwise rotation around the Y-axis, followed by 90-degree clockwise rotation around the Y-axis.
+Ground truth: B
+Generated:

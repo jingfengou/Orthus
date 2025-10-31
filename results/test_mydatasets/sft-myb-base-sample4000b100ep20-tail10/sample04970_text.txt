@@ -1,0 +1,5 @@
+sample04970
+Image_id: sample_4971
+Question: Given an initial orientation, what happens when 90-degree clockwise rotation around the X-axis, followed by 90-degree clockwise rotation around the Y-axis.
+Ground truth: A
+Generated:

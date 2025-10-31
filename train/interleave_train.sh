@@ -24,7 +24,7 @@
 #!/bin/bash
 # export CUDA_VISIBLE_DEVICES=4,5,6,7
 # 默认设置（用于多GPU正式训练）
-LAUNCH_CMD="accelerate launch --num_processes 7 --gradient_accumulation_steps 1"
+LAUNCH_CMD="accelerate launch --num_processes 8 --gradient_accumulation_steps 1"
 BATCH_SIZE=4
 # REPORT_TO="none"     # <--- 关闭 wandb
 REPORT_TO="wandb"
@@ -49,10 +49,11 @@ fi
 # 使用变量执行命令，保持代码整洁
 $LAUNCH_CMD train_interleave_orthus.py \
     --ckpt_path "SJTU-Deng-Lab/Orthus-7B-base" \
-    --train_file "/data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data.json" \
-    --eval_file "/data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data.json" \
+    --train_file /data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data_modified.json \
+    --eval_file /data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data_modified.json \
     --image_folder "/data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data" \
-    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100weight-F" \
+    --precomputed_latents_dir "/data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data/latents_cache" \
+    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100l1e-5weight-F" \
     --num_train_epochs $EPOCHS \
     --per_device_train_batch_size $BATCH_SIZE \
     --per_device_eval_batch_size $BATCH_SIZE \
@@ -66,9 +67,10 @@ $LAUNCH_CMD train_interleave_orthus.py \
     --report_to $REPORT_TO \
     $GRADIENT_CHECKPOINTING_FLAG \
     $DEBUG_MODE_FLAG \
-    --early_stopping_patience 5 \
+    --early_stopping_patience 10 \
     --alpha 1.0 \
     --beta 100.0 \
     --distortion_weight False \
     --return_analysis False \
+    --disable_precomputed_latents
     # --generation_log_file "/data1/oujingfeng/project/twgi/checkpoints/orthus-7b-sft-v4/generation_log.jsonl"

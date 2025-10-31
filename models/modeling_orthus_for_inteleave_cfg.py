@@ -2708,8 +2708,8 @@ class OrthusForConditionalGeneration(OrthusGenerationMixin, ChameleonPreTrainedM
             else:
                 # 如果没有权重信息传入，则执行原始的平均 loss
                 diff_loss = per_patch_loss.mean()
-                if current_epoch == 0:
-                    print("distortion_weights is Not Used")
+                if current_epoch == 0 and logger.isEnabledFor(logging.DEBUG):
+                    logger.debug("distortion_weights is Not Used")
             # 【↑↑↑ 2. 新逻辑结束 ↑↑↑】
             
             # # 4. 計算加權平均 loss
@@ -2746,8 +2746,8 @@ class OrthusForConditionalGeneration(OrthusGenerationMixin, ChameleonPreTrainedM
                 # 【重要修改】返回额外的值用于可视化
                 return logits, diff_loss, predicted_clean_latents, latents_unnormalized
             else:
-                if current_epoch == 0:
-                    print("Inserted analysis is False")
+                if current_epoch == 0 and logger.isEnabledFor(logging.DEBUG):
+                    logger.debug("Inserted analysis is False")
                 return logits, diff_loss
 
         elif mode == 'discrete': # discrete output

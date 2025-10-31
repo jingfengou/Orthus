@@ -84,6 +84,18 @@ class OrthusGRPOTrainer(Trainer):
             )
         self.model = model
 
+        if getattr(args, "gradient_checkpointing", False):
+            print("Enabling policy gradient checkpointing (use_reentrant=False).")
+            self.model.gradient_checkpointing_enable()
+            self.model.enable_input_require_grads()
+        else:
+            self.model.gradient_checkpointing_disable()
+
+        diffusion_gc = getattr(args, "diffusion_gradient_checkpointing", False)
+        if hasattr(self.model, "mlp_head") and hasattr(self.model.mlp_head, "grad_checkpointing"):
+            self.model.mlp_head.grad_checkpointing = diffusion_gc
+            print(f"Diffusion MLP gradient checkpointing {'enabled' if diffusion_gc else 'disabled'}.")
+
         if ref_model is None and args.beta != 0:
             self.ref_model = create_reference_model(self.model)
         else:
@@ -100,6 +112,10 @@ class OrthusGRPOTrainer(Trainer):
                 self.ref_model = prepare_fsdp(self.ref_model, self.accelerator)
             else:
                 self.ref_model = self.accelerator.prepare_model(self.ref_model, evaluation_mode=True)
+
+            ref_module = getattr(self.ref_model, "module", self.ref_model)
+            if hasattr(ref_module, "gradient_checkpointing_disable"):
+                ref_module.gradient_checkpointing_disable()
 
             # Ensure reference model stays frozen after accelerator wrapping.
             ref_module = getattr(self.ref_model, "module", self.ref_model)
@@ -167,6 +183,11 @@ class OrthusGRPOTrainer(Trainer):
 
     def compute_loss(self, model, inputs, return_outputs: bool = False, **kwargs):
         device = self.accelerator.device
+        cuda_device = None
+        if torch.cuda.is_available() and device.type == "cuda":
+            cuda_device = device
+            if getattr(self, "debug_mode", False) and self.is_world_process_zero():
+                torch.cuda.reset_peak_memory_stats(cuda_device)
         prompts = inputs["prompt"]
         image_paths = inputs["image_path"]
         metadatas = inputs.get("metadata", [{} for _ in prompts])
@@ -250,7 +271,7 @@ class OrthusGRPOTrainer(Trainer):
                         self.processor.tokenizer.decode(completion_ids, skip_special_tokens=True)
                     )
                     metadata_for_rewards.append(metadata)
-
+                del proc_inputs
         self._log_debug(
             f"generation finished | total_samples={len(generated_texts)} elapsed={time.time() - gen_start:.2f}s"
         )
@@ -272,6 +293,7 @@ class OrthusGRPOTrainer(Trainer):
 
         padded_full = pad_sequence(full_sequences, batch_first=True, padding_value=pad_token_id).to(device)
         attention_mask = (padded_full != pad_token_id).long()
+        del full_sequences
 
         was_training = model.training
         if was_training:
@@ -309,6 +331,7 @@ class OrthusGRPOTrainer(Trainer):
         policy_tensor = pad_sequence(policy_segments, batch_first=True, padding_value=0.0)
         ref_tensor = pad_sequence(ref_segments, batch_first=True, padding_value=0.0)
         mask_tensor = pad_sequence(completion_masks, batch_first=True, padding_value=0.0)
+        del policy_segments, ref_segments, completion_masks
 
         rewards_tensor = torch.zeros(len(generated_texts), device=device)
         for reward_func in self.reward_funcs:
@@ -354,16 +377,24 @@ class OrthusGRPOTrainer(Trainer):
             f"policy_shape={tuple(policy_tensor.shape)}"
         )
 
+        rewards_for_logging = rewards_tensor.detach()
         self._record_grpo_metrics(
-            rewards_tensor.detach(),
+            rewards_for_logging,
             advantages.detach(),
             pg_loss_per_token.detach(),
             kl_div_per_token.detach(),
             mask_tensor.detach(),
         )
 
+        if cuda_device is not None and getattr(self, "debug_mode", False) and self.is_world_process_zero():
+            current_mem = torch.cuda.memory_allocated(cuda_device) / 1024**2
+            peak_mem = torch.cuda.max_memory_allocated(cuda_device) / 1024**2
+            self._log_debug(f"cuda memory | current={current_mem:.1f}MB peak={peak_mem:.1f}MB")
+
+        del policy_tensor, ref_tensor, mask_tensor, rewards_tensor, advantages, pg_loss_per_token, kl_div_per_token
+
         if return_outputs:
-            return loss, {"rewards": rewards_tensor}
+            return loss, {"rewards": rewards_for_logging}
         return loss
 
     def _generate_interleaved_tokens(self, unwrap_model, generation_kwargs: Dict[str, Any]) -> torch.Tensor:

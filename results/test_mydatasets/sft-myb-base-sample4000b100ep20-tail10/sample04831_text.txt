@@ -1,0 +1,5 @@
+sample04831
+Image_id: sample_4832
+Question: Imagine a rotation sequence where 90-degree clockwise rotation around the Z-axis, followed by 270-degree clockwise rotation around the Z-axis. What is the final result?
+Ground truth: A
+Generated:

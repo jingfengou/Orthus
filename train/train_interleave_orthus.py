@@ -63,6 +63,17 @@ def main():
     parser.add_argument("--eval_file", type=str, required=True, help="Path to the evaluation data (test.jsonl).")
     parser.add_argument("--image_folder", type=str, required=True, help="Path to the base folder containing images.")
     parser.add_argument("--output_dir", type=str, required=True, help="Directory to save checkpoints and final model.")
+    parser.add_argument(
+        "--precomputed_latents_dir",
+        type=str,
+        default=None,
+        help="Directory containing offline precomputed latents. Defaults to <image_folder>/latents_cache.",
+    )
+    parser.add_argument(
+        "--disable_precomputed_latents",
+        action="store_true",
+        help="Disable usage of offline precomputed latents and compute them on-the-fly.",
+    )
     # --- 【新增代码】: 添加 debug_mode 标志 ---
     parser.add_argument("--debug_mode", action='store_true', help="Enable debug mode: uses a small subset of data for quick checks.")
 
@@ -90,8 +101,15 @@ def main():
     parser.add_argument("--save_total_limit", type=int, default=3, help="Limit the total number of checkpoints to save.")
     parser.add_argument("--bf16", action='store_true', default=True, help="Enable bfloat16 training.")
     parser.add_argument("--gradient_checkpointing", action='store_true', help="Enable gradient checkpointing to save memory.")
+    parser.add_argument(
+        "--diffusion_gradient_checkpointing",
+        action='store_true',
+        help="Enable gradient checkpointing inside the diffusion MLP head.",
+    )
     parser.add_argument("--report_to", type=str, default="tensorboard", help="The integration to report results to (e.g., 'wandb', 'tensorboard').")
     parser.add_argument("--generation_log_file", type=str, default=None, help="Path to save the generated outputs for debugging.")
+    parser.add_argument("--dataloader_num_workers", type=int, default=-1, help="Number of worker processes for the DataLoader; set -1 to auto-select.")
+    parser.add_argument("--dataloader_pin_memory", type=str2bool, default=True, help="Whether to enable pinned memory in DataLoader.")
     # parser.add_argument("--enable_generation_log", action='store_true', help="Enable logging of generation outputs during training for debugging.")
     # 新增：早停参数
     parser.add_argument("--early_stopping_patience", type=int, default=None, help="Enable early stopping with a given patience. E.g., 5.")
@@ -106,6 +124,21 @@ def main():
 
     args = parser.parse_args()
 
+    if isinstance(args.dataloader_pin_memory, str):
+        args.dataloader_pin_memory = str2bool(args.dataloader_pin_memory)
+
+    if args.dataloader_num_workers < 0:
+        cpu_count = os.cpu_count() or 1
+        world_size = int(os.environ.get("WORLD_SIZE", "1"))
+        per_process_cpus = max(1, cpu_count // max(1, world_size))
+        auto_workers = max(1, min(8, per_process_cpus // 2))
+        args.dataloader_num_workers = auto_workers
+        logger.info(
+            "Auto-selected dataloader_num_workers=%d (cpu_count=%d, world_size=%d)",
+            args.dataloader_num_workers,
+            cpu_count,
+            world_size,
+        )
 
 
     # set random seed
@@ -181,9 +214,19 @@ def main():
     
     # 5. 如果您开启了梯度检查点，请保留此设置
     if args.gradient_checkpointing:
+        logger.info("Enabling transformer gradient checkpointing (use_reentrant=False).")
         model.gradient_checkpointing_enable()
         # 对于LoRA+梯度检查点的组合，通常需要下面这行来确保正常工作
-        model.enable_input_require_grads() 
+        model.enable_input_require_grads()
+    else:
+        model.gradient_checkpointing_disable()
+
+    if hasattr(model, "mlp_head") and hasattr(model.mlp_head, "grad_checkpointing"):
+        model.mlp_head.grad_checkpointing = args.diffusion_gradient_checkpointing
+        logger.info(
+            "Diffusion MLP gradient checkpointing %s.",
+            "enabled" if args.diffusion_gradient_checkpointing else "disabled",
+        )
 
     logger.info("Model and processor loaded successfully.")
     # # ==================== 在这里插入检查代码 ====================
@@ -241,6 +284,8 @@ def main():
         vqmodel=model.model.vqmodel,
         distortion_weight=args.distortion_weight,
         return_analysis=args.return_analysis,
+        use_precomputed_latents=not args.disable_precomputed_latents,
+        precomputed_latents_dir=args.precomputed_latents_dir,
     )
     eval_dataset = InterleaveSFTDataset(
         dataset=eval_dataset_raw,
@@ -250,6 +295,8 @@ def main():
         vqmodel=model.model.vqmodel,
         distortion_weight=args.distortion_weight,
         return_analysis=args.return_analysis,
+        use_precomputed_latents=not args.disable_precomputed_latents,
+        precomputed_latents_dir=args.precomputed_latents_dir,
     )
     
     # 将 distortion_weight 和 return_analysis 设置为模型的属性
@@ -284,6 +331,8 @@ def main():
         gradient_checkpointing=args.gradient_checkpointing,
         report_to=args.report_to,
         remove_unused_columns=False,
+        dataloader_num_workers=args.dataloader_num_workers,
+        dataloader_pin_memory=args.dataloader_pin_memory,
         label_names=["labels"], # 确保 Trainer 知道哪个是标签
         # 新增：早停配置
         # early_stopping_patience=args.early_stopping_patience,

@@ -39,11 +39,11 @@ def init_distributed() -> int:
 
 
 def parse_args() -> argparse.Namespace:
-    default_ckpt = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e10weight-F"
+    default_ckpt = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100l1e-5weight-F"
     default_dataset_path = "/data1/oujingfeng/project/twgi/datasets/mydatasets/dataset"
     default_output_dir = os.path.join(
         root_path,
-        "results/test_mydatasets/sft-myb-base-sample4000b100ep10-tail10",
+        "results/test_mydatasets/sft-myb-base-sample4000b100ep20-tail10",
     )
 
     parser = argparse.ArgumentParser(
@@ -53,7 +53,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--dataset-path", default=default_dataset_path, help="Dataset directory."
     )
-    parser.add_argument("--data-file", default="data.json", help="Dataset json filename.")
+    parser.add_argument("--data-file", default="data_modified.json", help="Dataset json filename.")
     parser.add_argument("--output-dir", default=default_output_dir, help="Output directory.")
     parser.add_argument(
         "--save-image-interval",

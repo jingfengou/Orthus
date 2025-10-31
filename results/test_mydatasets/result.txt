@@ -1,0 +1,6 @@
+Total files: 487
+Correct answers: 116
+Incorrect answers: 363
+Missing answers: 8
+Accuracy: 0.2382
+Missing rate: 0.0164

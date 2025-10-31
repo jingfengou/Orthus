@@ -1,0 +1,5 @@
+sample04687
+Image_id: sample_4688
+Question: What orientation results from performing 180-degree rotation around the Z-axis, followed by 270-degree clockwise rotation around the Z-axis?
+Ground truth: A
+Generated:

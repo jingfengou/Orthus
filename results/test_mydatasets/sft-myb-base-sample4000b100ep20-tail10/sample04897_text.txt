@@ -1,0 +1,5 @@
+sample04897
+Image_id: sample_4898
+Question: Beginning with the default alignment, how would an object look after 180-degree rotation around the X-axis, followed by 90-degree clockwise rotation around the Y-axis?
+Ground truth: C
+Generated:

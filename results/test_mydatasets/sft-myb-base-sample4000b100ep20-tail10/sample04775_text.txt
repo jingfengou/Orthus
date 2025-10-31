@@ -1,0 +1,5 @@
+sample04775
+Image_id: sample_4776
+Question: Establish the ultimate orientation arising from 90-degree clockwise rotation around the X-axis, followed by 180-degree rotation around the Y-axis.
+Ground truth: D
+Generated:

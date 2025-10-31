@@ -1,0 +1,6 @@
+sample04534
+Image_id: sample_4535
+Question: When a shape experiences 270-degree clockwise rotation around the Y-axis, followed by 180-degree rotation around the Z-axis, what does it look like?
+Ground truth: B
+Generated:
+ This option performs extra rotations beyond the required steps. So the final Answer is D</think>. <Answer>D</Answer>

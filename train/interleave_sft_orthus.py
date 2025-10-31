@@ -1,6 +1,7 @@
 import torch
 import os
 import sys
+import logging
 from PIL import Image
 from torch.utils.data import Dataset
 from datasets import load_dataset
@@ -11,6 +12,9 @@ import traceback
 import numpy as np
 # ==================== 新增的 imports ====================
 import torchvision
+from typing import List, Dict, Any, Optional
+from pathlib import Path
+import hashlib
 # ========================================================
 
 root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -22,13 +26,27 @@ sys.path.append(root_path)
 from models.processing_orthus import OrthusProcessor
 from models.modeling_orthus_for_inteleave_cfg import OrthusForConditionalGeneration
 
+logger = logging.getLogger(__name__)
+
 # --- 数据集初始化代码 ---
 class InterleaveSFTDataset(Dataset):
     """
     为 Orthus 的图文交错模式进行SFT微调的数据集。
     这个版本只为文本logit loss准备标签。
     """
-    def __init__(self, dataset, image_base_dir, processor, vqmodel, distortion_weight=False, return_analysis=False, max_length=4096):
+    def __init__(
+        self,
+        dataset,
+        image_base_dir,
+        processor,
+        vqmodel,
+        distortion_weight=False,
+        return_analysis=False,
+        max_length=4096,
+        latents_cache_size: int = 0,
+        use_precomputed_latents: bool = True,
+        precomputed_latents_dir: Optional[str] = None,
+    ):
 
 
         """
@@ -42,12 +60,184 @@ class InterleaveSFTDataset(Dataset):
         self.processor = processor
         self.vqmodel = vqmodel
         self.max_length = max_length
-        print(f"Initialized dataset with {len(self.data)} examples.")
+        logger.info("InterleaveSFTDataset initialized with %d samples.", len(self.data))
+        self.latents_cache_size = latents_cache_size
+        self.use_precomputed_latents = use_precomputed_latents
+        self.precomputed_latents_dir = None
+
+        if hasattr(self.processor, "enable_latents_cache"):
+            # use_precomputed_latents=True 或者 latents_cache_size<=0 时，彻底关闭 processor 的内存缓存
+            if self.use_precomputed_latents or self.latents_cache_size <= 0:
+                self.processor.enable_latents_cache(0)
+            else:
+                current_size = getattr(self.processor, "_latents_cache_max_size", 0)
+                if current_size != self.latents_cache_size:
+                    self.processor.enable_latents_cache(self.latents_cache_size)
+
+        if self.use_precomputed_latents:
+            cache_dir = precomputed_latents_dir or Path(self.image_base_dir) / "latents_cache"
+            self.precomputed_latents_dir = Path(cache_dir)
+            if not self.precomputed_latents_dir.exists():
+                logger.warning("Precomputed latents directory %s does not exist.", self.precomputed_latents_dir)
+        self._missing_latents_warned = False
         # 【新增】為動態權重增加一個基數和一個 epsilon 防止除零
-        self.base_distortion_weight = 10.0 # 可以設為可配置參數
-        self.epsilon = 1e-6 # 一個極小值，防止除以零    
+        self.base_distortion_weight = 10.0  # 可以設為可配置參數
+        self.epsilon = 1e-6  # 一個極小值，防止除以零
         self.distortion_weight = distortion_weight
         self.return_analysis = return_analysis
+        self.blank_similarity_threshold = 0.99
+        self.max_target_images = 0
+
+        if self.distortion_weight:
+            if len(self.data):
+                self.max_target_images = max(len(example.get("Rotation_steps", [])) for example in self.data)
+            self._distortion_cache_dir = Path(self.image_base_dir) / "distortion_cache"
+            self._distortion_cache_dir.mkdir(parents=True, exist_ok=True)
+            self._blank_patch_mean = self._compute_blank_patch_latent_mean()
+        else:
+            self._distortion_cache_dir = None
+            self._blank_patch_mean = None
+
+    def _build_image_cache_key(self, question_path: str, step_image_paths: List[str]) -> str:
+        key_parts = [os.path.abspath(question_path)]
+        for path in step_image_paths:
+            key_parts.append(os.path.abspath(path))
+        return "|".join(key_parts)
+
+    def _get_precomputed_latents_path(self, cache_key: str) -> Optional[Path]:
+        if self.precomputed_latents_dir is None:
+            return None
+        digest = hashlib.sha1(cache_key.encode("utf-8"), usedforsecurity=False).hexdigest()
+        return self.precomputed_latents_dir / f"{digest}.pt"
+
+    def _load_precomputed_latents(self, cache_key: str) -> Optional[torch.Tensor]:
+        latent_path = self._get_precomputed_latents_path(cache_key)
+        if latent_path is None or not latent_path.exists():
+            return None
+        try:
+            stored = torch.load(latent_path, map_location="cpu")
+        except Exception as exc:
+            logger.warning("Failed to load precomputed latents at %s: %s", latent_path, exc)
+            return None
+        latents = stored.get("image_latents", None) if isinstance(stored, dict) else stored
+        if latents is None:
+            logger.warning("Latent file %s does not contain `image_latents`.", latent_path)
+            return None
+        if not isinstance(latents, torch.Tensor):
+            latents = torch.tensor(latents)
+        if self.vqmodel is not None:
+            target_dtype = self.vqmodel.quantize.embedding.weight.dtype
+            if latents.dtype != target_dtype:
+                latents = latents.to(dtype=target_dtype)
+        return latents
+
+    def _compute_blank_patch_latent_mean(self) -> torch.Tensor:
+        white_image = Image.new("RGB", (224, 224), (255, 255, 255))
+        pixel_values = self.processor.image_processor(white_image, return_tensors="pt")["pixel_values"]
+        target_device = self.vqmodel.quantize.embedding.weight.device
+        target_dtype = self.vqmodel.quantize.embedding.weight.dtype
+        with torch.no_grad():
+            latents = self.vqmodel.encode_wo_quant(pixel_values.to(device=target_device, dtype=target_dtype))
+        latents = latents.permute(0, 2, 3, 1).contiguous().view(-1, latents.shape[-1])
+        return latents.mean(dim=0).cpu()
+
+    def _get_distortion_cache_path(self, item: Dict[str, Any]) -> Path:
+        if self._distortion_cache_dir is None:
+            raise ValueError("Distortion cache directory is not initialised.")
+        identifier = "_".join(
+            [
+                str(item.get("Category", "")),
+                str(item.get("Task", "")),
+                str(item.get("Level", "")),
+                str(item.get("Image_id", "")),
+            ]
+        )
+        identifier = identifier.replace(" ", "_")
+        digest = hashlib.sha1(identifier.encode("utf-8"), usedforsecurity=False).hexdigest()
+        filename = f"{identifier}_{digest}.pt"
+        return self._distortion_cache_dir / filename
+
+    def _compute_distortion_metadata(self, target_image_latents: torch.Tensor) -> Dict[str, torch.Tensor]:
+        num_images = target_image_latents.shape[0]
+        total_patches = 1024
+        rows = max(self.max_target_images, num_images)
+        if num_images == 0:
+            return {
+                "distortion_indices": torch.full((rows, total_patches), -100, dtype=torch.long),
+                "distortion_weights": torch.zeros(rows, dtype=torch.float32),
+                "distortion_lens": torch.zeros(rows, dtype=torch.long),
+                "num_target_images": torch.tensor(0, dtype=torch.long),
+            }
+
+        latents = target_image_latents.view(num_images, total_patches, -1).to(torch.float32)
+        reference = self._blank_patch_mean.to(latents.device).unsqueeze(0)
+        similarities = torch.nn.functional.cosine_similarity(latents, reference, dim=-1)
+        is_blank_grid = (similarities > self.blank_similarity_threshold).view(num_images, 32, 32)
+
+        distortion_mask = torch.zeros_like(is_blank_grid, dtype=torch.bool)
+        horizontal_diff = is_blank_grid[:, :, :-1] ^ is_blank_grid[:, :, 1:]
+        distortion_mask[:, :, :-1] |= horizontal_diff
+        distortion_mask[:, :, 1:] |= horizontal_diff
+        vertical_diff = is_blank_grid[:, :-1, :] ^ is_blank_grid[:, 1:, :]
+        distortion_mask[:, :-1, :] |= vertical_diff
+        distortion_mask[:, 1:, :] |= vertical_diff
+
+        mask_flat = distortion_mask.view(num_images, -1)
+        lengths = mask_flat.sum(dim=1, dtype=torch.long)
+        ratios = lengths.to(torch.float32) / float(total_patches)
+        weights = self.base_distortion_weight / (ratios + self.epsilon)
+
+        padded_indices = torch.full((rows, total_patches), -100, dtype=torch.long)
+        weights_full = torch.zeros(rows, dtype=torch.float32)
+        lens_full = torch.zeros(rows, dtype=torch.long)
+
+        for idx in range(num_images):
+            count = lengths[idx].item()
+            if count > 0:
+                indices = mask_flat[idx].nonzero(as_tuple=True)[0]
+                padded_indices[idx, :count] = indices[:count]
+            weights_full[idx] = weights[idx]
+            lens_full[idx] = lengths[idx]
+
+        return {
+            "distortion_indices": padded_indices,
+            "distortion_weights": weights_full,
+            "distortion_lens": lens_full,
+            "num_target_images": torch.tensor(num_images, dtype=torch.long),
+        }
+
+    def _load_or_compute_distortion_metadata(
+        self, item: Dict[str, Any], target_image_latents: torch.Tensor
+    ) -> Dict[str, torch.Tensor]:
+        if self._distortion_cache_dir is None:
+            return {
+                "distortion_indices": torch.empty((0, 1024), dtype=torch.long),
+                "distortion_weights": torch.empty((0,), dtype=torch.float32),
+                "distortion_lens": torch.empty((0,), dtype=torch.long),
+                "num_target_images": torch.tensor(0, dtype=torch.long),
+            }
+
+        cache_path = self._get_distortion_cache_path(item)
+        if cache_path.exists():
+            cached = torch.load(cache_path, map_location="cpu")
+            return {
+                "distortion_indices": cached["distortion_indices"],
+                "distortion_weights": cached["distortion_weights"],
+                "distortion_lens": cached["distortion_lens"],
+                "num_target_images": cached["num_target_images"],
+            }
+
+        metadata = self._compute_distortion_metadata(target_image_latents)
+        torch.save(
+            {
+                "distortion_indices": metadata["distortion_indices"].cpu(),
+                "distortion_weights": metadata["distortion_weights"].cpu(),
+                "distortion_lens": metadata["distortion_lens"].cpu(),
+                "num_target_images": metadata["num_target_images"].cpu(),
+            },
+            cache_path,
+        )
+        return metadata
 
 
 
@@ -68,24 +258,42 @@ class InterleaveSFTDataset(Dataset):
 
         # 问题图片
         # question_image_path = os.path.join(self.image_base_dir, category, task, level, item.get('Combined_image', ''))
-        question_image_path = os.path.join(self.image_base_dir, task, level, image_id, item.get('Combined_image', ''))
-        try:
-            question_image = Image.open(question_image_path).convert("RGB")
-        except FileNotFoundError:
-            print(f"Warning: Image at {question_image_path} not found. Using a blank image.")
-            question_image = Image.new('RGB', (224, 224), (255, 255, 255))
-
         # 步骤图片
-        step_images = []
+        step_image_paths: List[str] = []
         for step in item.get('Rotation_steps', []):
             # step_image_path = os.path.join(self.image_base_dir, category, task, level, step.get('image', ''))
             step_image_path = os.path.join(self.image_base_dir, task, level, image_id, step.get('image', ''))
+            step_image_paths.append(step_image_path)
+
+        question_image_path = os.path.join(self.image_base_dir, task, level, image_id, item.get('Combined_image', ''))
+        cache_key = self._build_image_cache_key(question_image_path, step_image_paths)
+        precomputed_latents = self._load_precomputed_latents(cache_key) if self.use_precomputed_latents else None
+        step_images: List[Image.Image] = []
+
+        if precomputed_latents is None:
+            if self.use_precomputed_latents and not getattr(self, "_missing_latents_warned", False):
+                logger.warning(
+                    "Precomputed latents missing for key %s. Falling back to on-the-fly encoding; "
+                    "consider running the precompute script to avoid ZeRO-3 trace divergences.",
+                    cache_key,
+                )
+                self._missing_latents_warned = True
             try:
-                img = Image.open(step_image_path).convert("RGB")
+                with Image.open(question_image_path) as img:
+                    question_image = img.convert("RGB")
             except FileNotFoundError:
-                print(f"Warning: Step image at {step_image_path} not found. Using a blank image.")
-                img = Image.new('RGB', (224, 224), (255, 255, 255))
-            step_images.append(img)
+                logger.warning("Question image missing at %s, substituting blank image.", question_image_path)
+                question_image = Image.new('RGB', (224, 224), (255, 255, 255))
+
+            for step_path in step_image_paths:
+                try:
+                    with Image.open(step_path) as img:
+                        step_image = img.convert("RGB")
+                except FileNotFoundError:
+                    logger.warning("Step image missing at %s, substituting blank image.", step_path)
+                    step_image = Image.new('RGB', (224, 224), (255, 255, 255))
+                step_images.append(step_image)
+
         # --- 2. 构建模型的输入和期望的输出 ---
         instruction = (
         "You should first provide a reasoning process, then provide a single option(A, B, C or D) as the final answer. "
@@ -95,166 +303,65 @@ class InterleaveSFTDataset(Dataset):
         question = item.get('Question', '')
         # --- 【核心修改】直接获取字符串类型的 Explanation ---
         # 因为我们已经确认所有样本的 Explanation 都是字符串，所以不再需要isinstance判断
-        explanation_text = item.get('Explanation', '')
+        explanation_text_raw = item.get("Explanation", "")
+        if isinstance(explanation_text_raw, dict):
+            explanation_text = " ".join(f"{k}: {v}" for k, v in explanation_text_raw.items())
+        else:
+            explanation_text = str(explanation_text_raw)
         answer = item.get('Answer', '')
         choices_text = "\n".join([f"{chr(65+i)}) {choice}" for i, choice in enumerate(item.get('Choices', []))])
 
         prompt_text = instruction + f"<image>\n\nQuestion: {question}\n{choices_text}\n\nAnswer: "
         prompt_image_num = prompt_text.count('<image>')
         # 根据您的要求，label是纯文本，我们教模型先输出解释，再输出答案
-        target_text = item.get('Reasoning', '')
+        target_text = str(item.get("Reasoning", ""))
         
         full_text = prompt_text + target_text
 
         # --- 3. 预处理 & Tokenize ---
         # 将问题图片和所有步骤图片拼在一起传入
-        all_images = [question_image] + step_images
-
-        model_inputs = self.processor(
-            text=full_text,
-            images=all_images,
-            vqmodel=self.vqmodel,
-            return_tensors="pt",
-            padding="max_length",
-            truncation=True,
-            max_length=self.max_length
-        )
-        # --- 4. 拆分 image_latents ---
-        # image_latents: [num_images, 32, 32, 256]
-        image_latents = model_inputs["image_latents"]
+        if precomputed_latents is None:
+            all_images = [question_image] + step_images
+            model_inputs = self.processor(
+                text=full_text,
+                images=all_images,
+                vqmodel=self.vqmodel,
+                return_tensors="pt",
+                padding="max_length",
+                truncation=True,
+                max_length=self.max_length,
+                image_cache_key=cache_key,
+            )
+            image_latents = model_inputs["image_latents"]
+        else:
+            model_inputs = self.processor(
+                text=full_text,
+                images=None,
+                vqmodel=None,
+                return_tensors="pt",
+                padding="max_length",
+                truncation=True,
+                max_length=self.max_length,
+            )
+            image_latents = precomputed_latents
         # print(f"image_latents.shape: {image_latents.shape}")
         input_image_latents = image_latents[0:1]  # 问题图片
         target_image_latents = image_latents[1:]  # 步骤图片
 
             # 【新增】: 即時計算畸變 patch 索引
             # ==========================================================
-        if self.distortion_weight == True: 
-            white_image = Image.new('RGB', (224, 224), (255, 255, 255))
-            with torch.no_grad():
-                white_inputs = self.processor(text=[prompt_text], images=[white_image], return_tensors="pt", vqmodel=self.vqmodel)
-            standard_blank_latents_mean = white_inputs['image_latents'].squeeze(0).view(1024,256).mean(dim=0)
-            # 【核心修改】: 計算每張圖的動態權重並傳遞
-            # ==========================================================
-            max_num_images = target_image_latents.shape[0]
-            distortion_info_list = [] # 儲存每張圖的 {'indices': ..., 'weight': ...}
-            for i in range(target_image_latents.shape[0]): # 遍歷每一張目標圖
-                latents = target_image_latents[i].view(1024,256).to("cpu", torch.float32)
-                
-                # --- 畸變分析 (邏輯不變) ---
-                similarities = torch.nn.functional.cosine_similarity(latents, standard_blank_latents_mean, dim=1)
-                is_blank_grid = (similarities > 0.99).view(32, 32)
-                distortion_mask = torch.zeros_like(is_blank_grid, dtype=torch.bool)
-                h_changes = is_blank_grid[:, :-1] != is_blank_grid[:, 1:]
-                distortion_mask[:, :-1] |= h_changes
-                distortion_mask[:, 1:] |= h_changes
-                v_changes = is_blank_grid[:-1, :] != is_blank_grid[1:, :]
-                distortion_mask[:-1, :] |= v_changes
-                distortion_mask[1:, :] |= v_changes
-                
-                distortion_indices = distortion_mask.flatten().nonzero(as_tuple=True)[0]
-
-                # --- 動態權重計算 ---
-                distortion_ratio = len(distortion_indices) / 1024.0
-                # 反比加權：佔比越小，權重越高。加上 epsilon 防止除以零。
-                dynamic_weight = self.base_distortion_weight / (distortion_ratio + self.epsilon)
-                # ==================== 【新增修复代码】 ====================
-                #  对 distortion_indices 进行填充，使其长度统一
-                #  设定一个足够大的最大长度，例如 1024 (所有patch都可能是边界的极端情况)
-                max_indices_len = 1024 
-                padded_indices = torch.nn.functional.pad(
-                    distortion_indices, 
-                    (0, max_indices_len - len(distortion_indices)), # (pad_left, pad_right)
-                    mode='constant', 
-                    value=-100  # 使用一个特殊的负值填充，方便后续在loss计算中忽略
-                )
-                # ==========================================================
-                distortion_info_list.append({
-                    # "indices": distortion_indices, # <-- 使用填充后的张量
-                    "indices": padded_indices,
-                    "weight": dynamic_weight,
-                    # 【新增】同时传递原始的、未填充的长度，这在后续处理中非常有用
-                    "original_len": len(distortion_indices)
-                })
-                # # 3. 獲取畸變 patch 的索引
-                # distortion_indices = distortion_mask.flatten().nonzero(as_tuple=True)[0].tolist()
-
-                # # --- 報告與可視化結果 ---
-                # print("\n--- Analysis Complete ---")
-                # num_distortion_patches = len(distortion_indices)
-                # distortion_percentage = (num_distortion_patches / 1024) * 100
-                # print(f"Total patches: 1024")
-                # print(f"Number of distortion (boundary) patches identified: {num_distortion_patches}")
-                # print(f"Percentage of distortion patches: {distortion_percentage:.2f}%")
-                # # print(f"Indices of distortion patches: {distortion_indices}")
-
-                # # 簡單可視化
-                # print("\n--- Visualization of Patch Grid ---")
-                # print("'.': Blank, '#': Content, 'X': Distortion/Boundary")
-                # grid_vis = np.full((32, 32), ' ')
-                # grid_vis[is_blank_grid.numpy()] = '.'
-                # grid_vis[~is_blank_grid.numpy()] = '#'
-                # grid_vis[distortion_mask.numpy()] = 'X'
-                # for row in grid_vis:
-                #     print(' '.join(row))
-
-
-            
-
-            # ==================== 【↓↓↓ 全新的替换逻辑 ↓↓↓】 ====================
-            # 将这个資訊列表加入 model_inputs
-            # model_inputs["distortion_info"] = distortion_info_list # <--- 删掉或注释掉这一行
-
-            # 1. 初始化用于存储所有图片信息的列表
-            all_indices = []
-            all_weights = []
-            all_lens = []
-            
-            num_target_images = len(distortion_info_list)
-
-            # 2. 从临时列表中提取信息
-            for info in distortion_info_list:
-                all_indices.append(info["indices"])
-                all_weights.append(info["weight"])
-                all_lens.append(info["original_len"])
-
-            # 3. 将列表转换为张量
-            # 如果 distortion_info_list 不为空，则堆叠；否则创建空张量
-            if num_target_images > 0:
-                indices_tensor = torch.stack(all_indices)
-                weights_tensor = torch.tensor(all_weights)
-                lens_tensor = torch.tensor(all_lens, dtype=torch.long)
-            else: # 处理没有目标图片的情况
-                indices_tensor = torch.empty(0, 1024, dtype=torch.long)
-                weights_tensor = torch.empty(0, dtype=torch.float)
-                lens_tensor = torch.empty(0, dtype=torch.long)
-
-            # 4. 对 "图片数量" 这个维度进行填充
-            num_images_padding = max_num_images - num_target_images
-            
-            # Pad a. 索引张量 (在第0维填充)
-            indices_tensor = torch.nn.functional.pad(indices_tensor, (0, 0, 0, num_images_padding), mode='constant', value=-100)
-            # Pad b. 权重张量 (在第0维填充)
-            weights_tensor = torch.nn.functional.pad(weights_tensor, (0, num_images_padding), mode='constant', value=0)
-            # Pad c. 长度张量 (在第0维填充)
-            lens_tensor = torch.nn.functional.pad(lens_tensor, (0, num_images_padding), mode='constant', value=0)
-
-            # 5. 将这些可以直接被 default_collate 处理的张量加入 model_inputs
-            model_inputs["distortion_indices"] = indices_tensor
-            model_inputs["distortion_weights"] = weights_tensor
-            model_inputs["distortion_lens"] = lens_tensor
-            model_inputs["num_target_images"] = torch.tensor(num_target_images, dtype=torch.long) # 也作为一个张量传入
-
-
-
+        if self.distortion_weight:
+            distortion_data = self._load_or_compute_distortion_metadata(item, target_image_latents)
+            model_inputs.update(distortion_data)
         # 兼容后续代码，拼回到 batch 维度
         # model_inputs["image_latents"] = input_image_latents
         model_inputs["target_image_latents"] = target_image_latents
 
         # 1. 获取 attention_mask 张量
         #    因为 batch_size 为 1，我们直接取第一个（也是唯一一个）样本
-        attention_mask = model_inputs['attention_mask'][0]
-        
-        # 2. 计算真实内容的长度（即 attention_mask 中 1 的数量）
+        attention_mask = model_inputs["attention_mask"][0]
+
+         # 2. 计算真实内容的长度（即 attention_mask 中 1 的数量）
         actual_content_length = attention_mask.sum().item()
         
         # 3. 获取序列的总长度 (等于 self.max_length)
@@ -323,7 +430,7 @@ class InterleaveSFTDataset(Dataset):
         # print("資料已成功寫入 model_inputs_log.txt")
         # 找到第一个不为 -100 的索引，即为 target 的起始位置
         # target_start_idx = np.where(labels[0].cpu() != -100)[0][0] # 加上 .cpu() 以防 labels 在GPU上
-        model_inputs["target_start_idx"] = torch.tensor(prompt_len, dtype=torch.long)
+        # model_inputs["target_start_idx"] = torch.tensor([target_start_idx], dtype=torch.long)
 
         # print("target_start_idx", model_inputs["target_start_idx"])
         # 清理
@@ -421,20 +528,26 @@ class InterleaveSFTTrainer(Trainer):
         # model.training 是训练状态， not model.training 是评估状态
         should_debug = (self.is_world_process_zero() and
                         (self.state.global_step + 1) % 50 == 0 and
-                        (model.training or not self.is_in_train))
+                        (model.training or not self.is_in_train) and
+                        logger.isEnabledFor(logging.DEBUG))
         
         if should_debug:
-            print(f"\n{'='*40} [DEBUGGING AT GLOBAL STEP: {self.state.global_step}] ({'TRAIN' if model.training else 'EVAL'}) {'='*40}")
+            logger.debug(
+                "%s [DEBUGGING AT GLOBAL STEP %d] (%s)",
+                "=" * 40,
+                self.state.global_step,
+                "TRAIN" if model.training else "EVAL",
+            )
 
             # --- 1. 检查 Labels 是否正确 ---
-            print("\n--- [1. Ground Truth Labels] ---")
+            logger.debug("[1. Ground Truth Labels]")
             labels_for_decode = labels.clone()
             labels_for_decode[labels_for_decode == -100] = self.processor.tokenizer.pad_token_id
             
             # ✅ 【修正】: 循环处理批次中的每个样本
             for i, single_label in enumerate(labels_for_decode):
                 decoded_label = self.processor.tokenizer.decode(single_label.tolist(), skip_special_tokens=True)
-                print(f"  - Sample {i} Label: \033[92m{decoded_label}\033[0m")
+                logger.debug("  - Sample %d Label: %s", i, decoded_label)
         # ==========================================================
 
 
@@ -497,17 +610,22 @@ class InterleaveSFTTrainer(Trainer):
         # ==================== 调试代码块 (继续) ====================
         if should_debug:
             # --- 2. 检查模型从 Logits 中的预测 ---
-            print("\n--- [2. Model Prediction from Logits] ---")
+            logger.debug("[2. Model Prediction from Logits]")
             predicted_ids = torch.argmax(shift_logits, dim=-1)
             mask = (shift_labels != -100)
             predicted_ids_masked = torch.where(mask, predicted_ids, self.processor.tokenizer.pad_token_id)
-            print(f"[DEBUG] text_loss: {text_loss.item():.4f} | diff_loss: {diff_loss.item():.4f} | total_loss: {loss.item():.4f}")
+            logger.debug(
+                "[DEBUG] text_loss: %.4f | diff_loss: %.4f | total_loss: %.4f",
+                text_loss.item(),
+                diff_loss.item(),
+                loss.item(),
+            )
             # ✅ 【修正】: 循环处理批次中的每个样本
             for i, single_pred in enumerate(predicted_ids_masked):
                 decoded_pred = self.processor.tokenizer.decode(single_pred.tolist(), skip_special_tokens=True)
-                print(f"  - Sample {i} Pred: \033[93m{decoded_pred}\033[0m")
+                logger.debug("  - Sample %d Pred: %s", i, decoded_pred)
             
-            print(f"{'='*107}\n")
+            logger.debug("%s", "=" * 80)
         # ==================== 调试代码块 (结束) ====================
 
             # --- 3. 在每一步解码一个完整的生成输出 ---
@@ -571,7 +689,7 @@ class InterleaveSFTTrainer(Trainer):
         # ==================== 核心修改：保存latents到文件 ====================
         if should_debug and pred_latents is not None and true_latents is not None:
             try:
-                print(f"\n[DEBUGGING] Saving latents at step {self.state.global_step}...")
+                logger.debug("Saving latents at step %d...", self.state.global_step)
 
                 # # 1. 提取第一个样本的第一张图的特征
                 # pred_image_features = pred_latents[0, :1024, :]
@@ -590,10 +708,10 @@ class InterleaveSFTTrainer(Trainer):
                 # 4. 保存文件
                 torch.save(latents_to_save, save_path)
                 
-                print(f"  - Latents saved successfully to: {save_path}")
+                logger.debug("Latents saved successfully to %s", save_path)
 
             except Exception as e:
-                print(f"\033[91mError during saving latents at step {self.state.global_step}: {e}\033[0m")
+                logger.debug("Error during saving latents at step %d: %s", self.state.global_step, e)
                 traceback.print_exc()
         # ====================================================================
 
