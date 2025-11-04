@@ -17,26 +17,36 @@ export WANDB_PROJECT="${WANDB_PROJECT:-orthus-grpo-project}"
 export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0,1,2,3,4,5,6,7}"
 
 # --- 可配置参数 ---
-MODEL_PATH="${MODEL_PATH:-/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample80b100ep500l1e-5-weight-F}"
-DATASET_PATH="${DATASET_PATH:-/data1/oujingfeng/project/twgi/datasets/mydatasets/modified_data.json}"
+MODEL_PATH="${MODEL_PATH:-/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100l1e-5weight-F}"
+DATASET_PATH="${DATASET_PATH:-/data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data_modified.json}"
+IMAGE_BASE_DIR="${IMAGE_BASE_DIR:-/data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data}"
 RUN_NAME="${RUN_NAME:-orthus-7b-grpo-geneval-v1}"
 OUTPUT_DIR="${OUTPUT_DIR:-/data1/oujingfeng/project/twgi/checkpoints/grpo/${RUN_NAME}}"
 GRAD_ACCUM_STEPS="${GRAD_ACCUM_STEPS:-2}"
-MAX_STEPS="${MAX_STEPS:-2000}"
+MAX_STEPS="${MAX_STEPS:-1000}"
 NUM_PROCESSES="${NUM_PROCESSES:-8}"
 NUM_GENERATIONS="${NUM_GENERATIONS:-2}"
 PER_DEVICE_BATCH="${PER_DEVICE_BATCH:-1}"
 MAX_PROMPT_LENGTH="${MAX_PROMPT_LENGTH:-1400}"
-MAX_COMPLETION_LENGTH="${MAX_COMPLETION_LENGTH:-256}"
+MAX_COMPLETION_LENGTH="${MAX_COMPLETION_LENGTH:-2500}"
 BETA="${BETA:-0}"
 USE_CPU_FLAG="${USE_CPU_FLAG:-False}"
 OPTIMIZER_NAME="${OPTIMIZER_NAME:-adamw_torch}"
-INTERLEAVE_GENERATION="${INTERLEAVE_GENERATION:-False}"
+INTERLEAVE_GENERATION="${INTERLEAVE_GENERATION:-True}"
 LOG_DIR="${LOG_DIR:-${SCRIPT_DIR}/logs}"
 mkdir -p "${LOG_DIR}"
 TIMESTAMP="$(date +%Y%m%d_%H%M%S)"
 DEFAULT_LOG_FILE="${LOG_DIR}/${RUN_NAME}_${TIMESTAMP}.log"
 LOG_FILE="${LOG_FILE:-${DEFAULT_LOG_FILE}}"
+
+# LoRA configuration (optional, disabled by default)
+ENABLE_LORA="${ENABLE_LORA:-0}"
+LORA_R="${LORA_R:-16}"
+LORA_ALPHA="${LORA_ALPHA:-32}"
+LORA_DROPOUT="${LORA_DROPOUT:-0.05}"
+LORA_TARGET_MODULES="${LORA_TARGET_MODULES:-q_proj,k_proj,v_proj,o_proj}"
+LORA_MODULES_TO_SAVE="${LORA_MODULES_TO_SAVE:-}"
+LORA_TASK_TYPE="${LORA_TASK_TYPE:-CAUSAL_LM}"
 
 if [[ "${DEBUG_MODE}" == "1" ]]; then
   echo "[DEBUG] Enabling debug configuration."
@@ -112,11 +122,38 @@ if [[ "${USE_CPU_FLAG}" == "True" ]]; then
   USE_CPU_ARGS=(--use_cpu True)
 fi
 
+MODEL_ARGS_EXTRA=()
+if [[ "${ENABLE_LORA}" == "1" ]]; then
+  echo "[INFO] LoRA enabled: r=${LORA_R}, alpha=${LORA_ALPHA}, dropout=${LORA_DROPOUT}, targets=${LORA_TARGET_MODULES}" | tee -a "${LOG_FILE}"
+  MODEL_ARGS_EXTRA+=(--use_peft True)
+  MODEL_ARGS_EXTRA+=(--lora_r "${LORA_R}")
+  MODEL_ARGS_EXTRA+=(--lora_alpha "${LORA_ALPHA}")
+  MODEL_ARGS_EXTRA+=(--lora_dropout "${LORA_DROPOUT}")
+  MODEL_ARGS_EXTRA+=(--lora_task_type "${LORA_TASK_TYPE}")
+  if [[ -n "${LORA_TARGET_MODULES}" ]]; then
+    CLEANED_TARGETS="${LORA_TARGET_MODULES//\'/}"
+    CLEANED_TARGETS="${CLEANED_TARGETS//\"/}"
+    CLEANED_TARGETS="$(echo "${CLEANED_TARGETS}" | xargs)"
+    MODEL_ARGS_EXTRA+=(--lora_target_modules "${CLEANED_TARGETS}")
+  fi
+  if [[ -n "${LORA_MODULES_TO_SAVE}" ]]; then
+    IFS=',' read -ra _modules <<< "${LORA_MODULES_TO_SAVE}"
+    for module in "${_modules[@]}"; do
+      module_trimmed=$(echo "${module}" | xargs)
+      [[ -z "${module_trimmed}" ]] && continue
+      MODEL_ARGS_EXTRA+=(--lora_modules_to_save "${module_trimmed}")
+    done
+  fi
+else
+  MODEL_ARGS_EXTRA+=(--use_peft False)
+fi
+
 ACC_CMD=(accelerate launch --config_file "${DEEPSPEED_CONFIG_PATH}" --num_processes "${NUM_PROCESSES}" "${PYTHON_SCRIPT}"
   --model_name_or_path "${MODEL_PATH}" \
   --output_dir "${OUTPUT_DIR}" \
   --run_name "${RUN_NAME}" \
   --dataset_name "${DATASET_PATH}" \
+  --image_base_dir "${IMAGE_BASE_DIR}" \
   "${BF16_ARGS[@]}" \
   --gradient_checkpointing True \
   "${USE_CPU_ARGS[@]}" \
@@ -141,7 +178,8 @@ ACC_CMD=(accelerate launch --config_file "${DEEPSPEED_CONFIG_PATH}" --num_proces
   --reward_smooth True \
   --kl_reweight True \
   --update_ref False \
-  --entropy_reward True)
+  --entropy_reward True \
+  "${MODEL_ARGS_EXTRA[@]}")
 
 if [[ $# -gt 0 ]]; then
   ACC_CMD+=("$@")

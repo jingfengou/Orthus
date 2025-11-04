@@ -1,0 +1,5 @@
+sample00338
+Image_id: sample_0339
+Question: Find the resulting orientation after 270-degree clockwise rotation around the X-axis, followed by 270-degree clockwise rotation around the X-axis.
+Ground truth: C
+Generated:

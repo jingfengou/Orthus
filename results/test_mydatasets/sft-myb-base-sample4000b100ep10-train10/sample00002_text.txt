@@ -1,0 +1,6 @@
+sample00002
+Image_id: sample_0003
+Question: Calculate the terminal orientation resulting from 270-degree clockwise rotation around the Y-axis, followed by 270-degree clockwise rotation around the X-axis.
+Ground truth: B
+Generated:
+A</think>. <Answer>A</Answer>

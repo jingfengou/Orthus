@@ -1,0 +1,6 @@
+sample00025
+Image_id: sample_0026
+Question: Execute 180-degree rotation around the Y-axis, followed by 180-degree rotation around the Y-axis. What is the outcome?
+Ground truth: C
+Generated:
+A

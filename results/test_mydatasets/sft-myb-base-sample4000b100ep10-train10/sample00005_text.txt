@@ -1,0 +1,6 @@
+sample00005
+Image_id: sample_0006
+Question: What would the object's position be if it underwent 90-degree clockwise rotation around the Z-axis, followed by 90-degree clockwise rotation around the Y-axis?
+Ground truth: B
+Generated:
+A</think>. <Answer>A</Answer>

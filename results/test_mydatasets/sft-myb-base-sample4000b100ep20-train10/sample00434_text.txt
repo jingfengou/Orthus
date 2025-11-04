@@ -1,0 +1,5 @@
+sample00434
+Image_id: sample_0435
+Question: What transformation results from 90-degree clockwise rotation around the Z-axis, followed by 270-degree clockwise rotation around the X-axis is applied?
+Ground truth: B
+Generated:

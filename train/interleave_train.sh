@@ -28,7 +28,7 @@ LAUNCH_CMD="accelerate launch --num_processes 8 --gradient_accumulation_steps 1"
 BATCH_SIZE=4
 # REPORT_TO="none"     # <--- 关闭 wandb
 REPORT_TO="wandb"
-EPOCHS=100
+EPOCHS=1
 GRADIENT_CHECKPOINTING_FLAG="--gradient_checkpointing"
 DEBUG_MODE_FLAG=""
 
@@ -53,7 +53,7 @@ $LAUNCH_CMD train_interleave_orthus.py \
     --eval_file /data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data_modified.json \
     --image_folder "/data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data" \
     --precomputed_latents_dir "/data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data/latents_cache" \
-    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100l1e-5weight-F" \
+    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e1l1e-5weight-F" \
     --num_train_epochs $EPOCHS \
     --per_device_train_batch_size $BATCH_SIZE \
     --per_device_eval_batch_size $BATCH_SIZE \
@@ -62,7 +62,7 @@ $LAUNCH_CMD train_interleave_orthus.py \
     --logging_steps 5 \
     --eval_steps 200 \
     --save_steps 2000 \
-    --save_total_limit 7 \
+    --save_total_limit 5 \
     --bf16 \
     --report_to $REPORT_TO \
     $GRADIENT_CHECKPOINTING_FLAG \

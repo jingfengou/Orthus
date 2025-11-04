@@ -1,0 +1,6 @@
+sample00011
+Image_id: sample_0012
+Question: How would the orientation change if 90-degree clockwise rotation around the X-axis, followed by 180-degree rotation around the X-axis is applied?
+Ground truth: B
+Generated:
+A

@@ -108,7 +108,7 @@ def main():
     )
     parser.add_argument("--report_to", type=str, default="tensorboard", help="The integration to report results to (e.g., 'wandb', 'tensorboard').")
     parser.add_argument("--generation_log_file", type=str, default=None, help="Path to save the generated outputs for debugging.")
-    parser.add_argument("--dataloader_num_workers", type=int, default=-1, help="Number of worker processes for the DataLoader; set -1 to auto-select.")
+    parser.add_argument("--dataloader_num_workers", type=int, default=0, help="Number of worker processes for the DataLoader. Default 0 to avoid CUDA fork issues.")
     parser.add_argument("--dataloader_pin_memory", type=str2bool, default=True, help="Whether to enable pinned memory in DataLoader.")
     # parser.add_argument("--enable_generation_log", action='store_true', help="Enable logging of generation outputs during training for debugging.")
     # 新增：早停参数

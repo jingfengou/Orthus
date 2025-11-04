@@ -1,0 +1,6 @@
+sample00047
+Image_id: sample_0048
+Question: Which orientation results when 270-degree clockwise rotation around the Y-axis, followed by 270-degree clockwise rotation around the Y-axis is applied is applied?
+Ground truth: D
+Generated:
+A</think>. <Answer>A</Answer>

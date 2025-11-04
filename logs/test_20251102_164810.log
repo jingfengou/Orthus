@@ -1,0 +1,12 @@
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Error executing job with overrides: ['trainer.total_epochs=1', 'trainer.total_training_steps=10', 'actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=1', 'actor_rollout_ref.actor.ppo_mini_batch_size=8', 'actor_rollout_ref.rollout.log_prob_micro_batch_size=1']
+Traceback (most recent call last):
+  File "/data1/oujingfeng/project/twgi/Orthus/train/verl/run_orthus_grpo.py", line 73, in main
+    cfg.actor_rollout_ref.model.override_config = {
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+omegaconf.errors.UnsupportedValueType: Value 'dtype' is not a supported primitive type
+    full_key: actor_rollout_ref.model.override_config.torch_dtype
+    object_type=dict
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

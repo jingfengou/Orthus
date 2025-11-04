@@ -1,0 +1,6 @@
+sample00007
+Image_id: sample_0008
+Question: Given an initial orientation, what happens when 270-degree clockwise rotation around the Y-axis, followed by 180-degree rotation around the Y-axis.
+Ground truth: B
+Generated:
+A: This option uses incorrect rotation angles. B: this is the result after performing all rotation steps correctly. C: This option is missing one cube from the stack. D: This option rotates along wrong axes. So the final Answer is B</think>. <Answer>B</Answer>

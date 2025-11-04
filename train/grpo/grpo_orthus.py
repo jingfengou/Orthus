@@ -1,8 +1,9 @@
+import ast
 import os
 import random
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Optional
+from typing import Iterable, Optional
 
 import numpy as np
 import torch
@@ -83,6 +84,49 @@ reward_funcs_registry = {
 }
 reward_funcs_registry.update(trainer_reward_registry)
 
+
+def _normalize_str_list(value: Optional[Iterable[str] | str | None]) -> Optional[list[str]]:
+    """
+    将解析出的字符串或列表规范化为字符串列表；支持逗号分隔或 JSON 风格写法。
+    """
+    if value is None:
+        return None
+
+    def _clean(items: Iterable[str]) -> list[str]:
+        normalized = []
+        for item in items:
+            if item is None:
+                continue
+            token = str(item).strip().strip("\"' ")
+            if token:
+                normalized.append(token)
+        return normalized
+
+    if isinstance(value, (list, tuple, set)):
+        return _clean(value)
+
+    if isinstance(value, str):
+        text = value.strip()
+        if not text:
+            return None
+        # 尝试解析 JSON / Python 字面量
+        if text.startswith("[") and text.endswith("]"):
+            try:
+                parsed = ast.literal_eval(text)
+                if isinstance(parsed, (list, tuple, set)):
+                    cleaned = _clean(parsed)
+                    return cleaned if cleaned else None
+            except (SyntaxError, ValueError):
+                pass
+        if "," in text:
+            cleaned = _clean(segment for segment in text.split(","))
+            return cleaned if cleaned else None
+        cleaned = _clean([text])
+        return cleaned if cleaned else None
+
+    cleaned = _clean([value])
+    return cleaned if cleaned else None
+
 def main(script_args, training_args, model_args):
     set_seed(training_args.seed)
 
@@ -100,12 +144,19 @@ def main(script_args, training_args, model_args):
             "The reasoning process and the answer are enclosed within <think></think> and <answer></answer> tags, "
             "respectively, i.e., <think>reasoning process</think>, <answer>answer</answer>.\n"
         )
-        question = example.get('Question', '')
-        choices_text = "\n".join([f"{chr(65+i)}) {choice}" for i, choice in enumerate(example.get('Choices', []))])
+        question = example.get("Question", "")
+        choices_text = "\n".join([f"{chr(65+i)}) {choice}" for i, choice in enumerate(example.get("Choices", []))])
 
         # 核心 Prompt 结构，与 SFT 和推理时保持一致
         prompt_text = instruction + f"<image>\n\nQuestion: {question}\n{choices_text}\n\nAnswer: "
-        image_rel = Path(example.get('Task', '')) / example.get('Image_id', '') / example.get('Combined_image', '')
+
+        task = example.get("Task", "")
+        level = example.get("Level", "")
+        image_id = example.get("Image_id", "")
+        combined_image = example.get("Combined_image", "")
+
+        image_rel_parts = [task, level, image_id, combined_image]
+        image_rel = Path(*(part for part in image_rel_parts if part))
         image_base = Path(script_args.image_base_dir).expanduser()
         image_path = (image_base / image_rel).resolve()
 
@@ -177,4 +228,7 @@ if __name__ == "__main__":
     # 使用 TRL 的解析器来同时解析三种配置
     parser = TrlParser((GRPOScriptArguments, OrthusGRPOConfig, ModelConfig))
     script_args, training_args, model_args = parser.parse_args_and_config()
+    model_args.lora_target_modules = _normalize_str_list(model_args.lora_target_modules)
+    model_args.lora_modules_to_save = _normalize_str_list(model_args.lora_modules_to_save)
+    model_args.lora_target_parameters = _normalize_str_list(model_args.lora_target_parameters)
     main(script_args, training_args, model_args)

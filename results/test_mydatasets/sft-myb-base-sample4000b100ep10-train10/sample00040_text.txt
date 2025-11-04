@@ -1,0 +1,6 @@
+sample00040
+Image_id: sample_0041
+Question: Picture an object that goes through 180-degree rotation around the Y-axis, followed by 180-degree rotation around the Z-axis. What does it look like at the end?
+Ground truth: A
+Generated:
+A</think>. <Answer>A</Answer>

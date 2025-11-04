@@ -380,7 +380,7 @@ class InterleaveSFTDataset(Dataset):
         labels = model_inputs['input_ids'].clone()
         prompt_len = len(self.processor.tokenizer(prompt_text, add_special_tokens=False).input_ids)
         prompt_len += 1024 * prompt_image_num + padding_length
-        labels[0, :(prompt_len+1)] = -100  # +1 to include the last token of the prompt
+        labels[0, :prompt_len] = -100  # +1 to include the last token of the prompt
         # 这里的 +1 是为了确保 prompt 的最后一个 token 也被忽略掉
         # print("label prompt position:", labels[0, prompt_len])
         # 步骤 4: 屏蔽（忽略）所有图片 token

@@ -1,0 +1,6 @@
+sample00013
+Image_id: sample_0014
+Question: Determine the final orientation when applying 90-degree clockwise rotation around the Y-axis, followed by 90-degree clockwise rotation around the Y-axis is applied
+Ground truth: D
+Generated:
+A</think>. <Answer>A</Answer>

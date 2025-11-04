@@ -1,0 +1,4 @@
+- trainer.total_epochs=1
+- trainer.total_training_steps=10
+- actor_rollout_ref.actor.ppo_micro_batch_size=1
+- actor_rollout_ref.actor.ppo_mini_batch_size=1

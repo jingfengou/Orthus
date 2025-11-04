@@ -1,0 +1,6 @@
+sample00038
+Image_id: sample_0039
+Question: Carry out the sequence 270-degree clockwise rotation around the Z-axis, followed by 90-degree clockwise rotation around the Y-axis. What final state is achieved?
+Ground truth: B
+Generated:
+A</think>. <Answer>A</Answer>

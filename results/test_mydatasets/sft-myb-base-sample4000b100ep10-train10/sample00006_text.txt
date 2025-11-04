@@ -1,0 +1,6 @@
+sample00006
+Image_id: sample_0007
+Question: What would happen to the object if it is 90-degree clockwise rotation around the Y-axis, followed by 90-degree clockwise rotation around the Y-axis is applied?
+Ground truth: B
+Generated:
+A</think>. <Answer>A</Answer>

@@ -1,0 +1,6 @@
+sample00027
+Image_id: sample_0028
+Question: When a shape experiences 270-degree clockwise rotation around the X-axis, followed by 270-degree clockwise rotation around the X-axis, what does it look like?
+Ground truth: C
+Generated:
+A

@@ -1,0 +1,5 @@
+sample00058
+Image_id: sample_0059
+Question: Given the sequence of rotations 90-degree clockwise rotation around the X-axis, followed by 90-degree clockwise rotation around the Y-axis, what is the final orientation?
+Ground truth: B
+Generated:

@@ -1,0 +1,6 @@
+sample00021
+Image_id: sample_0022
+Question: If an object is rotated according to 180-degree rotation around the Z-axis, followed by 90-degree clockwise rotation around the Y-axis, what is the result?
+Ground truth: D
+Generated:
+A</think>. <Answer>A</Answer>

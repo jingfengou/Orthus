@@ -1,0 +1,5 @@
+sample00405
+Image_id: sample_0406
+Question: What is the resulting orientation if 90-degree clockwise rotation around the X-axis, followed by 180-degree rotation around the Z-axis is applied?
+Ground truth: C
+Generated:

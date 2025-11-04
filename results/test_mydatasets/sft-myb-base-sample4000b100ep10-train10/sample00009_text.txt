@@ -1,0 +1,6 @@
+sample00009
+Image_id: sample_0010
+Question: What would be the orientation outcome of 270-degree clockwise rotation around the Z-axis, followed by 90-degree clockwise rotation around the Z-axis?
+Ground truth: C
+Generated:
+A</think>. <Answer>A</Answer>

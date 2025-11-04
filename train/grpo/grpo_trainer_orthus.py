@@ -62,6 +62,8 @@ class OrthusGRPOTrainer(Trainer):
         print("--- OrthusGRPOTrainer Initializing ---")
         self.script_args = script_args
         self.reward_funcs = reward_funcs or []
+        self.peft_config = peft_config
+        self.is_lora_enabled = peft_config is not None
 
         self.processor = OrthusProcessor.from_pretrained(model if isinstance(model, str) else model.config._name_or_path)
 
@@ -83,6 +85,20 @@ class OrthusGRPOTrainer(Trainer):
                 attn_implementation=attn_implementation,
             )
         self.model = model
+
+        if self.peft_config is not None:
+            try:
+                from peft import get_peft_model
+            except ImportError as exc:
+                raise ImportError("LoRA 模式需要安装 peft 库，请先 `pip install peft`。") from exc
+
+            print("Applying LoRA adapters ...")
+            print(f"LoRA target modules: {self.peft_config.target_modules}")
+            if getattr(self.peft_config, "modules_to_save", None):
+                print(f"LoRA modules to save: {self.peft_config.modules_to_save}")
+            self.model = get_peft_model(self.model, self.peft_config)
+            trainable_param, total_param = self.model.get_nb_trainable_parameters()
+            print(f"LoRA 已启用：trainable params={trainable_param} / total params={total_param}")
 
         if getattr(args, "gradient_checkpointing", False):
             print("Enabling policy gradient checkpointing (use_reentrant=False).")
@@ -174,6 +190,33 @@ class OrthusGRPOTrainer(Trainer):
             self.ref_model.eval()
         print("Model parts frozen.")
 
+    def _get_policy_model(self) -> PreTrainedModel:
+        """
+        返回实际的 Orthus 模型，兼容 LoRA/PEFT 包裹后的层级结构。
+        """
+        module = self.model
+        visited = set()
+        for _ in range(5):
+            if id(module) in visited:
+                break
+            visited.add(id(module))
+            if isinstance(module, PreTrainedModel) and hasattr(module, "generate"):
+                return module
+            if hasattr(module, "get_base_model"):
+                try:
+                    module = module.get_base_model()
+                    continue
+                except TypeError:
+                    pass
+            if hasattr(module, "base_model"):
+                module = module.base_model
+                continue
+            if hasattr(module, "model"):
+                module = module.model
+                continue
+            break
+        return module
+
     def collate_fn(self, features):
         return {key: [d[key] for d in features] for key in features[0]}
 
@@ -205,7 +248,14 @@ class OrthusGRPOTrainer(Trainer):
         completion_lengths: List[int] = []
         logged_prompt_metadata: List[Dict[str, Any]] = []
         use_interleaved = getattr(self.args, "interleave_generation", False)
-        image_seq_len = getattr(getattr(self.model, "model", None), "image_seq_length", 0) or 0
+        policy_model = self._get_policy_model()
+        policy_backbone = getattr(policy_model, "model", policy_model)
+        image_seq_len = getattr(policy_backbone, "image_seq_length", 0) or 0
+        vq_model = getattr(policy_backbone, "vqmodel", None)
+        if vq_model is None:
+            raise AttributeError(
+                "无法在策略模型中找到 vqmodel，请确认加载的 Orthus checkpoint 包含视觉量化模块。"
+            )
 
         unwrap_model = self.accelerator.unwrap_model(model)
         original_mode = model.training
@@ -219,7 +269,7 @@ class OrthusGRPOTrainer(Trainer):
                     text=prompt_text,
                     images=image,
                     return_tensors="pt",
-                    vqmodel=self.model.model.vqmodel,
+                    vqmodel=vq_model,
                     image_cache_key=str(image_path),
                 )
                 proc_inputs = {k: v.to(device) for k, v in proc_inputs.items()}
@@ -258,6 +308,16 @@ class OrthusGRPOTrainer(Trainer):
 
                     completion_ids = self._trim_after_eos(completion_ids, eos_token_id, pad_token_id)
 
+                    block_tokens = getattr(self, "_image_token_blocklist", set())
+                    if block_tokens:
+                        filtered = [tok for tok in completion_ids.tolist() if int(tok) not in block_tokens]
+                        if len(filtered) != completion_ids.size(0):
+                            completion_ids = (
+                                torch.tensor(filtered, dtype=completion_ids.dtype, device=completion_ids.device)
+                                if filtered
+                                else completion_ids.new_empty(0)
+                            )
+
                     full_sequence = torch.cat([prompt_ids, completion_ids], dim=0)
                     full_sequences.append(full_sequence)
                     prompt_lengths.append(prompt_len)
@@ -267,9 +327,8 @@ class OrthusGRPOTrainer(Trainer):
                     meta_entry["generation_index"] = gen_idx
                     meta_entry["completion_tokens"] = int(completion_ids.size(0))
                     logged_prompt_metadata.append(meta_entry)
-                    generated_texts.append(
-                        self.processor.tokenizer.decode(completion_ids, skip_special_tokens=True)
-                    )
+                    decoded = self.processor.tokenizer.decode(completion_ids, skip_special_tokens=False)
+                    generated_texts.append(self._clean_decoded_text(decoded))
                     metadata_for_rewards.append(metadata)
                 del proc_inputs
         self._log_debug(
@@ -463,6 +522,20 @@ class OrthusGRPOTrainer(Trainer):
                 fp.write(
                     f"    completion(gen={gen_idx}, tokens={prompt_info.get('completion_tokens', 0)}):\n{sanitized}\n"
                 )
+
+    @staticmethod
+    def _clean_decoded_text(text: str) -> str:
+        cleaned = text.replace("<|endoftext|>", "").replace("</s>", "")
+        while True:
+            start = cleaned.find("<reserved")
+            if start == -1:
+                break
+            end = cleaned.find(">", start)
+            if end == -1:
+                cleaned = cleaned[:start]
+                break
+            cleaned = cleaned[:start] + cleaned[end + 1 :]
+        return cleaned.strip()
 
     def get_text_per_token_logps(self, model, input_ids, attention_mask):
         outputs = model(

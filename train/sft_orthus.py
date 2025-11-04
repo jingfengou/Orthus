@@ -66,7 +66,13 @@ class InterleaveSFTDataset(Dataset):
         question = item.get('Question', '')
         # --- 【核心修改】直接获取字符串类型的 Explanation ---
         # 因为我们已经确认所有样本的 Explanation 都是字符串，所以不再需要isinstance判断
-        explanation_text = item.get('Explanation', '')
+        explanation_text = str(item.get('Explanation', ''))
+        explanation_text = (
+            explanation_text.replace("<Answer>", "<answer>")
+            .replace("</Answer>", "</answer>")
+            .replace("<Think>", "<think>")
+            .replace("</Think>", "</think>")
+        )
         answer = item.get('Answer', '')
         choices_text = "\n".join([f"{chr(65+i)}) {choice}" for i, choice in enumerate(item.get('Choices', []))])
 
@@ -106,15 +112,37 @@ class InterleaveSFTDataset(Dataset):
             model_inputs["target_image_latents"] = torch.zeros((1, 1024, 256))
         # # print(f"Target image latents shape: {model_inputs['target_image_latents'].shape}")
         # --- 4. 【核心修改】创建健壮的文本 Labels ---
-        labels = model_inputs['input_ids'].clone()
-        # print(f"Original labels: {len(labels[0])}")
-        # a. 获取 answer 的真实长度 (不含特殊token)
-        target_len_no_special = len(self.processor.tokenizer(answer_text, add_special_tokens=False).input_ids)
+        input_ids = model_inputs['input_ids'][0]
+        attention_mask = model_inputs["attention_mask"][0]
+        actual_content_length = int(attention_mask.sum().item())
+        sequence_length = model_inputs["input_ids"].size(1)
+        content_offset = sequence_length - actual_content_length
 
-        # d. 执行屏蔽
-        #    labels[0, :mask_len] 正是屏蔽了从0开始到prompt结束的所有部分
-        #    对于左填充来说，这部分恰好就是 [PAD, PAD, ..., PROMPT]
-        labels[0, :-(target_len_no_special+1)] = -100
+        labels = torch.full_like(model_inputs['input_ids'], -100)
+
+        lt_id = self.processor.tokenizer.convert_tokens_to_ids('<')
+        think_id = self.processor.tokenizer.convert_tokens_to_ids('think')
+        gt_id = self.processor.tokenizer.convert_tokens_to_ids('>')
+
+        prompt_token_len = len(self.processor.tokenizer(prompt_text, add_special_tokens=False).input_ids)
+        search_start = content_offset + prompt_token_len
+
+        target_start = None
+        for idx in range(search_start, sequence_length - 2):
+            if (
+                input_ids[idx] == lt_id
+                and input_ids[idx + 1] == think_id
+                and input_ids[idx + 2] == gt_id
+            ):
+                target_start = idx
+                break
+
+        if target_start is None:
+            target_start = search_start
+
+        labels[0, target_start:content_offset + actual_content_length] = input_ids[
+            target_start : content_offset + actual_content_length
+        ]
 
         # print(f"Masked labels: {labels}")
         model_inputs["labels"] = labels

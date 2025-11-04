@@ -1,0 +1,57 @@
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+2025-11-03 08:03:38,921	INFO worker.py:2003 -- Started a local Ray instance. View the dashboard at [1m[32mhttp://127.0.0.1:8265 [39m[22m
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[36m(pid=1709728)[0m /data1/conda/envs/orthus/lib/python3.11/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+[36m(pid=1709728)[0m   import pynvml  # type: ignore[import]
+[36m(TaskRunner pid=1709728)[0m /data1/oujingfeng/project/twgi/verl/verl/trainer/main_ppo.py:275: UserWarning: Disabled critic as algorithm.adv_estimator != gae. If it is not intended, please set critic.enable=True
+[36m(TaskRunner pid=1709728)[0m   use_critic=need_critic(config),
+[36m(TaskRunner pid=1709728)[0m /data1/oujingfeng/project/twgi/verl/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.
+[36m(TaskRunner pid=1709728)[0m   warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)
+[36m(TaskRunner pid=1709728)[0m `torch_dtype` is deprecated! Use `dtype` instead!
+[Orthus] model path: /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100l1e-5weight-F
+ray init kwargs: {'num_cpus': None, 'runtime_env': {'env_vars': {'TOKENIZERS_PARALLELISM': 'true', 'NCCL_DEBUG': 'WARN', 'VLLM_LOGGING_LEVEL': 'WARN', 'VLLM_ALLOW_RUNTIME_LORA_UPDATING': 'true', 'CUDA_DEVICE_MAX_CONNECTIONS': '1', 'NCCL_CUMEM_ENABLE': '0', 'PYTHONPATH': '/data1/oujingfeng/project/twgi/Orthus:/data1/oujingfeng/project/twgi/verl', 'VERL_SUPPRESS_CONFIG_LOG': '1'}, 'working_dir': None}}
+[36m(TaskRunner pid=1709728)[0m TaskRunner hostname: server, PID: 1709728
+[36m(TaskRunner pid=1709728)[0m [validate_config] All configuration checks passed successfully!
+[36m(TaskRunner pid=1709728)[0m Using dataset class: OrthusRLDataset
+[36m(TaskRunner pid=1709728)[0m [OrthusRLDataset] Loading processor from /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100l1e-5weight-F
+[36m(TaskRunner pid=1709728)[0m [OrthusRLDataset] Loading VQ model from /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100l1e-5weight-F
+Error executing job with overrides: ['trainer.total_epochs=1', 'trainer.total_training_steps=10', 'actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=1', 'actor_rollout_ref.actor.ppo_mini_batch_size=8', 'actor_rollout_ref.rollout.log_prob_micro_batch_size=1']
+Traceback (most recent call last):
+  File "/data1/oujingfeng/project/twgi/Orthus/train/verl/run_orthus_grpo.py", line 149, in main
+    run_ppo(cfg)
+  File "/data1/oujingfeng/project/twgi/verl/verl/trainer/main_ppo.py", line 96, in run_ppo
+    ray.get(runner.run.remote(config))
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+                                  ^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(ValueError): [36mray::TaskRunner.run()[39m (pid=1709728, ip=10.22.17.7, actor_id=9953f787d5cba8ef8f5d6d3b01000000, repr=<verl.trainer.main_ppo.TaskRunner object at 0x7f4c1166fcd0>)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/verl/verl/trainer/main_ppo.py", line 305, in run
+    train_dataset = create_rl_dataset(
+                    ^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/verl/verl/trainer/main_ppo.py", line 384, in create_rl_dataset
+    dataset = dataset_cls(
+              ^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/Orthus/train/verl/dataset.py", line 101, in __init__
+    self.vqmodel = _load_vq_model(vq_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/Orthus/train/verl/dataset.py", line 35, in _load_vq_model
+    model = AutoModelForCausalLM.from_pretrained(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 607, in from_pretrained
+    raise ValueError(
+ValueError: Unrecognized configuration class <class 'transformers.models.chameleon.configuration_chameleon.ChameleonConfig'> for this kind of AutoModel: AutoModelForCausalLM.
+Model type should be one of ApertusConfig, ArceeConfig, AriaTextConfig, BambaConfig, BartConfig, BertConfig, BertGenerationConfig, BigBirdConfig, BigBirdPegasusConfig, BioGptConfig, BitNetConfig, BlenderbotConfig, BlenderbotSmallConfig, BloomConfig, CamembertConfig, LlamaConfig, CodeGenConfig, CohereConfig, Cohere2Config, CpmAntConfig, CTRLConfig, Data2VecTextConfig, DbrxConfig, DeepseekV2Config, DeepseekV3Config, DiffLlamaConfig, DogeConfig, Dots1Config, ElectraConfig, Emu3Config, ErnieConfig, Ernie4_5Config, Ernie4_5_MoeConfig, Exaone4Config, FalconConfig, FalconH1Config, FalconMambaConfig, FuyuConfig, GemmaConfig, Gemma2Config, Gemma3Config, Gemma3TextConfig, Gemma3nConfig, Gemma3nTextConfig, GitConfig, GlmConfig, Glm4Config, Glm4MoeConfig, GotOcr2Config, GPT2Config, GPT2Config, GPTBigCodeConfig, GPTNeoConfig, GPTNeoXConfig, GPTNeoXJapaneseConfig, GptOssConfig, GPTJConfig, GraniteConfig, GraniteMoeConfig, GraniteMoeHybridConfig, GraniteMoeSharedConfig, HeliumConfig, HunYuanDenseV1Config, HunYuanMoEV1Config, JambaConfig, JetMoeConfig, Lfm2Config, LlamaConfig, Llama4Config, Llama4TextConfig, MambaConfig, Mamba2Config, MarianConfig, MBartConfig, MegaConfig, MegatronBertConfig, MiniMaxConfig, MistralConfig, MixtralConfig, MllamaConfig, ModernBertDecoderConfig, MoshiConfig, MptConfig, MusicgenConfig, MusicgenMelodyConfig, MvpConfig, NemotronConfig, OlmoConfig, Olmo2Config, OlmoeConfig, OpenLlamaConfig, OpenAIGPTConfig, OPTConfig, PegasusConfig, PersimmonConfig, PhiConfig, Phi3Config, Phi4MultimodalConfig, PhimoeConfig, PLBartConfig, ProphetNetConfig, QDQBertConfig, Qwen2Config, Qwen2MoeConfig, Qwen3Config, Qwen3MoeConfig, RecurrentGemmaConfig, ReformerConfig, RemBertConfig, RobertaConfig, RobertaPreLayerNormConfig, RoCBertConfig, RoFormerConfig, RwkvConfig, SeedOssConfig, SmolLM3Config, Speech2Text2Config, StableLmConfig, Starcoder2Config, TransfoXLConfig, TrOCRConfig, WhisperConfig, XGLMConfig, XLMConfig, XLMProphetNetConfig, XLMRobertaConfig, XLMRobertaXLConfig, XLNetConfig, xLSTMConfig, XmodConfig, ZambaConfig, Zamba2Config.
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

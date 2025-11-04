@@ -1,0 +1,51 @@
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/client_mode_hook.py:104: FutureWarning: `local_mode` is an experimental feature that is no longer maintained and will be removed in the near future. For debugging consider using the Ray distributed debugger.
+  return func(*args, **kwargs)
+2025-11-03 12:36:36,089	INFO worker.py:2003 -- Started a local Ray instance. View the dashboard at [1m[32mhttp://127.0.0.1:8265 [39m[22m
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+:job_id:01000000
+:actor_name:TaskRunner
+/data1/oujingfeng/project/twgi/verl/verl/trainer/main_ppo.py:275: UserWarning: Disabled critic as algorithm.adv_estimator != gae. If it is not intended, please set critic.enable=True
+  use_critic=need_critic(config),
+[Orthus] model path: /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100l1e-5weight-F
+[Orthus] Ray local_mode 已开启（ORTHUS_RAY_LOCAL_MODE）。
+ray init kwargs: {'num_cpus': None, 'runtime_env': {'env_vars': {'TOKENIZERS_PARALLELISM': 'true', 'NCCL_DEBUG': 'WARN', 'VLLM_LOGGING_LEVEL': 'WARN', 'VLLM_ALLOW_RUNTIME_LORA_UPDATING': 'true', 'CUDA_DEVICE_MAX_CONNECTIONS': '1', 'NCCL_CUMEM_ENABLE': '0', 'PYTHONPATH': '/data1/oujingfeng/project/twgi/Orthus:/data1/oujingfeng/project/twgi/verl', 'VERL_SUPPRESS_CONFIG_LOG': '1'}, 'working_dir': None}, 'local_mode': True}
+:job_id:01000000
+:actor_name:TaskRunner
+TaskRunner hostname: server, PID: 1935105
+Error executing job with overrides: ['trainer.total_epochs=1', 'trainer.total_training_steps=10', 'actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=1', 'actor_rollout_ref.actor.ppo_mini_batch_size=8', 'actor_rollout_ref.rollout.log_prob_micro_batch_size=1']
+[36mray::TaskRunner.run()[39m (pid=1935105, ip=10.22.17.7, actor_id=e2f716d38199172238df05df01000000, repr=<verl.trainer.main_ppo._modify_class.<locals>.Class object at 0x7faf6ffaa090>)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: FSDPEngineConfig.__init__() got an unexpected keyword argument 'tensor_model_parallel_size'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::TaskRunner.run()[39m (pid=1935105, ip=10.22.17.7, actor_id=e2f716d38199172238df05df01000000, repr=<verl.trainer.main_ppo._modify_class.<locals>.Class object at 0x7faf6ffaa090>)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/verl/verl/trainer/main_ppo.py", line 272, in run
+    validate_config(
+  File "/data1/oujingfeng/project/twgi/verl/verl/utils/config.py", line 151, in validate_config
+    actor_config = omega_conf_to_dataclass(config.actor_rollout_ref.actor)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/verl/verl/utils/config.py", line 50, in omega_conf_to_dataclass
+    return instantiate(config, _convert_="partial")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+           ^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 342, in instantiate_node
+    value = instantiate_node(
+            ^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 347, in instantiate_node
+    return _call_target(_target_, partial, args, kwargs, full_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 97, in _call_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error in call to target 'verl.workers.config.engine.FSDPEngineConfig':
+TypeError("FSDPEngineConfig.__init__() got an unexpected keyword argument 'tensor_model_parallel_size'")
+full_key: actor_rollout_ref.actor.fsdp_config
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

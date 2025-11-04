@@ -1,0 +1,10 @@
+Checkpoint tracker file does not exist: /data1/oujingfeng/project/twgi/Orthus/train/verl/checkpoints/verl_examples/gsm8k/latest_checkpointed_iteration.txt
+Training from scratch
+Exception ignored in: <function Tracking.__del__ at 0x7f2b3e659440>
+Traceback (most recent call last):
+  File "/data1/oujingfeng/project/twgi/verl/verl/utils/tracking.py", line 158, in __del__
+    def __del__(self):
+
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/utils/data/_utils/signal_handling.py", line 73, in handler
+    _error_if_any_worker_fails()
+RuntimeError: DataLoader worker (pid 2011089) is killed by signal: Terminated.

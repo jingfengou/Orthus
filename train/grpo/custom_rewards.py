@@ -29,13 +29,13 @@ def answer_correctness_reward(
             rewards.append(0.0)
             continue
 
-        match = re.search(r"<answer>(.*?)</answer>", generated_text, re.DOTALL)
+        match = re.search(r"<answer>(.*?)</answer>", generated_text, re.DOTALL | re.IGNORECASE)
         
         if not match:
             rewards.append(0.0) # 格式错误，奖励为 0
         else:
             generated_answer = match.group(1).strip()
-            if generated_answer == ground_truth_answer.strip():
+            if generated_answer.lower() == ground_truth_answer.strip().lower():
                 rewards.append(1.0) # 答案正确，奖励为 1.0
             else:
                 rewards.append(0.0) # 答案错误，奖励为 0.0
@@ -57,7 +57,7 @@ def format_reward(
     """
     rewards = []
     # 正则表达式，匹配 <think> 标签对和 <answer> 标签对，允许中间有空格或换行
-    pattern = re.compile(r"<think>.*?</think>\s*<answer>.*?</answer>", re.DOTALL)
+    pattern = re.compile(r"<think>.*?</think>\s*<answer>.*?</answer>", re.DOTALL | re.IGNORECASE)
     
     for text in generated_texts:
         # 使用 search 而不是 match，因为它可以在字符串的任何位置找到匹配项

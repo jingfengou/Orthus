@@ -1,0 +1,36 @@
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/cuda/__init__.py:182: UserWarning: CUDA initialization: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 304: OS call failed or operation not supported on this OS (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+/data1/conda/envs/orthus/lib/python3.11/site-packages/joblib/_multiprocessing_helpers.py:44: UserWarning: [Errno 13] Permission denied.  joblib will operate in serial mode
+  warnings.warn("%s.  joblib will operate in serial mode" % (e,))
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/cuda/__init__.py:829: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+[Orthus] model path: /data1/oujingfeng/project/twgi/Orthus/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100l1e-5weight-F
+ray init kwargs: {'num_cpus': None, 'runtime_env': {'env_vars': {'TOKENIZERS_PARALLELISM': 'true', 'NCCL_DEBUG': 'WARN', 'VLLM_LOGGING_LEVEL': 'WARN', 'VLLM_ALLOW_RUNTIME_LORA_UPDATING': 'true', 'CUDA_DEVICE_MAX_CONNECTIONS': '1', 'NCCL_CUMEM_ENABLE': '0'}, 'working_dir': None}}
+Error executing job with overrides: ['trainer.total_epochs=1', 'trainer.total_training_steps=10']
+Traceback (most recent call last):
+  File "/data1/oujingfeng/project/twgi/Orthus/train/verl/run_orthus_grpo.py", line 98, in main
+    run_ppo(cfg)
+  File "/data1/oujingfeng/project/twgi/verl/verl/trainer/main_ppo.py", line 74, in run_ppo
+    ray.init(**OmegaConf.to_container(ray_init_kwargs))
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/worker.py", line 1910, in init
+    _global_node = ray._private.node.Node(
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/node.py", line 213, in __init__
+    node_ip_address = ray.util.get_node_ip_address()
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/services.py", line 667, in get_node_ip_address
+    return node_ip_address_from_perspective(address)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/services.py", line 632, in node_ip_address_from_perspective
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/socket.py", line 232, in __init__
+    _socket.socket.__init__(self, family, type, proto, fileno)
+PermissionError: [Errno 1] Operation not permitted
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

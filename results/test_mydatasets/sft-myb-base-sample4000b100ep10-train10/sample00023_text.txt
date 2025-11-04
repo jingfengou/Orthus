@@ -1,0 +1,6 @@
+sample00023
+Image_id: sample_0024
+Question: What configuration does the object attain after 180-degree rotation around the Y-axis, followed by 90-degree clockwise rotation around the Z-axis.
+Ground truth: A
+Generated:
+A</think>. <Answer>A</Answer>

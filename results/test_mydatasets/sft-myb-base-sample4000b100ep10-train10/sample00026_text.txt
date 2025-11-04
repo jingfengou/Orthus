@@ -1,0 +1,6 @@
+sample00026
+Image_id: sample_0027
+Question: What shape configuration follows 180-degree rotation around the Z-axis, followed by 180-degree rotation around the Y-axis?
+Ground truth: D
+Generated:
+A

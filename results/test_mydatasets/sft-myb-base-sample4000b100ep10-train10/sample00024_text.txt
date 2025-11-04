@@ -1,0 +1,6 @@
+sample00024
+Image_id: sample_0025
+Question: Establish the ultimate orientation arising from 90-degree clockwise rotation around the Z-axis, followed by 90-degree clockwise rotation around the Z-axis.
+Ground truth: D
+Generated:
+A</think>. <Answer>A</Answer>

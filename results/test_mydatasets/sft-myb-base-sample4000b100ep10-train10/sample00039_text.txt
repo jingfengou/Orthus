@@ -1,0 +1,6 @@
+sample00039
+Image_id: sample_0040
+Question: After going through 180-degree rotation around the X-axis, followed by 270-degree clockwise rotation around the Z-axis, what is the object's final orientation?
+Ground truth: A
+Generated:
+B</think>. <Answer>B</Answer>

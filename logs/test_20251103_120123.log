@@ -1,0 +1,197 @@
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/client_mode_hook.py:104: FutureWarning: `local_mode` is an experimental feature that is no longer maintained and will be removed in the near future. For debugging consider using the Ray distributed debugger.
+  return func(*args, **kwargs)
+2025-11-03 12:01:33,625	INFO worker.py:2003 -- Started a local Ray instance. View the dashboard at [1m[32mhttp://127.0.0.1:8265 [39m[22m
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+:job_id:01000000
+:actor_name:TaskRunner
+/data1/oujingfeng/project/twgi/verl/verl/trainer/main_ppo.py:275: UserWarning: Disabled critic as algorithm.adv_estimator != gae. If it is not intended, please set critic.enable=True
+  use_critic=need_critic(config),
+/data1/oujingfeng/project/twgi/verl/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.
+  warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)
+/data1/oujingfeng/project/twgi/verl/verl/trainer/ppo/ray_trainer.py:326: UserWarning: Disabled critic as algorithm.adv_estimator != gae. If it is not intended, please set critic.enable=True
+  self.use_critic = need_critic(self.config)
+:task_name:bundle_reservation_check_func
+:task_name:get_master_addr_port
+:actor_name:WorkerDict
+2025-11-03 12:01:54,020	ERROR actor.py:1788 -- Exception raised in creation task: The actor died because of an error raised in its creation task, [36mray::JD9BGdWorkerDict_0:0:WorkerDict.__init__()[39m (pid=1885107, ip=10.22.17.7, actor_id=25be1bc8fbb26f27ee15ca8a01000000, repr=<verl.single_controller.ray.base._modify_class.<locals>.Class object at 0x7fee0405c590>)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/verl/verl/single_controller/ray/base.py", line 771, in __init__
+    super().__init__()
+  File "/data1/oujingfeng/project/twgi/verl/verl/single_controller/base/worker.py", line 174, in __init__
+    master_addr = os.environ["MASTER_ADDR"]
+                  ~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "<frozen os>", line 679, in __getitem__
+KeyError: 'MASTER_ADDR'
+[2025-11-03 12:01:54,079 E 1885107 1885107] logging.cc:118: Unhandled exception: St19bad_optional_access. what(): bad optional access /data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x15dd0ca) [0x7fefe9b720ca] ray::operator<<()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x15ddb7c) [0x7fefe9b72b7c] ray::RayLog::operator<< <>()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x7ee12f) [0x7fefe8d8312f] ray::TerminateHandler()
+/data1/conda/envs/orthus/bin/../lib/libstdc++.so.6(+0xb135a) [0x7ff11743035a] __cxxabiv1::__terminate()
+/data1/conda/envs/orthus/bin/../lib/libstdc++.so.6(+0xb13c5) [0x7ff1174303c5]
+/data1/conda/envs/orthus/bin/../lib/libstdc++.so.6(+0xb1658) [0x7ff117430658]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x73b582) [0x7fefe8cd0582] __pyx_pw_3ray_7_raylet_14InnerGcsClient_15async_internal_kv_get()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x778ba2) [0x7fefe8d0dba2] ray::core::CoreWorker::ExecuteTask()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(_ZN3ray4core10CoreWorker20ExecuteTaskLocalModeERKNS_17TaskSpecificationERKNS_7ActorIDE+0x492) [0x7fefe8f5eb72] ray::core::CoreWorker::ExecuteTaskLocalMode()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(_ZN3ray4core10CoreWorker11CreateActorERKNS0_11RayFunctionERKSt6vectorISt10unique_ptrINS_7TaskArgESt14default_deleteIS7_EESaISA_EERKNS0_20ActorCreationOptionsERKSsSJ_PNS_7ActorIDE+0xb6e) [0x7fefe8f6128e] ray::core::CoreWorker::CreateActor()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x966d19) [0x7fefe8efbd19] __pyx_pw_3ray_7_raylet_10CoreWorker_77create_actor()
+python(PyObject_Vectorcall+0x31) [0x51ece1] PyObject_Vectorcall
+python(_PyEval_EvalFrameDefault+0x6a6) [0x511cf6] _PyEval_EvalFrameDefault
+python(_PyFunction_Vectorcall+0x173) [0x539503] _PyFunction_Vectorcall
+python(PyObject_Call+0x12c) [0x54358c] PyObject_Call
+python(_PyEval_EvalFrameDefault+0x4908) [0x515f58] _PyEval_EvalFrameDefault
+python(_PyFunction_Vectorcall+0x173) [0x539503] _PyFunction_Vectorcall
+python(PyObject_Call+0x12c) [0x54358c] PyObject_Call
+python(_PyEval_EvalFrameDefault+0x4908) [0x515f58] _PyEval_EvalFrameDefault
+python() [0x5589ff] _PyObject_VectorcallTstate.lto_priv.14
+python() [0x5581ee] method_vectorcall
+python(PyObject_Call+0x12c) [0x54358c] PyObject_Call
+python(_PyEval_EvalFrameDefault+0x4908) [0x515f58] _PyEval_EvalFrameDefault
+python() [0x5589ff] _PyObject_VectorcallTstate.lto_priv.14
+python() [0x558240] method_vectorcall
+python(_PyEval_EvalFrameDefault+0x4908) [0x515f58] _PyEval_EvalFrameDefault
+python(_PyFunction_Vectorcall+0x173) [0x539503] _PyFunction_Vectorcall
+python(_PyObject_FastCallDictTstate+0xd8) [0x508e88] _PyObject_FastCallDictTstate
+python(_PyObject_Call_Prepend+0x66) [0x540fa6] _PyObject_Call_Prepend
+python() [0x612887] slot_tp_call
+python(_PyObject_MakeTpCall+0x26c) [0x50454c] _PyObject_MakeTpCall
+python(_PyEval_EvalFrameDefault+0x6a6) [0x511cf6] _PyEval_EvalFrameDefault
+python(_PyFunction_Vectorcall+0x173) [0x539503] _PyFunction_Vectorcall
+python() [0x540a64] slot_tp_init
+python() [0x50494c] type_call
+python(PyObject_Call+0xbd) [0x54351d] PyObject_Call
+python(_PyEval_EvalFrameDefault+0x4908) [0x515f58] _PyEval_EvalFrameDefault
+python(_PyFunction_Vectorcall+0x173) [0x539503] _PyFunction_Vectorcall
+python(_PyEval_EvalFrameDefault+0x4908) [0x515f58] _PyEval_EvalFrameDefault
+python(_PyFunction_Vectorcall+0x173) [0x539503] _PyFunction_Vectorcall
+python(_PyEval_EvalFrameDefault+0x4908) [0x515f58] _PyEval_EvalFrameDefault
+python(_PyFunction_Vectorcall+0x173) [0x539503] _PyFunction_Vectorcall
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x8154df) [0x7fefe8daa4df] __Pyx_PyObject_Call()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x84a910) [0x7fefe8ddf910] __pyx_pw_3ray_7_raylet_12execute_task_3function_executor()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x8154df) [0x7fefe8daa4df] __Pyx_PyObject_Call()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x92ce3b) [0x7fefe8ec1e3b] __pyx_f_3ray_7_raylet_task_execution_handler()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(_ZNSt17_Function_handlerIFN3ray6StatusERKNS0_3rpc7AddressENS2_8TaskTypeESsRKNS0_4core11RayFunctionERKSt13unordered_mapISsdSt4hashISsESt8equal_toISsESaISt4pairIKSsdEEERKSt6vectorISt10shared_ptrINS0_9RayObjectEESaISQ_EERKSN_INS2_15ObjectReferenceESaISV_EERSH_S10_PSN_ISG_INS0_8ObjectIDESQ_ESaIS12_EES15_PSN_ISG_IS11_bESaIS16_EERSO_INS0_17LocalMemoryBufferEEPbPSsRKSN_INS0_16ConcurrencyGroupESaIS1F_EESsbbblRKNS2_15TensorTransportEEPFS1_S5_S6_SsSA_SM_SU_SZ_SsSsS15_S15_S19_S1C_S1D_S1E_S1J_SsbbblS1K_EE9_M_invokeERKSt9_Any_dataS5_OS6_OSsSA_SM_SU_SZ_S10_S10_OS15_S1W_OS19_S1C_OS1D_OS1E_S1J_S1V_ObS20_S20_OlS1M_+0x184) [0x7fefe8db1344] std::_Function_handler<>::_M_invoke()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(_ZN3ray4core10CoreWorker11ExecuteTaskERKNS_17TaskSpecificationESt8optionalISt13unordered_mapISsSt6vectorISt4pairIldESaIS9_EESt4hashISsESt8equal_toISsESaIS8_IKSsSB_EEEEPS7_IS8_INS_8ObjectIDESt10shared_ptrINS_9RayObjectEEESaISP_EESS_PS7_IS8_ISL_bESaIST_EEPN6google8protobuf16RepeatedPtrFieldINS_3rpc20ObjectReferenceCountEEEPbPSs+0x1015) [0x7fefe8f5d475] ray::core::CoreWorker::ExecuteTask()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(_ZN3ray4core10CoreWorker20ExecuteTaskLocalModeERKNS_17TaskSpecificationERKNS_7ActorIDE+0x492) [0x7fefe8f5eb72] ray::core::CoreWorker::ExecuteTaskLocalMode()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(_ZN3ray4core10CoreWorker15SubmitActorTaskERKNS_7ActorIDERKNS0_11RayFunctionERKSt6vectorISt10unique_ptrINS_7TaskArgESt14default_deleteISA_EESaISD_EERKNS0_11TaskOptionsEibRKSsSM_RS8_INS_3rpc15ObjectReferenceESaISO_EENS_6TaskIDE+0x8fb) [0x7fefe8f6011b] ray::core::CoreWorker::SubmitActorTask()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x95abcc) [0x7fefe8eefbcc] __pyx_pw_3ray_7_raylet_10CoreWorker_85submit_actor_task()
+python(PyObject_Vectorcall+0x31) [0x51ece1] PyObject_Vectorcall
+python(_PyEval_EvalFrameDefault+0x6a6) [0x511cf6] _PyEval_EvalFrameDefault
+python(_PyFunction_Vectorcall+0x173) [0x539503] _PyFunction_Vectorcall
+python(_PyEval_EvalFrameDefault+0x4908) [0x515f58] _PyEval_EvalFrameDefault
+python(_PyFunction_Vectorcall+0x173) [0x539503] _PyFunction_Vectorcall
+python(_PyEval_EvalFrameDefault+0x4908) [0x515f58] _PyEval_EvalFrameDefault
+python() [0x5cd0aa] _PyEval_Vector
+python(PyEval_EvalCode+0x9f) [0x5cc77f] PyEval_EvalCode
+python() [0x5ed557] run_eval_code_obj
+python() [0x5e9080] run_mod
+python() [0x5fde72] pyrun_file
+python(_PyRun_SimpleFileObject+0x19f) [0x5fd28f] _PyRun_SimpleFileObject
+python(_PyRun_AnyFileObject+0x43) [0x5fcfb3] _PyRun_AnyFileObject
+
+[2025-11-03 12:01:54,086 E 1885107 1885107] logging.cc:125: Stack trace: 
+ /data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x15dd0ca) [0x7fefe9b720ca] ray::operator<<()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x15ddb7c) [0x7fefe9b72b7c] ray::RayLog::operator<< <>()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x15e0138) [0x7fefe9b75138] ray::TerminateHandler()
+/data1/conda/envs/orthus/bin/../lib/libstdc++.so.6(+0xb135a) [0x7ff11743035a] __cxxabiv1::__terminate()
+/data1/conda/envs/orthus/bin/../lib/libstdc++.so.6(+0xb13c5) [0x7ff1174303c5]
+/data1/conda/envs/orthus/bin/../lib/libstdc++.so.6(+0xb1658) [0x7ff117430658]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x73b582) [0x7fefe8cd0582] __pyx_pw_3ray_7_raylet_14InnerGcsClient_15async_internal_kv_get()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x778ba2) [0x7fefe8d0dba2] ray::core::CoreWorker::ExecuteTask()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(_ZN3ray4core10CoreWorker20ExecuteTaskLocalModeERKNS_17TaskSpecificationERKNS_7ActorIDE+0x492) [0x7fefe8f5eb72] ray::core::CoreWorker::ExecuteTaskLocalMode()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(_ZN3ray4core10CoreWorker11CreateActorERKNS0_11RayFunctionERKSt6vectorISt10unique_ptrINS_7TaskArgESt14default_deleteIS7_EESaISA_EERKNS0_20ActorCreationOptionsERKSsSJ_PNS_7ActorIDE+0xb6e) [0x7fefe8f6128e] ray::core::CoreWorker::CreateActor()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x966d19) [0x7fefe8efbd19] __pyx_pw_3ray_7_raylet_10CoreWorker_77create_actor()
+python(PyObject_Vectorcall+0x31) [0x51ece1] PyObject_Vectorcall
+python(_PyEval_EvalFrameDefault+0x6a6) [0x511cf6] _PyEval_EvalFrameDefault
+python(_PyFunction_Vectorcall+0x173) [0x539503] _PyFunction_Vectorcall
+python(PyObject_Call+0x12c) [0x54358c] PyObject_Call
+python(_PyEval_EvalFrameDefault+0x4908) [0x515f58] _PyEval_EvalFrameDefault
+python(_PyFunction_Vectorcall+0x173) [0x539503] _PyFunction_Vectorcall
+python(PyObject_Call+0x12c) [0x54358c] PyObject_Call
+python(_PyEval_EvalFrameDefault+0x4908) [0x515f58] _PyEval_EvalFrameDefault
+python() [0x5589ff] _PyObject_VectorcallTstate.lto_priv.14
+python() [0x5581ee] method_vectorcall
+python(PyObject_Call+0x12c) [0x54358c] PyObject_Call
+python(_PyEval_EvalFrameDefault+0x4908) [0x515f58] _PyEval_EvalFrameDefault
+python() [0x5589ff] _PyObject_VectorcallTstate.lto_priv.14
+python() [0x558240] method_vectorcall
+python(_PyEval_EvalFrameDefault+0x4908) [0x515f58] _PyEval_EvalFrameDefault
+python(_PyFunction_Vectorcall+0x173) [0x539503] _PyFunction_Vectorcall
+python(_PyObject_FastCallDictTstate+0xd8) [0x508e88] _PyObject_FastCallDictTstate
+python(_PyObject_Call_Prepend+0x66) [0x540fa6] _PyObject_Call_Prepend
+python() [0x612887] slot_tp_call
+python(_PyObject_MakeTpCall+0x26c) [0x50454c] _PyObject_MakeTpCall
+python(_PyEval_EvalFrameDefault+0x6a6) [0x511cf6] _PyEval_EvalFrameDefault
+python(_PyFunction_Vectorcall+0x173) [0x539503] _PyFunction_Vectorcall
+python() [0x540a64] slot_tp_init
+python() [0x50494c] type_call
+python(PyObject_Call+0xbd) [0x54351d] PyObject_Call
+python(_PyEval_EvalFrameDefault+0x4908) [0x515f58] _PyEval_EvalFrameDefault
+python(_PyFunction_Vectorcall+0x173) [0x539503] _PyFunction_Vectorcall
+python(_PyEval_EvalFrameDefault+0x4908) [0x515f58] _PyEval_EvalFrameDefault
+python(_PyFunction_Vectorcall+0x173) [0x539503] _PyFunction_Vectorcall
+python(_PyEval_EvalFrameDefault+0x4908) [0x515f58] _PyEval_EvalFrameDefault
+python(_PyFunction_Vectorcall+0x173) [0x539503] _PyFunction_Vectorcall
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x8154df) [0x7fefe8daa4df] __Pyx_PyObject_Call()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x84a910) [0x7fefe8ddf910] __pyx_pw_3ray_7_raylet_12execute_task_3function_executor()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x8154df) [0x7fefe8daa4df] __Pyx_PyObject_Call()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x92ce3b) [0x7fefe8ec1e3b] __pyx_f_3ray_7_raylet_task_execution_handler()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(_ZNSt17_Function_handlerIFN3ray6StatusERKNS0_3rpc7AddressENS2_8TaskTypeESsRKNS0_4core11RayFunctionERKSt13unordered_mapISsdSt4hashISsESt8equal_toISsESaISt4pairIKSsdEEERKSt6vectorISt10shared_ptrINS0_9RayObjectEESaISQ_EERKSN_INS2_15ObjectReferenceESaISV_EERSH_S10_PSN_ISG_INS0_8ObjectIDESQ_ESaIS12_EES15_PSN_ISG_IS11_bESaIS16_EERSO_INS0_17LocalMemoryBufferEEPbPSsRKSN_INS0_16ConcurrencyGroupESaIS1F_EESsbbblRKNS2_15TensorTransportEEPFS1_S5_S6_SsSA_SM_SU_SZ_SsSsS15_S15_S19_S1C_S1D_S1E_S1J_SsbbblS1K_EE9_M_invokeERKSt9_Any_dataS5_OS6_OSsSA_SM_SU_SZ_S10_S10_OS15_S1W_OS19_S1C_OS1D_OS1E_S1J_S1V_ObS20_S20_OlS1M_+0x184) [0x7fefe8db1344] std::_Function_handler<>::_M_invoke()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(_ZN3ray4core10CoreWorker11ExecuteTaskERKNS_17TaskSpecificationESt8optionalISt13unordered_mapISsSt6vectorISt4pairIldESaIS9_EESt4hashISsESt8equal_toISsESaIS8_IKSsSB_EEEEPS7_IS8_INS_8ObjectIDESt10shared_ptrINS_9RayObjectEEESaISP_EESS_PS7_IS8_ISL_bESaIST_EEPN6google8protobuf16RepeatedPtrFieldINS_3rpc20ObjectReferenceCountEEEPbPSs+0x1015) [0x7fefe8f5d475] ray::core::CoreWorker::ExecuteTask()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(_ZN3ray4core10CoreWorker20ExecuteTaskLocalModeERKNS_17TaskSpecificationERKNS_7ActorIDE+0x492) [0x7fefe8f5eb72] ray::core::CoreWorker::ExecuteTaskLocalMode()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(_ZN3ray4core10CoreWorker15SubmitActorTaskERKNS_7ActorIDERKNS0_11RayFunctionERKSt6vectorISt10unique_ptrINS_7TaskArgESt14default_deleteISA_EESaISD_EERKNS0_11TaskOptionsEibRKSsSM_RS8_INS_3rpc15ObjectReferenceESaISO_EENS_6TaskIDE+0x8fb) [0x7fefe8f6011b] ray::core::CoreWorker::SubmitActorTask()
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_raylet.so(+0x95abcc) [0x7fefe8eefbcc] __pyx_pw_3ray_7_raylet_10CoreWorker_85submit_actor_task()
+python(PyObject_Vectorcall+0x31) [0x51ece1] PyObject_Vectorcall
+python(_PyEval_EvalFrameDefault+0x6a6) [0x511cf6] _PyEval_EvalFrameDefault
+python(_PyFunction_Vectorcall+0x173) [0x539503] _PyFunction_Vectorcall
+python(_PyEval_EvalFrameDefault+0x4908) [0x515f58] _PyEval_EvalFrameDefault
+python(_PyFunction_Vectorcall+0x173) [0x539503] _PyFunction_Vectorcall
+python(_PyEval_EvalFrameDefault+0x4908) [0x515f58] _PyEval_EvalFrameDefault
+python() [0x5cd0aa] _PyEval_Vector
+python(PyEval_EvalCode+0x9f) [0x5cc77f] PyEval_EvalCode
+python() [0x5ed557] run_eval_code_obj
+python() [0x5e9080] run_mod
+python() [0x5fde72] pyrun_file
+python(_PyRun_SimpleFileObject+0x19f) [0x5fd28f] _PyRun_SimpleFileObject
+python(_PyRun_AnyFileObject+0x43) [0x5fcfb3] _PyRun_AnyFileObject
+
+*** SIGABRT received at time=1762171314 on cpu 119 ***
+PC: @     0x7ff191d4c9fc  (unknown)  pthread_kill
+    @     0x7ff191cf8520  (unknown)  (unknown)
+[2025-11-03 12:01:54,086 E 1885107 1885107] logging.cc:474: *** SIGABRT received at time=1762171314 on cpu 119 ***
+[2025-11-03 12:01:54,086 E 1885107 1885107] logging.cc:474: PC: @     0x7ff191d4c9fc  (unknown)  pthread_kill
+[2025-11-03 12:01:54,086 E 1885107 1885107] logging.cc:474:     @     0x7ff191cf8520  (unknown)  (unknown)
+Fatal Python error: Aborted
+
+Stack (most recent call first):
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/actor.py", line 1788 in _remote
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/util/tracing/tracing_helper.py", line 384 in _invocation_actor_class_remote_span
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/auto_init_hook.py", line 22 in auto_init_wrapper
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/actor.py", line 1477 in remote
+  File "/data1/oujingfeng/project/twgi/verl/verl/single_controller/ray/base.py", line 259 in __call__
+  File "/data1/oujingfeng/project/twgi/verl/verl/single_controller/ray/base.py", line 436 in _init_with_resource_pool
+  File "/data1/oujingfeng/project/twgi/verl/verl/single_controller/ray/base.py", line 317 in __init__
+  File "/data1/oujingfeng/project/twgi/verl/verl/trainer/ppo/ray_trainer.py", line 742 in init_workers
+  File "/data1/oujingfeng/project/twgi/verl/verl/trainer/main_ppo.py", line 339 in run
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/util/tracing/tracing_helper.py", line 461 in _resume_span
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/function_manager.py", line 693 in actor_method_executor
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/actor.py", line 2143 in _actor_method_call
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/actor.py", line 858 in invocation
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/actor.py", line 878 in _remote
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/util/tracing/tracing_helper.py", line 422 in _start_span
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/auto_init_hook.py", line 22 in auto_init_wrapper
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/actor.py", line 680 in remote
+  File "/data1/oujingfeng/project/twgi/verl/verl/trainer/main_ppo.py", line 96 in run_ppo
+  File "/data1/oujingfeng/project/twgi/Orthus/train/verl/run_orthus_grpo.py", line 157 in main
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/hydra/core/utils.py", line 186 in run_job
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/hydra/_internal/hydra.py", line 119 in run
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/hydra/_internal/utils.py", line 458 in <lambda>
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/hydra/_internal/utils.py", line 220 in run_and_report
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/hydra/_internal/utils.py", line 457 in _run_app
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/hydra/_internal/utils.py", line 394 in _run_hydra
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/hydra/main.py", line 94 in decorated_main
+  File "/data1/oujingfeng/project/twgi/Orthus/train/verl/run_orthus_grpo.py", line 161 in <module>
+
+Extension modules: yaml._yaml, numpy._core._multiarray_umath, numpy.linalg._umath_linalg, torch._C, torch._C._dynamo.autograd_compiler, torch._C._dynamo.eval_frame, torch._C._dynamo.guards, torch._C._dynamo.utils, torch._C._fft, torch._C._linalg, torch._C._nested, torch._C._nn, torch._C._sparse, torch._C._special, msgpack._cmsgpack, psutil._psutil_linux, google._upb._message, charset_normalizer.md, requests.packages.charset_normalizer.md, requests.packages.chardet.md, uvloop.loop, ray._raylet, numpy.random._common, numpy.random.bit_generator, numpy.random._bounded_integers, numpy.random._mt19937, numpy.random.mtrand, numpy.random._philox, numpy.random._pcg64, numpy.random._sfc64, numpy.random._generator, regex._regex, markupsafe._speedups, PIL._imaging, sklearn.__check_build._check_build, scipy._lib._ccallback_c, scipy.sparse._sparsetools, _csparsetools, _cyutility, scipy._cyutility, scipy.sparse._csparsetools, scipy.special._ufuncs_cxx, scipy.special._ellip_harm_2, scipy.special._special_ufuncs, scipy.special._gufuncs, scipy.special._ufuncs, scipy.special._specfun, scipy.special._comb, scipy.linalg._fblas, scipy.linalg._flapack, scipy.linalg.cython_lapack, scipy.linalg._cythonized_array_utils, scipy.linalg._solve_toeplitz, scipy.linalg._decomp_lu_cython, scipy.linalg._matfuncs_schur_sqrtm, scipy.linalg._matfuncs_expm, scipy.linalg._linalg_pythran, scipy.linalg.cython_blas, scipy.linalg._decomp_update, scipy.sparse.linalg._dsolve._superlu, scipy.sparse.linalg._eigen.arpack._arpack, scipy.sparse.linalg._propack._spropack, scipy.sparse.linalg._propack._dpropack, scipy.sparse.linalg._propack._cpropack, scipy.sparse.linalg._propack._zpropack, scipy.spatial._ckdtree, scipy._lib.messagestream, scipy.spatial._qhull, scipy.spatial._voronoi, scipy.spatial._hausdorff, scipy.spatial._distance_wrap, scipy.spatial.transform._rotation, scipy.spatial.transform._rigid_transform, scipy.optimize._group_columns, scipy.optimize._trlib._trlib, scipy.optimize._lbfgsb, _moduleTNC, scipy.optimize._moduleTNC, scipy.optimize._slsqplib, scipy.optimize._minpack, scipy.optimize._lsq.givens_elimination, scipy.optimize._zeros, scipy._lib._uarray._uarray, scipy.linalg._decomp_interpolative, scipy.optimize._bglu_dense, scipy.optimize._lsap, scipy.optimize._direct, scipy.integrate._odepack, scipy.integrate._quadpack, scipy.integrate._vode, scipy.integrate._dop, scipy.integrate._lsoda, scipy.interpolate._fitpack, scipy.interpolate._dfitpack, scipy.interpolate._dierckx, scipy.interpolate._ppoly, scipy.interpolate._interpnd, scipy.interpolate._rbfinterp_pythran, scipy.interpolate._rgi_cython, scipy.special.cython_special, scipy.stats._stats, scipy.stats._biasedurn, scipy.stats._stats_pythran, scipy.stats._levy_stable.levyst, scipy.stats._ansari_swilk_statistics, scipy.sparse.csgraph._tools, scipy.sparse.csgraph._shortest_path, scipy.sparse.csgraph._traversal, scipy.sparse.csgraph._min_spanning_tree, scipy.sparse.csgraph._flow, scipy.sparse.csgraph._matching, scipy.sparse.csgraph._reordering, scipy.stats._sobol, scipy.stats._qmc_cy, scipy.stats._rcont.rcont, scipy.stats._qmvnt_cy, scipy.ndimage._nd_image, scipy.ndimage._rank_filter_1d, _ni_label, scipy.ndimage._ni_label, pyarrow.lib, pandas._libs.tslibs.ccalendar, pandas._libs.tslibs.np_datetime, pandas._libs.tslibs.dtypes, pandas._libs.tslibs.base, pandas._libs.tslibs.nattype, pandas._libs.tslibs.timezones, pandas._libs.tslibs.fields, pandas._libs.tslibs.timedeltas, pandas._libs.tslibs.tzconversion, pandas._libs.tslibs.timestamps, pandas._libs.properties, pandas._libs.tslibs.offsets, pandas._libs.tslibs.strptime, pandas._libs.tslibs.parsing, pandas._libs.tslibs.conversion, pandas._libs.tslibs.period, pandas._libs.tslibs.vectorized, pandas._libs.ops_dispatch, pandas._libs.missing, pandas._libs.hashtable, pandas._libs.algos, pandas._libs.interval, pandas._libs.lib, pyarrow._compute, pandas._libs.ops, pandas._libs.hashing, pandas._libs.arrays, pandas._libs.tslib, pandas._libs.sparse, pandas._libs.internals, pandas._libs.indexing, pandas._libs.index, pandas._libs.writers, pandas._libs.join, pandas._libs.window.aggregations, pandas._libs.window.indexers, pandas._libs.reshape, pandas._libs.groupby, pandas._libs.json, pandas._libs.parsers, pandas._libs.testing, sklearn._cyutility, sklearn.utils._isfinite, sklearn.utils.sparsefuncs_fast, sklearn.utils.murmurhash, sklearn.utils._openmp_helpers, sklearn.metrics.cluster._expected_mutual_info_fast, sklearn.preprocessing._csr_polynomial_expansion, sklearn.preprocessing._target_encoder_fast, sklearn.metrics._dist_metrics, sklearn.metrics._pairwise_distances_reduction._datasets_pair, sklearn.utils._cython_blas, sklearn.metrics._pairwise_distances_reduction._base, sklearn.metrics._pairwise_distances_reduction._middle_term_computer, sklearn.utils._heap, sklearn.utils._sorting, sklearn.metrics._pairwise_distances_reduction._argkmin, sklearn.metrics._pairwise_distances_reduction._argkmin_classmode, sklearn.utils._vector_sentinel, sklearn.metrics._pairwise_distances_reduction._radius_neighbors, sklearn.metrics._pairwise_distances_reduction._radius_neighbors_classmode, sklearn.metrics._pairwise_fast, _cffi_backend, PIL._imagingft, av._core, av.logging, av.bytesource, av.buffer, av.audio.format, av.error, av.dictionary, av.container.pyio, av.option, av.descriptor, av.format, av.utils, av.stream, av.container.streams, av.sidedata.motionvectors, av.sidedata.sidedata, av.opaque, av.packet, av.container.input, av.container.output, av.container.core, av.codec.context, av.video.format, av.video.reformatter, av.plane, av.video.plane, av.video.frame, av.video.stream, av.codec.hwaccel, av.codec.codec, av.frame, av.audio.layout, av.audio.plane, av.audio.frame, av.audio.stream, av.filter.link, av.filter.context, av.filter.graph, av.filter.filter, av.filter.loudnorm, av.audio.resampler, av.audio.codeccontext, av.audio.fifo, av.bitstream, av.video.codeccontext, pyarrow._parquet, pyarrow._fs, pyarrow._azurefs, pyarrow._hdfs, pyarrow._gcsfs, pyarrow._s3fs, multidict._multidict, yarl._quoting_c, propcache._helpers_c, aiohttp._http_writer, aiohttp._http_parser, aiohttp._websocket.mask, aiohttp._websocket.reader_c, frozenlist._frozenlist, xxhash._xxhash, pyarrow._acero, pyarrow._csv, pyarrow._json, pyarrow._substrait, pyarrow._dataset, pyarrow._dataset_orc, pyarrow._parquet_encryption, pyarrow._dataset_parquet_encryption, pyarrow._dataset_parquet, grpc._cython.cygrpc, sentencepiece._sentencepiece, scipy.io.matlab._mio_utils, scipy.io.matlab._streams, scipy.io.matlab._mio5_utils (total: 259)

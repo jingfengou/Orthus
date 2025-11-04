@@ -1,0 +1,209 @@
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/client_mode_hook.py:104: FutureWarning: `local_mode` is an experimental feature that is no longer maintained and will be removed in the near future. For debugging consider using the Ray distributed debugger.
+  return func(*args, **kwargs)
+2025-11-03 12:53:21,857	INFO worker.py:2003 -- Started a local Ray instance. View the dashboard at [1m[32mhttp://127.0.0.1:8265 [39m[22m
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+:job_id:01000000
+:actor_name:TaskRunner
+/data1/oujingfeng/project/twgi/verl/verl/trainer/main_ppo.py:275: UserWarning: Disabled critic as algorithm.adv_estimator != gae. If it is not intended, please set critic.enable=True
+  use_critic=need_critic(config),
+/data1/oujingfeng/project/twgi/verl/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.
+  warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)
+/data1/oujingfeng/project/twgi/verl/verl/trainer/ppo/ray_trainer.py:326: UserWarning: Disabled critic as algorithm.adv_estimator != gae. If it is not intended, please set critic.enable=True
+  self.use_critic = need_critic(self.config)
+:task_name:bundle_reservation_check_func
+:task_name:get_master_addr_port
+:actor_name:WorkerDict
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+`torch_dtype` is deprecated! Use `dtype` instead!
+[Orthus] model path: /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100l1e-5weight-F
+[Orthus] Ray local_mode 已开启（ORTHUS_RAY_LOCAL_MODE）。
+ray init kwargs: {'num_cpus': None, 'runtime_env': {'env_vars': {'TOKENIZERS_PARALLELISM': 'true', 'NCCL_DEBUG': 'WARN', 'VLLM_LOGGING_LEVEL': 'WARN', 'VLLM_ALLOW_RUNTIME_LORA_UPDATING': 'true', 'CUDA_DEVICE_MAX_CONNECTIONS': '1', 'NCCL_CUMEM_ENABLE': '0', 'PYTHONPATH': '/data1/oujingfeng/project/twgi/Orthus:/data1/oujingfeng/project/twgi/verl', 'VERL_SUPPRESS_CONFIG_LOG': '1'}, 'working_dir': None}, 'local_mode': True}
+:job_id:01000000
+:actor_name:TaskRunner
+TaskRunner hostname: server, PID: 1977681
+[validate_config] All configuration checks passed successfully!
+Using dataset class: OrthusRLDataset
+[OrthusRLDataset] Loading processor from /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100l1e-5weight-F
+[OrthusRLDataset] Loading VQ model from /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100l1e-5weight-F
+Using dataset class: OrthusRLDataset
+[OrthusRLDataset] Loading processor from /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100l1e-5weight-F
+[OrthusRLDataset] Loading VQ model from /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100l1e-5weight-F
+Size of train dataloader: 312, Size of val dataloader: 1
+Total training steps: 10
+colocated worker base class <class 'verl.single_controller.base.worker.Worker'>
+:task_name:bundle_reservation_check_func
+:task_name:get_master_addr_port
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+[actor model] config override applied (arch=OrthusForConditionalGeneration, vocab_size=65536)
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 19.46it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 19.44it/s]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_init_utils.py:430: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.FULL_SHARD since the world size is 1.
+  warnings.warn(
+/data1/oujingfeng/project/twgi/verl/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.
+  warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:678: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+  warnings.warn(
+Monkey patch state_dict in AutoModelForCausalLMWithValueHead. 
+Skipping monkey patch for ChameleonForConditionalGeneration as use_fused_kernels is False or fused_kernels_backend is torch
+ChameleonForConditionalGeneration contains 7.04B parameters
+wrap_policy: None
+Total steps: 10, num_warmup_steps: 0
+Actor use_remove_padding=False
+Actor use_fused_kernels=False
+Only support config type of {'qwen2', 'qwen3_vl_moe', 'qwen3_moe', 'apertus', 'gemma3_text', 'qwen3_vl', 'deepseek_v3', 'llama', 'qwen2_vl', 'minicpmo', 'qwen3', 'qwen2_5_vl', 'qwen2_moe', 'glm4v', 'mistral', 'minicpmv', 'seed_oss'}, but got chameleon. MFU will always be zero.
+[actor model] config override applied (arch=OrthusForConditionalGeneration, vocab_size=65536)
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 19.39it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 19.37it/s]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_init_utils.py:430: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.FULL_SHARD since the world size is 1.
+  warnings.warn(
+/data1/oujingfeng/project/twgi/verl/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.
+  warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:678: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+  warnings.warn(
+Monkey patch state_dict in AutoModelForCausalLMWithValueHead. 
+Skipping monkey patch for ChameleonForConditionalGeneration as use_fused_kernels is False or fused_kernels_backend is torch
+ChameleonForConditionalGeneration contains 7.04B parameters
+wrap_policy: None
+Total steps: 10, num_warmup_steps: 0
+Actor use_remove_padding=False
+Actor use_fused_kernels=False
+Only support config type of {'qwen2', 'qwen3_vl_moe', 'qwen3_moe', 'apertus', 'gemma3_text', 'qwen3_vl', 'deepseek_v3', 'llama', 'qwen2_vl', 'minicpmo', 'qwen3', 'qwen2_5_vl', 'qwen2_moe', 'glm4v', 'mistral', 'minicpmv', 'seed_oss'}, but got chameleon. MFU will always be zero.
+[actor model] config override applied (arch=OrthusForConditionalGeneration, vocab_size=65536)
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 18.75it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 18.72it/s]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_init_utils.py:430: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.FULL_SHARD since the world size is 1.
+  warnings.warn(
+Monkey patch state_dict in AutoModelForCausalLMWithValueHead. 
+Skipping monkey patch for ChameleonForConditionalGeneration as use_fused_kernels is False or fused_kernels_backend is torch
+ChameleonForConditionalGeneration contains 7.04B parameters
+wrap_policy: None
+[actor model] config override applied (arch=OrthusForConditionalGeneration, vocab_size=65536)
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 18.83it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 18.82it/s]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_init_utils.py:430: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.FULL_SHARD since the world size is 1.
+  warnings.warn(
+Monkey patch state_dict in AutoModelForCausalLMWithValueHead. 
+Skipping monkey patch for ChameleonForConditionalGeneration as use_fused_kernels is False or fused_kernels_backend is torch
+ChameleonForConditionalGeneration contains 7.04B parameters
+wrap_policy: None
+[actor model] config override applied (arch=OrthusForConditionalGeneration, vocab_size=65536)
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 19.23it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 19.22it/s]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_init_utils.py:430: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.FULL_SHARD since the world size is 1.
+  warnings.warn(
+Monkey patch state_dict in AutoModelForCausalLMWithValueHead. 
+Skipping monkey patch for ChameleonForConditionalGeneration as use_fused_kernels is False or fused_kernels_backend is torch
+ChameleonForConditionalGeneration contains 7.04B parameters
+wrap_policy: None
+[actor model] config override applied (arch=OrthusForConditionalGeneration, vocab_size=65536)
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 19.00it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 18.98it/s]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_init_utils.py:430: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.FULL_SHARD since the world size is 1.
+  warnings.warn(
+Monkey patch state_dict in AutoModelForCausalLMWithValueHead. 
+Skipping monkey patch for ChameleonForConditionalGeneration as use_fused_kernels is False or fused_kernels_backend is torch
+ChameleonForConditionalGeneration contains 7.04B parameters
+wrap_policy: None
+[actor model] config override applied (arch=OrthusForConditionalGeneration, vocab_size=65536)
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 19.29it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 19.27it/s]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_init_utils.py:430: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.FULL_SHARD since the world size is 1.
+  warnings.warn(
+Monkey patch state_dict in AutoModelForCausalLMWithValueHead. 
+Skipping monkey patch for ChameleonForConditionalGeneration as use_fused_kernels is False or fused_kernels_backend is torch
+ChameleonForConditionalGeneration contains 7.04B parameters
+wrap_policy: None
+[actor model] config override applied (arch=OrthusForConditionalGeneration, vocab_size=65536)
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 19.26it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 19.24it/s]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_init_utils.py:430: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.FULL_SHARD since the world size is 1.
+  warnings.warn(
+Monkey patch state_dict in AutoModelForCausalLMWithValueHead. 
+Skipping monkey patch for ChameleonForConditionalGeneration as use_fused_kernels is False or fused_kernels_backend is torch
+ChameleonForConditionalGeneration contains 7.04B parameters
+wrap_policy: None
+Error executing job with overrides: ['trainer.total_epochs=1', 'trainer.total_training_steps=10', 'actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=1', 'actor_rollout_ref.actor.ppo_mini_batch_size=8', 'actor_rollout_ref.rollout.log_prob_micro_batch_size=1']
+Traceback (most recent call last):
+  File "/data1/oujingfeng/project/twgi/Orthus/train/verl/run_orthus_grpo.py", line 182, in main
+    run_ppo(cfg)
+  File "/data1/oujingfeng/project/twgi/verl/verl/trainer/main_ppo.py", line 96, in run_ppo
+    ray.get(runner.run.remote(config))
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/auto_init_hook.py", line 22, in auto_init_wrapper
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/client_mode_hook.py", line 104, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/worker.py", line 2961, in get
+    values, debugger_breakpoint = worker.get_objects(
+                                  ^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/worker.py", line 1026, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(OutOfMemoryError): [36mray::TaskRunner.run()[39m (pid=1977681, ip=10.22.17.7, actor_id=d0e5e2d49db64b39dfceb24101000000, repr=<verl.trainer.main_ppo._modify_class.<locals>.Class object at 0x7f164adc5e50>)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/verl/verl/trainer/main_ppo.py", line 339, in run
+    trainer.init_workers()
+  File "/data1/oujingfeng/project/twgi/verl/verl/trainer/ppo/ray_trainer.py", line 766, in init_workers
+    self.actor_rollout_wg.init_model()
+  File "/data1/oujingfeng/project/twgi/verl/verl/single_controller/ray/base.py", line 48, in __call__
+    output = ray.get(output)
+             ^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^^^
+                                  ^^^^^^^^^^^^^^^^^^^
+ray.exceptions.RayTaskError(OutOfMemoryError): [36mray::WorkerDict.actor_rollout_init_model()[39m (pid=1977681, ip=10.22.17.7, actor_id=5770744424cd3964f9edd9bb01000000, repr=<verl.single_controller.ray.base._modify_class.<locals>.Class object at 0x7ee45c1b14d0>)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/verl/verl/single_controller/ray/base.py", line 700, in func
+    return getattr(self.worker_dict[key], name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/verl/verl/single_controller/base/decorator.py", line 442, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/verl/verl/utils/transferqueue_utils.py", line 199, in dummy_inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/verl/verl/workers/fsdp_workers.py", line 779, in init_model
+    ) = self._build_model_optimizer(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/oujingfeng/project/twgi/verl/verl/workers/fsdp_workers.py", line 495, in _build_model_optimizer
+    actor_module_fsdp = FSDP(
+                        ^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 497, in __init__
+    _init_param_handle_from_module(
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_init_utils.py", line 622, in _init_param_handle_from_module
+    _init_param_handle_from_params(state, managed_params, fully_sharded_module)
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_init_utils.py", line 634, in _init_param_handle_from_params
+    handle = FlatParamHandle(
+             ^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_flat_param.py", line 588, in __init__
+    self._init_flat_param_and_metadata(
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_flat_param.py", line 753, in _init_flat_param_and_metadata
+    self.flat_param: FlatParameter = self.flatten_tensors_into_flat_param(
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_flat_param.py", line 875, in flatten_tensors_into_flat_param
+    flat_param_data = self.flatten_tensors(tensors, aligned_numel)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_flat_param.py", line 867, in flatten_tensors
+    return torch.cat(flat_tensors, dim=0)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 13.12 GiB. GPU 0 has a total capacity of 47.41 GiB of which 7.02 GiB is free. Process 3112564 has 260.00 MiB memory in use. Including non-PyTorch memory, this process has 40.12 GiB memory in use. Of the allocated memory 39.36 GiB is allocated by PyTorch, and 20.69 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
+[rank0]:[W1103 12:55:07.448386842 ProcessGroupNCCL.cpp:1538] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())

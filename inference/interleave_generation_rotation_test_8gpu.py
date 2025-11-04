@@ -39,15 +39,15 @@ def init_distributed() -> int:
 
 
 def parse_args() -> argparse.Namespace:
-    default_ckpt = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100l1e-5weight-F"
+    default_ckpt = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e1l1e-5weight-F"
     default_dataset_path = "/data1/oujingfeng/project/twgi/datasets/mydatasets/dataset"
     default_output_dir = os.path.join(
         root_path,
-        "results/test_mydatasets/sft-myb-base-sample4000b100ep20-tail10",
+        "results/test_mydatasets/sft-myb-base-sample4000b100ep1-train10",
     )
 
     parser = argparse.ArgumentParser(
-        description="Interleave generation for the last 10% of the dataset using up to 8 GPUs."
+        description="Interleave generation for the first 10% of the dataset using up to 8 GPUs."
     )
     parser.add_argument("--ckpt-path", default=default_ckpt, help="Checkpoint path.")
     parser.add_argument(
@@ -131,10 +131,10 @@ def main() -> None:
         split="train",
     )
     total_samples = len(dataset)
-    tail_count = max(1, math.ceil(total_samples * 0.1))
+    tail_count = max(1, math.ceil(total_samples * 0.01))
     start_idx = max(total_samples - tail_count, 0)
-    target_indices = list(range(start_idx, total_samples))
-
+    # target_indices = list(range(start_idx, total_samples))
+    target_indices = list(range(0, tail_count))
     assigned_indices = chunk_indices(target_indices, world_size, rank)
     if not assigned_indices:
         if rank == 0:
@@ -244,8 +244,8 @@ def main() -> None:
 
         print(f"[Rank {rank}] Processed sample {global_idx}")
 
-    if torch.distributed.is_available() and torch.distributed.is_initialized():
-        torch.distributed.barrier()
+    # if torch.distributed.is_available() and torch.distributed.is_initialized():
+    #     torch.distributed.barrier()
 
 
 if __name__ == "__main__":

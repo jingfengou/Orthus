@@ -1,0 +1,5 @@
+sample00374
+Image_id: sample_0375
+Question: Execute 90-degree clockwise rotation around the Y-axis, followed by 90-degree clockwise rotation around the Z-axis. What is the outcome?
+Ground truth: A
+Generated:

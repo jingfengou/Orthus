@@ -1,0 +1,156 @@
+wandb: WARNING Serializing object of type dict that is 1922480 bytes
+  0%|          | 0/1000 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+multimodal_generation_mode interleaved-text-image
+/data1/oujingfeng/project/twgi/Orthus/models/modeling_orthus_for_inteleave_cfg.py:2892: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  0%|          | 0/1000 [14:16<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.40555123577547225, 'epoch': 0}
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  0%|          | 1/1000 [29:37<493:06:02, 1776.94s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.38408642472891974, 'epoch': 0}
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 1e-06, 'epoch': 0.0}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  0%|          | 1/1000 [43:56<493:06:02, 1776.94s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.4088820877608719, 'epoch': 0.0}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  0%|          | 2/1000 [58:34<486:14:47, 1754.00s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.39678386196442184, 'epoch': 0.0}
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 9.989999999999999e-07, 'epoch': 0.01}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  0%|          | 2/1000 [1:12:53<486:14:47, 1754.00s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.3703492593266823, 'epoch': 0.01}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  0%|          | 3/1000 [1:27:50<485:54:57, 1754.56s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.40659941567314994, 'epoch': 0.01}
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 9.98e-07, 'epoch': 0.01}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  0%|          | 3/1000 [1:42:08<485:54:57, 1754.56s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.37360932948225634, 'epoch': 0.01}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  0%|          | 4/1000 [1:57:14<486:31:59, 1758.55s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.33385838826497394, 'epoch': 0.01}
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 9.97e-07, 'epoch': 0.01}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  0%|          | 4/1000 [2:11:31<486:31:59, 1758.55s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.3397327409896059, 'epoch': 0.01}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  0%|          | 5/1000 [2:26:43<487:00:34, 1762.04s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.3851672765370962, 'epoch': 0.01}
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 9.959999999999999e-07, 'epoch': 0.02}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  0%|          | 5/1000 [2:40:59<487:00:34, 1762.04s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.3971996568653682, 'epoch': 0.02}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  1%|          | 6/1000 [2:56:09<486:57:43, 1763.65s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.27829347623811734, 'epoch': 0.02}
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 9.95e-07, 'epoch': 0.02}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  1%|          | 6/1000 [3:10:27<486:57:43, 1763.65s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.35791419077727754, 'epoch': 0.02}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  1%|          | 7/1000 [3:25:36<486:42:39, 1764.51s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.3677183651755042, 'epoch': 0.02}
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 9.94e-07, 'epoch': 0.02}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  1%|          | 7/1000 [3:39:54<486:42:39, 1764.51s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.3262301891833752, 'epoch': 0.02}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  1%|          | 8/1000 [3:55:02<486:25:49, 1765.27s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.40326516213270586, 'epoch': 0.02}
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 9.929999999999999e-07, 'epoch': 0.03}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  1%|          | 8/1000 [4:09:21<486:25:49, 1765.27s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.39672088623046875, 'epoch': 0.03}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  1%|          | 9/1000 [4:24:30<486:08:37, 1766.01s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.380471609689139, 'epoch': 0.03}
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 9.92e-07, 'epoch': 0.03}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  1%|          | 9/1000 [4:38:47<486:08:37, 1766.01s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.32903475811961685, 'epoch': 0.03}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  1%|          | 10/1000 [4:53:57<485:42:47, 1766.23s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.3676079909006755, 'epoch': 0.03}
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 9.91e-07, 'epoch': 0.03}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  1%|          | 10/1000 [5:08:15<485:42:47, 1766.23s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.33484302867542615, 'epoch': 0.03}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  1%|          | 11/1000 [5:23:21<485:01:34, 1765.52s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.42840023792772736, 'epoch': 0.03}
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 9.9e-07, 'epoch': 0.04}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  1%|          | 11/1000 [5:37:38<485:01:34, 1765.52s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.3784315321180556, 'epoch': 0.04}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  1%|          | 12/1000 [5:52:15<481:56:10, 1756.04s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.3468740898266173, 'epoch': 0.04}
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 9.89e-07, 'epoch': 0.04}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  1%|          | 12/1000 [6:06:33<481:56:10, 1756.04s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.36794946000382706, 'epoch': 0.04}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  1%|▏         | 13/1000 [6:21:13<479:55:49, 1750.51s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.317288480673459, 'epoch': 0.04}
+{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 9.88e-07, 'epoch': 0.04}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  1%|▏         | 13/1000 [6:35:32<479:55:49, 1750.51s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.3341316454338305, 'epoch': 0.04}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.

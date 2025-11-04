@@ -1,0 +1,6 @@
+sample00019
+Image_id: sample_0020
+Question: In the event that 270-degree clockwise rotation around the Z-axis, followed by 90-degree clockwise rotation around the Y-axis, determine the resulting orientation.
+Ground truth: B
+Generated:
+A</think>. <Answer>A</Answer>

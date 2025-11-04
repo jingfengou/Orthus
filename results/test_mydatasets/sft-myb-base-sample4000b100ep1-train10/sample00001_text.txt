@@ -1,0 +1,6 @@
+sample00001
+Image_id: sample_0002
+Question: A cube undergoes 180-degree rotation around the X-axis, followed by 180-degree rotation around the Y-axis. What is its final orientation?
+Ground truth: D
+Generated:
+A: This option performs extra rotations beyond the required steps. B: This option uses incorrect rotation angles. C: this is the result after performing all rotation steps correctly. D: This option is missing one cube from the stack. So the final Answer is C</think>. <Answer>C</Answer>

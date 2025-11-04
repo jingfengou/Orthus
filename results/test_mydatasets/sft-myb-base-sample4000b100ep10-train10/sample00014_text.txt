@@ -1,0 +1,6 @@
+sample00014
+Image_id: sample_0015
+Question: Evaluate the resulting orientation subsequent to 180-degree rotation around the Z-axis, followed by 180-degree rotation around the X-axis.
+Ground truth: B
+Generated:
+A</think>. <Answer>A</Answer>

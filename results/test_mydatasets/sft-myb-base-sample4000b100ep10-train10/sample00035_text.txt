@@ -1,0 +1,6 @@
+sample00035
+Image_id: sample_0036
+Question: Ascertain the conclusive spatial arrangement following 90-degree clockwise rotation around the X-axis, followed by 180-degree rotation around the X-axis.
+Ground truth: A
+Generated:
+A</think>. <Answer>A</Answer>

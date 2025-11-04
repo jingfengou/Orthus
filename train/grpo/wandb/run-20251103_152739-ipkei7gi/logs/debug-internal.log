@@ -1,0 +1,11 @@
+{"time":"2025-11-03T15:27:40.170700813Z","level":"INFO","msg":"stream: starting","core version":"0.22.0"}
+{"time":"2025-11-03T15:27:41.081347408Z","level":"INFO","msg":"stream: created new stream","id":"ipkei7gi"}
+{"time":"2025-11-03T15:27:41.081427951Z","level":"INFO","msg":"stream: started","id":"ipkei7gi"}
+{"time":"2025-11-03T15:27:41.081456683Z","level":"INFO","msg":"handler: started","stream_id":"ipkei7gi"}
+{"time":"2025-11-03T15:27:41.081450811Z","level":"INFO","msg":"writer: started","stream_id":"ipkei7gi"}
+{"time":"2025-11-03T15:27:41.081470297Z","level":"INFO","msg":"sender: started","stream_id":"ipkei7gi"}
+{"time":"2025-11-03T15:29:43.328887999Z","level":"INFO","msg":"stream: closing","id":"ipkei7gi"}
+{"time":"2025-11-03T15:29:54.266567594Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-11-03T15:29:55.857025105Z","level":"INFO","msg":"handler: closed","stream_id":"ipkei7gi"}
+{"time":"2025-11-03T15:29:55.857189328Z","level":"INFO","msg":"sender: closed","stream_id":"ipkei7gi"}
+{"time":"2025-11-03T15:29:55.857222374Z","level":"INFO","msg":"stream: closed","id":"ipkei7gi"}

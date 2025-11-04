@@ -1,0 +1,33 @@
+wandb: WARNING Serializing object of type dict that is 1922480 bytes
+  0%|          | 0/1000 [00:00<?, ?it/s]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+multimodal_generation_mode interleaved-text-image
+/data1/oujingfeng/project/twgi/Orthus/models/modeling_orthus_for_inteleave_cfg.py:2892: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.no_grad(), torch.cuda.amp.autocast():
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  0%|          | 0/1000 [14:17<?, ?it/s]Could not estimate the number of tokens of the input, floating-point operations will not be computed
+{'reward/mean': 1.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.40555123577547225, 'epoch': 0}
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  0%|          | 1/1000 [29:41<494:22:26, 1781.53s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.38408642472891974, 'epoch': 0}
+{'loss': 0.013, 'grad_norm': 0.021783489733934402, 'learning_rate': 1e-06, 'epoch': 0.0}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  0%|          | 1/1000 [44:04<494:22:26, 1781.53s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.5, 'reward/std': 0.5, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.7071067690849304, 'loss/pg_loss': -0.002482688718742424, 'loss/kl_div': -0.40906812761213396, 'epoch': 0.0}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  0%|          | 2/1000 [59:29<494:59:26, 1785.54s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 1.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.3958149554422093, 'epoch': 0.0}
+{'loss': 0.0049, 'grad_norm': 0.013462471775710583, 'learning_rate': 9.989999999999999e-07, 'epoch': 0.01}
+multimodal_generation_mode interleaved-text-image
+multimodal_generation_mode interleaved-text-image
+Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+  0%|          | 2/1000 [1:13:52<494:59:26, 1785.54s/it]Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.
+{'reward/mean': 0.0, 'reward/std': 0.0, 'policy/advantage_mean': 0.0, 'policy/advantage_std': 0.0, 'loss/pg_loss': 0.0, 'loss/kl_div': -0.36455922656589085, 'epoch': 0.01}
+multimodal_generation_mode interleaved-text-image

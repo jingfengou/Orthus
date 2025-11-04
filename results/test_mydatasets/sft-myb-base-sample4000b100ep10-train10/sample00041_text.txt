@@ -1,0 +1,6 @@
+sample00041
+Image_id: sample_0042
+Question: What would be the orientation outcome of 90-degree clockwise rotation around the Y-axis, followed by 270-degree clockwise rotation around the X-axis?
+Ground truth: B
+Generated:
+A</think>. <Answer>A</Answer>

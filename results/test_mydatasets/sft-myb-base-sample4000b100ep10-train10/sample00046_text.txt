@@ -1,0 +1,6 @@
+sample00046
+Image_id: sample_0047
+Question: Given the sequence of rotations 180-degree rotation around the X-axis, followed by 180-degree rotation around the Z-axis, what is the final orientation?
+Ground truth: A
+Generated:
+A</think>. <Answer>A</Answer>

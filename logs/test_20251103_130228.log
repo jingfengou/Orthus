@@ -1,0 +1,229 @@
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/client_mode_hook.py:104: FutureWarning: `local_mode` is an experimental feature that is no longer maintained and will be removed in the near future. For debugging consider using the Ray distributed debugger.
+  return func(*args, **kwargs)
+2025-11-03 13:02:38,733	INFO worker.py:2003 -- Started a local Ray instance. View the dashboard at [1m[32mhttp://127.0.0.1:8265 [39m[22m
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+:job_id:01000000
+:actor_name:TaskRunner
+/data1/oujingfeng/project/twgi/verl/verl/trainer/main_ppo.py:275: UserWarning: Disabled critic as algorithm.adv_estimator != gae. If it is not intended, please set critic.enable=True
+  use_critic=need_critic(config),
+/data1/oujingfeng/project/twgi/verl/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.
+  warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)
+/data1/oujingfeng/project/twgi/verl/verl/trainer/ppo/ray_trainer.py:326: UserWarning: Disabled critic as algorithm.adv_estimator != gae. If it is not intended, please set critic.enable=True
+  self.use_critic = need_critic(self.config)
+:task_name:bundle_reservation_check_func
+:task_name:get_master_addr_port
+:actor_name:WorkerDict
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+`torch_dtype` is deprecated! Use `dtype` instead!
+[Orthus] model path: /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100l1e-5weight-F
+[Orthus] Ray local_mode 已开启（ORTHUS_RAY_LOCAL_MODE）。
+ray init kwargs: {'num_cpus': None, 'runtime_env': {'env_vars': {'TOKENIZERS_PARALLELISM': 'true', 'NCCL_DEBUG': 'WARN', 'VLLM_LOGGING_LEVEL': 'WARN', 'VLLM_ALLOW_RUNTIME_LORA_UPDATING': 'true', 'CUDA_DEVICE_MAX_CONNECTIONS': '1', 'NCCL_CUMEM_ENABLE': '0', 'PYTHONPATH': '/data1/oujingfeng/project/twgi/Orthus:/data1/oujingfeng/project/twgi/verl', 'VERL_SUPPRESS_CONFIG_LOG': '1'}, 'working_dir': None}, 'local_mode': True}
+:job_id:01000000
+:actor_name:TaskRunner
+TaskRunner hostname: server, PID: 1994474
+[validate_config] All configuration checks passed successfully!
+Using dataset class: OrthusRLDataset
+[OrthusRLDataset] Loading processor from /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100l1e-5weight-F
+[OrthusRLDataset] Loading VQ model from /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100l1e-5weight-F
+Using dataset class: OrthusRLDataset
+[OrthusRLDataset] Loading processor from /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100l1e-5weight-F
+[OrthusRLDataset] Loading VQ model from /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e100l1e-5weight-F
+Size of train dataloader: 312, Size of val dataloader: 1
+Total training steps: 10
+colocated worker base class <class 'verl.single_controller.base.worker.Worker'>
+:task_name:bundle_reservation_check_func
+:task_name:get_master_addr_port
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+:actor_name:WorkerDict
+[actor model] config override applied (arch=OrthusForConditionalGeneration, vocab_size=65536)
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 18.94it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 18.92it/s]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_init_utils.py:430: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.FULL_SHARD since the world size is 1.
+  warnings.warn(
+/data1/oujingfeng/project/twgi/verl/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.
+  warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:678: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+  warnings.warn(
+Monkey patch state_dict in AutoModelForCausalLMWithValueHead. 
+Skipping monkey patch for ChameleonForConditionalGeneration as use_fused_kernels is False or fused_kernels_backend is torch
+ChameleonForConditionalGeneration contains 7.04B parameters
+wrap_policy: None
+Total steps: 10, num_warmup_steps: 0
+Actor use_remove_padding=False
+Actor use_fused_kernels=False
+Only support config type of {'qwen3_vl_moe', 'qwen3_vl', 'qwen2', 'qwen3', 'mistral', 'qwen2_vl', 'qwen2_5_vl', 'glm4v', 'qwen3_moe', 'llama', 'qwen2_moe', 'seed_oss', 'apertus', 'minicpmv', 'gemma3_text', 'deepseek_v3', 'minicpmo'}, but got chameleon. MFU will always be zero.
+[actor model] config override applied (arch=OrthusForConditionalGeneration, vocab_size=65536)
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 19.21it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 19.18it/s]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_init_utils.py:430: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.FULL_SHARD since the world size is 1.
+  warnings.warn(
+/data1/oujingfeng/project/twgi/verl/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.
+  warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:678: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+  warnings.warn(
+Monkey patch state_dict in AutoModelForCausalLMWithValueHead. 
+Skipping monkey patch for ChameleonForConditionalGeneration as use_fused_kernels is False or fused_kernels_backend is torch
+ChameleonForConditionalGeneration contains 7.04B parameters
+wrap_policy: None
+Total steps: 10, num_warmup_steps: 0
+Actor use_remove_padding=False
+Actor use_fused_kernels=False
+Only support config type of {'qwen3_vl_moe', 'qwen3_vl', 'qwen2', 'qwen3', 'mistral', 'qwen2_vl', 'qwen2_5_vl', 'glm4v', 'qwen3_moe', 'llama', 'qwen2_moe', 'seed_oss', 'apertus', 'minicpmv', 'gemma3_text', 'deepseek_v3', 'minicpmo'}, but got chameleon. MFU will always be zero.
+[actor model] config override applied (arch=OrthusForConditionalGeneration, vocab_size=65536)
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 18.95it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 18.92it/s]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_init_utils.py:430: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.FULL_SHARD since the world size is 1.
+  warnings.warn(
+/data1/oujingfeng/project/twgi/verl/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.
+  warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:678: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+  warnings.warn(
+Monkey patch state_dict in AutoModelForCausalLMWithValueHead. 
+Skipping monkey patch for ChameleonForConditionalGeneration as use_fused_kernels is False or fused_kernels_backend is torch
+ChameleonForConditionalGeneration contains 7.04B parameters
+wrap_policy: None
+Total steps: 10, num_warmup_steps: 0
+Actor use_remove_padding=False
+Actor use_fused_kernels=False
+Only support config type of {'qwen3_vl_moe', 'qwen3_vl', 'qwen2', 'qwen3', 'mistral', 'qwen2_vl', 'qwen2_5_vl', 'glm4v', 'qwen3_moe', 'llama', 'qwen2_moe', 'seed_oss', 'apertus', 'minicpmv', 'gemma3_text', 'deepseek_v3', 'minicpmo'}, but got chameleon. MFU will always be zero.
+[actor model] config override applied (arch=OrthusForConditionalGeneration, vocab_size=65536)
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 18.78it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 18.76it/s]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_init_utils.py:430: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.FULL_SHARD since the world size is 1.
+  warnings.warn(
+/data1/oujingfeng/project/twgi/verl/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.
+  warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:678: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+  warnings.warn(
+Monkey patch state_dict in AutoModelForCausalLMWithValueHead. 
+Skipping monkey patch for ChameleonForConditionalGeneration as use_fused_kernels is False or fused_kernels_backend is torch
+ChameleonForConditionalGeneration contains 7.04B parameters
+wrap_policy: None
+Total steps: 10, num_warmup_steps: 0
+Actor use_remove_padding=False
+Actor use_fused_kernels=False
+Only support config type of {'qwen3_vl_moe', 'qwen3_vl', 'qwen2', 'qwen3', 'mistral', 'qwen2_vl', 'qwen2_5_vl', 'glm4v', 'qwen3_moe', 'llama', 'qwen2_moe', 'seed_oss', 'apertus', 'minicpmv', 'gemma3_text', 'deepseek_v3', 'minicpmo'}, but got chameleon. MFU will always be zero.
+[actor model] config override applied (arch=OrthusForConditionalGeneration, vocab_size=65536)
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 18.94it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 18.92it/s]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_init_utils.py:430: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.FULL_SHARD since the world size is 1.
+  warnings.warn(
+/data1/oujingfeng/project/twgi/verl/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.
+  warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:678: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+  warnings.warn(
+Monkey patch state_dict in AutoModelForCausalLMWithValueHead. 
+Skipping monkey patch for ChameleonForConditionalGeneration as use_fused_kernels is False or fused_kernels_backend is torch
+ChameleonForConditionalGeneration contains 7.04B parameters
+wrap_policy: None
+Total steps: 10, num_warmup_steps: 0
+Actor use_remove_padding=False
+Actor use_fused_kernels=False
+Only support config type of {'qwen3_vl_moe', 'qwen3_vl', 'qwen2', 'qwen3', 'mistral', 'qwen2_vl', 'qwen2_5_vl', 'glm4v', 'qwen3_moe', 'llama', 'qwen2_moe', 'seed_oss', 'apertus', 'minicpmv', 'gemma3_text', 'deepseek_v3', 'minicpmo'}, but got chameleon. MFU will always be zero.
+[actor model] config override applied (arch=OrthusForConditionalGeneration, vocab_size=65536)
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00, 11.14it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  7.24it/s]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_init_utils.py:430: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.FULL_SHARD since the world size is 1.
+  warnings.warn(
+/data1/oujingfeng/project/twgi/verl/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.
+  warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:678: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+  warnings.warn(
+Monkey patch state_dict in AutoModelForCausalLMWithValueHead. 
+Skipping monkey patch for ChameleonForConditionalGeneration as use_fused_kernels is False or fused_kernels_backend is torch
+ChameleonForConditionalGeneration contains 7.04B parameters
+wrap_policy: None
+Total steps: 10, num_warmup_steps: 0
+Actor use_remove_padding=False
+Actor use_fused_kernels=False
+Only support config type of {'qwen3_vl_moe', 'qwen3_vl', 'qwen2', 'qwen3', 'mistral', 'qwen2_vl', 'qwen2_5_vl', 'glm4v', 'qwen3_moe', 'llama', 'qwen2_moe', 'seed_oss', 'apertus', 'minicpmv', 'gemma3_text', 'deepseek_v3', 'minicpmo'}, but got chameleon. MFU will always be zero.
+[actor model] config override applied (arch=OrthusForConditionalGeneration, vocab_size=65536)
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00, 11.18it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  7.26it/s]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_init_utils.py:430: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.FULL_SHARD since the world size is 1.
+  warnings.warn(
+/data1/oujingfeng/project/twgi/verl/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.
+  warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:678: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+  warnings.warn(
+Monkey patch state_dict in AutoModelForCausalLMWithValueHead. 
+Skipping monkey patch for ChameleonForConditionalGeneration as use_fused_kernels is False or fused_kernels_backend is torch
+ChameleonForConditionalGeneration contains 7.04B parameters
+wrap_policy: None
+Total steps: 10, num_warmup_steps: 0
+Actor use_remove_padding=False
+Actor use_fused_kernels=False
+Only support config type of {'qwen3_vl_moe', 'qwen3_vl', 'qwen2', 'qwen3', 'mistral', 'qwen2_vl', 'qwen2_5_vl', 'glm4v', 'qwen3_moe', 'llama', 'qwen2_moe', 'seed_oss', 'apertus', 'minicpmv', 'gemma3_text', 'deepseek_v3', 'minicpmo'}, but got chameleon. MFU will always be zero.
+[actor model] config override applied (arch=OrthusForConditionalGeneration, vocab_size=65536)
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:00<00:00, 10.82it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00,  7.06it/s]
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/_init_utils.py:430: UserWarning: FSDP is switching to use `NO_SHARD` instead of ShardingStrategy.FULL_SHARD since the world size is 1.
+  warnings.warn(
+/data1/oujingfeng/project/twgi/verl/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.
+  warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:678: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+  warnings.warn(
+wandb: Currently logged in as: xjy110156 (xjy110156-) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: creating run
+wandb: Tracking run with wandb version 0.22.0
+wandb: Run data is saved locally in /data1/oujingfeng/project/twgi/Orthus/train/verl/wandb/run-20251103_130742-1tdb6j9m
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run gsm8k
+wandb: ⭐️ View project at https://wandb.ai/xjy110156-/verl_examples
+wandb: 🚀 View run at https://wandb.ai/xjy110156-/verl_examples/runs/1tdb6j9m
+Monkey patch state_dict in AutoModelForCausalLMWithValueHead. 
+Skipping monkey patch for ChameleonForConditionalGeneration as use_fused_kernels is False or fused_kernels_backend is torch
+ChameleonForConditionalGeneration contains 7.04B parameters
+wrap_policy: None
+Total steps: 10, num_warmup_steps: 0
+Actor use_remove_padding=False
+Actor use_fused_kernels=False
+Only support config type of {'qwen3_vl_moe', 'qwen3_vl', 'qwen2', 'qwen3', 'mistral', 'qwen2_vl', 'qwen2_5_vl', 'glm4v', 'qwen3_moe', 'llama', 'qwen2_moe', 'seed_oss', 'apertus', 'minicpmv', 'gemma3_text', 'deepseek_v3', 'minicpmo'}, but got chameleon. MFU will always be zero.
+Checkpoint tracker file does not exist: /data1/oujingfeng/project/twgi/Orthus/train/verl/checkpoints/verl_examples/gsm8k/latest_checkpointed_iteration.txt
+Training from scratch
+*** SIGTERM received at time=1762175692 on cpu 58 ***
+PC: @     0x7f2e0317fc3f  (unknown)  poll
+    @     0x7f2e030a9520  (unknown)  (unknown)
+[2025-11-03 13:14:52,297 E 1994474 1994474] logging.cc:474: *** SIGTERM received at time=1762175692 on cpu 58 ***
+[2025-11-03 13:14:52,298 E 1994474 1994474] logging.cc:474: PC: @     0x7f2e0317fc3f  (unknown)  poll
+[2025-11-03 13:14:52,298 E 1994474 1994474] logging.cc:474:     @     0x7f2e030a9520  (unknown)  (unknown)
+Exception ignored in: <function Tracking.__del__ at 0x7f2b3e659440>
+Traceback (most recent call last):
+  File "/data1/oujingfeng/project/twgi/verl/verl/utils/tracking.py", line 158, in __del__
+    def __del__(self):
+
+  File "/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/utils/data/_utils/signal_handling.py", line 73, in handler
+    _error_if_any_worker_fails()
+RuntimeError: DataLoader worker (pid 2011089) is killed by signal: Terminated. 

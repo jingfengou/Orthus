@@ -1,0 +1,5 @@
+sample00180
+Image_id: sample_0181
+Question: How would the orientation change if 180-degree rotation around the Y-axis, followed by 90-degree clockwise rotation around the Z-axis is applied?
+Ground truth: B
+Generated:

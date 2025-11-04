@@ -1,0 +1,7 @@
+{"time":"2025-11-03T09:31:09.412514186Z","level":"INFO","msg":"stream: starting","core version":"0.22.0"}
+{"time":"2025-11-03T09:31:13.273841825Z","level":"INFO","msg":"stream: created new stream","id":"utxfuzon"}
+{"time":"2025-11-03T09:31:13.273913104Z","level":"INFO","msg":"stream: started","id":"utxfuzon"}
+{"time":"2025-11-03T09:31:13.274061773Z","level":"INFO","msg":"writer: started","stream_id":"utxfuzon"}
+{"time":"2025-11-03T09:31:13.274242253Z","level":"INFO","msg":"handler: started","stream_id":"utxfuzon"}
+{"time":"2025-11-03T09:31:13.274270146Z","level":"INFO","msg":"sender: started","stream_id":"utxfuzon"}
+{"time":"2025-11-03T09:50:02.314138278Z","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading data","runtime_seconds":0.270876575},{"desc":"updating run metadata","runtime_seconds":0.00248466}],"total_operations":2}}

@@ -129,3 +129,103 @@
 - [ ] 3.4 量化与部署形态评估
 - [ ] 4.1 测试集扩充与自动化
 - [ ] 4.2 性能/显存仪表板
+
+---
+
+## Orthus × Verl 集成计划（需逐步确认执行）
+
+> 目标：使 Orthus 模型能够在 Verl 框架下执行 GRPO / GSPO 训练。每一步在实施前需获得确认。
+> 代码实现须集中在 `train/verl/` 目录下，所有新增脚本、配置与适配层均放置于此。
+
+### 当前阻塞问题汇总
+- **FSDP 显存溢出**：按现有配置加载 Orthus 7B 全参时，FSDP 展平参数一次性申请约 26GiB 显存，单卡无法容纳，运行 `run_orthus_grpo.py` 会在初始化阶段 OOM。待后续改用 LoRA 或手工 wrap 策略降内存。
+- **CPU 路径需独立策略**：将 `n_gpus_per_node` 设为 0 时，Verl 校验逻辑仍按 GPU 公式计算 `ppo_micro_batch_size_per_gpu`，导致 0 除错误；若要用 CPU 验证，需要单独添加 CPU actor 配置或跳过相关校验。
+- **Ray 在无 GPU 模式初始化失败**：禁用 GPU 后，Ray 尝试初始化本地节点时因权限限制无法创建 socket，未能落地 multi-process CPU 模式，后续需配置容器权限或改用单进程脚本验证；2025-02-15 在 orthus 环境下尝试 `run_orthus_grpo.py`（LoRA 配置、1 卡调试）同样触发 `PermissionError: [Errno 1] Operation not permitted`，说明当前容器仍无法开放 UDP socket。
+- **路径修复**：`run_orthus_grpo.py` 现将仓库根目录定位为 `twgi`（`parents[3]`），解决 tokenizer 加载阶段把 `/data1/oujingfeng/project/twgi/Orthus/...` 作为 HuggingFace repo id 导致的 `HFValidationError`。
+
+### 最新排查记录
+- **2025-11-03 VQ 模型缺失**：`OrthusRLDataset` 在多进程加载时未能通过 `AutoModelForCausalLM` 找到 `ChameleonConfig`，导致 processor 报错 "`vqmodel` must be provided"。已改为直接解析 checkpoint 的 `vq_config` 并仅加载 `model.vqmodel.*` 对应的 safetensors 分片（`train/verl/dataset.py`），确保 `vqmodel` 常驻 CPU、参数冻结，避免再次打印词典或回退零 latent。
+- **2025-11-03 Rollout 卡死排查**：为确认权重同步与采样调用，`OrthusRollout` 新增了前 3 次 `update_weights`/`generate_sequences` 的诊断打印；同时收紧 Verl FSDP 初始化日志，避免整张词表写入导致日志刷屏（`verl/workers/fsdp_workers.py`），以便后续分析真正阻塞点。
+
+### 阶段 0：现状评估与接口梳理
+1. **步骤 0.1：接口差异清点**  
+   - 目标：列出 Orthus 模型与 HuggingFace 标准接口的差异（如 `generate` 返回混合张量、载入 VQ-VAE 等）。  
+   - 依赖：`models/modeling_orthus_for_inteleave_cfg.py`、`inference/interleave_generation_rotation.py`、Verl `HFRollout` 代码。  
+   - 注意事项：输出混合列表、`train_mode` 额外参数、`processor` 对 VQ-VAE 的依赖都需记录。
+
+2. **步骤 0.2：Verl 侧扩展点确认**  
+   - 目标：明确 Verl 中需要扩展的模块（数据集、rollout、actor、Hydra 配置）。  
+   - 依赖：`verl/utils/dataset/rl_dataset.py`、`verl/workers/rollout/hf_rollout.py`、`verl/workers/actor/dp_actor.py`、`verl/trainer/ppo/core_algos.py`。  
+   - 注意事项：确认是否需要注册新的 model loader / processor，避免破坏现有模型注册逻辑。
+
+### 阶段 1：数据与处理器接入
+3. **步骤 1.1：自定义数据适配器**  
+   - 目标：实现 Orthus 专用 `RLHFDataset` 派生类或前置转换脚本，确保样本包含 `input_ids`、`attention_mask`、`position_ids`、`responses` 及 `multi_modal_inputs`。  
+   - 依赖：Orthus `InterleaveSFTDataset` 处理逻辑、Verl `DataProto` 结构。  
+   - 注意事项：加载图片时需将 `vqmodel` 引入 Processor；考虑 latent 缓存（磁盘/内存）与缓存一致性。
+
+4. **步骤 1.2：VQ-VAE 缓存与预处理**  
+   - 目标：提供可在 Verl 数据加载阶段生成/缓存 image latents 的机制，减少在线编码。  
+   - 依赖：`models/processing_orthus.py` 缓存 API。  
+   - 注意事项：缓存精度（bf16/fp16）需与训练 dtype 一致；需要处理缺失图像的兜底逻辑。
+
+### 阶段 2：Rollout 与生成流程
+5. **步骤 2.1：Orthus Rollout Worker**  
+   - 目标：基于 `verl/workers/rollout/hf_rollout.py` 实现新 worker，支持 `multimodal_generation_mode_list` 并拆解文本/latent。  
+   - 依赖：`inference/interleave_generation_rotation.py` 中的输出解析流程。  
+   - 注意事项：需维护 CFG 参数、保证批处理能力，生成后清理 GPU 缓存。
+
+6. **步骤 2.2：生成结果适配**  
+   - 目标：定义生成结果到 Verl `DataProto` 的映射（包括文本 completion 与必要的调试信息），确保后续 log-prob 计算只依赖文本 token。  
+   - 依赖：步骤 2.1 中的 rollout worker、`verl/workers/actor/dp_actor.py` 的输入格式。  
+   - 注意事项：保留图像 latent 仅用于分析，不参与优势计算；确认 `response_mask` 构造与 Orthus 标签约定一致。
+
+### 阶段 3：训练循环接入
+7. **步骤 3.1：Actor 端前向适配**  
+   - 目标：在计算 log-prob 时调用 Orthus 模型的 `train_mode="mmu"` 分支，确保只涉及文本 logits。  
+   - 依赖：`train/grpo/grpo_trainer_orthus.py` 现有实现、`verl/workers/actor/dp_actor.py`。  
+   - 注意事项：处理 `multi_modal_inputs` 的透传，确保梯度检查点配置兼容；数据集中会自动加载 `vqmodel`（优先使用 `ORTHUS_VQMODEL_PATH`，否则退回 `data.model_path`），因此需保证本地 checkpoint 包含 VQ-VAE 模块。
+   - 辅助工具：`train/verl/launch_grpo.sh` 提供 `test` / `train` 双模式入口；两者默认均使用 8 张 GPU 与相同配置，`test` 仅通过 `trainer.total_epochs` / `trainer.total_training_steps` 缩短运行时长（默认 1 epoch / 10 steps，可通过环境变量覆盖）。脚本默认注入 `actor_rollout_ref.actor.ppo_micro_batch_size_per_gpu=1`、`actor_rollout_ref.actor.ppo_mini_batch_size=ORTHUS_NUM_GPUS`，并同步设置 `actor_rollout_ref.rollout.log_prob_micro_batch_size=ppo_micro_batch_size_per_gpu`（可由 `ORTHUS_PPO_MICRO_BATCH_SIZE_PER_GPU` / `ORTHUS_PPO_MINI_BATCH_SIZE` / `ORTHUS_ROLLOUT_LOGPROB_BATCH` 覆写）。`run_orthus_grpo.py` 默认将训练/验证数据文件指向 `datasets/mydatasets/dataset/data.json`（可用 `ORTHUS_RL_DATA` / `ORTHUS_RL_VAL_DATA` 覆写），采样数可由 `ORTHUS_RL_TRAIN_MAX_SAMPLES` / `ORTHUS_RL_VAL_MAX_SAMPLES` 控制，并透传 `PYTHONPATH`/`VERL_SUPPRESS_CONFIG_LOG` 到 Ray runtime；演员与参考模型 FSDP dtype 均设置为 bfloat16。
+
+8. **步骤 3.2：Hydra 配置集成**  
+   - 目标：新增 Verl 配置（或 recipe）以载入 Orthus checkpoint、processor、数据源与自定义 worker。  
+   - 依赖：Verl `examples/grpo_trainer`、`recipe/gspo` 的示例配置。  
+   - 注意事项：配置需支持切换 GRPO/GSPO；标注必要的环境变量与资源需求。
+
+9. **步骤 3.3：GRPO 小规模验证**  
+   - 目标：以小样本运行若干 step，验证奖励计算、优势归一化、梯度更新是否正常。  
+   - 依赖：步骤 1-3 所有成果。  
+   - 注意事项：对齐 `reward_funcs`（正确率、格式），观察损失、KL、奖励曲线是否合理。
+
+10. **步骤 3.4：GSPO 扩展验证**  
+    - 目标：在 GRPO 成功基础上，将 policy loss 切换为 `gspo`，调优 `clip_ratio`、`loss_agg_mode`。  
+    - 依赖：Verl GSPO 实现（`core_algos.py`），步骤 3.3 的配置。  
+    - 注意事项：密切监控训练稳定性，必要时调整梯度裁剪和学习率。
+
+### 阶段 4：完善与交付
+11. **步骤 4.1：性能与显存基准记录**  
+    - 目标：记录 Orthus 在 Verl 下的训练耗时、显存、吞吐，与原生 GRPO 脚本对比。  
+    - 依赖：阶段 3 的可运行管线。  
+    - 注意事项：使用统一硬件环境、固定随机种子。
+
+12. **步骤 4.2：文档与测试补充**  
+    - 目标：更新 README/内部文档，增加数据适配、rollout、配置示例；补充关键单元/集成测试。  
+    - 依赖：所有前续步骤完成输出。  
+    - 注意事项：文档中需明确依赖项（FlashAttention、DeepSpeed 等）和使用限制。
+
+### Orthus × Verl TODO 列表
+- [x] 0.1 梳理 Orthus 与 HF 接口差异
+- [x] 0.2 明确 Verl 扩展点
+- [x] 1.1 完成 Orthus 数据适配器
+- [x] 1.2 实现 VQ-VAE latent 缓存策略
+- [x] 2.1 开发 Orthus 专用 rollout worker
+- [x] 2.2 适配生成结果到 DataProto
+- [x] 3.1 调整 actor 端 log-prob 前向
+- [x] 3.2 集成 Hydra/recipe 配置
+- [ ] 3.3 验证 Orthus GRPO 训练
+- [ ] 3.4 验证 Orthus GSPO 训练
+- [ ] 4.1 输出性能/显存基准
+- [ ] 4.2 补充文档与测试
+
+### 最新修复记录（2025-11-03）
+- [x] 修复 GRPO LoRA `target_modules` 命令行仅保留最后一项导致 `o_proj` 未匹配的问题：统一在 `run_grpo_orthus.sh` 传递逗号分隔字符串，并在 `grpo_orthus.py` 端解析为列表。

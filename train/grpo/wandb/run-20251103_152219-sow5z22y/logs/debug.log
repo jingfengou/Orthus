@@ -1,0 +1,5 @@
+2025-11-03 15:22:19,768 INFO    MainThread:2062269 [wandb_setup.py:_flush():81] Current SDK version is 0.22.0
+2025-11-03 15:22:19,768 INFO    MainThread:2062269 [wandb_setup.py:_flush():81] Configure stats pid to 2062269
+2025-11-03 15:22:19,768 INFO    MainThread:2062269 [wandb_setup.py:_flush():81] Loading settings from /home/server/.config/wandb/settings
+2025-11-03 15:22:19,768 INFO    MainThread:2062269 [wandb_setup.py:_flush():81] Loading settings from /data1/oujingfeng/project/twgi/Orthus/train/grpo/wandb/settings
+2025-11-03 15:22:19,768 INFO    MainThread:2062269 [wandb_setup.py:_flush():81] Loading settings from environment variables

@@ -1,0 +1,39 @@
+/data1/conda/envs/orthus/lib/python3.11/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+2025-11-03 10:34:17,365	INFO worker.py:2003 -- Started a local Ray instance. View the dashboard at [1m[32mhttp://127.0.0.1:8265 [39m[22m
+/data1/conda/envs/orthus/lib/python3.11/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[36m(pid=1841186)[0m /data1/conda/envs/orthus/lib/python3.11/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+[36m(pid=1841186)[0m   import pynvml  # type: ignore[import]
+[36m(TaskRunner pid=1841186)[0m /data1/oujingfeng/project/twgi/verl/verl/trainer/main_ppo.py:275: UserWarning: Disabled critic as algorithm.adv_estimator != gae. If it is not intended, please set critic.enable=True
+[36m(TaskRunner pid=1841186)[0m   use_critic=need_critic(config),
+[36m(TaskRunner pid=1841186)[0m /data1/oujingfeng/project/twgi/verl/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.
+[36m(TaskRunner pid=1841186)[0m   warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)
+[36m(TaskRunner pid=1841186)[0m /data1/oujingfeng/project/twgi/verl/verl/trainer/ppo/ray_trainer.py:326: UserWarning: Disabled critic as algorithm.adv_estimator != gae. If it is not intended, please set critic.enable=True
+[36m(TaskRunner pid=1841186)[0m   self.use_critic = need_critic(self.config)
+[36m(pid=1847147)[0m /data1/conda/envs/orthus/lib/python3.11/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+[36m(pid=1847147)[0m   import pynvml  # type: ignore[import]
+[36m(WorkerDict pid=1847153)[0m `torch_dtype` is deprecated! Use `dtype` instead!
+[36m(pid=1847167)[0m /data1/conda/envs/orthus/lib/python3.11/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.[32m [repeated 7x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(pid=1847167)[0m   import pynvml  # type: ignore[import][32m [repeated 7x across cluster][0m
+[36m(WorkerDict pid=1847177)[0m Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+[36m(WorkerDict pid=1847177)[0m Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 19.34it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 19.31it/s]
+[36m(WorkerDict pid=1847160)[0m /data1/oujingfeng/project/twgi/verl/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.
+[36m(WorkerDict pid=1847160)[0m   warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)
+[36m(WorkerDict pid=1847160)[0m `torch_dtype` is deprecated! Use `dtype` instead![32m [repeated 7x across cluster][0m
+[36m(WorkerDict pid=1847146)[0m Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s][32m [repeated 7x across cluster][0m
+[36m(WorkerDict pid=1847146)[0m Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 16.01it/s]Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 15.99it/s][32m [repeated 7x across cluster][0m
+[36m(WorkerDict pid=1847177)[0m /data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:678: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .
+[36m(WorkerDict pid=1847177)[0m   warnings.warn(
+[36m(WorkerDict pid=1847147)[0m /data1/oujingfeng/project/twgi/verl/verl/utils/profiler/config.py:49: UserWarning: Torch profiler tool config is not fully supported now.[32m [repeated 7x across cluster][0m
+[36m(WorkerDict pid=1847147)[0m   warnings.warn("Torch profiler tool config is not fully supported now.", stacklevel=1)[32m [repeated 7x across cluster][0m
+[36m(TaskRunner pid=1841186)[0m wandb: Currently logged in as: xjy110156 (xjy110156-) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+[36m(TaskRunner pid=1841186)[0m wandb: creating run
+[36m(WorkerDict pid=1847171)[0m /data1/conda/envs/orthus/lib/python3.11/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py:678: FutureWarning: FSDP.state_dict_type() and FSDP.set_state_dict_type() are being deprecated. Please use APIs, get_state_dict() and set_state_dict(), which can support different parallelisms, FSDP1, FSDP2, DDP. API doc: https://pytorch.org/docs/stable/distributed.checkpoint.html#torch.distributed.checkpoint.state_dict.get_state_dict .Tutorial: https://pytorch.org/tutorials/recipes/distributed_checkpoint_recipe.html .[32m [repeated 7x across cluster][0m
+[36m(WorkerDict pid=1847171)[0m   warnings.warn([32m [repeated 7x across cluster][0m
+[36m(TaskRunner pid=1841186)[0m wandb: Tracking run with wandb version 0.22.0
+[36m(TaskRunner pid=1841186)[0m wandb: Run data is saved locally in /data1/oujingfeng/project/twgi/Orthus/train/verl/wandb/run-20251103_103530-c4l4v38y
+[36m(TaskRunner pid=1841186)[0m wandb: Run `wandb offline` to turn off syncing.
+[36m(TaskRunner pid=1841186)[0m wandb: Syncing run gsm8k
+[36m(TaskRunner pid=1841186)[0m wandb: ⭐️ View project at https://wandb.ai/xjy110156-/verl_examples
+[36m(TaskRunner pid=1841186)[0m wandb: 🚀 View run at https://wandb.ai/xjy110156-/verl_examples/runs/c4l4v38y

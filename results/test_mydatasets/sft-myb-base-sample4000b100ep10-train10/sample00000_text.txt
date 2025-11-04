@@ -1,0 +1,6 @@
+sample00000
+Image_id: sample_0001
+Question: Consider the visual outcome of 180-degree rotation around the Z-axis, followed by 180-degree rotation around the X-axis.
+Ground truth: D
+Generated:
+A

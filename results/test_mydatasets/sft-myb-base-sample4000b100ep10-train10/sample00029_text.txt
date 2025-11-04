@@ -1,0 +1,6 @@
+sample00029
+Image_id: sample_0030
+Question: When a shape experiences 90-degree clockwise rotation around the Z-axis, followed by 180-degree rotation around the Y-axis, what does it look like?
+Ground truth: D
+Generated:
+A</think>. <Answer>A</Answer>

@@ -1,0 +1,6 @@
+sample00003
+Image_id: sample_0004
+Question: How would the orientation change if 270-degree clockwise rotation around the X-axis, followed by 270-degree clockwise rotation around the X-axis is applied?
+Ground truth: C
+Generated:
+A</think>. <Answer>A</Answer>

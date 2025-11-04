@@ -1,0 +1,6 @@
+sample00010
+Image_id: sample_0011
+Question: What shape configuration follows 180-degree rotation around the Z-axis, followed by 270-degree clockwise rotation around the X-axis?
+Ground truth: A
+Generated:
+A</think>. <Answer>A</Answer>

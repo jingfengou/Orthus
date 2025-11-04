@@ -1,0 +1,6 @@
+sample00048
+Image_id: sample_0049
+Question: How would the orientation change if 90-degree clockwise rotation around the Z-axis, followed by 90-degree clockwise rotation around the Z-axis is applied?
+Ground truth: C
+Generated:
+A</think>. <Answer>A</Answer>

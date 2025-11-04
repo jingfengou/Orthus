@@ -1,0 +1,6 @@
+sample00045
+Image_id: sample_0046
+Question: With an original configuration, what is the result if 180-degree rotation around the Z-axis, followed by 180-degree rotation around the Y-axis?
+Ground truth: D
+Generated:
+A</think>. <Answer>A</Answer>

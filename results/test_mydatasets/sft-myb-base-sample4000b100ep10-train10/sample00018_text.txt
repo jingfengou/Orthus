@@ -1,0 +1,6 @@
+sample00018
+Image_id: sample_0019
+Question: If an object is rotated according to 270-degree clockwise rotation around the Y-axis, followed by 270-degree clockwise rotation around the X-axis, what is the result?
+Ground truth: A
+Generated:
+A</think>. <Answer>A</Answer>

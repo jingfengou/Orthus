@@ -1,0 +1,6 @@
+sample00008
+Image_id: sample_0009
+Question: Can you determine the final orientation if 90-degree clockwise rotation around the Z-axis, followed by 90-degree clockwise rotation around the X-axis is applied is performed?
+Ground truth: A
+Generated:
+A</think>. <Answer>A</Answer>

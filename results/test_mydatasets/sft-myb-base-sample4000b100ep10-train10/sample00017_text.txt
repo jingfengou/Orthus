@@ -1,0 +1,6 @@
+sample00017
+Image_id: sample_0018
+Question: Picture an object that goes through 180-degree rotation around the Z-axis, followed by 90-degree clockwise rotation around the X-axis. What does it look like at the end?
+Ground truth: A
+Generated:
+A</think>. <Answer>A</Answer>
