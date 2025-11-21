@@ -1,0 +1,5 @@
+sample04986
+Image_id: sample_4987
+Question: Regarding the original cube, Starting with the initial state, what is the final appearance after 270-degree clockwise rotation around the Y-axis, followed by 270-degree clockwise rotation around the X-axis?
+Ground truth: A
+Generated:

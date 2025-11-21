@@ -1,0 +1,5 @@
+sample00474
+Image_id: sample_0475
+Question: What would be the resulting orientation of the original cube of an object that experiences 270-degree clockwise rotation around the Y-axis, followed by 270-degree clockwise rotation around the X-axis.
+Ground truth: D
+Generated:

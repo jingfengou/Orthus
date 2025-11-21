@@ -1,0 +1,5 @@
+sample04853
+Image_id: sample_4854
+Question: Regarding the original cube, Carry out the sequence 270-degree clockwise rotation around the Z-axis, followed by 180-degree rotation around the Z-axis. What final state is achieved?
+Ground truth: A
+Generated:

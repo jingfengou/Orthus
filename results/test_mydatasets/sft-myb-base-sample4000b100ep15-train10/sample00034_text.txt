@@ -1,0 +1,5 @@
+sample00034
+Image_id: sample_0035
+Question: Apply the transformations 90-degree clockwise rotation around the Z-axis, followed by 270-degree clockwise rotation around the Y-axis. What is the resulting orientation of the original cube?
+Ground truth: C
+Generated:

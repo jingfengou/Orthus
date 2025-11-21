@@ -1,0 +1,5 @@
+sample00061
+Image_id: sample_0062
+Question: Regarding the original cube, Determine the final position after 270-degree clockwise rotation around the X-axis, followed by 270-degree clockwise rotation around the Z-axis.
+Ground truth: A
+Generated:

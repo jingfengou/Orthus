@@ -1,0 +1,6 @@
+sample04524
+Image_id: sample_4525
+Question: By executing 180-degree rotation around the X-axis, followed by 270-degree clockwise rotation around the Y-axis, what final orientation of the original cube is achieved?
+Ground truth: D
+Generated:
+Think: This option performs extra rotations beyond the required steps.

@@ -1,0 +1,5 @@
+sample04585
+Image_id: sample_4586
+Question: Regarding the original cube, An object starts in standard position and then 90-degree clockwise rotation around the X-axis, followed by 180-degree rotation around the Z-axis. What is the final state?
+Ground truth: A
+Generated:

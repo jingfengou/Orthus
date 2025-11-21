@@ -1,0 +1,6 @@
+sample00344
+Image_id: sample_0345
+Question: Evaluate the resulting orientation of the original cube subsequent to 270-degree clockwise rotation around the Y-axis, followed by 180-degree rotation around the Z-axis.
+Ground truth: A
+Generated:
+Think: this is the result after performing all rotation steps correctly. B: This option performs the rotations in wrong order. C: This option rotates along wrong axes. D: This option is missing one cube from the stack. So the final Answer is This is the result after performing all rotation steps correctly.

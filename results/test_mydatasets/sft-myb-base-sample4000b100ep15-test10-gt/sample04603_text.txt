@@ -1,0 +1,6 @@
+sample04603
+Image_id: sample_4604
+Question: Based on 180-degree rotation around the Y-axis, followed by 180-degree rotation around the X-axis is applied, what final orientation of the original cube do you obtain?
+Ground truth: D
+Generated:
+ที่ใช้คำนำเป็นที่เอาสถานคนที่เปลี่ยวกับการนำคนที่เปลี่ยวกับการต์ไม่พบ. หน้านั้นมีคนเทคนิตสามา, การตั้งคนใหม่อยู่เหลือมคนเก่าที่ชยุคซึกเชะกเก่า. หน้านั้นเป็นสานสั้นสบ, กินได้กระจกเชาบอนกระจกเชาพนาน. เป็นเวลาเดือนเก้า, จำเป็นเหลือตัวละเอียดนี้. เนื้อของนั่งนี้เป็นเหลื้อที่ชชนำ, , ได้แก้ไขได้ถ้ามีนั่งใหม่เทศไม่พบ. 

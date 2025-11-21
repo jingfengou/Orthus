@@ -1,0 +1,6 @@
+sample00378
+Image_id: sample_0379
+Question: Regarding the original cube, Carry out the sequence 180-degree rotation around the X-axis, followed by 90-degree clockwise rotation around the Z-axis. What final state is achieved?
+Ground truth: D
+Generated:
+Think: This option performs extra rotations beyond the required steps. B: This option only performs partial rotations, missing some steps. C: This option rotates along wrong axes. D: this is the result after performing all rotation steps correctly. So the final Answer is D</think>. <Answer>D</Answer>

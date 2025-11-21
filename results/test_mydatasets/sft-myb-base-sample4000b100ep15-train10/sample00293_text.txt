@@ -1,0 +1,5 @@
+sample00293
+Image_id: sample_0294
+Question: Establish the ultimate orientation of the original cube arising from 90-degree clockwise rotation around the Y-axis, followed by 90-degree clockwise rotation around the Z-axis.
+Ground truth: A
+Generated:

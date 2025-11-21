@@ -1,0 +1,5 @@
+sample04750
+Image_id: sample_4751
+Question: Consider the visual outcome of the original cube of 180-degree rotation around the X-axis, followed by 180-degree rotation around the Z-axis.
+Ground truth: C
+Generated:

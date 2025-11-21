@@ -1,0 +1,6 @@
+sample04607
+Image_id: sample_4608
+Question: By executing 270-degree clockwise rotation around the X-axis, followed by 180-degree rotation around the Z-axis, what final orientation of the original cube is achieved?
+Ground truth: C
+Generated:
+Think: This option is missing one cube from the stack.

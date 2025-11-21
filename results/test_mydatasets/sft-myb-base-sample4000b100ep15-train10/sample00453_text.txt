@@ -1,0 +1,5 @@
+sample00453
+Image_id: sample_0454
+Question: Calculate the terminal orientation of the original cube resulting from 90-degree clockwise rotation around the Y-axis, followed by 180-degree rotation around the Z-axis.
+Ground truth: D
+Generated:

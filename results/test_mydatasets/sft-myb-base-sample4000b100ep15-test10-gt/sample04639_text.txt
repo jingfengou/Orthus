@@ -1,0 +1,6 @@
+sample04639
+Image_id: sample_4640
+Question: In case of 270-degree clockwise rotation around the Z-axis, followed by 180-degree rotation around the Z-axis, what would be the outcome for the original cube?
+Ground truth: D
+Generated:
+Think: this is the result after performing all rotation steps correctly.

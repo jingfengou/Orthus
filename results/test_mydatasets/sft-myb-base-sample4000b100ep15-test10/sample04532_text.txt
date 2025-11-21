@@ -1,0 +1,5 @@
+sample04532
+Image_id: sample_4533
+Question: If we start with a regular orientation of the original cube and apply 180-degree rotation around the Y-axis, followed by 270-degree clockwise rotation around the X-axis, what do we get?
+Ground truth: D
+Generated:

@@ -58,13 +58,13 @@ def format_report(stats: dict) -> str:
 
 def main():
     current_dir = Path(__file__).resolve().parent
-    target_dir = current_dir / "sft-myb-base-sample4000b100ep20-train10"
+    target_dir = current_dir / "sft-myb-base-sample4000b100ep15-train10-gt"
     if len(sys.argv) > 1:
         output_path = Path(sys.argv[1])
         if not output_path.is_absolute():
             output_path = current_dir / output_path
     else:
-        output_path = current_dir / "train-result.txt"
+        output_path = current_dir / "ep15-train10-results-gt.txt"
 
     if not target_dir.exists():
         raise SystemExit(f"Target directory not found: {target_dir}")

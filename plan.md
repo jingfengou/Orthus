@@ -213,6 +213,36 @@
     - 依赖：所有前续步骤完成输出。  
     - 注意事项：文档中需明确依赖项（FlashAttention、DeepSpeed 等）和使用限制。
 
+### 阶段 5：图像结构语义对齐
+13. **步骤 5.1：结构特征离线准备**  
+    - 目标：针对 `/data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data_modified.json` 中的 `Rotation_steps[*].image` 生成与 latent 网格 (32×32) 对齐的结构标签。先用脚本遍历 `task/level/image_id/steps/*.png`，利用 OpenCV/PyTorch 算子提取：  
+        1) 边缘/线条（Sobel/Canny→Hough，或直接对梯度幅值做多阈值编码）；  
+        2) 角点/特征点（Harris/LoG）。  
+      输出统一保存为 `.pt`（包含 edge_map、line_map、corner_map，float32），并记录 metadata 供 Dataset 映射。  
+    - 依赖：`train/precompute_latents.py` 的遍历逻辑，可复用其 cache key 与路径解析。  
+    - 注意事项：保证算子输出可被下游重用（尺寸与 latent patch 对齐，或在保存前做双线性缩放），并在脚本中支持 `--overwrite`、断点续算。
+
+14. **步骤 5.2：数据/模型管线扩展**  
+    - 目标：在 `InterleaveSFTDataset` 中加载上述结构标签，并与 `target_image_latents` 对齐（同样数量的 step）。返回字段新增 `structure_edge_targets` / `structure_corner_targets`。  
+    - 模型端：在 `OrthusForConditionalGeneration` 内新增可选的结构投影辅助头，方法：  
+        - 将 diffusion head 的输出 latent 还原为 `(B, num_imgs, 32, 32, C)`；  
+        - 通过固定卷积核（Sobel、二阶差分）实现可微的 edge/point 映射；  
+        - 或在 forward 中返回 `pred_latents`，由 Trainer 使用相同算子在 PyTorch 中生成结构预测。  
+    - 注意事项：保持算子可微；需要对 `pred_latents` 与 ground-truth latent 做 dtype/device 对齐，并允许关闭该特性（CLI `--structure_loss_weight 0`）。
+
+15. **步骤 5.3：Loss 嵌入与日志**  
+    - 目标：在 `InterleaveSFTTrainer.compute_loss` 中，当 `pred_latents`/`true_latents` 可用时，计算：  
+      `L_edge = ||Edge(pred) - Edge(true)||₁`，`L_corner = BCE(Sigmoid(Corner(pred)), Corner(true))`，再以新超参 γ_edge、γ_corner 融入总损失：`loss = α·text + β·diff + γ_edge·L_edge + γ_corner·L_corner`。  
+    - 要求：  
+        - CLI (`train_interleave_orthus.py`) 暴露权重与开关（如 `--enable_structure_loss`）；  
+        - 训练日志/评估输出单独记录每个结构项，便于调参。  
+    - 注意事项：在 `bf16` 下计算结构 loss 需谨慎，可在算子后转 fp32；确保多卡情况下 `structure_targets` 不引入额外通信。
+
+16. **步骤 5.4：验证与推理对齐**  
+    - 目标：新增评估脚本，对训练后权重在验证集上重新生成 step 图像，对比结构指标（edge IoU、corner Precision）。  
+    - 推理侧（`inference/interleave_generation_rotation.py`）添加可选开关：若传入 `--dump_structure_metrics`，对生成的每张图片运行同样算子并输出指标，辅助观测语义一致性。  
+    - 注意事项：保证离线/在线算子一致；指标计算尽量放在 CPU 以免占用训练 GPU 资源。
+
 ### Orthus × Verl TODO 列表
 - [x] 0.1 梳理 Orthus 与 HF 接口差异
 - [x] 0.2 明确 Verl 扩展点
@@ -229,3 +259,6 @@
 
 ### 最新修复记录（2025-11-03）
 - [x] 修复 GRPO LoRA `target_modules` 命令行仅保留最后一项导致 `o_proj` 未匹配的问题：统一在 `run_grpo_orthus.sh` 传递逗号分隔字符串，并在 `grpo_orthus.py` 端解析为列表。
+
+### 当前待解决问题
+- GRPO 训练阶段推理与策略前向仍在同一进程执行，生成输出（`completion_ids`、`full_sequences` 等）长期保留在 GPU，显存峰值无法下降；需参考 Verl 架构，将生成阶段输出及时迁移到 CPU 或拆到独立 worker。

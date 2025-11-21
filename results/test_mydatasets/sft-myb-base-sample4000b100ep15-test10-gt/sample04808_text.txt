@@ -1,0 +1,5 @@
+sample04808
+Image_id: sample_4809
+Question: In the event that 90-degree clockwise rotation around the Y-axis, followed by 90-degree clockwise rotation around the X-axis, determine the resulting orientation of the original cube.
+Ground truth: D
+Generated:

@@ -28,7 +28,7 @@ LAUNCH_CMD="accelerate launch --num_processes 8 --gradient_accumulation_steps 1"
 BATCH_SIZE=4
 # REPORT_TO="none"     # <--- 关闭 wandb
 REPORT_TO="wandb"
-EPOCHS=1
+EPOCHS=100
 GRADIENT_CHECKPOINTING_FLAG="--gradient_checkpointing"
 DEBUG_MODE_FLAG=""
 
@@ -36,11 +36,11 @@ DEBUG_MODE_FLAG=""
 if [ "$1" == "debug" ]; then
   echo ">>> Running in DEBUG mode <<<"
   # --- 调试模式设置 ---
-  LAUNCH_CMD="python"  # <--- 使用 python 直接启动，单进程单GPU
-  BATCH_SIZE=1         # <--- 使用极小的批量大小
+  LAUNCH_CMD="accelerate launch --num_processes 8 --gradient_accumulation_steps 1"  # <--- 使用 python 直接启动，单进程单GPU
+  BATCH_SIZE=1        # <--- 使用极小的批量大小
   REPORT_TO="none"     # <--- 关闭 wandb
   EPOCHS=1             # <--- 只训练一个 epoch
-  GRADIENT_CHECKPOINTING_FLAG="" # <--- 在调试时通常不开启
+  GRADIENT_CHECKPOINTING_FLAG="--gradient_checkpointing" # <--- 在调试时通常不开启
   DEBUG_MODE_FLAG="--debug_mode" # <--- 传递给 python 脚本的标志
 else
   echo ">>> Running in Multi-GPU TRAINING mode <<<"
@@ -49,11 +49,10 @@ fi
 # 使用变量执行命令，保持代码整洁
 $LAUNCH_CMD train_interleave_orthus.py \
     --ckpt_path "SJTU-Deng-Lab/Orthus-7B-base" \
-    --train_file /data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data_modified.json \
-    --eval_file /data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data_modified.json \
+    --train_file /data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data_modified_with_subject.json \
+    --eval_file /data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data_modified_with_subject.json \
     --image_folder "/data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data" \
-    --precomputed_latents_dir "/data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data/latents_cache" \
-    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e1l1e-5weight-F" \
+    --output_dir "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e15l1e-5weight-F" \
     --num_train_epochs $EPOCHS \
     --per_device_train_batch_size $BATCH_SIZE \
     --per_device_eval_batch_size $BATCH_SIZE \
@@ -67,10 +66,12 @@ $LAUNCH_CMD train_interleave_orthus.py \
     --report_to $REPORT_TO \
     $GRADIENT_CHECKPOINTING_FLAG \
     $DEBUG_MODE_FLAG \
-    --early_stopping_patience 10 \
+    --early_stopping_patience 5 \
     --alpha 1.0 \
     --beta 100.0 \
     --distortion_weight False \
     --return_analysis False \
     --disable_precomputed_latents
+    # --precomputed_latents_dir "/data1/oujingfeng/project/twgi/datasets/mydatasets/dataset/data/latents_cache" \
     # --generation_log_file "/data1/oujingfeng/project/twgi/checkpoints/orthus-7b-sft-v4/generation_log.jsonl"
+    

@@ -1,0 +1,6 @@
+sample04983
+Image_id: sample_4984
+Question: By executing 90-degree clockwise rotation around the X-axis, followed by 90-degree clockwise rotation around the X-axis, what final orientation of the original cube is achieved?
+Ground truth: C
+Generated:
+think: This option is missing one cube from the stack counterclockwise along the X axis by 90 degrees.

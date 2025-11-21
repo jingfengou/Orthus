@@ -1,0 +1,5 @@
+sample04844
+Image_id: sample_4845
+Question: Regarding the original cube, An object undergoes the following transformations: 180-degree rotation around the X-axis, followed by 270-degree clockwise rotation around the Z-axis. Determine the final state.
+Ground truth: A
+Generated:

@@ -1,0 +1,5 @@
+sample00498
+Image_id: sample_0499
+Question: What orientation of the original cube results from performing 90-degree clockwise rotation around the X-axis, followed by 180-degree rotation around the X-axis?
+Ground truth: D
+Generated:

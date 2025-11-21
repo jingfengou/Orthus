@@ -1,0 +1,5 @@
+sample00360
+Image_id: sample_0361
+Question: What would be the resulting orientation of the original cube of an object that experiences 180-degree rotation around the Z-axis, followed by 270-degree clockwise rotation around the Y-axis.
+Ground truth: A
+Generated:

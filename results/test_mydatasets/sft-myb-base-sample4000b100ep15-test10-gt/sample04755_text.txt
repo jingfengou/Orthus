@@ -1,0 +1,5 @@
+sample04755
+Image_id: sample_4756
+Question: Calculate the terminal orientation of the original cube resulting from 270-degree clockwise rotation around the X-axis, followed by 270-degree clockwise rotation around the Y-axis.
+Ground truth: B
+Generated:

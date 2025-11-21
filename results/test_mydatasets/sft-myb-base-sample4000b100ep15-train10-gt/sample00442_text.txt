@@ -1,0 +1,5 @@
+sample00442
+Image_id: sample_0443
+Question: Regarding the original cube, Determine the final spatial configuration consequent to 270-degree clockwise rotation around the Z-axis, followed by 180-degree rotation around the Z-axis.
+Ground truth: D
+Generated:

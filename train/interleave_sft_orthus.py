@@ -526,28 +526,29 @@ class InterleaveSFTTrainer(Trainer):
         # ==================== 调试代码块 (开始) ====================
         # 只在训练和评估时打印，不在 generate 时打印
         # model.training 是训练状态， not model.training 是评估状态
-        should_debug = (self.is_world_process_zero() and
-                        (self.state.global_step + 1) % 50 == 0 and
-                        (model.training or not self.is_in_train) and
-                        logger.isEnabledFor(logging.DEBUG))
+        should_debug = (
+                        self.is_world_process_zero() 
+                        and 
+                        (self.state.global_step + 1) % 50  == 0 
+                        and (model.training or not self.is_in_train) 
+                        and logger.isEnabledFor(logging.DEBUG)
+                        )
         
         if should_debug:
-            logger.debug(
-                "%s [DEBUGGING AT GLOBAL STEP %d] (%s)",
-                "=" * 40,
-                self.state.global_step,
-                "TRAIN" if model.training else "EVAL",
+            print(
+                f"{'=' * 40} [DEBUGGING AT GLOBAL STEP {self.state.global_step}] "
+                f"({'TRAIN' if model.training else 'EVAL'})"
             )
 
             # --- 1. 检查 Labels 是否正确 ---
-            logger.debug("[1. Ground Truth Labels]")
+            print("[1. Ground Truth Labels]")
             labels_for_decode = labels.clone()
             labels_for_decode[labels_for_decode == -100] = self.processor.tokenizer.pad_token_id
             
             # ✅ 【修正】: 循环处理批次中的每个样本
             for i, single_label in enumerate(labels_for_decode):
                 decoded_label = self.processor.tokenizer.decode(single_label.tolist(), skip_special_tokens=True)
-                logger.debug("  - Sample %d Label: %s", i, decoded_label)
+                print(f"  - Sample {i} Label: {decoded_label}")
         # ==========================================================
 
 
@@ -687,32 +688,32 @@ class InterleaveSFTTrainer(Trainer):
 
         # 确保返回值格式正确，以兼容Trainer的日志记录等功能
         # ==================== 核心修改：保存latents到文件 ====================
-        if should_debug and pred_latents is not None and true_latents is not None:
-            try:
-                logger.debug("Saving latents at step %d...", self.state.global_step)
+        # if should_debug and pred_latents is not None and true_latents is not None:
+        #     try:
+        #         logger.debug("Saving latents at step %d...", self.state.global_step)
 
-                # # 1. 提取第一个样本的第一张图的特征
-                # pred_image_features = pred_latents[0, :1024, :]
-                # true_image_features = true_latents[0, :1024, :]
+        #         # # 1. 提取第一个样本的第一张图的特征
+        #         # pred_image_features = pred_latents[0, :1024, :]
+        #         # true_image_features = true_latents[0, :1024, :]
                 
-                # 2. 准备保存路径
-                save_path = os.path.join(self.debug_output_dir, f"step_{self.state.global_step}_latents.pt")
+        #         # 2. 准备保存路径
+        #         save_path = os.path.join(self.debug_output_dir, f"step_{self.state.global_step}_latents.pt")
                 
-                # 3. 将预测和真实的latents保存在一个字典中
-                #    使用 .detach().cpu() 是一个好习惯，可以避免占用GPU显存并断开计算图
-                latents_to_save = {
-                    'predicted': pred_latents.detach().cpu(),
-                    'target': true_latents.detach().cpu()
-                }
+        #         # 3. 将预测和真实的latents保存在一个字典中
+        #         #    使用 .detach().cpu() 是一个好习惯，可以避免占用GPU显存并断开计算图
+        #         latents_to_save = {
+        #             'predicted': pred_latents.detach().cpu(),
+        #             'target': true_latents.detach().cpu()
+        #         }
                 
-                # 4. 保存文件
-                torch.save(latents_to_save, save_path)
+        #         # 4. 保存文件
+        #         torch.save(latents_to_save, save_path)
                 
-                logger.debug("Latents saved successfully to %s", save_path)
+        #         logger.debug("Latents saved successfully to %s", save_path)
 
-            except Exception as e:
-                logger.debug("Error during saving latents at step %d: %s", self.state.global_step, e)
-                traceback.print_exc()
+        #     except Exception as e:
+        #         logger.debug("Error during saving latents at step %d: %s", self.state.global_step, e)
+        #         traceback.print_exc()
         # ====================================================================
 
 

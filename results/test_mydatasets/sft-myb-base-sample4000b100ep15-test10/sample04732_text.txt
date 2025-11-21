@@ -1,0 +1,5 @@
+sample04732
+Image_id: sample_4733
+Question: Regarding the original cube, An object undergoes the following transformations: 90-degree clockwise rotation around the Z-axis, followed by 90-degree clockwise rotation around the Z-axis. Determine the final state.
+Ground truth: A
+Generated:

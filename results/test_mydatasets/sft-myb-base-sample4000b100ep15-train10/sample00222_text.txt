@@ -1,0 +1,5 @@
+sample00222
+Image_id: sample_0223
+Question: Regarding the original cube, Provided that 90-degree clockwise rotation around the Z-axis, followed by 180-degree rotation around the Z-axis, what would be the final configuration?
+Ground truth: C
+Generated:

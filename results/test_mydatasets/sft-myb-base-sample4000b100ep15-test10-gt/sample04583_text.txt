@@ -1,0 +1,5 @@
+sample04583
+Image_id: sample_4584
+Question: Determine the final orientation of the original cube when applying 270-degree clockwise rotation around the X-axis, followed by 270-degree clockwise rotation around the X-axis is applied
+Ground truth: A
+Generated:

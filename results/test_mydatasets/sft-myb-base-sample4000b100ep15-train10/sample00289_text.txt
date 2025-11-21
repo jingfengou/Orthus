@@ -1,0 +1,5 @@
+sample00289
+Image_id: sample_0290
+Question: Regarding the original cube, Determine the final spatial configuration consequent to 90-degree clockwise rotation around the Z-axis, followed by 90-degree clockwise rotation around the X-axis.
+Ground truth: B
+Generated:

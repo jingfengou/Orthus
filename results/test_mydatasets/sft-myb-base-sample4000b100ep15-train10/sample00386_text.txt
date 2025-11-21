@@ -1,0 +1,5 @@
+sample00386
+Image_id: sample_0387
+Question: Given an initial orientation of the original cube, what happens when 270-degree clockwise rotation around the Z-axis, followed by 180-degree rotation around the Z-axis.
+Ground truth: A
+Generated:

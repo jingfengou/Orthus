@@ -1,0 +1,5 @@
+sample04993
+Image_id: sample_4994
+Question: Establish the ultimate orientation of the original cube arising from 180-degree rotation around the Z-axis, followed by 180-degree rotation around the Z-axis.
+Ground truth: B
+Generated:

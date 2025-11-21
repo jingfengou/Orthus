@@ -1,0 +1,5 @@
+sample04794
+Image_id: sample_4795
+Question: Calculate the terminal orientation of the original cube resulting from 180-degree rotation around the X-axis, followed by 180-degree rotation around the X-axis.
+Ground truth: B
+Generated:

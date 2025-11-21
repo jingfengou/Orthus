@@ -1,0 +1,6 @@
+sample00186
+Image_id: sample_0187
+Question: Following the rotations 180-degree rotation around the Z-axis, followed by 180-degree rotation around the Z-axis, what is the final orientation of the original cube?
+Ground truth: B
+Generated:
+Think: This option rotates along wrong axes. B: This option is missing one cube from the stack. C: this is the result after performing all rotation steps correctly. D: This option only performs partial rotations, missing some steps. So the final Answer is C</think>. <Answer>C</Answer>

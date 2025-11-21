@@ -1,0 +1,5 @@
+sample00290
+Image_id: sample_0291
+Question: Regarding the original cube, Assuming an initial standard configuration, what results from 180-degree rotation around the Z-axis, followed by 90-degree clockwise rotation around the Z-axis?
+Ground truth: B
+Generated:

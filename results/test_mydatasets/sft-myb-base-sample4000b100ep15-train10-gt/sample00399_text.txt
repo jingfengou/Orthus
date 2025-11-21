@@ -1,0 +1,5 @@
+sample00399
+Image_id: sample_0400
+Question: Find the resulting orientation of the original cube after 180-degree rotation around the Z-axis, followed by 90-degree clockwise rotation around the Z-axis.
+Ground truth: A
+Generated:

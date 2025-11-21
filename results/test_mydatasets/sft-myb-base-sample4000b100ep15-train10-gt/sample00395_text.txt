@@ -1,0 +1,5 @@
+sample00395
+Image_id: sample_0396
+Question: After going through 180-degree rotation around the Z-axis, followed by 180-degree rotation around the X-axis, what is the object's final orientation of the original cube?
+Ground truth: C
+Generated:

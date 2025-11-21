@@ -1,0 +1,5 @@
+sample00416
+Image_id: sample_0417
+Question: Evaluate the resulting orientation of the original cube subsequent to 90-degree clockwise rotation around the Z-axis, followed by 270-degree clockwise rotation around the Z-axis.
+Ground truth: A
+Generated:

@@ -3,7 +3,7 @@ import math
 import os
 import random
 import sys
-from typing import List
+from typing import List, Optional
 
 import numpy as np
 import torch
@@ -38,22 +38,24 @@ def init_distributed() -> int:
     return local_rank
 
 
+# accelerate launch --num_processes=8 interleave_generation_rotation_test_8gpu.py     --ckpt-path /data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e15l1e-5weight-F     --dataset-path /data1/oujingfeng/project/twgi/datasets/mydatasets/dataset     --data-file data_modified_with_subject.json     --output-dir /data1/oujingfeng/project/twgi/Orthus/results/test_mydatasets/sft-myb-base-sample4000b100ep15-train10-gt --sample-region head --use-ground-truth-images
+
 def parse_args() -> argparse.Namespace:
-    default_ckpt = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e1l1e-5weight-F"
+    default_ckpt = "/data1/oujingfeng/project/twgi/checkpoints/mydatasets/orthus-7b-sft-base-sample4000b100e15l1e-5weight-F"
     default_dataset_path = "/data1/oujingfeng/project/twgi/datasets/mydatasets/dataset"
     default_output_dir = os.path.join(
         root_path,
-        "results/test_mydatasets/sft-myb-base-sample4000b100ep1-train10",
+        "results/test_mydatasets/sft-myb-base-sample4000b100ep15-test10",
     )
 
     parser = argparse.ArgumentParser(
-        description="Interleave generation for the first 10% of the dataset using up to 8 GPUs."
+        description="Interleave generation for a configurable slice of the dataset using up to 8 GPUs."
     )
     parser.add_argument("--ckpt-path", default=default_ckpt, help="Checkpoint path.")
     parser.add_argument(
         "--dataset-path", default=default_dataset_path, help="Dataset directory."
     )
-    parser.add_argument("--data-file", default="data_modified.json", help="Dataset json filename.")
+    parser.add_argument("--data-file", default="data_modified_with_subject.json", help="Dataset json filename.")
     parser.add_argument("--output-dir", default=default_output_dir, help="Output directory.")
     parser.add_argument(
         "--save-image-interval",
@@ -67,6 +69,23 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=4096,
         help="Maximum number of new tokens for generation.",
+    )
+    parser.add_argument(
+        "--use-ground-truth-images",
+        action="store_true",
+        help="When set, bypass image generation by feeding ground-truth step images as diffusion targets.",
+    )
+    parser.add_argument(
+        "--sample-fraction",
+        type=float,
+        default=0.1,
+        help="Fraction (0-1] of the dataset to use for inference. Defaults to 0.1 (10%).",
+    )
+    parser.add_argument(
+        "--sample-region",
+        choices=["head", "tail"],
+        default="tail",
+        help="Which part of the dataset to use (head=first samples, tail=last samples).",
     )
     return parser.parse_args()
 
@@ -108,6 +127,55 @@ def load_image(dataset_path: str, item: dict) -> Image.Image:
     return Image.new("RGB", (224, 224), (255, 255, 255))
 
 
+def load_step_images(dataset_path: str, item: dict) -> List[Image.Image]:
+    """
+    Load ground-truth rotation step images (if any) for a dataset sample.
+    """
+    task = item.get("Task", "")
+    level = item.get("Level", "")
+    image_id = item.get("Image_id", "")
+    base_dir = os.path.join(dataset_path, "data", task, level, image_id)
+
+    step_images: List[Image.Image] = []
+    for step in item.get("Rotation_steps", []) or []:
+        rel_path = step.get("image", "")
+        if not rel_path:
+            continue
+        step_path = os.path.join(base_dir, rel_path)
+        try:
+            with Image.open(step_path) as img:
+                step_images.append(img.convert("RGB"))
+        except FileNotFoundError:
+            print(f"Warning: Step image at {step_path} not found. Skipping.")
+
+    return step_images
+
+
+def encode_images_to_latents(
+    model: OrthusForConditionalGeneration,
+    processor: OrthusProcessor,
+    images: List[Image.Image],
+    device: torch.device,
+) -> Optional[torch.Tensor]:
+    """
+    Encode the provided PIL images into continuous latents compatible with Orthus.
+    """
+    if not images:
+        return None
+
+    pixel_values = processor.image_processor(images, return_tensors="pt")["pixel_values"]
+    vqmodel = model.model.vqmodel
+    target_device = vqmodel.quantize.embedding.weight.device
+    target_dtype = vqmodel.quantize.embedding.weight.dtype
+
+    with torch.no_grad():
+        encoded = vqmodel.encode_wo_quant(pixel_values.to(device=target_device, dtype=target_dtype))
+
+    encoded = encoded.permute(0, 2, 3, 1).contiguous()
+    flattened = encoded.view(encoded.shape[0], -1, encoded.shape[-1])
+    return flattened.to(device)
+
+
 def main() -> None:
     args = parse_args()
     local_rank = init_distributed()
@@ -131,10 +199,16 @@ def main() -> None:
         split="train",
     )
     total_samples = len(dataset)
-    tail_count = max(1, math.ceil(total_samples * 0.01))
-    start_idx = max(total_samples - tail_count, 0)
-    # target_indices = list(range(start_idx, total_samples))
-    target_indices = list(range(0, tail_count))
+    sample_fraction = max(0.0, min(args.sample_fraction, 1.0))
+    if sample_fraction == 0.0:
+        target_indices = list(range(total_samples))
+    else:
+        sample_count = max(1, math.ceil(total_samples * sample_fraction))
+        if args.sample_region == "head":
+            target_indices = list(range(0, min(sample_count, total_samples)))
+        else:
+            start_idx = max(total_samples - sample_count, 0)
+            target_indices = list(range(start_idx, total_samples))
     assigned_indices = chunk_indices(target_indices, world_size, rank)
     if not assigned_indices:
         if rank == 0:
@@ -165,6 +239,10 @@ def main() -> None:
         )
 
         question_image = load_image(args.dataset_path, item)
+        gt_latents = None
+        if args.use_ground_truth_images:
+            gt_images = load_step_images(args.dataset_path, item)
+            gt_latents = encode_images_to_latents(model, processor, gt_images, device)
 
         interleave_inputs_con = processor(
             [prompt_text],
@@ -184,6 +262,11 @@ def main() -> None:
             "attention_mask": interleave_inputs_con["attention_mask"].to(device),
             "use_cache": True,
         }
+        if gt_latents is not None:
+            intervention_indices = [list(range(gt_latents.shape[1])) for _ in range(gt_latents.shape[0])]
+            target_latents = [gt_latents[i].clone() for i in range(gt_latents.shape[0])]
+            kwargs_con["intervention_indices"] = intervention_indices
+            kwargs_con["target_latents_for_intervention"] = target_latents
 
         outputs = model.generate(
             multimodal_generation_mode_list=["interleaved-text-image"],

@@ -1,0 +1,5 @@
+sample04941
+Image_id: sample_4942
+Question: Given the sequence of rotations 180-degree rotation around the Z-axis, followed by 90-degree clockwise rotation around the Z-axis, what is the final orientation of the original cube?
+Ground truth: A
+Generated:

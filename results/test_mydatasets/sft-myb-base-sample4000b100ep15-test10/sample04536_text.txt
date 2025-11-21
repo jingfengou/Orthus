@@ -1,0 +1,5 @@
+sample04536
+Image_id: sample_4537
+Question: The result of applying 270-degree clockwise rotation around the Z-axis, followed by 270-degree clockwise rotation around the X-axis would be what orientation of the original cube?
+Ground truth: B
+Generated:

@@ -1,0 +1,5 @@
+sample04839
+Image_id: sample_4840
+Question: Regarding the original cube, An object starts in standard position and then 180-degree rotation around the Y-axis, followed by 270-degree clockwise rotation around the X-axis. What is the final state?
+Ground truth: B
+Generated:

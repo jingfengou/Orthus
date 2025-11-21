@@ -1,0 +1,5 @@
+sample04928
+Image_id: sample_4929
+Question: Describe the orientation of the original cube of the object after 180-degree rotation around the X-axis, followed by 90-degree clockwise rotation around the Z-axis.
+Ground truth: D
+Generated:

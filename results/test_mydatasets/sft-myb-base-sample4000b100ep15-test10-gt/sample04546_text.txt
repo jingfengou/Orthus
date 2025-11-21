@@ -1,0 +1,5 @@
+sample04546
+Image_id: sample_4547
+Question: In the event that 270-degree clockwise rotation around the Y-axis, followed by 270-degree clockwise rotation around the Y-axis, determine the resulting orientation of the original cube.
+Ground truth: A
+Generated:

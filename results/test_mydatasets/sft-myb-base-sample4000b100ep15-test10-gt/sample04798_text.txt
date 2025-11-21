@@ -1,0 +1,5 @@
+sample04798
+Image_id: sample_4799
+Question: Given the sequence of rotations 270-degree clockwise rotation around the X-axis, followed by 270-degree clockwise rotation around the Y-axis, what is the final orientation of the original cube?
+Ground truth: C
+Generated:

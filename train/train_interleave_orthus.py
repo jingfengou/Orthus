@@ -113,6 +113,12 @@ def main():
     # parser.add_argument("--enable_generation_log", action='store_true', help="Enable logging of generation outputs during training for debugging.")
     # 新增：早停参数
     parser.add_argument("--early_stopping_patience", type=int, default=None, help="Enable early stopping with a given patience. E.g., 5.")
+    parser.add_argument(
+        "--load_best_model_at_end",
+        type=str2bool,
+        default=False,
+        help="Whether to reload the best (lowest eval loss) checkpoint after training stops. Defaults to keeping the last-step weights.",
+    )
     
     # --- 随机种子参数 ---
     parser.add_argument("--seed", type=int, default=42, help="Random seed for training reproducibility.")
@@ -271,8 +277,8 @@ def main():
         # --- 主要修改这里 ---
         logger.warning("--- [SINGLE DATA TEST] --- Using only one data sample for training and evaluation.")
         # .select() 方法可以高效地创建一个只包含指定索引的子集
-        train_dataset_raw = train_dataset_raw.select(range(1))
-        eval_dataset_raw = eval_dataset_raw.select(range(1))
+        train_dataset_raw = train_dataset_raw.select(range(100))
+        eval_dataset_raw = eval_dataset_raw.select(range(100))
     logger.info(f"Full train dataset size: {len(train_dataset_raw)}")
     logger.info(f"Full eval dataset size: {len(eval_dataset_raw)}")
     
@@ -336,7 +342,7 @@ def main():
         label_names=["labels"], # 确保 Trainer 知道哪个是标签
         # 新增：早停配置
         # early_stopping_patience=args.early_stopping_patience,
-        load_best_model_at_end=True if args.early_stopping_patience else False,
+        load_best_model_at_end=args.load_best_model_at_end,
         metric_for_best_model="eval_loss",
         greater_is_better=False,
     )

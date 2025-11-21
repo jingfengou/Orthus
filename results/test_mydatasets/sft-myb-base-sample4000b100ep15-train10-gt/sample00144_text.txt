@@ -1,0 +1,6 @@
+sample00144
+Image_id: sample_0145
+Question: Regarding the original cube, Ascertain the conclusive spatial arrangement following 180-degree rotation around the Y-axis, followed by 270-degree clockwise rotation around the Y-axis.
+Ground truth: C
+Generated:
+Think: This option rotates along wrong axes. B: This option performs extra rotations beyond the required steps. C: This option only performs partial rotations, missing some steps. D: this is the result after performing all rotation steps correctly. So the final Answer is D</think>. <Answer>D</Answer>

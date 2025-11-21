@@ -1,0 +1,5 @@
+sample00105
+Image_id: sample_0106
+Question: Regarding the original cube, Beginning with the default alignment, how would an object look after 90-degree clockwise rotation around the Z-axis, followed by 90-degree clockwise rotation around the X-axis?
+Ground truth: C
+Generated:

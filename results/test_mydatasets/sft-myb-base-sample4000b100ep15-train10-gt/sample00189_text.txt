@@ -1,0 +1,6 @@
+sample00189
+Image_id: sample_0190
+Question: After going through 90-degree clockwise rotation around the X-axis, followed by 270-degree clockwise rotation around the Z-axis, what is the object's final orientation of the original cube?
+Ground truth: C
+Generated:
+think: this is the result after performing all rotation steps correctly.

@@ -1,0 +1,5 @@
+sample04828
+Image_id: sample_4829
+Question: Regarding the original cube, Picture an object that goes through 180-degree rotation around the X-axis, followed by 90-degree clockwise rotation around the X-axis. What does it look like at the end?
+Ground truth: A
+Generated:

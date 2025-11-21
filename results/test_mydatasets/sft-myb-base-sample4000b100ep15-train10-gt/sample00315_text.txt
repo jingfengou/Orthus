@@ -1,0 +1,5 @@
+sample00315
+Image_id: sample_0316
+Question: Regarding the original cube, An object undergoes the following transformations: 90-degree clockwise rotation around the X-axis, followed by 180-degree rotation around the Y-axis. Determine the final state.
+Ground truth: C
+Generated:

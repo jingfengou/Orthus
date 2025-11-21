@@ -1,0 +1,5 @@
+sample04726
+Image_id: sample_4727
+Question: The original cube undergoes 270-degree clockwise rotation around the Z-axis, followed by 270-degree clockwise rotation around the X-axis. What is its final orientation?
+Ground truth: D
+Generated:

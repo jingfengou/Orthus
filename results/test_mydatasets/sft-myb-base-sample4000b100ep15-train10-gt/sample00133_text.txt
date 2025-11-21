@@ -1,0 +1,6 @@
+sample00133
+Image_id: sample_0134
+Question: What orientation of the original cube results from performing 180-degree rotation around the Z-axis, followed by 180-degree rotation around the Z-axis?
+Ground truth: C
+Generated:
+Think: This option only performs partial rotations, missing some steps. B: This option rotates along wrong axes. C: this is the result after performing all rotation steps correctly. D: This option performs extra rotations beyond the required steps. So the final Answer is C</think>. <Answer>C</Answer>

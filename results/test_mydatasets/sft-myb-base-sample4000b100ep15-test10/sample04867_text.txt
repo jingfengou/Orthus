@@ -1,0 +1,5 @@
+sample04867
+Image_id: sample_4868
+Question: Regarding the original cube, What configuration does the object attain after 180-degree rotation around the Z-axis, followed by 270-degree clockwise rotation around the Z-axis.
+Ground truth: A
+Generated:

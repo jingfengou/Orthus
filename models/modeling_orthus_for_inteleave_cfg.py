@@ -1653,6 +1653,12 @@ class OrthusModel(ChameleonPreTrainedModel):
                 "You cannot specify both image_latents and inputs_embeds at the same time, and must specify either one"
             )
 
+        if image_latents is not None and isinstance(image_latents, torch.Tensor):
+            target_device = self.codebook_in.weight.device
+            target_dtype = self.codebook_in.weight.dtype
+            if image_latents.device != target_device or image_latents.dtype != target_dtype:
+                image_latents = image_latents.to(device=target_device, dtype=target_dtype)
+
         if image_latents is None and inputs_embeds is None: # text-only input
             inputs_embeds = self.embed_tokens(input_ids)
         elif image_latents is not None and input_ids is not None: #image-text input
@@ -1687,7 +1693,11 @@ class OrthusModel(ChameleonPreTrainedModel):
                             torch.tensor(2, dtype=current_image_latents_.dtype, device=current_image_latents_.device) * torch.einsum("bd,dn->bn", current_image_latents_, self.codebook_in.weight.transpose(0, 1))
                         )
                         weighted_indices = F.softmax(-distances, dim=-1)
-                        current_image_embeds = torch.matmul(weighted_indices.to(self.embed_tokens.weight.dtype), self.embed_tokens.weight[4:8196])
+                        embed_weight = self.embed_tokens.weight[4:8196].to(weighted_indices.device)
+                        current_image_embeds = torch.matmul(
+                            weighted_indices.to(embed_weight.dtype),
+                            embed_weight,
+                        )
 
                         # 3. 找到這張圖片對應的 1024 個佔位符位置
                         start_idx = img_idx * IMAGE_PLACEHOLDER_LENGTH

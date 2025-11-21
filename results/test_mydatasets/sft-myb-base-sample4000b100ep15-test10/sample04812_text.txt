@@ -1,0 +1,5 @@
+sample04812
+Image_id: sample_4813
+Question: What would be the resulting orientation of the original cube of an object that experiences 180-degree rotation around the Y-axis, followed by 180-degree rotation around the Y-axis.
+Ground truth: C
+Generated:

@@ -1,0 +1,6 @@
+sample00380
+Image_id: sample_0381
+Question: By executing 270-degree clockwise rotation around the Z-axis, followed by 180-degree rotation around the Z-axis, what final orientation of the original cube is achieved?
+Ground truth: C
+Generated:
+Think: This option only performs partial rotations, missing some steps. B: This option performs extra rotations beyond the required steps. C: this is the result after performing all rotation steps correctly. D: This option rotates along wrong axes. So the final Answer is C</think>. <Answer>C</Answer>

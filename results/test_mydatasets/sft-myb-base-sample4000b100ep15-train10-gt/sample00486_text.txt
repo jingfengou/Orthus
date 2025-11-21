@@ -1,0 +1,5 @@
+sample00486
+Image_id: sample_0487
+Question: Regarding the original cube, Beginning with the default alignment, how would an object look after 270-degree clockwise rotation around the X-axis, followed by 270-degree clockwise rotation around the Y-axis?
+Ground truth: A
+Generated:

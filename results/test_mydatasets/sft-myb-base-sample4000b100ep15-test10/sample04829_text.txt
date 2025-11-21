@@ -1,0 +1,5 @@
+sample04829
+Image_id: sample_4830
+Question: Discover the final orientation of the original cube if 270-degree clockwise rotation around the Y-axis, followed by 90-degree clockwise rotation around the Z-axis is applied is applied.
+Ground truth: C
+Generated:
